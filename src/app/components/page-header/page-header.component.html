@@ -1,0 +1,30 @@
+<header class="header">
+    <div class="logo">
+        <img src="/assets/logo.svg" />
+    </div>
+    <div class="mobile-menu" (click)="mobileMenuToggle($event)">
+		<input class="mobile-menu__cheeckbox" type="checkbox" />
+		<div>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+    <ul class="menu">
+        <a class="menu-link">
+            <li class="menu-element">Add new post</li>
+        </a>
+        <a class="menu-link">
+            <li class="menu-element">Latest posts</li>
+        </a>
+        <a class="menu-link">
+            <li class="menu-element">Settings</li>
+        </a>
+    </ul>
+</header>
+
+<!-- MOBILE OFFCANVAS -->
+<ng-container *ngIf="mobile">
+    <div class="overlayer"></div>
+    <div class="mobile-offcanvas" [ngClass]="offcanvasOpen ? 'open' : 'hide'"></div>
+</ng-container>
+
