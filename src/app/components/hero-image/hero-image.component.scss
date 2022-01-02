@@ -1,0 +1,51 @@
+@use '/src/app/global/main.scss';
+
+.hero-image{
+    @include main.flex(flex-start, flex-start, column);
+    @include main.fullSize;
+    position: fixed;
+    background-image: url("/assets/images/hero-image-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    .hero-image-overlayer{
+        @include main.fullSize;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    .hero-image-content{
+        position: relative;
+        z-index: 2;
+    }
+    .main-title{
+        margin: 0;
+        padding: 5% 0 0 5%;
+        font-size: 4rem;
+        color: main.$yellow;
+        span{
+            display: block;
+        }
+    }
+    .button-container{
+        @include main.flex(center, center);
+        margin-top: 7.5%;
+        width: 100%;
+        .button-wrap{
+            text-align: center;
+            width: 60%;
+        }
+        .btn-link{
+            color: inherit;
+            text-decoration: none;
+            .btn{
+                @include main.mainButton;
+                padding: 1rem 1.5rem;
+                margin: 0;
+                border: none;
+                outline: none;
+            }
+        }
+    }
+}
