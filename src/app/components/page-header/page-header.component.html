@@ -9,22 +9,14 @@
 			<span></span>
 		</div>
 	</div>
-    <ul class="menu">
-        <a class="menu-link">
-            <li class="menu-element">Add new post</li>
-        </a>
-        <a class="menu-link">
-            <li class="menu-element">Latest posts</li>
-        </a>
-        <a class="menu-link">
-            <li class="menu-element">Settings</li>
-        </a>
-    </ul>
+    <app-menu></app-menu>
 </header>
 
 <!-- MOBILE OFFCANVAS -->
 <ng-container *ngIf="mobile">
-    <div class="overlayer"></div>
-    <div class="mobile-offcanvas" [ngClass]="offcanvasOpen ? 'open' : 'hide'"></div>
+    <div class="overlayer" *ngIf="offcanvasOpen"></div>
+    <div class="mobile-offcanvas" [ngClass]="offcanvasOpen ? 'open' : 'hide'">
+        <app-menu></app-menu>
+    </div>
 </ng-container>
 

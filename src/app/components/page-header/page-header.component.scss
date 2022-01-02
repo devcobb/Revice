@@ -12,27 +12,6 @@
             @include main.fullSize();
         }
     }
-    .menu{
-        @include main.flex(flex-end, center);
-        width: 50%;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        .menu-link{
-            padding: .75rem 1.5rem;
-            letter-spacing: 2px;
-            min-width: 15%;
-            text-align: center;
-            font-size: 1rem;
-            margin: 0 2% 0 0;
-            background: main.$yellow;
-            cursor: pointer;
-            &:hover{
-                background: darken(main.$yellow, 3%)
-            }
-        }
-    }
     .mobile-menu {
         display: none;
         position: relative;
@@ -101,7 +80,6 @@
         }
     
         &:hover {
-            // no need hover effect on mobile.
             @media (min-width: 1024px) {
                 span:first-of-type {
                     width: 26px;
@@ -131,38 +109,40 @@
     overflow: hidden;
     top: 0;
     right: 0;
-    width: 0%;
+    width: 90%;
     height: 100%;
     background: main.$purple;
     z-index: 3;
-    transition: width 1s;
+    transform: translateX(100%);
+    transition: transform .6s;
+    transition-timing-function: ease-in-out;
 }
 
 .open{
-    animation: showOffcanvas .5s;
-    animation-fill-mode: forwards;
+    transform: translateX(0%);
 }
 
 .hide{
-    animation: hideOffcanvas .5s;
-    animation-fill-mode: forwards;
+    transform: translateX(100%);
 }
 
-@keyframes showOffcanvas{
-    from { width: 0%;}
-    to { width: 90% }
-}
-
-@keyframes hideOffcanvas{
-    from { width: 90%;}
-    to { width: 0% }
-}
-
-@media only screen and (max-width: 992px){
+@media only screen and (max-width: 1068px){
     .mobile-menu{
         display: block !important;
     }
     .menu{
         display: none !important;
+    }
+}
+
+@media only screen and (max-width: 1024px){
+    .mobile-offcanvas{
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .mobile-offcanvas{
+        width: 85%;
     }
 }
