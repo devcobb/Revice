@@ -14,6 +14,7 @@ $yellow: #feb93f;
 }
 
 @mixin mainButton{
+    font-family: Roboto, sans-serif;
     color: inherit;
     text-decoration: none;
     padding: .75rem 1.5rem;
@@ -28,4 +29,9 @@ $yellow: #feb93f;
     &:hover{
         background: darken($yellow, 3%)
     }
+}
+
+@font-face {
+    font-family: "Agency FB Bold Condensed";
+    src: url("/assets/fonts/agencyfb-boldcondensed.ttf");
 }

@@ -16,17 +16,35 @@
         background: rgba(0, 0, 0, 0.5);
     }
     .hero-image-content{
+        @include main.fullSize;
         position: relative;
         z-index: 2;
     }
     .main-title{
+        font-family: "Agency FB Bold Condensed", sans-serif;
         margin: 0;
         padding: 5% 0 0 5%;
-        font-size: 4rem;
         color: main.$yellow;
         span{
             display: block;
+            font-size: 5rem;
+            margin-top: -1.5%;
+            &:first-of-type{
+                font-size: 8rem;
+                margin-top: 0;
+            }
         }
+        svg {
+            width: 100%;
+            margin-top: -1.5%;
+            text {
+              display: block;
+              fill: none;
+              stroke: main.$yellow;
+              font-size: 2.5rem;
+              stroke-width: 0.5px;
+            }
+          }
     }
     .button-container{
         @include main.flex(center, center);
