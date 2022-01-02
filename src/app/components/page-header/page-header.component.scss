@@ -1,0 +1,148 @@
+@use '/src/app/global/main.scss';
+
+.header{
+    @include main.flex(space-between, center);
+    max-width: 100%;
+    height: 10rem;
+    background: main.$purple;
+    padding: .1% 5%;
+    .logo{
+        width: 5rem;
+        img{
+            @include main.fullSize();
+        }
+    }
+    .mobile-menu {
+        display: none;
+        position: relative;
+        width: 50px;
+        height: 50px;
+        z-index: 99;
+        transform: scale(1.5);
+        cursor: pointer;
+    
+        .mobile-menu__cheeckbox {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            cursor: pointer;
+            z-index: 2;
+            -webkit-touch-callout: none;
+            position: absolute;
+            opacity: 0;
+        }
+        div {
+            margin: auto;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            width: 22px;
+            height: 12px;
+        }
+        span {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: main.$yellow;
+            border-radius: 1px;
+            transition: all 0.2s cubic-bezier(0.1, 0.82, 0.76, 0.965);
+    
+            &:first-of-type {
+                top: 0;
+            }
+            &:last-of-type {
+                bottom: 0;
+            }
+        }
+        &.active,
+        .mobile-menu__cheeckbox:checked + div {
+            span {
+                &:first-of-type {
+                    transform: rotate(45deg);
+                    top: 5px;
+                }
+                &:last-of-type {
+                    transform: rotate(-45deg);
+                    bottom: 5px;
+                }
+            }
+        }
+    
+        &.active:hover span:first-of-type,
+        &.active:hover span:last-of-type,
+        &:hover .mobile-menu__cheeckbox:checked + div span:first-of-type,
+        &:hover .mobile-menu__cheeckbox:checked + div span:last-of-type {
+            width: 22px;
+        }
+    
+        &:hover {
+            @media (min-width: 1024px) {
+                span:first-of-type {
+                    width: 26px;
+                }
+    
+                span:last-of-type {
+                    width: 12px;
+                }
+            }
+        }
+    }
+    
+}
+
+.overlayer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2;
+}
+
+.mobile-offcanvas{
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    width: 90%;
+    height: 100%;
+    background: main.$purple;
+    z-index: 3;
+    transform: translateX(100%);
+    transition: transform .6s;
+    transition-timing-function: ease-in-out;
+}
+
+.open{
+    transform: translateX(0%);
+}
+
+.hide{
+    transform: translateX(100%);
+}
+
+@media only screen and (max-width: 1068px){
+    .mobile-menu{
+        display: block !important;
+    }
+    .menu{
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 1024px){
+    .mobile-offcanvas{
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .mobile-offcanvas{
+        width: 85%;
+    }
+}
