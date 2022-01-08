@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CheckDeviceService } from 'src/app/global/check-device.service';
 
 @Component({
   selector: 'app-page-header',
@@ -8,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class PageHeaderComponent implements OnInit {
   offcanvasOpen = false;
   mobile = false;
-  constructor() { }
+  constructor( private checkDeviceService: CheckDeviceService) { }
 
   ngOnInit(): void {
-    this.checkDevice();
+    this.mobile = this.checkDeviceService.checkDevice();
   }
 
   mobileMenuToggle(evt: Event){
@@ -21,10 +22,4 @@ export class PageHeaderComponent implements OnInit {
     this.offcanvasOpen = !this.offcanvasOpen;
   }
 
-  checkDevice(){
-      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent)){
-        this.mobile = true;
-      }
-  }
-  
 }
