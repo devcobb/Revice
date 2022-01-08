@@ -4,24 +4,37 @@
     width: 50%;
     .menu{
         @include main.flex(flex-end, center);
-        width: 100%;
+        width: 85%;
         height: 100%;
         padding: 0;
         margin: 0;
         list-style: none;
         .menu-link{
-            color: inherit;
+            position: relative;
+            color: main.$yellow;
             text-decoration: none;
             padding: .75rem 1.5rem;
-            letter-spacing: 2px;
             min-width: 15%;
             text-align: center;
             font-size: 1rem;
             margin: 0 2% 0 0;
-            background: main.$yellow;
             cursor: pointer;
+            &::after{
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 10%;
+                border-radius: 50px;
+                content: "";
+                width: 20%;
+                height: 2px;
+                background: main.$yellow;
+                transition: width .3s;
+            }
             &:hover{
-                background: darken(main.$yellow, 3%)
+                &::after{
+                    width: 35%;
+                }
             }
         }
     }
