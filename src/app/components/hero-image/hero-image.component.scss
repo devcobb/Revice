@@ -82,27 +82,71 @@
     }
 }
 
-@media only screen and (max-width: 1200px){
-    .main-title{
-        padding: 10% 0 0 0 !important;
-        text-align: center;
-        &::after{
-            width: 100% !important;
-            height: 100% !important;
-            opacity: 0.4;
-            transform: translate(-50%, -50%) rotate(-15deg) !important;
+@media only screen and (max-width: 1199.98px){
+    .hero-image{
+        .hero-image-content{
+            @include main.flex(center, center, column);
+            margin-bottom: 15%;
+        }
+        .main-title{
+            padding: 0;
+            text-align: center;
+            &::after{
+                @include main.fullSize;
+                opacity: 0.4;
+                transform: translate(-50%, -50%) rotate(-15deg);
+            }
         }
     }
 }
 
-@media only screen and (max-width: 768px){
-    .main-title{
-        line-height: 4rem !important;
-        span{
-            font-size: 3.5rem !important;
-            &:first-of-type{
-                font-size: 5rem !important;
-                margin-top: 0;
+@media only screen and (max-width: 767.98px){
+    .hero-image{
+        .hero-image-content{
+            @include main.flex(flex-start, center, column);
+            margin-bottom: 0;
+            padding-top: 25%;
+        }
+        .main-title{
+            line-height: 4rem;
+            span{
+                font-size: 3.5rem;
+                &:first-of-type{
+                    font-size: 5rem;
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-image{
+        .main-title{
+            line-height: 4rem;
+            span{
+                font-size: 2.2rem;
+                &:first-of-type{
+                    font-size: 5rem;
+                    margin-top: 0;
+                }
+                &:last-of-type{
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 419.98px) {
+    .hero-image{
+        .main-title{
+            line-height: 3.5rem;
+        }
+        .button-container{
+            margin-top: 10%;
+            .button-wrap{
+                width: 75%;
             }
         }
     }
