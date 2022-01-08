@@ -1,0 +1,15 @@
+@use '/src/app/global/main.scss';
+
+.category-list-container{
+    @include main.flex(center, center);
+    .category-list{
+        @include main.flex(space-between, center);
+        width: 50%;
+        list-style: none;
+        .category-list-element{
+            width: 3rem;
+            height: 3rem;
+            background: red;
+        }
+    }
+}
