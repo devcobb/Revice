@@ -1,5 +1,9 @@
 $purple: #150251;
 $yellow: #feb93f;
+$green: #84a347;
+$red: #8f3742;
+$blue: #3b88ad;
+$bright_yellow: #e6d81a;
 
 @mixin flex($justify, $align, $direction: row){
     display: flex;

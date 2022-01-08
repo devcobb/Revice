@@ -2,14 +2,29 @@
 
 .category-list-container{
     @include main.flex(center, center);
+    @include main.fullSize;
+    position: fixed;
     .category-list{
         @include main.flex(space-between, center);
-        width: 50%;
+        width: 75%;
         list-style: none;
         .category-list-element{
-            width: 3rem;
-            height: 3rem;
-            background: red;
+            @include main.flex(center, center);
+            width: 20rem;
+            height: 20rem;
+            border-radius: 3px;
+        }
+        .movie{
+            background: main.$green;
+        }
+        .serial{
+            background: main.$red;
+        }
+        .game{
+            background: main.$blue;
+        }
+        .music{
+            background: main.$bright_yellow;
         }
     }
 }
