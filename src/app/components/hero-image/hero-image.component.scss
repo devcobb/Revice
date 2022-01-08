@@ -17,6 +17,7 @@
     }
     .hero-image-content{
         @include main.fullSize;
+        padding-top: 6rem;
         position: relative;
         z-index: 2;
     }
@@ -122,6 +123,9 @@
 
 @media (max-width: 575.98px) {
     .hero-image{
+        .hero-image-content{
+            padding-top: 10rem;
+        }
         .main-title{
             line-height: 4rem;
             span{
