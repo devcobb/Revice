@@ -4,13 +4,39 @@
     width: 50%;
     .menu{
         @include main.flex(flex-end, center);
-        width: 100%;
+        width: 85%;
         height: 100%;
         padding: 0;
         margin: 0;
         list-style: none;
         .menu-link{
-            @include main.mainButton;
+            position: relative;
+            font-family: Roboto, sans-serif;
+            color: main.$yellow;
+            text-decoration: none;
+            padding: .75rem 1.5rem;
+            min-width: 15%;
+            text-align: center;
+            font-size: 1rem;
+            margin: 0 2% 0 0;
+            cursor: pointer;
+            &::after{
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 10%;
+                border-radius: 50px;
+                content: "";
+                width: 20%;
+                height: 2px;
+                background: main.$yellow;
+                transition: width .3s;
+            }
+            &:hover{
+                &::after{
+                    width: 35%;
+                }
+            }
         }
     }
 }
@@ -20,14 +46,21 @@
     .header :host{
         display: none;
     }
-    .menu{
-        justify-content: center !important;
-        align-items: center !important;
-        flex-direction: column !important;
-        .menu-link{
-            display: block;
-            width: 50%;
-            margin: 2% 0 !important;
+    :host{
+        .menu{
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            .menu-link{
+                @include main.mainButton;
+                display: block;
+                width: 50%;
+                margin: 4% 0;
+                &::after{
+                    content: none;
+                }
+            }
         }
     }
 }
