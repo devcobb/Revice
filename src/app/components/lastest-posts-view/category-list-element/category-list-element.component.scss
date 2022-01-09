@@ -1,0 +1,70 @@
+@use '/src/app/global/main.scss';
+
+.category-list-element{
+    @include main.flex(center, center);
+    position: relative;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 3px;
+    cursor: pointer;
+    &::before{
+        content: "";
+        position: absolute;
+        bottom: -20%;
+        left: 50%;
+        transform: translate(-50%);
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 15px 20px 15px;
+        border-color: transparent transparent main.$purple transparent;
+    }
+    &::after{
+        @include main.flex(center, center);
+        color: main.$white;
+        font-size: 1rem;
+        font-family: Roboto, sans-serif;
+        content: "";
+        position: absolute;
+        bottom: -35%;
+        left: 50%;
+        transform: translate(-50%);
+        background: main.$purple;
+        width: 50%;
+        height: 15%;
+        border-radius: 3px;
+    }
+    &::before, &::after{
+        opacity: 0;
+        transition: opacity .1s;
+    }
+    &:hover{
+        &::before, &::after{
+            opacity: 1;
+        }
+    }
+}
+.film{
+    background: main.$green;
+    &::after{
+        content: "Film";
+    }
+}
+.serial{
+    background: main.$red;
+    &::after{
+        content: "Serial";
+    }
+}
+.game{
+    background: main.$blue;
+    &::after{
+        content: "Game";
+    }
+}
+.music{
+    background: main.$bright_yellow;
+    &::after{
+        content: "Music";
+    }
+}

@@ -6,7 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lastest-posts-view.component.scss']
 })
 export class LastestPostsViewComponent implements OnInit {
-
+  availableCategories = [
+    { name: "film" },
+    { name: "serial" },
+    { name: "game" },
+    { name: "music" }
+  ];
   constructor() { }
 
   ngOnInit(): void {

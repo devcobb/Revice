@@ -1,30 +1,25 @@
 @use '/src/app/global/main.scss';
 
 .category-list-container{
-    @include main.flex(center, center);
+    @include main.flex(center, center, column);
     @include main.fullSize;
     position: fixed;
+    background-image: url('/assets/images/logo-transparent-black.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center center;
     .category-list{
         @include main.flex(space-between, center);
+        flex-wrap: wrap;
         width: 75%;
-        list-style: none;
-        .category-list-element{
-            @include main.flex(center, center);
-            width: 20rem;
-            height: 20rem;
-            border-radius: 3px;
-        }
-        .movie{
-            background: main.$green;
-        }
-        .serial{
-            background: main.$red;
-        }
-        .game{
-            background: main.$blue;
-        }
-        .music{
-            background: main.$bright_yellow;
+    }
+    .button-container{
+        @include main.flex(center, center);
+        width: 100%;
+        margin-top: 5%;
+        .btn{
+            @include main.mainButton;
+            padding: 1% 0;
         }
     }
 }

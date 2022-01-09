@@ -1,8 +1,9 @@
 <div class="category-list-container">
-    <ul class="category-list">
-        <li class="category-list-element movie"></li>
-        <li class="category-list-element serial"></li>
-        <li class="category-list-element game"></li>
-        <li class="category-list-element music"></li>
-    </ul>
+    <div class="category-list">
+        <app-category-list-element *ngFor="let category of availableCategories" 
+                                   [categoryName]="category.name"></app-category-list-element>
+    </div>
+    <div class="button-container">
+        <button class="btn">Choose category</button>
+    </div>
 </div>
