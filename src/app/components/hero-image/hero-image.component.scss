@@ -17,7 +17,7 @@
     }
     .hero-image-content{
         @include main.fullSize;
-        padding-top: 6rem;
+        padding-top: 8rem;
         position: relative;
         z-index: 2;
     }
@@ -35,7 +35,7 @@
             background-size: contain;
             transform: translate(-85%, -100%) rotate(-15deg);
             position: absolute;
-            top: 50%;
+            top: 60%;
             left: 50%;
             width: 35%;
             height: 35%;
