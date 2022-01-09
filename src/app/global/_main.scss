@@ -4,6 +4,8 @@ $green: #84a347;
 $red: #8f3742;
 $blue: #3b88ad;
 $bright_yellow: #e6d81a;
+$white: #fff;
+$dark: #0E0E10;
 
 @mixin flex($justify, $align, $direction: row){
     display: flex;

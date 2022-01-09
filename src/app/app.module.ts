@@ -7,6 +7,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { MenuComponent } from './components/page-header/menu/menu.component';
 import { HeroImageComponent } from './components/hero-image/hero-image.component';
 import { LastestPostsViewComponent } from './components/lastest-posts-view/lastest-posts-view.component';
+import { CategoryListElementComponent } from './components/lastest-posts-view/category-list-element/category-list-element.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { LastestPostsViewComponent } from './components/lastest-posts-view/laste
     PageHeaderComponent,
     MenuComponent,
     HeroImageComponent,
-    LastestPostsViewComponent
+    LastestPostsViewComponent,
+    CategoryListElementComponent
   ],
   imports: [
     BrowserModule,
