@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CheckDeviceService } from 'src/app/global/check-device.service';
-import { HeaderTransparencyService } from 'src/app/global/header-transparency.service';
 
 @Component({
   selector: 'app-page-header',
@@ -11,11 +10,10 @@ export class PageHeaderComponent implements OnInit {
   transparent = false;
   offcanvasOpen = false;
   mobile = false;
-  constructor( private checkDeviceService: CheckDeviceService, private headerTransparencyService: HeaderTransparencyService) { }
+  constructor( private checkDeviceService: CheckDeviceService) { }
 
   ngOnInit(): void {
     this.mobile = this.checkDeviceService.checkDevice();
-    this.transparent = this.headerTransparencyService.checkForTransparency();
   }
 
   mobileMenuToggle(evt: Event){
