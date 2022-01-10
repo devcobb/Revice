@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AddNewPostComponent } from './add-new-post.component';
 
-import { LastestPostsViewComponent } from './lastest-posts-view.component';
 
-describe('LastestPostsViewComponent', () => {
-  let component: LastestPostsViewComponent;
-  let fixture: ComponentFixture<LastestPostsViewComponent>;
+describe('AddNewPostComponent', () => {
+  let component: AddNewPostComponent;
+  let fixture: ComponentFixture<AddNewPostComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LastestPostsViewComponent ]
+      declarations: [ AddNewPostComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LastestPostsViewComponent);
+    fixture = TestBed.createComponent(AddNewPostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

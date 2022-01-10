@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-lastest-posts-view',
-  templateUrl: './lastest-posts-view.component.html',
-  styleUrls: ['./lastest-posts-view.component.scss']
+  selector: 'app-add-new-post',
+  templateUrl: './add-new-post.component.html',
+  styleUrls: ['./add-new-post.component.scss']
 })
-export class LastestPostsViewComponent implements OnInit {
+export class AddNewPostComponent implements OnInit {
   availableCategories = [
     { name: "film" },
     { name: "serial" },

@@ -12,4 +12,7 @@ export class CategoryListElementComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  chooseCategory(){
+    
+  }
 }

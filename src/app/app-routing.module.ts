@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddNewPostComponent } from './components/add-new-post/add-new-post.component';
 import { HeroImageComponent } from './components/hero-image/hero-image.component';
-import { LastestPostsViewComponent } from './components/lastest-posts-view/lastest-posts-view.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HeroImageComponent },
-  { path: 'latest', component: LastestPostsViewComponent }
+  { path: 'new', component: AddNewPostComponent }
 ];
 
 @NgModule({

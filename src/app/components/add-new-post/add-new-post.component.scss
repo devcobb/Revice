@@ -3,6 +3,7 @@
 .category-list-container{
     @include main.flex(center, center, column);
     @include main.fullSize;
+    padding-top: 5%;
     position: fixed;
     background-image: url('/assets/images/logo-transparent-black.svg');
     background-repeat: no-repeat;
@@ -16,7 +17,7 @@
     .button-container{
         @include main.flex(center, center);
         width: 100%;
-        margin-top: 5%;
+        margin-top: 10%;
         .btn{
             @include main.mainButton;
             padding: 1% 0;
