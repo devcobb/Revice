@@ -10,7 +10,7 @@
     &::before{
         content: "";
         position: absolute;
-        bottom: -20%;
+        bottom: -10%;
         left: 50%;
         transform: translate(-50%);
         width: 0;
@@ -26,7 +26,7 @@
         font-family: Roboto, sans-serif;
         content: "";
         position: absolute;
-        bottom: -35%;
+        bottom: -25%;
         left: 50%;
         transform: translate(-50%);
         background: main.$purple;
@@ -44,26 +44,45 @@
         }
     }
 }
+
+.choosed-category{
+    &::before, &::after{
+        opacity: 1;
+    }
+}
+
 .film{
-    background: main.$green;
+    background-image: url("/assets/images/film.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: main.$green;
     &::after{
         content: "Film";
     }
 }
 .serial{
-    background: main.$red;
+    background-image: url("/assets/images/serial.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: main.$red;
     &::after{
         content: "Serial";
     }
 }
 .game{
-    background: main.$blue;
+    background-image: url("/assets/images/game.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: main.$blue;
     &::after{
         content: "Game";
     }
 }
 .music{
-    background: main.$bright_yellow;
+    background-image: url("/assets/images/music.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: main.$bright_yellow;
     &::after{
         content: "Music";
     }

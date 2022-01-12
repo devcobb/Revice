@@ -1,9 +1,49 @@
-<div class="category-list-container">
+<div class="category-list-container" 
+     *ngIf="!choosed">
     <div class="category-list">
         <app-category-list-element *ngFor="let category of availableCategories" 
+                                   (choosedCategory)="updateCurrentChoosedCategory($event)"
                                    [categoryName]="category.name"></app-category-list-element>
     </div>
     <div class="button-container">
-        <button class="btn">Choose category</button>
+        <button class="btn"
+                (click)="showAddingPostScreen()">Choose category</button>
     </div>
+</div>
+
+
+<div class="add-new-post-container"
+     *ngIf="choosed">
+    <form class="add-new-post-form">
+        <div class="thumbnail">Drop image here</div>
+        <div class="post-basic-information">
+            <input type="text" 
+                   name="post-title" 
+                   class="post-input post-title" 
+                   placeholder="Post Title"/>
+        <select class="change-category" name="category" [value]="choosedCategory.name">
+            <option value="">Choose post category</option>
+            <option value="film">Film</option>
+            <option value="serial">Serial</option>
+            <option value="game">Game</option>
+            <option value="music">Music</option>
+        </select>
+        </div>
+        <div class="field-container"
+             *ngFor="let field of fields">
+            <div class="text-field-container"
+                 *ngIf="field.type === 'text'">
+                <textarea class="text-section" 
+                          [value]="field.value"
+                          placeholder="Add your text here"></textarea>
+                <span class="close" [attr.data-id]="field.id"></span>
+            </div>
+        </div>
+        <div class="add-row">
+            <div class="row-option"
+                 (click)="addText()">Add Text</div>
+            <div class="row-option">Add Image</div>
+            <div class="row-option">Add Banner</div>
+        </div>
+    </form>
 </div>

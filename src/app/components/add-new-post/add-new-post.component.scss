@@ -1,14 +1,17 @@
 @use '/src/app/global/main.scss';
-
-.category-list-container{
-    @include main.flex(center, center, column);
-    @include main.fullSize;
-    padding-top: 5%;
-    position: fixed;
+@mixin bg{
     background-image: url('/assets/images/logo-transparent-black.svg');
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center center;
+}
+
+.category-list-container{
+    @include main.flex(center, center, column);
+    @include main.fullSize;
+    @include bg;
+    position: fixed;
+    padding-top: 2.5%;
     .category-list{
         @include main.flex(space-between, center);
         flex-wrap: wrap;
@@ -17,10 +20,114 @@
     .button-container{
         @include main.flex(center, center);
         width: 100%;
-        margin-top: 10%;
+        margin-top: 7.5%;
         .btn{
             @include main.mainButton;
-            padding: 1% 0;
+            min-width: 10%;
+            padding: 1% 2%;
+            font-size: 1rem
+        }
+    }
+}
+
+.add-new-post-container{
+    @include bg;
+    width: 100%;
+    min-height: 100%;
+    padding-top: 10rem;
+    .add-new-post-form{
+        @include main.flex(center, center, column);
+        @include main.fullSize;
+        .post-basic-information{
+            @include main.flex(center, center);
+            width: 40%;
+        }
+        .post-input{
+            font-family: Roboto, sans-serif;
+            font-size: 1rem;
+            border: none;
+            outline:  none;
+            width: 70%;
+            padding: 1rem;
+            background: main.$dark_grey;
+            color: main.$white;
+        }
+        .change-category{
+            width: 30%;
+            margin:  0 0 0 3%;
+            border: none;
+            outline: none;
+            background-color: main.$purple;
+            color: main.$white;
+            padding: 1rem;
+            font-size: 1rem
+        }
+        .thumbnail{
+            @include main.flex(center, center);
+            color: main.$yellow;
+            font-family: Roboto, sans-serif;
+            border: 1px dashed main.$yellow;
+            letter-spacing: 3px;
+            width: 40%;
+            height: 20rem;
+            margin-bottom: 2.5%;
+            cursor: pointer;
+            &:hover{
+                background-color: rgba(main.$white, 0.1);
+            }
+        }
+        .text-field-container{
+            position: relative;
+            margin: 2% 0;
+        }
+        .close{
+            position: absolute;
+            top: 6%;
+            right: 1.5%;
+            background-image: url("/assets/images/close.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            width: 24px;
+            height: 24px;
+            z-index: 2;
+            cursor: pointer;
+        }
+        .text-section{
+            position: relative;
+            font-family: Roboto, sans-serif;
+            padding: 1rem;
+            font-size: 1rem;
+            width: 100%;
+            height: 10rem;
+            background: main.$dark_grey;
+            border: none;
+            outline: none;
+            resize: none;
+            box-sizing: border-box
+        }
+        .add-row{
+            @include main.flex(center, center);
+            font-family: Roboto, sans-serif;
+            margin: 5% 0;
+            width: 33.33%;
+            color: main.$yellow;
+            .row-option{
+                cursor: pointer;
+                padding: 1rem;
+                text-align: center;
+                width: 50%;
+                transition: all .3s;
+                margin: 0 1%;
+                border: 1px solid main.$yellow;
+                &:hover{
+                    color: #000;
+                    background: main.$yellow;
+                }
+            }
+        }
+        .field-container{
+            width: 40%;
         }
     }
 }

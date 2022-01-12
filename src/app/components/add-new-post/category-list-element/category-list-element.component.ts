@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-category-list-element',
@@ -6,13 +6,19 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./category-list-element.component.scss']
 })
 export class CategoryListElementComponent implements OnInit {
-  @Input() categoryName = {};
+  @Input() categoryName = "";
+  @Output() choosedCategory = new EventEmitter<string>()
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  chooseCategory(){
+  chooseCategory(evt: Event, name: string){
+    //Clear any current choosed element
+    document.querySelectorAll(".category-list-element").forEach(elem => elem.className = elem.className.replace("choosed-category", ""));
     
+    let element = <HTMLDivElement>evt.target;
+    element.className += " choosed-category";
+    this.choosedCategory.emit(name);
   }
 }
