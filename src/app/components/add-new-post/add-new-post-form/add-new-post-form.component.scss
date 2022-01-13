@@ -1,0 +1,164 @@
+@use '/src/app/global/main.scss';
+@mixin dropImage {
+    @include main.flex(center, center, column);
+    color: main.$yellow;
+    font-family: Roboto, sans-serif;
+    border: 1px dashed main.$yellow;
+    cursor: pointer;
+    &:hover{
+        background-color: rgba(main.$white, 0.1);
+    }
+    img{
+        margin-bottom: 5%;
+    }
+}
+
+@mixin icon{
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 24px;
+    height: 24px;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.add-new-post-container{
+    width: 100%;
+    min-height: 100%;
+    padding-top: 10rem;
+    .form-bg{
+        @include main.darkBackground;
+        padding-top: 2.5%;
+        position: fixed;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+    .add-new-post-form{
+        position: relative;
+        z-index: 3;
+        @include main.flex(center, center, column);
+        @include main.fullSize;
+        .post-basic-information{
+            @include main.flex(center, center);
+            width: 40%;
+        }
+        .post-input{
+            font-family: Roboto, sans-serif;
+            font-size: 1rem;
+            border: none;
+            outline:  none;
+            width: 70%;
+            padding: 1rem;
+            background: main.$dark_grey;
+            color: main.$white;
+        }
+        .change-category{
+            width: 30%;
+            margin:  0 0 0 3%;
+            border: none;
+            outline: none;
+            background-color: main.$purple;
+            color: main.$white;
+            padding: 1rem;
+            font-size: 1rem
+        }
+        .thumbnail{
+            @include dropImage();
+            border: 1px dashed main.$yellow;
+            width: 25%;
+            height: 12rem;
+            margin-bottom: 2.5%;
+        }
+        .field-wrap{
+            position: relative;
+            margin: 2% 0;
+        }
+        .close{
+            @include icon;
+            top: 6%;
+            right: -8%;
+            background-image: url("/assets/images/close.png");
+        }
+        .arrangement{
+            @include icon;
+            top: 6%;
+            right: -12%;
+            background-image: url("/assets/images/arrangement.png");
+        }
+        .text-section{
+            position: relative;
+            font-family: Roboto, sans-serif;
+            padding: 1rem;
+            font-size: 1rem;
+            width: 100%;
+            height: 10rem;
+            background: main.$dark_grey;
+            border: none;
+            outline: none;
+            resize: none;
+            box-sizing: border-box;
+            color: main.$white;
+            border: 1px solid main.$dark_grey
+        }
+        .image-section{
+            @include dropImage();
+            padding: 4.5% 0;
+        }
+        .banner-wrap{
+            @include main.flex(space-between, center);
+            .text-section{
+                font-size: .75rem;
+            }
+            .text-section, .image-section{
+                width: 48%
+            }
+        }
+        .banner-reverse{
+            flex-direction: row-reverse;
+        }
+        .add-row{
+            @include main.flex(center, center);
+            font-family: Roboto, sans-serif;
+            margin: 5% 0 2.5% 0;
+            width: 33.33%;
+            color: main.$yellow;
+            .row-option{
+                @include main.flex(center, center);
+                cursor: pointer;
+                padding: 1rem;
+                text-align: center;
+                width: 50%;
+                transition: all .3s;
+                margin: 0 1%;
+                border: 1px solid main.$yellow;
+                img{
+                    margin-right: 7%;
+                }
+                &:hover{
+                    color: #000;
+                    background: main.$yellow;
+                    img{
+                        filter: brightness(0) ;
+                    }
+                }
+            }
+        }
+        .field-container{
+            width: 40%;
+        }
+        .submit-container{
+            width: 70%;
+            text-align: center;
+            margin-bottom: 5%;
+            .submit-btn{
+                @include main.contrastButton;
+                font-weight: normal;
+            }
+        }
+    }
+}
