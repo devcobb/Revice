@@ -42,6 +42,25 @@ $dark_grey: #1d1d1d;
     }
 }
 
+@mixin contrastButton{
+    @include mainButton();
+    color: $white;
+    background: $purple;
+    border: 1px solid $purple;
+    letter-spacing: 0;
+    &:hover{
+        background: darken($purple, 3%);
+        color: $white;
+    }
+}
+
+@mixin darkBackground {
+    background-image: url('/assets/images/logo-transparent-black.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center center;
+}
+
 @font-face {
     font-family: "Agency FB Bold Condensed";
     src: url("/assets/fonts/agencyfb-boldcondensed.ttf");

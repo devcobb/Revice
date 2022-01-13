@@ -7,6 +7,7 @@ import { CategoryListElementComponent } from './components/add-new-post/category
 import { HeroImageComponent } from './components/hero-image/hero-image.component';
 import { MenuComponent } from './components/page-header/menu/menu.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { AddNewPostFormComponent } from './components/add-new-post/add-new-post-form/add-new-post-form.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
     MenuComponent,
     HeroImageComponent,
     AddNewPostComponent,
-    CategoryListElementComponent
+    CategoryListElementComponent,
+    AddNewPostFormComponent
   ],
   imports: [
     BrowserModule,
