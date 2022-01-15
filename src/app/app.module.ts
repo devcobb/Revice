@@ -8,6 +8,7 @@ import { HeroImageComponent } from './components/hero-image/hero-image.component
 import { MenuComponent } from './components/page-header/menu/menu.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { AddNewPostFormComponent } from './components/add-new-post/add-new-post-form/add-new-post-form.component';
+import { UploadImageComponent } from './components/add-new-post/upload-image/upload-image.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AddNewPostFormComponent } from './components/add-new-post/add-new-post-
     HeroImageComponent,
     AddNewPostComponent,
     CategoryListElementComponent,
-    AddNewPostFormComponent
+    AddNewPostFormComponent,
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,

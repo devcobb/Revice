@@ -1,17 +1,4 @@
 @use '/src/app/global/main.scss';
-@mixin dropImage {
-    @include main.flex(center, center, column);
-    color: main.$yellow;
-    font-family: Roboto, sans-serif;
-    border: 1px dashed main.$yellow;
-    cursor: pointer;
-    &:hover{
-        background-color: rgba(main.$white, 0.1);
-    }
-    img{
-        margin-bottom: 5%;
-    }
-}
 
 @mixin icon{
     position: absolute;
@@ -46,6 +33,7 @@
         .post-basic-information{
             @include main.flex(center, center);
             width: 40%;
+            margin-bottom: 1%;
         }
         .post-input{
             font-family: Roboto, sans-serif;
@@ -68,15 +56,13 @@
             font-size: 1rem
         }
         .thumbnail{
-            @include dropImage();
-            border: 1px dashed main.$yellow;
-            width: 25%;
-            height: 12rem;
-            margin-bottom: 2.5%;
+            width: 30%;
+            height: 15rem;
+            margin-bottom: 4.5%;
         }
         .field-wrap{
             position: relative;
-            margin: 2% 0;
+            height: 10rem;
         }
         .close{
             @include icon;
@@ -98,7 +84,6 @@
             width: 100%;
             height: 10rem;
             background: main.$dark_grey;
-            border: none;
             outline: none;
             resize: none;
             box-sizing: border-box;
@@ -106,8 +91,7 @@
             border: 1px solid main.$dark_grey
         }
         .image-section{
-            @include dropImage();
-            padding: 4.5% 0;
+            height: 10rem;
         }
         .banner-wrap{
             @include main.flex(space-between, center);
@@ -150,6 +134,7 @@
         }
         .field-container{
             width: 40%;
+            margin-bottom: 1%;
         }
         .submit-container{
             width: 70%;

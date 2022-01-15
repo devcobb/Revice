@@ -21,15 +21,12 @@ $dark_grey: #1d1d1d;
 }
 
 @mixin mainButton{
-    font-family: Roboto, sans-serif;
     color: $yellow;
     text-decoration: none;
-    padding: .75rem 1.5rem;
-    letter-spacing: 2px;
+    padding: 1rem 1.5rem;
     min-width: 15%;
     text-align: center;
     font-size: 1rem;
-    margin: 0 2% 0 0;
     background: transparent;
     border: 1px solid $yellow;
     border-radius: 3px;
@@ -47,7 +44,6 @@ $dark_grey: #1d1d1d;
     color: $white;
     background: $purple;
     border: 1px solid $purple;
-    letter-spacing: 0;
     &:hover{
         background: darken($purple, 3%);
         color: $white;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Category } from 'src/app/global/global-interfaces';
 
 interface TextField {
@@ -26,10 +26,7 @@ interface BannerField {
   templateUrl: './add-new-post-form.component.html',
   styleUrls: ['./add-new-post-form.component.scss']
 })
-export class AddNewPostFormComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+export class AddNewPostFormComponent {
   @Input() category = <Category>{};
   fields: (TextField | ImageField | BannerField)[] = [];
   addField(fieldType: 'image' | 'text' | 'banner') {
