@@ -104,9 +104,8 @@
 @media only screen and (max-width: 767.98px){
     .hero-image{
         .hero-image-content{
-            @include main.flex(flex-start, center, column);
             margin-bottom: 0;
-            padding-top: 25%;
+            padding-top: 0;
         }
         .main-title{
             line-height: 4rem;
@@ -123,9 +122,6 @@
 
 @media (max-width: 575.98px) {
     .hero-image{
-        .hero-image-content{
-            padding-top: 10rem;
-        }
         .main-title{
             line-height: 4rem;
             span{
