@@ -2,24 +2,46 @@
 
 .category-list-container{
     @include main.flex(center, center, column);
-    @include main.fullSize;
     @include main.darkBackground;
-    position: fixed;
-    padding-top: 2.5%;
+    width: 100%;
+    position: absolute;
+    min-height: 100%;
+    padding-top: 10%;
+    box-sizing: border-box;
     .category-list{
-        @include main.flex(space-between, center);
+        @include main.flex(center, center);
         flex-wrap: wrap;
-        width: 75%;
+        width: 90%;
     }
     .button-container{
         @include main.flex(center, center);
         width: 100%;
-        margin-top: 7.5%;
+        margin: 7.5% 0;
         .btn{
             @include main.mainButton;
             min-width: 10%;
-            padding: 1% 2%;
             font-size: 1rem
         }
+    }
+}
+
+@media only screen and (max-width: 1454px){
+    .category-list-container{
+        padding-top: 12.5%;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .category-list-container{
+        padding-top: 25%;
+        .button-container{
+            margin: 12.5% 0 25% 0;
+        }
+    }
+}
+
+@media only screen and (max-width: 414px){
+    .category-list-container{
+        padding-top: 35%;
     }
 }

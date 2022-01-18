@@ -1,16 +1,21 @@
 @use '/src/app/global/main.scss';
 
+:host{
+    margin: .5rem;
+}
+
 .category-list-element{
     @include main.flex(center, center);
     position: relative;
-    width: 20rem;
-    height: 20rem;
+    width: 23rem;
+    height: 23rem;
     border-radius: 3px;
     cursor: pointer;
     &::before{
         content: "";
         position: absolute;
-        bottom: -10%;
+        z-index: 2;
+        bottom: -7%;
         left: 50%;
         transform: translate(-50%);
         width: 0;
@@ -25,8 +30,9 @@
         font-size: 1rem;
         font-family: Roboto, sans-serif;
         content: "";
+        z-index: 2;
         position: absolute;
-        bottom: -25%;
+        bottom: -22%;
         left: 50%;
         transform: translate(-50%);
         background: main.$purple;
@@ -85,5 +91,19 @@
     background-color: main.$bright_yellow;
     &::after{
         content: "Music";
+    }
+}
+
+@media only screen and (max-width: 854px){
+    .category-list-element{
+        width: 15rem;
+        height: 15rem;
+        &::before, &::after{
+            display: none;
+        }
+    }
+    .choosed-category{
+        outline-offset: 5px;
+        outline: 4px solid main.$yellow;
     }
 }
