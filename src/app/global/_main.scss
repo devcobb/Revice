@@ -1,5 +1,12 @@
 $purple: #150251;
 $yellow: #feb93f;
+$green: #84a347;
+$red: #8f3742;
+$blue: #3b88ad;
+$bright_yellow: #e6d81a;
+$white: #fff;
+$dark: #0E0E10;
+$dark_grey: #1d1d1d;
 
 @mixin flex($justify, $align, $direction: row){
     display: flex;
@@ -14,15 +21,12 @@ $yellow: #feb93f;
 }
 
 @mixin mainButton{
-    font-family: Roboto, sans-serif;
     color: $yellow;
     text-decoration: none;
-    padding: .75rem 1.5rem;
-    letter-spacing: 2px;
+    padding: 1rem 1.5rem;
     min-width: 15%;
     text-align: center;
     font-size: 1rem;
-    margin: 0 2% 0 0;
     background: transparent;
     border: 1px solid $yellow;
     border-radius: 3px;
@@ -33,6 +37,24 @@ $yellow: #feb93f;
         color: #000;
         background: $yellow;
     }
+}
+
+@mixin contrastButton{
+    @include mainButton();
+    color: $white;
+    background: $purple;
+    border: 1px solid $purple;
+    &:hover{
+        background: darken($purple, 3%);
+        color: $white;
+    }
+}
+
+@mixin darkBackground {
+    background-image: url('/assets/images/logo-transparent-black.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center center;
 }
 
 @font-face {

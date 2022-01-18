@@ -1,0 +1,15 @@
+<div class="category-list-container"
+     *ngIf="!choosed">
+    <div class="category-list">
+        <app-category-list-element *ngFor="let category of availableCategories"
+                                   (choosedCategory)="updateCurrentChoosedCategory($event)"
+                                   [categoryName]="category.name"></app-category-list-element>
+    </div>
+    <div class="button-container">
+        <button class="btn"
+                (click)="showAddingPostScreen()">Choose category</button>
+    </div>
+</div>
+
+<app-add-new-post-form *ngIf="choosed"
+                       [category]="choosedCategory"></app-add-new-post-form>
