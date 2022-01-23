@@ -10,7 +10,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./global/auth/auth.module').then((m) => m.AuthModule),
   },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HeroImageComponent },
   { path: 'new', component: AddNewPostComponent },
   { path: 'login', component: LoginViewComponent },

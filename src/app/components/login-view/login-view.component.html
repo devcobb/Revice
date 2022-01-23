@@ -1,0 +1,95 @@
+<div class="login-view-container">
+    <div class="login-view-wrap">
+        <div class="login-wrap"
+             *ngIf="!registerTab">
+            <form class="login-form">
+                <h2 class="form-title">LOGIN</h2>
+                <ng-container *ngTemplateOutlet="LoginForm"></ng-container>
+                <div class="changeTab"
+                     (click)="changeTab()">REGISTER</div>
+            </form>
+        </div>
+        <div class="register-wrap"
+             *ngIf="registerTab">
+            <form class="register-form">
+                <h2 class="form-title">REGISTER</h2>
+                <div class="input-wrap">
+                    <label class="input-label"
+                           for="name">Name</label>
+                    <input type="text"
+                           placeholder="Type your name"
+                           id="name"
+                           name="name"
+                           required />
+                </div>
+                <div class="input-wrap">
+                    <label class="input-label"
+                           for="surname">Surname</label>
+                    <input type="text"
+                           id="surname"
+                           placeholder="Type your surname"
+                           name="surname"
+                           required />
+                </div>
+
+                <!-- CHOOSE GENDER -->
+                <label class="input-label">Gender</label>
+                <div class="gender-wrap">
+                    <div class="input-wrap choose-gender">
+                        <input type="radio"
+                               id="man"
+                               name="gender"
+                               value="man"
+                               checked>
+                        <label for="woman">Man</label>
+                    </div>
+                    <div class="input-wrap choose-gender">
+                        <input type="radio"
+                               id="woman"
+                               name="gender"
+                               value="woman">
+                        <label for="woman">Woman</label>
+                    </div>
+                    <div class="input-wrap choose-gender">
+                        <input type="radio"
+                               id="other"
+                               name="gender"
+                               value="other">
+                        <label for="other">Other</label>
+                    </div>
+                </div>
+                <ng-container *ngTemplateOutlet="LoginForm"></ng-container>
+                <div class="changeTab"
+                     (click)="changeTab()">LOGIN</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ng-template #LoginForm>
+    <div class="input-wrap">
+        <label class="input-label"
+               for="email"
+               required>Email</label>
+        <input type="email"
+               id="email"
+               placeholder="Type your email"
+               name="email"
+               required />
+    </div>
+    <div class="input-wrap">
+        <label class="input-label"
+               for="password"
+               required>Password</label>
+        <input type="password"
+               placeholder="Type your password"
+               name="password"
+               required />
+    </div>
+    <div class="input-wrap submit-container">
+        <input type="submit"
+               name="submit"
+               value="Submit" />
+    </div>
+
+</ng-template>
