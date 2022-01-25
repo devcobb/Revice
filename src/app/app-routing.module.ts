@@ -7,8 +7,8 @@ import { LoginViewComponent } from './components/login-view/login-view.component
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () =>
-      import('./global/auth/auth.module').then((m) => m.AuthModule),
+    redirectTo: '/home',
+    pathMatch: 'full',
   },
   { path: 'home', component: HeroImageComponent },
   { path: 'new', component: AddNewPostComponent },

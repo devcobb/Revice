@@ -44,6 +44,7 @@ $dark_grey: #1d1d1d;
     color: $white;
     background: $purple;
     border: 1px solid $purple;
+    padding: .75rem 1.5rem;
     &:hover{
         background: darken($purple, 3%);
         color: $white;
