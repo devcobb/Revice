@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService, LoginData } from 'src/app/global/auth/auth.service';
 
 @Component({
   selector: 'app-login-view',
@@ -6,13 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-view.component.scss']
 })
 export class LoginViewComponent implements OnInit {
-  registerTab = false;
-  constructor() { }
+  loginTab = true;
+  constructor(private readonly authService: AuthService,
+    private readonly router: Router) { }
 
   ngOnInit(): void {
   }
 
+  login(loginData: LoginData) {
+    this.authService
+      .login(loginData)
+      .then(() => this.router.navigate(['/home']))
+      .catch((error) => console.log(error.message));
+  }
+
+  register(registerData: LoginData) {
+    this.authService
+      .register(registerData)
+      .then(() => this.router.navigate(['/home']))
+      .catch((error) => console.log(error.message));
+  }
+
   changeTab() {
-    this.registerTab = !this.registerTab
+    this.loginTab = !this.loginTab;
   }
 }

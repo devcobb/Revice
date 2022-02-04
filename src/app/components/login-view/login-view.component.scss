@@ -9,108 +9,49 @@
     margin-bottom: 10%;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
+    .form-title{
+        font-family: "Agency FB Bold Condensed", sans-serif;
+        color: main.$yellow;
+        font-size: 3rem;
+        margin: 0;
+        padding: 0;
+    }
+    .form-inactive-title{
+        text-align: center;
+    }
+    .form-inactive-button-wrap{
+        width: 100%;
+        text-align: center;
+        .form-inactive-button{
+            @include main.contrastButton();
+            margin-top: 15%;
+            text-align: center;
+        }
+    }
+    .form-break-line{
+        height: 75%;
+        width: 2px;
+        background-color: main.$white;
+    }
     .login-view-wrap{
-        @include main.flex(center, center);
+        @include main.flex(center, flex-start);
         width: 70%;
         height: 100%;
     }
     .login-wrap, .register-wrap{
         @include main.flex(center, flex-start);
         width: 50%;
-        height: 100%;
+        height: 75%;
+        position: relative;
+        .form-overlayer{
+            filter: blur(15px);
+        }
+    }
+    .center-wrap{
+        align-items: center;
     }
     .register-form, .login-form{
         width: 50%;
-    }
-    .input-label{
-        @include main.flex(space-between, center);
-        position: relative;
-        color: main.$yellow;
-        width: 100%;
-        margin: 2% 0;
-        &::before{
-            display: inline-block;
-            top: 50%;
-            content: "";
-            width: 30%;
-            height: 1px;
-            background-color: main.$yellow;
-        }
-        &::after{
-            display: inline-block;
-            top: 50%;
-            transform: translateY(-50%);
-            content: "";
-            width: 30%;
-            height: 1px;
-            background-color: main.$yellow;
-        }
-    }
-    .gender-wrap{
-        @include main.flex(center, center)
-    }
-    .form-title{
-        width: 100%;
-        font-family: "Agency FB Bold Condensed", sans-serif;
-        font-size: 3rem;
-        margin: 0 0 2rem 0;
-        text-align: center;
-        color: main.$yellow;
-        font-weight: normal;
-    }
-    .input-wrap{
-        width: 100%;
-        margin: 10% 0;
-        input[type="text"], input[type="email"], input[type="password"]{
-            font-size: 1rem;
-            box-sizing: border-box;
-            width: 100%;
-            padding: .75rem 1.5rem;
-            background-color: main.$dark_grey;
-            border: none;
-            outline: none;
-            color: main.$white;
-        }
-    }
-    .choose-gender{
-        width: 100%;
-        text-align: center;
-        color: main.$white;
-        input[type='radio']:after {
-            width: 15px;
-            height: 15px;
-            border-radius: 15px;
-            top: -2px;
-            left: -1px;
-            position: relative;
-            background-color: #d1d3d1;
-            content: '';
-            display: inline-block;
-            visibility: visible;
-            border: 2px solid white;
-        }
-        label{
-            margin-left: 10px; 
-         }
-        input[type='radio']:checked:after {
-            width: 15px;
-            height: 15px;
-            border-radius: 15px;
-            top: -2px;
-            left: -1px;
-            position: relative;
-            background-color: main.$purple;
-            content: '';
-            display: inline-block;
-            visibility: visible;
-            border: 2px solid white;
-        }
-    }
-    .submit-container{
-        text-align: center
-    }
-    input[type="submit"]{
-        @include main.contrastButton();
     }
     .changeTab{
         position: relative;
@@ -153,10 +94,11 @@
         padding-top: 15%;
         height: auto;
         .login-view-wrap{
+            flex-direction: column;
             width: 80%;
         }
         .login-wrap, .register-wrap{
-            width: 90%;
+            width: 100%;
         }
     }
 }
@@ -166,9 +108,6 @@
         padding-top: 25%;
         .login-view-wrap{
             width: 90%;
-        }
-        .login-wrap, .register-wrap{
-            width: 100%;
         }
         .register-form, .login-form{
             width: 75%;

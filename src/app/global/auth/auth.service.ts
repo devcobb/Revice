@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 
-interface LoginData {
+export interface LoginData {
   email: string;
   password: string;
 }
