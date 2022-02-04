@@ -1,0 +1,125 @@
+@use '/src/app/global/main.scss';
+
+.login-view-container{
+    @include main.flex(center, center);
+    @include main.darkBackground;
+    @include main.fullSize;
+    position: absolute;
+    padding-top: 10%;
+    margin-bottom: 10%;
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+    .form-title{
+        font-family: "Agency FB Bold Condensed", sans-serif;
+        color: main.$yellow;
+        font-size: 3rem;
+        margin: 0;
+        padding: 0;
+    }
+    .form-inactive-title{
+        text-align: center;
+    }
+    .form-inactive-button-wrap{
+        width: 100%;
+        text-align: center;
+        .form-inactive-button{
+            @include main.contrastButton();
+            margin-top: 15%;
+            text-align: center;
+        }
+    }
+    .form-break-line{
+        height: 75%;
+        width: 2px;
+        background-color: main.$white;
+    }
+    .login-view-wrap{
+        @include main.flex(center, flex-start);
+        width: 70%;
+        height: 100%;
+    }
+    .login-wrap, .register-wrap{
+        @include main.flex(center, flex-start);
+        width: 50%;
+        height: 75%;
+        position: relative;
+        .form-overlayer{
+            filter: blur(15px);
+        }
+    }
+    .center-wrap{
+        align-items: center;
+    }
+    .register-form, .login-form{
+        width: 50%;
+    }
+    .changeTab{
+        position: relative;
+        color: main.$yellow;
+        margin: 10% 0;
+        text-align: center;
+        font-size: .9rem;
+        padding-bottom: .5rem;
+        cursor: pointer;
+        &::after{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10%;
+            border-radius: 50px;
+            content: "";
+            width: 10%;
+            height: 2px;
+            background: main.$yellow;
+            transition: width .3s;
+        }
+        &:hover{
+            &::after{
+                width: 20%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .login-view-container{
+        .login-wrap, .register-wrap{
+            width: 75%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .login-view-container{
+        padding-top: 15%;
+        height: auto;
+        .login-view-wrap{
+            flex-direction: column;
+            width: 80%;
+        }
+        .login-wrap, .register-wrap{
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .login-view-container{
+        padding-top: 25%;
+        .login-view-wrap{
+            width: 90%;
+        }
+        .register-form, .login-form{
+            width: 75%;
+        }
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .login-view-container{
+        padding-top: 50%;
+        .register-form, .login-form{
+            width: 90%;
+        }
+    }
+}

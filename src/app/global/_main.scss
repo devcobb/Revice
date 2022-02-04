@@ -44,6 +44,7 @@ $dark_grey: #1d1d1d;
     color: $white;
     background: $purple;
     border: 1px solid $purple;
+    padding: .75rem 1.5rem;
     &:hover{
         background: darken($purple, 3%);
         color: $white;
@@ -60,4 +61,74 @@ $dark_grey: #1d1d1d;
 @font-face {
     font-family: "Agency FB Bold Condensed";
     src: url("/assets/fonts/agencyfb-boldcondensed.ttf");
+}
+
+.login-form, .register-form{
+    margin-top: 5%;
+    position: relative;
+    ::ng-deep {
+        .mat-form-field{
+            margin: 1% 0;
+            width: 75%;
+            .mat-input-element {
+                color: $yellow;
+            }
+            input{
+                color: $white;
+                border: none;
+                &::placeholder{
+                    color: $white;
+                }
+            }
+            .mat-form-field-label {
+                color: $yellow;
+            }
+            .mat-form-field-underline {
+                background-color: $yellow;;
+            }
+        }
+        .mat-raised-button {
+            margin-top: 10%;
+            background-color: $purple !important;
+            color: $white !important
+        }
+        .mat-button-disabled {
+            opacity: 0.3;
+        }
+        .mat-radio-group{
+            @include flex(flex-start, flex-start, column);
+            margin-top: 10%;
+            padding-top: 5%;
+            width: 75%;
+            .mat-radio-button{
+                color: $yellow;
+                margin: 2% 0;
+                .mat-radio-label-content{
+                    margin-left: 10px;
+                }
+                .mat-radio-outer-circle{
+                    border: 1px solid $yellow;
+                }
+                .mat-radio-inner-circle{
+                    background-color: $white;
+                }
+                .mat-ripple-element{
+                    background-color: $white;
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 1024px) {
+    .login-form, .register-form{
+        @include flex(center, center, column);
+        margin: 7.5% 0;
+    }
+    ::ng-deep {
+        .mat-radio-group{
+            @include flex(center, center, row);
+        }
+    }
 }
