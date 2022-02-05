@@ -47,19 +47,20 @@
         }
         .change-category{
             width: 30%;
-            margin:  0 0 0 3%;
             border: none;
             outline: none;
             background-color: main.$purple;
             color: main.$white;
             padding: 1rem;
             font-size: 1rem;
+            border-radius: 0 50px 50px 0;
             cursor: pointer;
             &:hover{
                 background: darken(main.$purple, 3%);
             }
         }
         .thumbnail{
+            @include main.flex(center, center);
             width: 40%;
             height: 12rem;
             margin-bottom: 2.5%;
