@@ -33,7 +33,7 @@
             background-repeat: no-repeat;
             background-position: 50% 50%;
             background-size: contain;
-            transform: translate(-85%, -100%) rotate(-15deg);
+            transform: translate(-95%, -100%) rotate(-15deg);
             position: absolute;
             top: 60%;
             left: 50%;
@@ -104,9 +104,8 @@
 @media only screen and (max-width: 767.98px){
     .hero-image{
         .hero-image-content{
-            @include main.flex(flex-start, center, column);
             margin-bottom: 0;
-            padding-top: 25%;
+            padding-top: 0;
         }
         .main-title{
             line-height: 4rem;
@@ -123,9 +122,6 @@
 
 @media (max-width: 575.98px) {
     .hero-image{
-        .hero-image-content{
-            padding-top: 10rem;
-        }
         .main-title{
             line-height: 4rem;
             span{
