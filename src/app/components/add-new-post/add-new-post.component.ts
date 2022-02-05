@@ -22,11 +22,6 @@ export class AddNewPostComponent implements OnInit {
 
   updateCurrentChoosedCategory(category: string) {
     this.choosedCategory = this.availableCategories.filter(cat => cat.name === category)[0];
-  }
-
-  showAddingPostScreen() {
-    if (this.choosedCategory.name !== undefined) {
-      this.choosed = true
-    }
+    this.choosed = true
   }
 }
