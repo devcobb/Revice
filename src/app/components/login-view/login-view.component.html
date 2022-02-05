@@ -1,9 +1,11 @@
 <div class="login-view-container">
+
+    <!-- OVERLAYER -->
+    <div class="login-view-overlayer"></div>
     <div class="login-view-wrap">
 
         <!-- LOGIN -->
-        <div class="login-wrap"
-             [ngClass]="{ 'center-wrap': !loginTab }">
+        <div class="login-wrap">
             <div class="login-form">
                 <h2 class="form-title"
                     [ngClass]="{ 'form-inactive-title': !loginTab }">LOGIN</h2>
@@ -19,12 +21,8 @@
             </div>
         </div>
 
-        <!-- BREAKUP LINE -->
-        <div class="form-break-line"></div>
-
         <!-- REGISTER -->
-        <div class="register-wrap"
-             [ngClass]="{ 'center-wrap': loginTab }">
+        <div class="register-wrap">
             <div class="register-form">
                 <h2 class="form-title"
                     [ngClass]="{ 'form-inactive-title': loginTab }">REGISTER</h2>
