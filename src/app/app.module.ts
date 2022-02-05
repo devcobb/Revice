@@ -22,6 +22,7 @@ import { LoginViewComponent } from './components/login-view/login-view.component
 import { RegisterFormComponent } from './components/login-view/register-form/register-form.component';
 import { MenuComponent } from './components/page-header/menu/menu.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { AccountComponent } from './components/account/account.component';
 
 const materialModules = [
   MatButtonModule,
@@ -43,6 +44,7 @@ const materialModules = [
     LoginViewComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,

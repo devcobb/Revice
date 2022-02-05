@@ -18,14 +18,14 @@ export class LoginViewComponent implements OnInit {
   login(loginData: LoginData) {
     this.authService
       .login(loginData)
-      .then(() => this.router.navigate(['/home']))
+      .then(() => this.router.navigate(['/account']))
       .catch((error) => console.log(error.message));
   }
 
   register(registerData: LoginData) {
     this.authService
       .register(registerData)
-      .then(() => this.router.navigate(['/home']))
+      .then(() => this.router.navigate(['/account']))
       .catch((error) => console.log(error.message));
   }
 

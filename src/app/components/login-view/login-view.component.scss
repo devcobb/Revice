@@ -97,8 +97,9 @@
 
 @media only screen and (max-width: 1000px) {
     .login-view-container{
-        padding-top: 15%;
+        padding-top: 10%;
         height: auto;
+        min-height: 100%;
         .login-view-wrap{
             flex-direction: column;
             width: 80%;
@@ -111,7 +112,7 @@
 
 @media only screen and (max-width: 768px) {
     .login-view-container{
-        padding-top: 25%;
+        padding-top: 15%;
         .login-view-wrap{
             width: 90%;
         }
@@ -123,7 +124,7 @@
 
 @media only screen and (max-width: 414px) {
     .login-view-container{
-        padding-top: 50%;
+        padding-top: 20%;
         .register-form, .login-form{
             width: 90%;
         }
