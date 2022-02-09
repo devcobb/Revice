@@ -29,7 +29,17 @@ export class LoginViewComponent implements OnInit {
       .catch((error) => console.log(error.message));
   }
 
-  changeTab() {
-    this.loginTab = !this.loginTab;
+  changeTab(tab: boolean) {
+    if (tab !== this.loginTab) {
+      let active = document.querySelector(".active");
+      let inactive = document.querySelector(".inactive");
+
+      if (active !== null && inactive !== null) {
+        active.className = active.className.replace('active', 'inactive');
+        inactive.className = inactive.className.replace('inactive', 'active')
+      }
+
+      this.loginTab = tab;
+    }
   }
 }

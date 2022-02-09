@@ -2,9 +2,10 @@
       [formGroup]="form"
       (ngSubmit)="onSubmit()">
     <mat-form-field class="form-control">
-        <mat-label>Email</mat-label>
+        <mat-label>Email address</mat-label>
         <input matInput
                formControlName="email"
+               class="mail-input"
                placeholder="Type your email"
                type="email"
                required />
@@ -19,6 +20,7 @@
         <mat-label>Password</mat-label>
         <input matInput
                formControlName="password"
+               class="password-input"
                placeholder="Type your passsword"
                type="password"
                required />
@@ -29,6 +31,7 @@
     <mat-form-field class="form-control">
         <mat-label>Name</mat-label>
         <input matInput
+               class="name-input"
                formControlName="name"
                placeholder="Type your name"
                type="text"
@@ -40,6 +43,7 @@
     <mat-form-field class="form-control">
         <mat-label>Surname</mat-label>
         <input matInput
+               class="surname-input"
                formControlName="surname"
                placeholder="Type your surname"
                type="text"
@@ -50,6 +54,7 @@
     </mat-form-field>
     <mat-radio-group class="mat-radio-group"
                      aria-labelledby="gender">
+        <mat-label>Gender</mat-label>
         <mat-radio-button value="man"
                           class="mat-radio-button md-primary">Man</mat-radio-button>
         <mat-radio-button class="mat-radio-button"

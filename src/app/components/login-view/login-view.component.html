@@ -1,37 +1,32 @@
 <div class="login-view-container">
-
-    <!-- OVERLAYER -->
-    <div class="login-view-overlayer"></div>
     <div class="login-view-wrap">
-
-        <!-- LOGIN -->
         <div class="login-wrap">
             <div class="login-form">
-                <h2 class="form-title"
-                    [ngClass]="{ 'form-inactive-title': !loginTab }">LOGIN</h2>
-                <ng-container *ngIf="!loginTab">
-                    <div class="form-inactive-button-wrap">
-                        <button (click)="changeTab()"
-                                class="form-inactive-button">Show login form</button>
-                    </div>
-                </ng-container>
+                <h2 class="form-title">
+                    <span class="change-tab active"
+                          (click)="changeTab(true)">
+                        Sign in
+                        <span class="arrow"
+                              *ngIf="!loginTab">
+                            <img src="/assets/images/arrow-right.png" />
+                        </span>
+                    </span>
+                    <span class="change-tab inactive"
+                          (click)="changeTab(false)">
+                        Sign up
+                        <span class="arrow"
+                              *ngIf="loginTab">
+                            <img src="/assets/images/arrow-right.png" />
+                        </span>
+                    </span>
+                </h2>
+
+                <!-- LOGIN -->
                 <ng-container *ngIf="loginTab">
                     <app-login-form (formData)="login($event)"></app-login-form>
                 </ng-container>
-            </div>
-        </div>
 
-        <!-- REGISTER -->
-        <div class="register-wrap">
-            <div class="register-form">
-                <h2 class="form-title"
-                    [ngClass]="{ 'form-inactive-title': loginTab }">REGISTER</h2>
-                <ng-container *ngIf="loginTab">
-                    <div class="form-inactive-button-wrap">
-                        <button (click)="changeTab()"
-                                class="form-inactive-button">Show register form</button>
-                    </div>
-                </ng-container>
+                <!-- REGISTER -->
                 <ng-container *ngIf="!loginTab">
                     <app-register-form (formData)="register($event)"></app-register-form>
                 </ng-container>
