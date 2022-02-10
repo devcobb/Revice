@@ -28,40 +28,19 @@
             Password is required
         </mat-error>
     </mat-form-field>
+    <mat-label class="personal-data-label">Personal data</mat-label>
     <mat-form-field class="form-control">
-        <mat-label>Name</mat-label>
+        <mat-label>Nickname</mat-label>
         <input matInput
-               class="name-input"
-               formControlName="name"
-               placeholder="Type your name"
+               class="nickname-input"
+               formControlName="nickname"
+               placeholder="Type your nickname"
                type="text"
                required />
-        <mat-error *ngIf="name?.hasError('required')">
-            Name is required
+        <mat-error *ngIf="nickname?.hasError('required')">
+            Nickname is required
         </mat-error>
     </mat-form-field>
-    <mat-form-field class="form-control">
-        <mat-label>Surname</mat-label>
-        <input matInput
-               class="surname-input"
-               formControlName="surname"
-               placeholder="Type your surname"
-               type="text"
-               required />
-        <mat-error *ngIf="surname?.hasError('required')">
-            Surname is required
-        </mat-error>
-    </mat-form-field>
-    <mat-radio-group class="mat-radio-group"
-                     aria-labelledby="gender">
-        <mat-label>Gender</mat-label>
-        <mat-radio-button value="man"
-                          class="mat-radio-button md-primary">Man</mat-radio-button>
-        <mat-radio-button class="mat-radio-button"
-                          value="woman">Woman</mat-radio-button>
-        <mat-radio-button class="mat-radio-button"
-                          value="other">Other</mat-radio-button>
-    </mat-radio-group>
     <div class="form-footer">
         <button [disabled]="form.invalid"
                 mat-raised-button

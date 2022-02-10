@@ -67,9 +67,34 @@ $dark_grey: #1d1d1d;
 .login-form, .register-form{
     margin-top: 5%;
     position: relative;
-
     .form-footer{
+        margin-bottom: 5%;
         text-align: center;
+    }
+    .personal-data-label{
+        @include flex(space-between, center);
+        font-family: "Agency FB Bold Condensed", sans-serif;
+        text-align: center;
+        width: 100%;
+        color: $yellow;
+        font-size: 2rem;
+        margin: 10% 0 5% 0;
+        &::after{
+            position: relative;
+            content: "";
+            display: block;
+            width: 25%;
+            height: 2px;
+            background-color: $yellow;
+        }
+        &::before{
+            position: relative;
+            content: "";
+            display: block;
+            width: 25%;
+            height: 2px;
+            background-color: $yellow;
+        }
     }
     ::ng-deep {
         .mat-focused .mat-form-field-label{
@@ -110,11 +135,8 @@ $dark_grey: #1d1d1d;
             .password-input{
                 background-image: url("/assets/images/password.png");
             }
-            .name-input{
-                background-image: url("/assets/images/name.png");
-            }
-            .surname-input{
-                background-image: url("/assets/images/surname.png");
+            .nickname-input{
+                background-image: url("/assets/images/nickname.png");
             }
             .mat-form-field-label {
                 color: $yellow;
@@ -137,69 +159,12 @@ $dark_grey: #1d1d1d;
         .mat-button-disabled {
             opacity: 0.3;
         }
-        .mat-radio-group{
-            @include flex(flex-start, flex-start, column);
-            width: 100%;
-            margin-top: 5%;
-            mat-label{
-                @include flex(space-between, center);
-                font-family: "Agency FB Bold Condensed", sans-serif;
-                width: 100%;
-                color: $yellow;
-                font-size: 2rem;
-                margin-bottom: 5%;
-                &::after{
-                    position: relative;
-                    content: "";
-                    display: block;
-                    width: 35%;
-                    height: 2px;
-                    background-color: $yellow;
-                }
-                &::before{
-                    position: relative;
-                    content: "";
-                    display: block;
-                    width: 35%;
-                    height: 2px;
-                    background-color: $yellow;
-                }
-            }
-            .mat-radio-button{
-                color: $yellow;
-                margin: 2% 0;
-                .mat-radio-label-content{
-                    margin-left: 10px;
-                }
-                .mat-radio-outer-circle{
-                    border: 1px solid $yellow;
-                }
-                .mat-radio-inner-circle{
-                    background-color: $white;
-                }
-                .mat-ripple-element{
-                    background-color: $white;
-                }
-            }
-        }
     }
 }
 
 @keyframes hideIcon{
     from { background-position-y: center; }
     to { background-position-y: -999%; }
-}
-
-
-@media only screen and (max-width: 1024px) {
-    .login-form, .register-form{
-        @include flex(center, center, column);
-    }
-    ::ng-deep {
-        .mat-radio-group{
-            @include flex(center, center, row);
-        }
-    }
 }
 
 ///*********
