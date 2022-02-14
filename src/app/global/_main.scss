@@ -71,31 +71,6 @@ $dark_grey: #1d1d1d;
         margin-bottom: 5%;
         text-align: center;
     }
-    .personal-data-label{
-        @include flex(space-between, center);
-        font-family: "Agency FB Bold Condensed", sans-serif;
-        text-align: center;
-        width: 100%;
-        color: $yellow;
-        font-size: 2rem;
-        margin: 10% 0 5% 0;
-        &::after{
-            position: relative;
-            content: "";
-            display: block;
-            width: 25%;
-            height: 2px;
-            background-color: $yellow;
-        }
-        &::before{
-            position: relative;
-            content: "";
-            display: block;
-            width: 25%;
-            height: 2px;
-            background-color: $yellow;
-        }
-    }
     ::ng-deep {
         .mat-focused .mat-form-field-label{
             transform: translateY(-3em) scale(0.75) perspective(100px) translateZ(0.001px);
