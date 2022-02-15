@@ -10,7 +10,6 @@ export interface LoginData {
   providedIn: 'root'
 })
 export class AuthService {
-  isAuth = false;
   constructor(private auth: Auth) { }
 
   login({ email, password }: LoginData) {
@@ -22,10 +21,26 @@ export class AuthService {
   }
 
   logout() {
-    return signOut(this.auth);
+    return signOut(this.auth)
   }
 
-  isAuthenticate() {
-    return this.isAuth;
+  isAuthenticate(): boolean {
+    let isAuth = false;
+    this.auth.onAuthStateChanged(
+      () => {
+        if (this.auth.currentUser !== null) {
+          isAuth = true
+        }
+        else {
+          isAuth = false
+        }
+      }
+    )
+
+    return isAuth
+  }
+
+  get user() {
+    return this.auth.currentUser
   }
 }
