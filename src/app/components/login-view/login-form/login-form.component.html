@@ -2,8 +2,9 @@
       [formGroup]="form"
       (ngSubmit)="onSubmit()">
     <mat-form-field class="form-control">
-        <mat-label>Email</mat-label>
+        <mat-label>Email address</mat-label>
         <input matInput
+               class="mail-input"
                formControlName="email"
                placeholder="Type your email"
                type="email"
@@ -18,6 +19,7 @@
     <mat-form-field class="form-control">
         <mat-label>Password</mat-label>
         <input matInput
+               class="password-input"
                formControlName="password"
                placeholder="Type your passsword"
                type="password"
@@ -30,7 +32,7 @@
         <button [disabled]="form.invalid"
                 mat-raised-button
                 type="submit">
-            Login
+            Sign in
         </button>
     </div>
 </form>

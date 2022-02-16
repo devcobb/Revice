@@ -20,7 +20,7 @@ $dark_grey: #1d1d1d;
     height: 100%;
 }
 
-@mixin mainButton{
+@mixin mainButton(){
     color: $yellow;
     text-decoration: none;
     padding: 1rem 1.5rem;
@@ -39,7 +39,7 @@ $dark_grey: #1d1d1d;
     }
 }
 
-@mixin contrastButton{
+@mixin contrastButton(){
     @include mainButton();
     color: $white;
     background: $purple;
@@ -63,29 +63,68 @@ $dark_grey: #1d1d1d;
     src: url("/assets/fonts/agencyfb-boldcondensed.ttf");
 }
 
+//***** FORM *****
 .login-form, .register-form{
     margin-top: 5%;
     position: relative;
+    .form-footer{
+        margin-bottom: 5%;
+        text-align: center;
+    }
     ::ng-deep {
+        .mat-focused .mat-form-field-label{
+            transform: translateY(-3em) scale(0.75) perspective(100px) translateZ(0.001px);
+        }
         .mat-form-field{
             margin: 1% 0;
-            width: 75%;
+            width: 100%;
             .mat-input-element {
+                border: 1px solid $yellow;
+                padding: 10px;
                 color: $yellow;
+                border-radius: 50px;
+            }
+            .mat-form-field-label-wrapper{
+                top: -0.11em;
+                left: 3em;
             }
             input{
+                box-sizing: border-box;
                 color: $white;
                 border: none;
+                background-repeat: no-repeat;
+                background-position-x: 2.5%;
+                background-position-y: center;
                 &::placeholder{
-                    color: $white;
+                    color: $yellow;
                 }
+                &:focus{
+                    transition: background-positon .3s;
+                    animation: hideIcon .3s;
+                    animation-fill-mode: forwards;
+                }
+            }
+            .mail-input{
+                background-image: url("/assets/images/mail.png");
+            }
+            .password-input{
+                background-image: url("/assets/images/password.png");
+            }
+            .nickname-input{
+                background-image: url("/assets/images/nickname.png");
             }
             .mat-form-field-label {
                 color: $yellow;
             }
             .mat-form-field-underline {
-                background-color: $yellow;;
+                display: none;
             }
+            mat-error{
+                text-align: center;
+            }
+        }
+        .mat-form-field-appearance-legacy .mat-form-field-label{
+            left: 3%;
         }
         .mat-raised-button {
             margin-top: 10%;
@@ -95,40 +134,12 @@ $dark_grey: #1d1d1d;
         .mat-button-disabled {
             opacity: 0.3;
         }
-        .mat-radio-group{
-            @include flex(flex-start, flex-start, column);
-            margin-top: 10%;
-            padding-top: 5%;
-            width: 75%;
-            .mat-radio-button{
-                color: $yellow;
-                margin: 2% 0;
-                .mat-radio-label-content{
-                    margin-left: 10px;
-                }
-                .mat-radio-outer-circle{
-                    border: 1px solid $yellow;
-                }
-                .mat-radio-inner-circle{
-                    background-color: $white;
-                }
-                .mat-ripple-element{
-                    background-color: $white;
-                }
-            }
-        }
     }
 }
 
-
-@media only screen and (max-width: 1024px) {
-    .login-form, .register-form{
-        @include flex(center, center, column);
-        margin: 7.5% 0;
-    }
-    ::ng-deep {
-        .mat-radio-group{
-            @include flex(center, center, row);
-        }
-    }
+@keyframes hideIcon{
+    from { background-position-y: center; }
+    to { background-position-y: -999%; }
 }
+
+///*********

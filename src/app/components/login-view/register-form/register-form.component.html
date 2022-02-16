@@ -2,9 +2,10 @@
       [formGroup]="form"
       (ngSubmit)="onSubmit()">
     <mat-form-field class="form-control">
-        <mat-label>Email</mat-label>
+        <mat-label>Email address</mat-label>
         <input matInput
                formControlName="email"
+               class="mail-input"
                placeholder="Type your email"
                type="email"
                required />
@@ -19,6 +20,7 @@
         <mat-label>Password</mat-label>
         <input matInput
                formControlName="password"
+               class="password-input"
                placeholder="Type your passsword"
                type="password"
                required />
@@ -27,36 +29,18 @@
         </mat-error>
     </mat-form-field>
     <mat-form-field class="form-control">
-        <mat-label>Name</mat-label>
+        <mat-label>Nickname</mat-label>
         <input matInput
-               formControlName="name"
-               placeholder="Type your name"
+               formControlName="nickname"
+               class="nickname-input"
+               placeholder="Type your nickname"
                type="text"
+               minlength="4"
                required />
-        <mat-error *ngIf="name?.hasError('required')">
-            Name is required
+        <mat-error *ngIf="nickname?.hasError('required')">
+            Nickname is required
         </mat-error>
     </mat-form-field>
-    <mat-form-field class="form-control">
-        <mat-label>Surname</mat-label>
-        <input matInput
-               formControlName="surname"
-               placeholder="Type your surname"
-               type="text"
-               required />
-        <mat-error *ngIf="surname?.hasError('required')">
-            Surname is required
-        </mat-error>
-    </mat-form-field>
-    <mat-radio-group class="mat-radio-group"
-                     aria-labelledby="gender">
-        <mat-radio-button value="man"
-                          class="mat-radio-button md-primary">Man</mat-radio-button>
-        <mat-radio-button class="mat-radio-button"
-                          value="woman">Woman</mat-radio-button>
-        <mat-radio-button class="mat-radio-button"
-                          value="other">Other</mat-radio-button>
-    </mat-radio-group>
     <div class="form-footer">
         <button [disabled]="form.invalid"
                 mat-raised-button

@@ -9,8 +9,11 @@ import { AuthService, LoginData } from 'src/app/global/auth/auth.service';
 })
 export class LoginViewComponent implements OnInit {
   loginTab = true;
-  constructor(private readonly authService: AuthService,
-    private readonly router: Router) { }
+
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router) {
+  }
 
   ngOnInit(): void {
   }
@@ -25,11 +28,25 @@ export class LoginViewComponent implements OnInit {
   register(registerData: LoginData) {
     this.authService
       .register(registerData)
+      .then(() => {
+        let nickname = (document.querySelector(".nickname-input") as HTMLInputElement).value
+        this.authService.addUserData(nickname)
+      })
       .then(() => this.router.navigate(['/account']))
       .catch((error) => console.log(error.message));
   }
 
-  changeTab() {
-    this.loginTab = !this.loginTab;
+  changeTab(tab: boolean) {
+    if (tab !== this.loginTab) {
+      let active = document.querySelector(".active");
+      let inactive = document.querySelector(".inactive");
+
+      if (active !== null && inactive !== null) {
+        active.className = active.className.replace('active', 'inactive');
+        inactive.className = inactive.className.replace('inactive', 'active')
+      }
+
+      this.loginTab = tab;
+    }
   }
 }

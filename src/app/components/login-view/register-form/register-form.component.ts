@@ -15,8 +15,7 @@ export class RegisterFormComponent implements OnInit {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
+      nickname: ['', Validators.required],
     });
   }
 
@@ -30,12 +29,8 @@ export class RegisterFormComponent implements OnInit {
     return this.form.get('password');
   }
 
-  get name() {
-    return this.form.get('password');
-  }
-
-  get surname() {
-    return this.form.get('password');
+  get nickname() {
+    return this.form.get('nickname');
   }
 
   onSubmit() {
