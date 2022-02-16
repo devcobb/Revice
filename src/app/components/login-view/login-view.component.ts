@@ -9,6 +9,7 @@ import { AuthService, LoginData } from 'src/app/global/auth/auth.service';
 })
 export class LoginViewComponent implements OnInit {
   loginTab = true;
+  errorMessage = "";
 
   constructor(
     private readonly authService: AuthService,
@@ -16,12 +17,18 @@ export class LoginViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem("isLoggedIn")) {
+      this.router.navigate(['account']);
+    }
   }
 
   login(loginData: LoginData) {
     this.authService
       .login(loginData)
-      .then(() => this.router.navigate(['/account']))
+      .then(() => {
+        localStorage.setItem("isLoggedIn", "true");
+        this.router.navigate(['/account'])
+      })
       .catch((error) => console.log(error.message));
   }
 
@@ -30,14 +37,24 @@ export class LoginViewComponent implements OnInit {
       .register(registerData)
       .then(() => {
         let nickname = (document.querySelector(".nickname-input") as HTMLInputElement).value
-        let profilePicture = (document.querySelector(".nickname-input") as HTMLInputElement).value[0].toUpperCase()
+        let profilePicture = (document.querySelector(".nickname-input") as HTMLInputElement).value[0].toUpperCase();
+
+        localStorage.setItem("isLoggedIn", "true");
         this.authService.addUserData(nickname, profilePicture)
       })
       .then(() => this.router.navigate(['/account']))
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        if (error.code === 'auth/email-already-in-use') {
+          this.errorMessage = "Email is already in use. Please sign in to your account.";
+        }
+
+        console.log(error.message)
+      });
   }
 
   changeTab(tab: boolean) {
+    this.errorMessage = "";
+
     if (tab !== this.loginTab) {
       let active = document.querySelector(".active");
       let inactive = document.querySelector(".inactive");
@@ -49,5 +66,9 @@ export class LoginViewComponent implements OnInit {
 
       this.loginTab = tab;
     }
+  }
+
+  showErrorMessage() {
+    return this.errorMessage
   }
 }
