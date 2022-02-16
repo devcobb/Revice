@@ -1,0 +1,106 @@
+@use '/src/app/global/main.scss';
+
+.account-wrap{
+    @include main.flex(center, center, column);
+    @include main.darkBackground;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    box-sizing: border-box;
+    .account{
+        @include main.flex(center, center, column);
+        width: 75%;
+        height: 75%;
+        .profile{
+            @include main.flex(space-around, center);
+            width: 50%;
+            color: main.$yellow;
+        }
+        .profile-data-wrap{
+            margin-left: 8%
+        }
+        .profile-data{
+            @include main.flex(space-between, center);
+            margin: 2.5% 0;
+            font-size: 1.5rem;
+            font-weight: 300;
+            span{
+                font-weight: bold;
+                margin-right: 25px;
+            }
+        }
+        .profile-pic-wrap{
+            border-right: 4px solid main.$yellow;
+            padding-right: 8%;
+        }
+        .profile-pic{
+            @include main.flex(center, center);
+            font-size: 4rem;
+            border: 2px solid main.$yellow;
+            background-color: main.$dark_grey;
+            padding: 2.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .options{
+            @include main.flex(center, center, column);
+            color: main.$yellow;
+            margin-top: 5%;
+            .button-wrap{
+                margin: 5% 0;
+                display: block;
+                text-align: center;
+            }
+            button{
+                @include main.mainButton;
+                width: 100%;
+            }
+        }
+    }    
+}
+
+@media only screen and (max-width: 1024px){
+    .account-wrap{
+        .account{
+            .profile{
+                flex-direction: column;
+            }
+            .profile-pic-wrap{
+                border-right: none;
+                padding-right: 0;
+            }
+            .profile-data-wrap{
+                margin: 5% 0;
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 600px){
+    .account-wrap{
+        .account{
+            .profile-data{
+                font-size: 1.3rem;
+                margin: 7.5% 0;
+                flex-direction: column;
+                align-items: flex-start;
+                span{
+                    margin-bottom: 2%;
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 414px){
+    .account-wrap{
+        .account{
+            .profile-data{
+                font-size: 1rem;
+            }
+        }
+    }
+}

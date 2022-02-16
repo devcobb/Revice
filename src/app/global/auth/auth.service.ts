@@ -22,12 +22,31 @@ export class AuthService {
   }
 
   logout() {
-    return signOut(this.auth);
+    return signOut(this.auth)
   }
 
   addUserData(nickname: string) {
     this.auth.onAuthStateChanged((user) => {
       this.dbService.addUserDataToDb(user!.uid, nickname)
     });
+
+  isAuthenticate(): boolean {
+    let isAuth = false;
+    this.auth.onAuthStateChanged(
+      () => {
+        if (this.auth.currentUser !== null) {
+          isAuth = true
+        }
+        else {
+          isAuth = false
+        }
+      }
+    )
+
+    return isAuth
+  }
+
+  get user() {
+    return this.auth.currentUser
   }
 }

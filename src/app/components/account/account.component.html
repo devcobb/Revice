@@ -1,1 +1,36 @@
-<p>account works!</p>
+<div class="account-wrap">
+    <div class="account">
+        <div class="profile">
+            <div class="profile-pic-wrap">
+                <div class="profile-pic">
+                    {{ profilePicture }}
+                </div>
+            </div>
+            <div class="profile-data-wrap">
+                <div class="profile-data">
+                    <span>Email:</span> {{ email }}
+                </div>
+                <div class="profile-data">
+                    <span>UID:</span> {{ uid }}
+                </div>
+            </div>
+        </div>
+        <div class="options">
+            <div>
+                <div class="button-wrap"
+                     routerLink="all-posts">
+                    <button>
+                        View all user's posts
+                    </button>
+                </div>
+                <div class="button-wrap"
+                     *ngIf="isCurrentUser()"
+                     routerLink="all-posts">
+                    <button (click)="logout()">
+                        Sign off
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
