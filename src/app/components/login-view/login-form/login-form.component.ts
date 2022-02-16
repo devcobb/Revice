@@ -31,4 +31,21 @@ export class LoginFormComponent implements OnInit {
   onSubmit() {
     this.formData.emit(this.form.value);
   }
+
+
+  handleNotEmptyInputs(event: Event) {
+    let input = event.target as HTMLInputElement;
+
+    if (input.value !== "") {
+      input.className += " not-empty"
+    }
+    else {
+      input.className = input.className.replace('not-empty', '');
+    }
+  }
+
+  handleBlurInput(event: Event) {
+    let input = event.target as HTMLInputElement;
+    input.className += " blurred";
+  }
 }

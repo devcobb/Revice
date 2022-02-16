@@ -98,11 +98,23 @@ $dark_grey: #1d1d1d;
                 &::placeholder{
                     color: $yellow;
                 }
-                &:focus{
+                &:not(.not-empty):focus{
                     transition: background-positon .3s;
                     animation: hideIcon .3s;
                     animation-fill-mode: forwards;
                 }
+            }
+            .blurred{
+                transition: background-positon .3s;
+                animation: showIcon .3s;
+                animation-fill-mode: forwards;
+            }
+            .not-empty{
+                background-position-y: -999%;
+                animation: none;
+            }
+            .not-empty + .mat-form-field-label-wrapper{
+                display: none;
             }
             .mail-input{
                 background-image: url("/assets/images/mail.png");
@@ -140,6 +152,11 @@ $dark_grey: #1d1d1d;
 @keyframes hideIcon{
     from { background-position-y: center; }
     to { background-position-y: -999%; }
+}
+
+@keyframes showIcon{
+    from { background-position-y: -999%; }
+    to { background-position-y: center }
 }
 
 ///*********
