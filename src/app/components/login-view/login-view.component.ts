@@ -9,8 +9,11 @@ import { AuthService, LoginData } from 'src/app/global/auth/auth.service';
 })
 export class LoginViewComponent implements OnInit {
   loginTab = true;
-  constructor(private readonly authService: AuthService,
-    private readonly router: Router) { }
+
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router) {
+  }
 
   ngOnInit(): void {
   }
@@ -25,6 +28,10 @@ export class LoginViewComponent implements OnInit {
   register(registerData: LoginData) {
     this.authService
       .register(registerData)
+      .then(() => {
+        let nickname = (document.querySelector(".nickname-input") as HTMLInputElement).value
+        this.authService.addUserData(nickname)
+      })
       .then(() => this.router.navigate(['/account']))
       .catch((error) => console.log(error.message));
   }
