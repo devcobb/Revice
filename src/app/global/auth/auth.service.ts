@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { DatabaseService } from '../database.service';
 
 export interface LoginData {
   email: string;
@@ -10,7 +11,7 @@ export interface LoginData {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private auth: Auth) { }
+  constructor(private auth: Auth, private dbService: DatabaseService) { }
 
   login({ email, password }: LoginData) {
     return signInWithEmailAndPassword(this.auth, email, password);
@@ -22,5 +23,11 @@ export class AuthService {
 
   logout() {
     return signOut(this.auth);
+  }
+
+  addUserData(nickname: string) {
+    this.auth.onAuthStateChanged((user) => {
+      this.dbService.addUserDataToDb(user!.uid, nickname)
+    });
   }
 }
