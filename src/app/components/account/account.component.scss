@@ -21,9 +21,13 @@
         }
         .profile-data{
             @include main.flex(space-between, center);
-            margin: 2.5% 0;
+            margin: 5% 0;
             font-size: 1.5rem;
             font-weight: 300;
+            .nickname{
+                font-size: 4rem;
+                font-weight: bold;
+            }
             span{
                 font-weight: bold;
                 margin-right: 25px;
@@ -33,15 +37,54 @@
             border-right: 4px solid main.$yellow;
             padding-right: 8%;
         }
+        .profile-pic-input{
+            display: none
+        }
+        .profile-image{
+            @include main.fullSize;
+            border-radius: 50%;
+            object-fit: cover
+        }
         .profile-pic{
             @include main.flex(center, center);
+            position: relative;
             font-size: 4rem;
             border: 2px solid main.$yellow;
-            background-color: main.$dark_grey;
-            padding: 2.5rem;
-            width: 40px;
-            height: 40px;
+            width: 8rem;
+            height: 8rem;
             border-radius: 50%;
+            span, img{
+                @include main.flex(center, center);
+                @include main.fullSize;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                opacity: 1;
+                transition: opacity .3s;
+            }
+            &:hover{
+                span, img{
+                    opacity: 0;
+                }
+                &::after{
+                    background-size: 50px;
+                    opacity: 1;
+                }
+            }
+            &::after{
+                position: absolute;
+                cursor: pointer;
+                content: "";
+                opacity: 0;
+                transition: opacity .3s, background-size .3s;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                background-image: url("/assets/images/plus.png");
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 40px;
+            }
         }
         .options{
             @include main.flex(center, center, column);

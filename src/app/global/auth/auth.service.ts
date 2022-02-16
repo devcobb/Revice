@@ -25,9 +25,9 @@ export class AuthService {
     return signOut(this.auth)
   }
 
-  addUserData(nickname: string) {
+  addUserData(nickname: string, profilePicture: string) {
     this.auth.onAuthStateChanged((user) => {
-      this.dbService.addUserDataToDb(user!.uid, nickname)
+      this.dbService.addUserDataToDb(user!.uid, nickname, profilePicture)
     });
   }
 

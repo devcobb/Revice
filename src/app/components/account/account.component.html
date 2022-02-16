@@ -2,11 +2,27 @@
     <div class="account">
         <div class="profile">
             <div class="profile-pic-wrap">
-                <div class="profile-pic">
-                    {{ profilePicture }}
-                </div>
+                <label class="profile-pic"
+                       for="profile-pic">
+                    <span>
+                        <ng-container *ngIf="updatedImage === '' && profilePicture.length === 1">
+                            {{ profilePicture }}
+                        </ng-container>
+                        <img class="profile-image"
+                             [src]="profilePicture.length > 1 ? profilePicture : updatedImage"
+                             *ngIf="updatedImage !== '' || profilePicture.length > 1" />
+                    </span>
+                </label>
+                <input type="file"
+                       (change)="updateProfilePic()"
+                       class="profile-pic-input"
+                       name="profile-pic"
+                       id="profile-pic" />
             </div>
             <div class="profile-data-wrap">
+                <div class="profile-data">
+                    <h1 class="nickname">{{ nickname }}</h1>
+                </div>
                 <div class="profile-data">
                     <span>Email:</span> {{ email }}
                 </div>

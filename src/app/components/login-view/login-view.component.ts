@@ -30,7 +30,8 @@ export class LoginViewComponent implements OnInit {
       .register(registerData)
       .then(() => {
         let nickname = (document.querySelector(".nickname-input") as HTMLInputElement).value
-        this.authService.addUserData(nickname)
+        let profilePicture = (document.querySelector(".nickname-input") as HTMLInputElement).value[0].toUpperCase()
+        this.authService.addUserData(nickname, profilePicture)
       })
       .then(() => this.router.navigate(['/account']))
       .catch((error) => console.log(error.message));
