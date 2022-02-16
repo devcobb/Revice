@@ -29,6 +29,7 @@ export class AuthService {
     this.auth.onAuthStateChanged((user) => {
       this.dbService.addUserDataToDb(user!.uid, nickname)
     });
+  }
 
   isAuthenticate(): boolean {
     let isAuth = false;
