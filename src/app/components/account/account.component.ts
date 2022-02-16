@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
 import { AuthService } from 'src/app/global/auth/auth.service';
+import { DatabaseService } from 'src/app/global/database.service';
 
 interface userData {
   profilePic: string;
   email: string;
   uid: string;
+  nickname: string;
 }
 
 @Component({
@@ -16,9 +19,10 @@ interface userData {
 })
 export class AccountComponent implements OnInit {
   user: User | null = null;
-  userData: userData = { profilePic: "", email: "", uid: "" };
+  updatedImage = "";
+  userData: userData = { profilePic: "", email: "", uid: "", nickname: "" };
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private auth: AuthService, private router: Router, private db: DatabaseService) {
     if (!localStorage.getItem('userProfile')) {
       this.user = this.auth.user
     }
@@ -31,11 +35,16 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  setUserData() {
+  async setUserData() {
     if (typeof this.user?.email === 'string' && typeof this.user.uid === 'string') {
-      this.userData.profilePic = this.user?.email[0].toUpperCase();
       this.userData.email = this.user?.email;
       this.userData.uid = this.user?.uid;
+
+      const docRef = doc(this.db.firestore, "users", this.user?.uid);
+      const docSnap = await getDoc(docRef);
+
+      this.userData.nickname = await docSnap.data()?.nickname;
+      this.userData.profilePic = await docSnap.data()?.profilePicture;
     }
   }
 
@@ -51,6 +60,10 @@ export class AccountComponent implements OnInit {
     return this.userData.uid
   }
 
+  get nickname() {
+    return this.userData.nickname
+  }
+
   logout() {
     this.auth.logout();
     this.router.navigate(['/home'])
@@ -58,5 +71,23 @@ export class AccountComponent implements OnInit {
 
   isCurrentUser() {
     return !localStorage.getItem('userProfile') ? true : false
+  }
+
+  updateProfilePic() {
+    let input = <HTMLInputElement>(document.querySelector(".profile-pic-input"));
+    let label = <HTMLLabelElement>document.querySelector(`.profile-pic`);
+
+    if (input.files && input.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        if (label !== null && e.target !== null && typeof e.target.result === 'string') {
+          this.updatedImage = e.target.result;
+          this.db.updateProfilePic(this.userData.uid, e.target.result);
+          this.userData.profilePic = e.target.result
+        }
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
   }
 }
