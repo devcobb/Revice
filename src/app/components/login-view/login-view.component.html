@@ -30,6 +30,11 @@
                 <ng-container *ngIf="!loginTab">
                     <app-register-form (formData)="register($event)"></app-register-form>
                 </ng-container>
+
+                <div class="error-message"
+                     *ngIf="errorMessage.length > 1">
+                    {{ showErrorMessage() }}
+                </div>
             </div>
         </div>
     </div>

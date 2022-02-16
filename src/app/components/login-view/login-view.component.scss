@@ -8,6 +8,12 @@
     padding-top: 7rem;
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
+    .error-message {
+        margin-top: 15%;
+        font-size: .9rem;
+        color: main.$bright_red;
+        text-align: center;
+    }
     .form-title{
         @include main.flex(space-between, center);
         font-family: "Agency FB Bold Condensed", sans-serif;
