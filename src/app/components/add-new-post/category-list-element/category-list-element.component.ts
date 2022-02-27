@@ -7,16 +7,15 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class CategoryListElementComponent implements OnInit {
   @Input() categoryName = "";
-  @Output() choosedCategory = new EventEmitter<string>()
+  @Output() choosedCategory = new EventEmitter<string>();
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  chooseCategory(evt: Event, name: string){
+  chooseCategory(evt: Event, name: string) {
     //Clear any current choosed element
     document.querySelectorAll(".category-list-element").forEach(elem => elem.className = elem.className.replace("choosed-category", ""));
-    
+
     let element = <HTMLDivElement>evt.target;
     element.className += " choosed-category";
     this.choosedCategory.emit(name);

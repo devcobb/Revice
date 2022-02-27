@@ -1,14 +1,15 @@
 <div class="upload-image-container">
     <label [attr.for]="'upload-image-' + id"
            class="upload-image">
-        <div class="uploaded-image-overlayer"
-             *ngIf="imageUploaded"></div>
-        <span class="upload-image-text-wrap">
-            <img src="/assets/images/upload.png" />
-            <span class="upload-image-text">
-                {{ !imageUploaded ? 'Click to upload an image' : 'Click to upload different image' }}
+        <div class="bottom-bar">
+            <img src="assets/images/upload.png" />
+            <span>
+                <span class="bold">up</span>load
             </span>
-        </span>
+        </div>
+        <div class="label-overlayer">
+            Click to upload an image
+        </div>
     </label>
     <input [attr.id]="'upload-image-' + id"
            (change)="uploadImage($event)"

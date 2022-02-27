@@ -1,0 +1,121 @@
+@use 'src/app/global/main.scss';
+
+:host{
+    @include main.flex(center, center);
+    width: 30%;
+}
+
+.choose-category-wrap{
+    @include main.flex(flex-start, flex-start, column);
+    width: 100%;
+    position: relative;
+}
+
+.choose-category{
+    @include main.flex(space-between, center);
+    color: main.$white;
+    background-color: main.$purple;
+    border: 1px solid main.$purple;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: 300;
+    transition: background-color .3s, border-radius .3s;
+    &:hover{
+        background-color: darken(main.$purple, 5%);
+        border: 1px solid darken(main.$purple, 5%);
+    }
+    .arrow{
+        transition: transform .3s;
+        width: 20px;
+    }
+    
+    .arrow-top{
+        transform: rotate(-180deg);
+    }
+    .arrow-down{
+        transform: rotate(0deg);
+    }
+}
+
+.choose-category-open{
+    border-radius: 0 25px 0 0;
+}
+
+.choose-category-closed{
+    border-radius: 0 50px 50px 0;
+}
+
+.list{
+    position: absolute;
+    z-index: 3;
+    top: 3.9rem;
+    color: main.$white;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+    max-height: 0;
+    transition: opacity .3s, max-height .3s;
+    transition-timing-function: ease-in-out;
+    li{
+        background-color: main.$purple;
+        padding: 1rem 0;
+        text-transform: uppercase;
+        margin: 2px 0;
+        letter-spacing: 3px;
+        transition: letter-spacing .3s;
+        cursor: pointer;
+        &:hover{
+            letter-spacing: 5px;
+        }
+    }
+}
+
+.close{
+    max-height: 0;
+}
+
+.open{
+    max-height: 500px;
+}
+
+
+
+@media only screen and (max-width: 1400px){
+    :host{
+        width: 100%;
+    }
+    .choose-category-wrap{
+        @include main.flex(center, center);
+        width: 50%;
+        .choose-category{
+            border-radius: 50px;
+        }
+    }
+}
+
+@media only screen and (max-width: 768px){
+    :host{
+        @include main.flex(center, center);
+        width: 100%;
+    }
+    .choose-category-wrap{
+        width: 50%;
+    }
+    .choose-category-closed{
+        border-radius: 0;
+    }
+    .choose-category-open{
+        border-radius: 25px 25px 0 0;
+    }
+}
+
+@media only screen and (max-width: 414px){
+    .choose-category-wrap{
+        width: 65%;
+    }
+}

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { Category } from 'src/app/global/global-interfaces';
 
 interface TextField {
@@ -28,7 +28,14 @@ interface BannerField {
 })
 export class AddNewPostFormComponent {
   @Input() category = <Category>{};
+  @Output() choosedCategory = "";
   fields: (TextField | ImageField | BannerField)[] = [];
+  thumbnail: string = "";
+
+  ngOnInit() {
+    this.choosedCategory = this.category.name
+  }
+
   addField(fieldType: 'image' | 'text' | 'banner') {
     if (fieldType === 'text') {
       this.fields.push(
@@ -59,6 +66,11 @@ export class AddNewPostFormComponent {
         }
       )
     }
+  }
+
+  updateThumbnail($event: Event) {
+    let image = $event.target as HTMLInputElement;
+    this.thumbnail = image.value;
   }
 
   removeElement(id: number) {
