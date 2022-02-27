@@ -16,6 +16,9 @@ export class UploadImageComponent implements OnInit {
   uploadImage(event: Event) {
     let input = <HTMLInputElement>event.target;
     let label = <HTMLLabelElement>document.querySelector(`label[for="upload-image-${this.id}"]`);
+    let bottomBar = label.children[0]
+
+    bottomBar.className += " no-bg-color";
 
     if (input.files && input.files[0]) {
       let reader = new FileReader();

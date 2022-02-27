@@ -8,16 +8,17 @@
                    class="post-input post-title"
                    placeholder="Post Title"
                    required />
-            <select class="change-category"
-                    name="category"
-                    [value]="category.name"
-                    required>
-                <option value="">Choose post category</option>
-                <option value="film">Film</option>
-                <option value="serial">Serial</option>
-                <option value="game">Game</option>
-                <option value="music">Music</option>
-            </select>
+            <app-choose-category [category]="choosedCategory"></app-choose-category>
+        </div>
+        <div class="post-visiblity-wrap">
+            <div class="input-switch-wrap">
+                <span class="input-switch-mode">Public</span>
+                <label class="input-switch">
+                    <input id="post-visibility"
+                           type="checkbox" />
+                </label>
+                <span class="input-switch-mode">Private</span>
+            </div>
         </div>
         <div class="field-container"
              *ngFor="let field of fields">
@@ -80,6 +81,7 @@
             <input class="submit-btn"
                    value="Add post"
                    type="submit" />
+            <button class="preview-btn">Preview post</button>
         </div>
     </form>
 </div>

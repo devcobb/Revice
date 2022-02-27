@@ -24,6 +24,7 @@ import { LoginViewComponent } from './components/login-view/login-view.component
 import { RegisterFormComponent } from './components/login-view/register-form/register-form.component';
 import { MenuComponent } from './components/page-header/menu/menu.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { ChooseCategoryComponent } from './components/add-new-post/choose-category/choose-category.component';
 
 const materialModules = [
   MatButtonModule,
@@ -46,6 +47,7 @@ const materialModules = [
     LoginFormComponent,
     RegisterFormComponent,
     AccountComponent,
+    ChooseCategoryComponent,
   ],
   imports: [
     BrowserModule,

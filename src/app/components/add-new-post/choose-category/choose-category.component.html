@@ -1,0 +1,14 @@
+<div class="choose-category-wrap"
+     (click)="toggle()">
+    <div class="choose-category choose-category-closed">
+        <span class="choosed-category">Category: {{ category[0].toUpperCase() + category.slice(1) }}</span>
+        <img class="arrow arrow-down"
+             src="/assets/images/arrow-down.png" />
+    </div>
+    <ul class="list close">
+        <li (click)="updateCategory($event.target)">Film</li>
+        <li (click)="updateCategory($event.target)">Serial</li>
+        <li (click)="updateCategory($event.target)">Game</li>
+        <li (click)="updateCategory($event.target)">Music</li>
+    </ul>
+</div>

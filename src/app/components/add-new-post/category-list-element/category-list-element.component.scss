@@ -51,12 +51,6 @@
     }
 }
 
-.choosed-category{
-    &::before, &::after{
-        opacity: 1;
-    }
-}
-
 .film{
     background-image: url("/assets/images/film.png");
     background-repeat: no-repeat;
@@ -101,9 +95,5 @@
         &::before, &::after{
             display: none;
         }
-    }
-    .choosed-category{
-        outline-offset: 5px;
-        outline: 4px solid main.$yellow;
     }
 }

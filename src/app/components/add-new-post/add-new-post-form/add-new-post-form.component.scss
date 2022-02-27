@@ -31,10 +31,49 @@
         position: relative;
         z-index: 3;
         .post-basic-information{
-            @include main.flex(center, center);
+            @include main.flex(center, flex-start);
             width: 40%;
             margin-bottom: 1%;
         }
+        .post-visiblity-wrap{
+            @include main.flex(center, center, column);
+            color: main.$yellow;
+            width: 100%;
+            margin-bottom: 2.5%;
+        }
+        .input-switch-wrap{
+            @include main.flex(center, center);
+            width: 100%;        
+            .input-switch-mode{
+                text-transform: uppercase;
+                margin: 0 10px;
+                font-weight: bold
+            }
+        }
+        .input-switch {
+            @include main.flex(center, center);
+            display: block;
+            width: 3.5%;
+            height: 2rem;
+            background-color: main.$dark_grey;
+            border-radius: 50px;
+            cursor: pointer;
+            input {
+              appearance: none;
+              display: block;
+              width: 50%;
+              height: 1.6rem;
+              background-color: main.$yellow;
+              border-radius: 50px;
+              transition: transform 0.3s, background-color .3s;
+              animation-timing-function: cubic-bezier(1, 0, 1, 1);
+              will-change: transform;
+              cursor: pointer;
+              &:checked {
+                transform: translateX(77.5%);
+              }
+            }
+          }
         .post-input{
             font-family: Roboto, sans-serif;
             font-size: 1rem;
@@ -42,27 +81,18 @@
             outline:  none;
             width: 70%;
             padding: 1rem;
-            background: main.$dark_grey;
-            color: main.$white;
-        }
-        .change-category{
-            width: 30%;
-            border: none;
-            outline: none;
-            background-color: main.$purple;
-            color: main.$white;
-            padding: 1rem;
-            font-size: 1rem;
-            border-radius: 0 50px 50px 0;
-            cursor: pointer;
-            &:hover{
-                background: darken(main.$purple, 3%);
+            color: main.$yellow;
+            border: 1px solid main.$yellow;
+            background-color: transparent;
+            border-radius: 50px 0 0 50px;
+            &::placeholder{
+                color: main.$yellow;
             }
         }
         .thumbnail{
             @include main.flex(center, center);
             width: 40%;
-            height: 12rem;
+            height: 10rem;
             margin-bottom: 2.5%;
         }
         .field-wrap{
@@ -104,7 +134,7 @@
                 font-size: .75rem;
             }
             .text-section, .image-section{
-                width: 48%
+                width: 48.75%
             }
         }
         .banner-reverse{
@@ -143,12 +173,20 @@
             margin-bottom: 1%;
         }
         .submit-container{
+            @include main.flex(center, center, column);
             width: 70%;
             text-align: center;
             margin-bottom: 5%;
             .submit-btn{
                 @include main.contrastButton;
                 font-weight: normal;
+                width: 15%;
+            }
+            .preview-btn{
+                @include main.contrastButton;
+                margin-top: 1rem;
+                font-weight: normal;
+                width: 15%;
             }
         }
     }
@@ -169,12 +207,34 @@
                     margin: 1% 0;
                 }
             }
+            .post-basic-information{
+                flex-direction: column;
+                width: 40%;
+                margin-bottom: 5%;
+                .post-title{
+                    width: 100%;
+                    margin-bottom: 5%;
+                    box-sizing: border-box;
+                }
+                .post-input{
+                    border-radius: 50px;
+                }
+            }
+            .submit-container{
+                .submit-btn,
+                .preview-btn{
+                    width: 25%;
+                }
+            }
+            .input-switch {
+                width: 4.5%;
+            }
         }
     }
 }
 
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 1000px){
     .add-new-post-container{
         .add-new-post-form{
             .thumbnail{
@@ -198,28 +258,53 @@
                 margin-bottom: 5%;
                 width: 75%;
             }
-            .post-basic-information{
-                flex-direction: column;
-                width: 75%;
-                margin-bottom: 5%;
-                .change-category{
-                    width: 100%;
-                }
-                .post-title{
-                    width: 100%;
-                    margin-bottom: 5%;
-                    box-sizing: border-box;
-                }
+            .post-input{
+                border-radius: 50px;
             }
             .submit-container{
                 width: 100%;
                 margin-bottom: 20%;
-                .submit-btn{
-                    width: 50%;
-                }
+            }
+            .input-switch {
+                width: 6%;
             }
         }
     }
+}
+
+
+@media only screen and (max-width: 768px){
+    .add-new-post-container{
+        .add-new-post-form{
+            .post-basic-information{
+                width: 65%;
+            }
+            .submit-container{
+                .submit-btn,
+                .preview-btn{
+                    width: 35%;
+                }
+            }
+            .input-switch {
+                width: 8%;
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 500px){
+    .add-new-post-container{
+        .add-new-post-form{
+            .post-basic-information{
+                width: 75%;
+            }
+            .input-switch {
+                width: 12.5%;
+            }
+        }
+    }
+
 }
 
 @media only screen and (max-width: 414px){
@@ -229,6 +314,15 @@
                 .row-option{
                     width: 75%;
                 }
+            }
+            .submit-container{
+                .submit-btn,
+                .preview-btn{
+                    width: 50%;
+                }
+            }
+            .input-switch {
+                width: 15%;
             }
         }
     }
