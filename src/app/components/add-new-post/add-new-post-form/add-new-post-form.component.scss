@@ -97,7 +97,9 @@
         }
         .field-wrap{
             position: relative;
-            height: 10rem;
+        }
+        .image-field{
+            height: 10rem
         }
         .close{
             @include icon;
@@ -110,6 +112,17 @@
             top: 6%;
             right: -13.5%;
             background-image: url("/assets/images/arrangement.png");
+        }
+        .section-title{
+            background-color: main.$dark_grey;
+            width: 100%;
+            margin-bottom: 1%;
+            padding: 1rem;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            color: main.$white;
+            box-sizing: border-box;
         }
         .text-section{
             position: relative;
@@ -130,11 +143,17 @@
         }
         .banner-wrap{
             @include main.flex(space-between, center);
-            .text-section{
+            .text-section, .section-title{
+                @include main.flex(center, center, column);
+                width: 100%;
                 font-size: .75rem;
             }
-            .text-section, .image-section{
-                width: 48.75%
+            .image-section{
+                height: 100%;
+            }
+            .banner-text-content, .image-section{
+                width: 48.75%;
+                height: 13rem;
             }
         }
         .banner-reverse{
@@ -187,6 +206,10 @@
                 margin-top: 1rem;
                 font-weight: normal;
                 width: 15%;
+                transition: opacity .3s;
+                &:disabled{
+                    opacity: 0.3;
+                }
             }
         }
     }
@@ -250,7 +273,7 @@
             }
             .add-row{
                 .row-option{
-                    width: 50%;
+                    width: 35%;
                     margin: 2.5% 0;
                 }
             }

@@ -25,6 +25,7 @@ import { RegisterFormComponent } from './components/login-view/register-form/reg
 import { MenuComponent } from './components/page-header/menu/menu.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { ChooseCategoryComponent } from './components/add-new-post/choose-category/choose-category.component';
+import { PreviewPostComponent } from './components/preview-post/preview-post.component';
 
 const materialModules = [
   MatButtonModule,
@@ -48,6 +49,7 @@ const materialModules = [
     RegisterFormComponent,
     AccountComponent,
     ChooseCategoryComponent,
+    PreviewPostComponent,
   ],
   imports: [
     BrowserModule,

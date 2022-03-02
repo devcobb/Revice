@@ -1,25 +1,5 @@
-import { Component, Input, Output } from '@angular/core';
-import { Category } from 'src/app/global/global-interfaces';
-
-interface TextField {
-  type: 'text';
-  value: string;
-  id: number;
-}
-
-interface ImageField {
-  type: 'image';
-  src: string;
-  id: number;
-}
-
-interface BannerField {
-  type: 'banner';
-  src: string;
-  value: string;
-  id: number;
-  arrangement: "image-text" | "text-image"
-}
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { BannerField, Category, ImageField, TextField } from 'src/app/global/global-interfaces';
 
 @Component({
   selector: 'app-add-new-post-form',
@@ -29,8 +9,14 @@ interface BannerField {
 export class AddNewPostFormComponent {
   @Input() category = <Category>{};
   @Output() choosedCategory = "";
+  @Output() previewedFields = new EventEmitter<(TextField | ImageField | BannerField)[]>();
+  @Output() thumbnailImage = new EventEmitter<string>();
+  @Output() needPreview = new EventEmitter<boolean>();
+  @Output() postTitle = new EventEmitter<string>();
   fields: (TextField | ImageField | BannerField)[] = [];
-  thumbnail: string = "";
+  preview = false;
+  title = "";
+  thumbnail = "";
 
   ngOnInit() {
     this.choosedCategory = this.category.name
@@ -42,7 +28,8 @@ export class AddNewPostFormComponent {
         {
           type: fieldType,
           value: "",
-          id: this.fields.length
+          title: "",
+          id: this.fields.length,
         }
       )
     }
@@ -61,6 +48,7 @@ export class AddNewPostFormComponent {
           type: fieldType,
           value: "",
           src: "",
+          title: "",
           id: this.fields.length,
           arrangement: "image-text"
         }
@@ -68,9 +56,17 @@ export class AddNewPostFormComponent {
     }
   }
 
-  updateThumbnail($event: Event) {
-    let image = $event.target as HTMLInputElement;
-    this.thumbnail = image.value;
+  updateField(id: number, attr: string, value: string) {
+    let fieldToUpdate = this.fields.filter(field => field.id === id)[0];
+    fieldToUpdate[attr] = value;
+  }
+
+  updateTitle(value: string) {
+    this.title = value;
+  }
+
+  updateThumbnail(image: string) {
+    this.thumbnail = image;
   }
 
   removeElement(id: number) {
@@ -80,5 +76,15 @@ export class AddNewPostFormComponent {
   changeArrangement(id: number) {
     let fieldToChange = <BannerField>this.fields.find(field => field.id === id && field.type === 'banner');
     fieldToChange.arrangement === 'text-image' ? fieldToChange.arrangement = "image-text" : fieldToChange.arrangement = "text-image";
+  }
+
+  previewToggle(event: Event) {
+    event.preventDefault();
+    this.preview = true;
+
+    this.previewedFields.emit(this.fields);
+    this.needPreview.emit(this.preview);
+    this.thumbnailImage.emit(this.thumbnail);
+    this.postTitle.emit(this.title)
   }
 }
