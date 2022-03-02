@@ -8,6 +8,7 @@ $bright_yellow: #e6d81a;
 $white: #fff;
 $dark: #0E0E10;
 $dark_grey: #1d1d1d;
+$near_black: #0d0d0d;
 
 @mixin flex($justify, $align, $direction: row){
     display: flex;
@@ -62,6 +63,28 @@ $dark_grey: #1d1d1d;
 @font-face {
     font-family: "Agency FB Bold Condensed";
     src: url("/assets/fonts/agencyfb-boldcondensed.ttf");
+}
+
+@mixin customScroll{
+    /* width */
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+  
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+  
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $yellow;
+    }
+  
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: darken($yellow, 5%);
+    }
 }
 
 //***** FORM *****

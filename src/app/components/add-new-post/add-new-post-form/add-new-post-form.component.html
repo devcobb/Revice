@@ -1,9 +1,12 @@
 <div class="add-new-post-container">
     <div class="form-bg"></div>
     <form class="add-new-post-form">
-        <app-upload-image class="thumbnail"></app-upload-image>
+        <app-upload-image class="thumbnail"
+                          (imageUploaded)="updateThumbnail($event)"></app-upload-image>
         <div class="post-basic-information">
             <input type="text"
+                   (change)="updateTitle($event.target.value)"
+                   (keydown)="updateTitle($event.target.value)"
                    name="post-title"
                    class="post-input post-title"
                    placeholder="Post Title"
@@ -25,18 +28,24 @@
             <!-- TEXT -->
             <div class="field-wrap"
                  *ngIf="field.type === 'text'">
+                <input type="text"
+                       placeholder="Add title of text section"
+                       (change)="updateField(field.id, 'title', $event.target.value)"
+                       class="section-title" />
                 <textarea class="text-section"
+                          (change)="updateField(field.id, 'value', $event.target.value)"
                           [value]="field.value"
-                          placeholder="Add your text here"></textarea>
+                          placeholder="Add your text here*"></textarea>
                 <span class="close"
                       [attr.data-id]="field.id"
                       (click)="removeElement(field.id)"></span>
             </div>
 
             <!-- IMAGE -->
-            <div class="field-wrap"
+            <div class="field-wrap image-field"
                  *ngIf="field.type === 'image'">
                 <app-upload-image [id]="field.id + 1"
+                                  (imageUploaded)="updateField(field.id, 'src', $event)"
                                   class="image-section"></app-upload-image>
                 <span class="close"
                       [attr.data-id]="field.id"
@@ -48,10 +57,19 @@
                  *ngIf="field.type === 'banner'"
                  [ngClass]="{'banner-reverse': field.arrangement === 'text-image'}">
                 <app-upload-image [id]="field.id + 1"
+                                  (imageUploaded)="updateField(field.id, 'src', $event)"
                                   class="image-section"></app-upload-image>
-                <textarea class="text-section"
-                          [value]="field.value"
-                          placeholder="Add your text here"></textarea>
+                <div class="banner-text-content">
+                    <input type="text"
+                           placeholder="Add title of text section"
+                           (change)="updateField(field.id, 'title', $event.target.value)"
+                           class="section-title" />
+                    <textarea class="text-section"
+                              [value]="field.value"
+                              (change)="updateField(field.id, 'value', $event.target.value)"
+                              placeholder="Add your text here*"></textarea>
+                </div>
+
                 <span class="close"
                       [attr.data-id]="field.id"
                       (click)="removeElement(field.id)"></span>
@@ -81,7 +99,9 @@
             <input class="submit-btn"
                    value="Add post"
                    type="submit" />
-            <button class="preview-btn">Preview post</button>
+            <button class="preview-btn"
+                    [disabled]="title.length < 5 || thumbnail.length < 5 || fields.length === 0"
+                    (click)="previewToggle($event)">Preview post</button>
         </div>
     </form>
 </div>

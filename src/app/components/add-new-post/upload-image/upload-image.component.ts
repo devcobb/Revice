@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-upload-image',
@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class UploadImageComponent implements OnInit {
   @Input() id: number = 0;
-  imageUploaded = false;
+  @Output() imageUploaded = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit(): void {
@@ -24,13 +24,15 @@ export class UploadImageComponent implements OnInit {
       let reader = new FileReader();
       reader.onload = (e) => {
         if (label !== null && e.target !== null) {
-          this.imageUploaded = true;
           label.style.backgroundImage = `url(${e.target.result})`;
+
+          if (typeof e.target.result === "string") {
+            this.imageUploaded.emit(e.target.result);
+          }
         }
       }
 
       reader.readAsDataURL(input.files[0]);
     }
   }
-
 }

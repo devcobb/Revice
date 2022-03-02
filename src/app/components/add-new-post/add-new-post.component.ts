@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from 'src/app/global/global-interfaces';
+import { BannerField, Category, ImageField, TextField } from 'src/app/global/global-interfaces';
 
 @Component({
   selector: 'app-add-new-post',
@@ -15,6 +15,10 @@ export class AddNewPostComponent implements OnInit {
   ];
   choosedCategory = {} as Category;
   choosed = false;
+  fields: (TextField | ImageField | BannerField)[] = [];
+  preview = false;
+  title = "";
+  thumbnail = "";
   constructor() { }
 
   ngOnInit(): void {
@@ -23,5 +27,21 @@ export class AddNewPostComponent implements OnInit {
   updateCurrentChoosedCategory(category: string) {
     this.choosedCategory = this.availableCategories.filter(cat => cat.name === category)[0];
     this.choosed = true
+  }
+
+  togglePreview(preview: boolean) {
+    this.preview = preview;
+  }
+
+  updateFieldsData(data: (TextField | ImageField | BannerField)[]) {
+    this.fields = data;
+  }
+
+  updateTitle(title: string) {
+    this.title = title
+  }
+
+  updateThumbnail(thumbnail: string) {
+    this.thumbnail = thumbnail;
   }
 }

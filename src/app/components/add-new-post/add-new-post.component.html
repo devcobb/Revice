@@ -9,4 +9,14 @@
 </div>
 
 <app-add-new-post-form *ngIf="choosed"
+                       (needPreview)="togglePreview($event)"
+                       (previewedFields)="updateFieldsData($event)"
+                       (thumbnailImage)="updateThumbnail($event)"
+                       (postTitle)="updateTitle($event)"
                        [category]="choosedCategory"></app-add-new-post-form>
+
+<app-preview-post *ngIf="preview"
+                  (close)="togglePreview($event)"
+                  [title]="title"
+                  [thumbnail]="thumbnail"
+                  [fields]="fields"></app-preview-post>

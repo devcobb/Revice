@@ -1,0 +1,171 @@
+@use '/src/app/global/main.scss';
+
+.preview-post-wrap{
+    @include main.flex(flex-start, center, column);
+    @include main.customScroll;
+    position: fixed;
+    z-index: 14;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 90%;
+    padding: 10% 0;
+    box-sizing: border-box;
+    background-color: main.$near_black;
+    overflow: auto;
+    .thumbnail{
+        width: 65%;
+        height: 20rem;
+        img{
+            @include main.fullSize();
+            object-fit: cover;
+        }
+    }
+    .post-title{
+        @include main.flex(center, flex-start, column);
+        position: relative;
+        width: 65%;
+        color: main.$yellow;
+        font-size: 5rem;
+        line-height: 4rem;
+        font-family: "Agency FB Bold Condensed", sans-serif;
+        margin-top: 4%;
+        text-align: left;
+        &::after{
+            position: absolute;
+            content: "";
+            width: 15%;
+            height: 5%;
+            bottom: -10%;
+            background-color: main.$yellow;
+            border-radius: 50px;
+        }
+    }
+    .fields-wrap{
+        @include main.flex(center, center, column);
+        color: main.$white;
+        width: 65%;
+        .image{
+            width: 100%;
+            height: 25rem;
+            img{
+                @include main.fullSize();
+                object-fit: cover;
+            }
+        }
+        p{
+            margin: 0;
+            padding: 0;
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+            .text-field-header{
+                display: block;
+                padding-bottom: 1rem;
+                color: main.$yellow;
+                font-size: 2rem;
+                font-family: "Agency FB Bold Condensed", sans-serif;
+            }
+        }
+        .banner{
+            @include main.flex(space-between, center);
+            p, img{
+                width: 50%;
+            }
+            p{
+                margin-left: 2.5%;
+                margin-right: 0;
+            }
+            img{
+                height: 100%;
+                object-fit: cover;
+                margin-right: 2.5%;
+                margin-left: 0
+            }
+        }
+        .banner-reverse{
+            @include main.flex(space-between, center, row-reverse);
+            p{
+                margin-right: 2.5%;
+                margin-left: 0;
+            }
+            img{
+                margin-left: 2.5%;
+                margin-right: 0;
+            }
+        }
+    }
+    .field{
+        margin: 2.5% 0;
+    }
+}
+
+.close{
+    position: fixed;
+    top: 5%;
+    right: 1.5%;
+    z-index: 14;
+    cursor: pointer;
+}
+
+.overlayer{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 13;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media only screen and (max-width: 1200px){
+    .preview-post-wrap{
+        .fields-wrap{
+            .banner{
+                @include main.flex(center, center, column);
+                p, img{
+                    width: 100%;
+                }
+                p, img{
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+                p{
+                    margin: 1rem 0;
+                }
+            }
+            .banner-reverse{
+                @include main.flex(space-between, center, column-reverse);
+                p, img{
+                    margin-right: 0;
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .preview-post-wrap{
+        @include main.fullSize;
+        .thumbnail, 
+        .post-title,    
+        .fields-wrap{
+            width: 80%;
+        }
+    }
+    .close{
+        top: 1.5%;
+        right: 5%;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .preview-post-wrap{
+        padding-top: 25%;
+    }
+    .close{
+        top: 1.5%;
+        right: 3%;
+    }
+}

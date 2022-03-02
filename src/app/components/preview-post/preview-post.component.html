@@ -1,0 +1,25 @@
+<div class="overlayer"></div>
+<div class="preview-post-wrap">
+    <div class="thumbnail">
+        <img [src]="thumbnail" />
+    </div>
+    <h1 class="post-title">{{title}}</h1>
+    <div class="fields-wrap">
+        <div *ngFor="let field of fields"
+             class="field"
+             [ngClass]="[field.type, field.type === 'banner' && field.arrangement === 'text-image' ? 'banner-reverse' : '']">
+            <img *ngIf="field.src"
+                 [src]="field.src" />
+            <p *ngIf="field.value">
+                <span class="text-field-header">{{field.title}}</span>
+                {{field.value}}
+            </p>
+            <div class="image-wrap"
+                 *ngIf="field.src"></div>
+        </div>
+    </div>
+</div>
+<div class="close">
+    <img (click)="closePreview()"
+         src="/assets/images/close-big.png" />
+</div>
