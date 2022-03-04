@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DatabaseService } from 'src/app/global/database.service';
 import { BannerField, Category, ImageField, TextField } from 'src/app/global/global-interfaces';
 
 @Component({
@@ -14,12 +15,15 @@ export class AddNewPostFormComponent {
   @Output() needPreview = new EventEmitter<boolean>();
   @Output() postTitle = new EventEmitter<string>();
   fields: (TextField | ImageField | BannerField)[] = [];
+  private = false;
   preview = false;
   title = "";
   thumbnail = "";
 
+  constructor(private dbService: DatabaseService) { }
+
   ngOnInit() {
-    this.choosedCategory = this.category.name
+    this.choosedCategory = this.category.name;
   }
 
   addField(fieldType: 'image' | 'text' | 'banner') {
@@ -86,5 +90,19 @@ export class AddNewPostFormComponent {
     this.needPreview.emit(this.preview);
     this.thumbnailImage.emit(this.thumbnail);
     this.postTitle.emit(this.title)
+  }
+
+  async addNewPost(event: Event) {
+    event.preventDefault()
+    await this.dbService.addPost(this.dbService.postId(), this.thumbnail, this.title, this.fields, this.private);
+  }
+
+  updatePostVisibility(input: HTMLLabelElement) {
+    let enabled = document.querySelector(".input-switch-wrap .enabled");
+    let disabled = document.querySelector(".input-switch-wrap .disabled");
+
+    enabled!.className = enabled!.className.replace("enabled", "disabled");
+    disabled!.className = disabled!.className.replace("disabled", "enabled");
+    this.private = !this.private;
   }
 }

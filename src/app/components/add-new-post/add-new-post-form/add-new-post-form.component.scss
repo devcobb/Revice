@@ -44,10 +44,17 @@
         .input-switch-wrap{
             @include main.flex(center, center);
             width: 100%;        
+            transition: opacity .5s;
             .input-switch-mode{
                 text-transform: uppercase;
                 margin: 0 10px;
                 font-weight: bold
+            }
+            .enabled{
+                opacity: 1;
+            }
+            .disabled{
+                opacity: 0.4;
             }
         }
         .input-switch {
@@ -103,13 +110,13 @@
         }
         .close{
             @include icon;
-            top: 6%;
+            top: 0%;
             right: -8%;
             background-image: url("/assets/images/close.png");
         }
         .arrangement{
             @include icon;
-            top: 6%;
+            top: 0%;
             right: -13.5%;
             background-image: url("/assets/images/arrangement.png");
         }
