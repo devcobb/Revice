@@ -26,3 +26,17 @@ export interface BannerField {
     title: string;
     arrangement: "image-text" | "text-image"
 }
+
+export interface Post {
+    thumbnail: string;
+    title: string;
+    id: string;
+    postPrivate: boolean;
+    fields: (TextField | ImageField | BannerField)[]
+}
+
+export interface Star {
+    half: boolean;
+    filled: boolean;
+    id: number;
+}

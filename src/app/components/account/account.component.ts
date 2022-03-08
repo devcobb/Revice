@@ -24,7 +24,7 @@ export class AccountComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router, private db: DatabaseService) {
     if (!localStorage.getItem('userProfile')) {
-      this.user = this.auth.user
+      this.user = this.auth.user;
     }
     else {
       this.user = JSON.parse(localStorage.get('userProfile'));

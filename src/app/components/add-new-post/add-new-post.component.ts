@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BannerField, Category, ImageField, TextField } from 'src/app/global/global-interfaces';
+import { BannerField, Category, ImageField, Star, TextField } from 'src/app/global/global-interfaces';
 
 @Component({
   selector: 'app-add-new-post',
@@ -19,6 +19,7 @@ export class AddNewPostComponent implements OnInit {
   preview = false;
   title = "";
   thumbnail = "";
+  ratings: Star[] = [];
   constructor() { }
 
   ngOnInit(): void {
@@ -43,5 +44,9 @@ export class AddNewPostComponent implements OnInit {
 
   updateThumbnail(thumbnail: string) {
     this.thumbnail = thumbnail;
+  }
+
+  updateRatings(ratings: Star[]) {
+    this.ratings = ratings;
   }
 }

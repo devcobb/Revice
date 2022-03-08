@@ -15,6 +15,10 @@
     width: 100%;
     min-height: 100%;
     padding-top: 10rem;
+    .post-rating-wrap{
+        @include main.flex(center, center);
+        margin-bottom: 2.5%;
+    }
     .form-bg{
         @include main.darkBackground;
         padding-top: 2.5%;
@@ -207,6 +211,12 @@
                 @include main.contrastButton;
                 font-weight: normal;
                 width: 15%;
+                &:disabled{
+                    &:hover{
+                        background-color: main.$purple;
+                    }
+                    opacity: 0.4;
+                }
             }
             .preview-btn{
                 @include main.contrastButton;
@@ -215,6 +225,9 @@
                 width: 15%;
                 transition: opacity .3s;
                 &:disabled{
+                    &:hover{
+                        background-color: main.$purple;
+                    }
                     opacity: 0.3;
                 }
             }

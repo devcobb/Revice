@@ -22,25 +22,39 @@
             object-fit: cover;
         }
     }
+    .post-info{
+        @include main.flex(center, flex-start, column);
+        width: 65%;
+        margin: 1.5% 0 2.5% 0;
+    }
+    .star, .star-filled, .star-half{
+        width: 40px;
+    }
+    .no-cursor{
+        cursor: default
+    }
     .post-title{
         @include main.flex(center, flex-start, column);
         position: relative;
-        width: 65%;
         color: main.$yellow;
         font-size: 5rem;
-        line-height: 4rem;
         font-family: "Agency FB Bold Condensed", sans-serif;
-        margin-top: 4%;
         text-align: left;
+        margin: 1% 0;
         &::after{
             position: absolute;
             content: "";
             width: 15%;
             height: 5%;
-            bottom: -10%;
+            bottom: -5%;
             background-color: main.$yellow;
             border-radius: 50px;
         }
+    }
+    .ratings-wrap{
+        @include main.flex(flex-start, center);
+        margin-top: 2.5%;
+        max-width: 100%
     }
     .fields-wrap{
         @include main.flex(center, center, column);
@@ -149,7 +163,7 @@
     .preview-post-wrap{
         @include main.fullSize;
         .thumbnail, 
-        .post-title,    
+        .post-info,    
         .fields-wrap{
             width: 80%;
         }
