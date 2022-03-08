@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountComponent } from './components/account/account.component';
 import { AddNewPostComponent } from './components/add-new-post/add-new-post.component';
 import { HeroImageComponent } from './components/hero-image/hero-image.component';
+import { LatestPostsComponent } from './components/latest-posts/latest-posts.component';
 import { LoginViewComponent } from './components/login-view/login-view.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'home', component: HeroImageComponent },
   { path: 'new', component: AddNewPostComponent },
   { path: 'login', component: LoginViewComponent },
+  { path: 'latest', component: LatestPostsComponent },
   {
     path: 'account', component: AccountComponent,
     canActivate: [AuthGuard],

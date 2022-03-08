@@ -13,10 +13,12 @@
                        (previewedFields)="updateFieldsData($event)"
                        (thumbnailImage)="updateThumbnail($event)"
                        (postTitle)="updateTitle($event)"
+                       (postRatings)="updateRatings($event)"
                        [category]="choosedCategory"></app-add-new-post-form>
 
 <app-preview-post *ngIf="preview"
                   (close)="togglePreview($event)"
                   [title]="title"
                   [thumbnail]="thumbnail"
+                  [stars]="ratings"
                   [fields]="fields"></app-preview-post>

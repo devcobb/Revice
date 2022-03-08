@@ -50,4 +50,15 @@ export class AuthService {
   get user() {
     return this.auth.currentUser
   }
+
+  async getUser() {
+    let user = "";
+    await this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        user = user
+      }
+    });
+
+    return await user;
+  }
 }

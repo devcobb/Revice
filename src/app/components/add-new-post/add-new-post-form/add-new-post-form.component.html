@@ -2,6 +2,14 @@
     <div class="form-bg"></div>
     <form class="add-new-post-form"
           (submit)="addNewPost($event)">
+        <div class="post-rating-wrap">
+            <div class="star"
+                 *ngFor="let star of stars"
+                 [attr.data-id]="star.id"
+                 (click)="showHalfStar($event.target)"
+                 (mouseover)="chooseRating(star)">
+            </div>
+        </div>
         <app-upload-image class="thumbnail"
                           (imageUploaded)="updateThumbnail($event)"></app-upload-image>
         <div class="post-basic-information">
@@ -100,6 +108,7 @@
         <div class="submit-container">
             <input class="submit-btn"
                    value="Add post"
+                   [disabled]="addPostButtonDisabled"
                    type="submit" />
             <button class="preview-btn"
                     [disabled]="title.length < 5 || thumbnail.length < 5 || fields.length === 0"
