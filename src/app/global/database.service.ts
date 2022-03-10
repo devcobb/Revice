@@ -33,7 +33,7 @@ export class DatabaseService {
       title: title,
       fields: fields,
       postPrivate: postPrivate,
-      autor: authorName,
+      author: authorName,
       ratings: ratings
     });
   }
@@ -50,9 +50,15 @@ export class DatabaseService {
   }
 
   async getUserName(id: string) {
-    let username = await query(collection(this.firestore, "users"), where("uid", "==", id));
+    const userNameQuery = await query(collection(this.firestore, "users"), where("uid", "==", id));
+    const querySnapshot = await getDocs(userNameQuery);
+    let username = "";
 
-    return await username
+    await querySnapshot.forEach((doc) => {
+      username = doc.data().nickname;
+    });
+
+    return username;
   }
 
   postId() {
