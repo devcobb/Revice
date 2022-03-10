@@ -11,17 +11,29 @@ export interface LoginData {
   providedIn: 'root'
 })
 export class AuthService {
+  username = "";
   constructor(private auth: Auth, private dbService: DatabaseService) { }
 
   login({ email, password }: LoginData) {
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+    });
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
   register({ email, password }: LoginData) {
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+    });
     return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
   logout() {
+    localStorage.removeItem("user");
     return signOut(this.auth)
   }
 
@@ -51,14 +63,12 @@ export class AuthService {
     return this.auth.currentUser
   }
 
-  async getUser() {
-    let user = "";
-    await this.auth.onAuthStateChanged((user) => {
-      if (user) {
-        user = user
-      }
+  async userNickname() {
+    let uid = JSON.parse(localStorage.getItem('user')!).uid;
+    let username = await this.dbService.getUserName(uid).then(data => {
+      this.username = data
     });
 
-    return await user;
+    return await this.username
   }
 }

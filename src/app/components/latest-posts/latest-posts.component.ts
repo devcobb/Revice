@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from 'src/app/global/database.service';
 import { Post } from 'src/app/global/global-interfaces';
-import { TimerService } from './timer.service';
-
-
 
 @Component({
   selector: 'app-latest-posts',
@@ -12,14 +9,23 @@ import { TimerService } from './timer.service';
 })
 export class LatestPostsComponent implements OnInit {
   posts: Post[] = [];
-  constructor(private databaseService: DatabaseService, private timerService: TimerService) { }
+  count = 0;
+  counter = setInterval(() => {
+    this.count++;
+    if (this.count === 60) {
+      this.count = 0;
+      sessionStorage.clear();
+      this.checkForPosts();
+    }
+  }, 1000)
+
+  constructor(private databaseService: DatabaseService) { }
 
   ngOnInit(): void {
     let locallyStoredPosts = sessionStorage.getItem("posts");
 
     if (locallyStoredPosts !== null) {
       this.posts = JSON.parse(locallyStoredPosts).posts;
-      this.timerService.setTimer();
     }
     else {
       this.checkForPosts()
@@ -32,7 +38,6 @@ export class LatestPostsComponent implements OnInit {
       this.posts = data
     });
 
-    await console.log(this.posts)
     await sessionStorage.setItem('posts', JSON.stringify({ posts: this.posts, time: Date.now() }));
   }
 }

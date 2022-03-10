@@ -132,9 +132,10 @@ export class AddNewPostFormComponent {
 
   async addNewPost(event: Event) {
     event.preventDefault();
-
-    await this.dbService.addPost(this.dbService.postId(), this.thumbnail, this.title, this.fields, this.private, await this.authService.getUser(), this.stars);
+    await this.dbService.addPost(this.dbService.postId(), this.thumbnail, this.title, this.fields, this.private, await this.authService.userNickname(), this.stars);
   }
+
+
 
   updatePostVisibility(input: HTMLLabelElement) {
     let enabled = document.querySelector(".input-switch-wrap .enabled");
@@ -146,7 +147,7 @@ export class AddNewPostFormComponent {
   }
 
   disableAddingPosts() {
-    if (!this.authService.getUser()) {
+    if (JSON.parse(localStorage.getItem('user')!) !== null) {
       this.addPostButtonDisabled = true
     }
 
