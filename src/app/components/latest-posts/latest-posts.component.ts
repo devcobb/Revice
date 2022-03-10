@@ -9,27 +9,11 @@ import { Post } from 'src/app/global/global-interfaces';
 })
 export class LatestPostsComponent implements OnInit {
   posts: Post[] = [];
-  count = 0;
-  counter = setInterval(() => {
-    this.count++;
-    if (this.count === 60) {
-      this.count = 0;
-      sessionStorage.clear();
-      this.checkForPosts();
-    }
-  }, 1000)
 
   constructor(private databaseService: DatabaseService) { }
 
   ngOnInit(): void {
-    let locallyStoredPosts = sessionStorage.getItem("posts");
-
-    if (locallyStoredPosts !== null) {
-      this.posts = JSON.parse(locallyStoredPosts).posts;
-    }
-    else {
-      this.checkForPosts()
-    }
+    this.checkForPosts()
   }
 
   async checkForPosts() {
@@ -37,7 +21,14 @@ export class LatestPostsComponent implements OnInit {
     let promise = await this.databaseService.getPosts().then(data => {
       this.posts = data
     });
+    console.log(this.posts)
+    this.setUpLinkForPosts();
+  }
 
-    await sessionStorage.setItem('posts', JSON.stringify({ posts: this.posts, time: Date.now() }));
+  setUpLinkForPosts() {
+    this.posts.forEach(post => {
+      post.url = `/post/${post.title.replace(/\s/g, '-')}-${post.id}`;
+      post.userUrl = `/user/${post.author.replace(/\s/g, '-')}`
+    })
   }
 }

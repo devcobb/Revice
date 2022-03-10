@@ -1,6 +1,6 @@
-@use '/src/app/global/main.scss';
+@use "/src/app/global/main.scss";
 
-@mixin icon{
+@mixin icon {
     position: absolute;
     background-size: contain;
     background-repeat: no-repeat;
@@ -11,15 +11,11 @@
     cursor: pointer;
 }
 
-.add-new-post-container{
+.add-new-post-container {
     width: 100%;
     min-height: 100%;
     padding-top: 10rem;
-    .post-rating-wrap{
-        @include main.flex(center, center);
-        margin-bottom: 2.5%;
-    }
-    .form-bg{
+    .form-bg {
         @include main.darkBackground;
         padding-top: 2.5%;
         position: fixed;
@@ -29,35 +25,35 @@
         width: 100vw;
         height: 100vh;
     }
-    .add-new-post-form{
+    .add-new-post-form {
         @include main.flex(center, center, column);
         @include main.fullSize;
         position: relative;
         z-index: 3;
-        .post-basic-information{
+        .post-basic-information {
             @include main.flex(center, flex-start);
             width: 40%;
             margin-bottom: 1%;
         }
-        .post-visiblity-wrap{
+        .post-visiblity-wrap {
             @include main.flex(center, center, column);
             color: main.$yellow;
             width: 100%;
             margin-bottom: 2.5%;
         }
-        .input-switch-wrap{
+        .input-switch-wrap {
             @include main.flex(center, center);
-            width: 100%;        
-            transition: opacity .5s;
-            .input-switch-mode{
+            width: 100%;
+            transition: opacity 0.5s;
+            .input-switch-mode {
                 text-transform: uppercase;
                 margin: 0 10px;
-                font-weight: bold
+                font-weight: bold;
             }
-            .enabled{
+            .enabled {
                 opacity: 1;
             }
-            .disabled{
+            .disabled {
                 opacity: 0.4;
             }
         }
@@ -70,61 +66,61 @@
             border-radius: 50px;
             cursor: pointer;
             input {
-              appearance: none;
-              display: block;
-              width: 50%;
-              height: 1.6rem;
-              background-color: main.$yellow;
-              border-radius: 50px;
-              transition: transform 0.3s, background-color .3s;
-              animation-timing-function: cubic-bezier(1, 0, 1, 1);
-              will-change: transform;
-              cursor: pointer;
-              &:checked {
-                transform: translateX(77.5%);
-              }
+                appearance: none;
+                display: block;
+                width: 50%;
+                height: 1.6rem;
+                background-color: main.$yellow;
+                border-radius: 50px;
+                transition: transform 0.3s, background-color 0.3s;
+                animation-timing-function: cubic-bezier(1, 0, 1, 1);
+                will-change: transform;
+                cursor: pointer;
+                &:checked {
+                    transform: translateX(77.5%);
+                }
             }
-          }
-        .post-input{
+        }
+        .post-input {
             font-family: Roboto, sans-serif;
             font-size: 1rem;
             border: none;
-            outline:  none;
+            outline: none;
             width: 70%;
             padding: 1rem;
             color: main.$yellow;
             border: 1px solid main.$yellow;
             background-color: transparent;
             border-radius: 50px 0 0 50px;
-            &::placeholder{
+            &::placeholder {
                 color: main.$yellow;
             }
         }
-        .thumbnail{
+        .thumbnail {
             @include main.flex(center, center);
             width: 40%;
             height: 10rem;
             margin-bottom: 2.5%;
         }
-        .field-wrap{
+        .field-wrap {
             position: relative;
         }
-        .image-field{
-            height: 10rem
+        .image-field {
+            height: 10rem;
         }
-        .close{
+        .close {
             @include icon;
             top: 0%;
             right: -8%;
             background-image: url("/assets/images/close.png");
         }
-        .arrangement{
+        .arrangement {
             @include icon;
             top: 0%;
             right: -13.5%;
             background-image: url("/assets/images/arrangement.png");
         }
-        .section-title{
+        .section-title {
             background-color: main.$dark_grey;
             width: 100%;
             margin-bottom: 1%;
@@ -135,7 +131,7 @@
             color: main.$white;
             box-sizing: border-box;
         }
-        .text-section{
+        .text-section {
             position: relative;
             font-family: Roboto, sans-serif;
             padding: 1rem;
@@ -147,85 +143,87 @@
             resize: none;
             box-sizing: border-box;
             color: main.$white;
-            border: 1px solid main.$dark_grey
+            border: 1px solid main.$dark_grey;
         }
-        .image-section{
+        .image-section {
             height: 10rem;
         }
-        .banner-wrap{
+        .banner-wrap {
             @include main.flex(space-between, center);
-            .text-section, .section-title{
+            .text-section,
+            .section-title {
                 @include main.flex(center, center, column);
                 width: 100%;
-                font-size: .75rem;
+                font-size: 0.75rem;
             }
-            .image-section{
+            .image-section {
                 height: 100%;
             }
-            .banner-text-content, .image-section{
+            .banner-text-content,
+            .image-section {
                 width: 48.75%;
                 height: 13rem;
             }
         }
-        .banner-reverse{
+        .banner-reverse {
             flex-direction: row-reverse;
         }
-        .add-row{
+        .add-row {
             @include main.flex(center, center);
             flex-wrap: wrap;
             font-family: Roboto, sans-serif;
             margin: 2.5% 0 2.5% 0;
             width: 33.33%;
             color: main.$yellow;
-            .row-option{
+            .row-option {
                 @include main.flex(center, center);
                 cursor: pointer;
                 padding: 1rem;
                 text-align: center;
                 width: 25%;
-                transition: all .3s;
+                transition: all 0.3s;
                 margin: 1%;
                 border: 1px solid main.$yellow;
-                img{
+                img {
                     margin-right: 7%;
                 }
-                &:hover{
+                &:hover {
                     color: #000;
                     background: main.$yellow;
-                    img{
-                        filter: brightness(0) ;
+                    img {
+                        filter: brightness(0);
                     }
                 }
             }
         }
-        .field-container{
+        .field-container {
             width: 40%;
             margin-bottom: 1%;
         }
-        .submit-container{
+        .submit-container {
             @include main.flex(center, center, column);
             width: 70%;
             text-align: center;
             margin-bottom: 5%;
-            .submit-btn{
+            .submit-btn {
                 @include main.contrastButton;
                 font-weight: normal;
                 width: 15%;
-                &:disabled{
-                    &:hover{
+                &:disabled {
+                    &:hover {
                         background-color: main.$purple;
                     }
                     opacity: 0.4;
                 }
             }
-            .preview-btn{
+            .preview-btn {
                 @include main.contrastButton;
                 margin-top: 1rem;
                 font-weight: normal;
                 width: 15%;
-                transition: opacity .3s;
-                &:disabled{
-                    &:hover{
+                transition: opacity 0.3s;
+                &:disabled {
+                    &:hover {
                         background-color: main.$purple;
                     }
                     opacity: 0.3;
@@ -235,37 +233,37 @@
     }
 }
 
-@media only screen and (max-width: 1400px){
-    .add-new-post-container{
-        .add-new-post-form{
-            .arrangement{
+@media only screen and (max-width: 1400px) {
+    .add-new-post-container {
+        .add-new-post-form {
+            .arrangement {
                 right: -8%;
                 top: 25%;
             }
-            .add-row{
+            .add-row {
                 flex-direction: column;
                 width: 100%;
-                .row-option{
+                .row-option {
                     width: 20%;
                     margin: 1% 0;
                 }
             }
-            .post-basic-information{
+            .post-basic-information {
                 flex-direction: column;
                 width: 40%;
                 margin-bottom: 5%;
-                .post-title{
+                .post-title {
                     width: 100%;
                     margin-bottom: 5%;
                     box-sizing: border-box;
                 }
-                .post-input{
+                .post-input {
                     border-radius: 50px;
                 }
             }
-            .submit-container{
+            .submit-container {
                 .submit-btn,
-                .preview-btn{
+                .preview-btn {
                     width: 25%;
                 }
             }
@@ -276,35 +274,34 @@
     }
 }
 
-
-@media only screen and (max-width: 1000px){
-    .add-new-post-container{
-        .add-new-post-form{
-            .thumbnail{
+@media only screen and (max-width: 1000px) {
+    .add-new-post-container {
+        .add-new-post-form {
+            .thumbnail {
                 width: 75%;
                 height: 10rem;
             }
-            .close{
-                right: -13.5%
+            .close {
+                right: -13.5%;
             }
-            .arrangement{
+            .arrangement {
                 right: -13.5%;
                 top: 25%;
             }
-            .add-row{
-                .row-option{
+            .add-row {
+                .row-option {
                     width: 35%;
                     margin: 2.5% 0;
                 }
             }
-            .field-container{
+            .field-container {
                 margin-bottom: 5%;
                 width: 75%;
             }
-            .post-input{
+            .post-input {
                 border-radius: 50px;
             }
-            .submit-container{
+            .submit-container {
                 width: 100%;
                 margin-bottom: 20%;
             }
@@ -315,16 +312,15 @@
     }
 }
 
-
-@media only screen and (max-width: 768px){
-    .add-new-post-container{
-        .add-new-post-form{
-            .post-basic-information{
+@media only screen and (max-width: 768px) {
+    .add-new-post-container {
+        .add-new-post-form {
+            .post-basic-information {
                 width: 65%;
             }
-            .submit-container{
+            .submit-container {
                 .submit-btn,
-                .preview-btn{
+                .preview-btn {
                     width: 35%;
                 }
             }
@@ -333,13 +329,12 @@
             }
         }
     }
-
 }
 
-@media only screen and (max-width: 500px){
-    .add-new-post-container{
-        .add-new-post-form{
-            .post-basic-information{
+@media only screen and (max-width: 500px) {
+    .add-new-post-container {
+        .add-new-post-form {
+            .post-basic-information {
                 width: 75%;
             }
             .input-switch {
@@ -347,20 +342,19 @@
             }
         }
     }
-
 }
 
-@media only screen and (max-width: 414px){
-    .add-new-post-container{
-        .add-new-post-form{
-            .add-row{
-                .row-option{
+@media only screen and (max-width: 414px) {
+    .add-new-post-container {
+        .add-new-post-form {
+            .add-row {
+                .row-option {
                     width: 75%;
                 }
             }
-            .submit-container{
+            .submit-container {
                 .submit-btn,
-                .preview-btn{
+                .preview-btn {
                     width: 50%;
                 }
             }
