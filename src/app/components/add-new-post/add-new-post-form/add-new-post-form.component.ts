@@ -94,7 +94,7 @@ export class AddNewPostFormComponent {
 
   async addNewPost(event: Event) {
     event.preventDefault()
-    await this.dbService.addPost(this.dbService.postId(), this.thumbnail, this.title, this.fields, this.private);
+    await this.dbService.addPost(this.dbService.postId(), this.thumbnail, this.title, this.fields, this.private, this.category);
   }
 
   updatePostVisibility(input: HTMLLabelElement) {
