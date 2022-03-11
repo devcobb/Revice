@@ -88,10 +88,10 @@ $near_black: #0e0b16;
     }
 }
 
-@mixin customScroll {
+@mixin customScroll($width: 10px) {
     /* width */
     &::-webkit-scrollbar {
-        width: 10px;
+        width: $width;
     }
 
     /* Track */

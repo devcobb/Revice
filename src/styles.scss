@@ -3,6 +3,7 @@
 body,
 html {
     @extend .font-1;
+    @include main.customScroll(4px);
     margin: 0;
     padding: 0;
     width: 100%;

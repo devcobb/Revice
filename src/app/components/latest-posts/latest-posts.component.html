@@ -1,13 +1,25 @@
+<app-hero-image height="60vh"
+                [wave]="true"
+                imageID="3"
+                [content]="false"></app-hero-image>
 <div class="posts-list-wrap">
     <div class="posts-list">
-        <h1 class="category-header">Latest posts</h1>
+        <h1 class="category-header">
+            Latest posts
+            <span class="subtitle">of every users</span>
+        </h1>
         <div class="post-wrap"
              *ngFor="let post of posts">
             <a [routerLink]="post.url">
                 <div class="post-thumbnail"
                      [style.backgroundImage]="'url(' + post.thumbnail + ')'"></div>
             </a>
-            <div class="post-information">
+            <div class="post-information"
+                 [ngClass]="{
+                     'green-bg': post.category === 'film',
+                     'red-bg': post.category === 'serial',
+                     'blue-bg': post.category === 'game',
+                     'yellow-bg': post.category === 'music'}">
                 <a [routerLink]="post.url">
                     <h2 class="post-title">{{post.title}}</h2>
                 </a>
@@ -16,8 +28,11 @@
                        class="post-author">{{post.author}}</a>
                 </span>
             </div>
-            <app-rating [stars]="post.ratings"
-                        [editable]="false"></app-rating>
+            <div class="post-rating">
+
+                <app-rating [stars]="post.ratings"
+                            [editable]="false"></app-rating>
+            </div>
         </div>
     </div>
 </div>

@@ -9,6 +9,8 @@
     @include main.flex(center, center);
     width: 100%;
     min-height: 100vh;
+    position: relative;
+    z-index: 2;
     a {
         color: inherit;
         text-decoration: none;
@@ -22,31 +24,14 @@
         .category-header {
             @extend .font-2;
             @include main.flex(center, center);
-            width: 100%;
-            color: main.$yellow;
+            @include main.mainHeading(main.$yellow);
             font-size: 3.5rem;
             margin-bottom: 5%;
-            text-align: center;
-            &::after,
-            &::before {
-                content: "";
-                display: block;
-                width: 10%;
-                margin: 0 2.5%;
-                height: 4px;
-                background-color: main.$yellow;
-            }
-            &::before {
-                border-radius: 50px 0 0 50px;
-            }
-            &::after {
-                border-radius: 0 50px 50px 0;
-            }
         }
         .post-wrap {
             width: 30%;
             height: 15rem;
-            color: main.$yellow;
+            color: main.$white;
             margin-bottom: 10rem;
             .post-thumbnail {
                 width: 100%;
@@ -57,14 +42,25 @@
             }
             .post-information {
                 @include main.flex(space-between, center);
-                border-top: 2px solid main.$yellow;
-                padding: 0.5rem 0;
-                margin-top: 0.5rem;
+                padding: 0.5rem 1rem;
+            }
+            .red-bg {
+                background-color: main.$red;
+            }
+            .blue-bg {
+                background-color: main.$blue;
+            }
+            .green-bg {
+                background-color: main.$green;
+            }
+            .yellow-bg {
+                background-color: main.$bright_yellow;
             }
             .post-title {
+                @extend .font-2;
+                font-size: 1.5rem;
                 margin: 0;
                 padding: 0;
-                font-weight: light;
             }
             .post-author-wrap {
                 @include main.flex(center, center);
@@ -86,8 +82,11 @@
                 transition: background-color 0.3s, color 0.3s;
                 &:hover {
                     background-color: main.$yellow;
-                    color: main.$white;
+                    color: main.$near_black;
                 }
+            }
+            .post-rating {
+                margin-top: 1rem;
             }
         }
     }
