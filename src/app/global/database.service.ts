@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Database } from '@angular/fire/database';
 import { doc, Firestore, setDoc, updateDoc } from "@angular/fire/firestore";
+import { BannerField, Category, ImageField, TextField } from './global-interfaces';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { BannerField, ImageField, Post, Star, TextField } from './global-interfaces';
 
@@ -27,7 +28,7 @@ export class DatabaseService {
     });
   }
 
-  async addPost(id: string, thumbnail: string, title: string, fields: (TextField | ImageField | BannerField)[], postPrivate: boolean, authorName: string, ratings: Star[]) {
+  async addPost(id: string, thumbnail: string, title: string, fields: (TextField | ImageField | BannerField)[], postPrivate: boolean, authorName: string, ratings: Star[], category: Category) {
     const docRef = await setDoc(doc(this.firestore, "posts", id), {
       thumbnail: thumbnail,
       title: title,
@@ -35,6 +36,7 @@ export class DatabaseService {
       postPrivate: postPrivate,
       author: authorName,
       ratings: ratings,
+      category: category.name,
       id: id
     });
   }

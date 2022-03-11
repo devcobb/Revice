@@ -108,7 +108,7 @@ export class AddNewPostFormComponent {
 
   async addNewPost(event: Event) {
     event.preventDefault();
-    await this.dbService.addPost(this.dbService.postId(), this.thumbnail, this.title, this.fields, this.private, await this.authService.userNickname(), this.stars);
+    await this.dbService.addPost(this.dbService.postId(), this.thumbnail, this.title, this.fields, this.private, await this.authService.userNickname(), this.stars, this.category);
     await this.router.navigate(['/latest'])
   }
 
