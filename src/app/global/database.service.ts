@@ -34,7 +34,8 @@ export class DatabaseService {
       fields: fields,
       postPrivate: postPrivate,
       author: authorName,
-      ratings: ratings
+      ratings: ratings,
+      id: id
     });
   }
 

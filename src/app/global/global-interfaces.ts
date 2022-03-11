@@ -28,11 +28,14 @@ export interface BannerField {
 }
 
 export interface Post {
+    author: string;
     thumbnail: string;
     title: string;
     id: string;
     postPrivate: boolean;
-    fields: (TextField | ImageField | BannerField)[]
+    fields: (TextField | ImageField | BannerField)[];
+    url: string;
+    userUrl: string;
 }
 
 export interface Star {

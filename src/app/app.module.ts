@@ -27,6 +27,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { ChooseCategoryComponent } from './components/add-new-post/choose-category/choose-category.component';
 import { PreviewPostComponent } from './components/preview-post/preview-post.component';
 import { LatestPostsComponent } from './components/latest-posts/latest-posts.component';
+import { RatingComponent } from './components/rating/rating.component';
 
 const materialModules = [
   MatButtonModule,
@@ -52,6 +53,7 @@ const materialModules = [
     ChooseCategoryComponent,
     PreviewPostComponent,
     LatestPostsComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,
