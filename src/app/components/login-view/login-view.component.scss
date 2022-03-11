@@ -14,7 +14,7 @@
     }
     .form-title {
         @include main.flex(space-between, center);
-        font-family: "Agency FB Bold Condensed", sans-serif;
+        @extend .font-2;
         color: main.$yellow;
         font-size: 3rem;
         margin: 0;

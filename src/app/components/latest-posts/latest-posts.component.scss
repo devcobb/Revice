@@ -20,13 +20,13 @@
         padding-top: 10rem;
         margin-bottom: 10%;
         .category-header {
+            @extend .font-2;
             @include main.flex(center, center);
             width: 100%;
             color: main.$yellow;
             font-size: 3.5rem;
             margin-bottom: 5%;
             text-align: center;
-            font-family: "Agency FB Bold Condensed", sans-serif;
             &::after,
             &::before {
                 content: "";

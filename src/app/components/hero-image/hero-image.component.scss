@@ -34,7 +34,7 @@
         height: 20%;
     }
     .main-title {
-        font-family: "Agency FB Bold Condensed", sans-serif;
+        @extend .font-2;
         margin: 0;
         padding: 10% 0 0 5%;
         color: main.$yellow;

@@ -62,6 +62,7 @@
             width: 3.5%;
             height: 2rem;
             background-color: main.$dark_grey;
+            border: 1px solid main.$yellow;
             border-radius: 50px;
             cursor: pointer;
             input {
@@ -173,22 +174,21 @@
             color: main.$yellow;
             .row-option {
                 @include main.flex(center, center);
+                background: main.$yellow;
                 cursor: pointer;
                 padding: 1rem;
                 text-align: center;
                 width: 25%;
-                transition: all 0.3s;
+                transition: transform 0.3s;
                 margin: 1%;
-                border: 1px solid main.$yellow;
+                background-color: main.$yellow;
+                border-radius: 10px;
+                color: #000;
                 img {
-                    margin-right: 7%;
+                    margin-right: 10%;
                 }
                 &:hover {
-                    color: #000;
-                    background: main.$yellow;
-                    img {
-                        filter: brightness(0);
-                    }
+                    transform: scale(1.1);
                 }
             }
         }
