@@ -10,6 +10,7 @@ interface userData {
   email: string;
   uid: string;
   nickname: string;
+  bannerImage: string;
 }
 
 @Component({
@@ -20,7 +21,7 @@ interface userData {
 export class AccountComponent implements OnInit {
   user: User | null = null;
   updatedImage = "";
-  userData: userData = { profilePic: "", email: "", uid: "", nickname: "" };
+  userData: userData = { profilePic: "", email: "", uid: "", nickname: "", bannerImage: "" };
 
   constructor(private auth: AuthService, private router: Router, private db: DatabaseService) {
     if (!localStorage.getItem('userProfile')) {
@@ -45,11 +46,16 @@ export class AccountComponent implements OnInit {
 
       this.userData.nickname = await docSnap.data()?.nickname;
       this.userData.profilePic = await docSnap.data()?.profilePicture;
+      this.userData.bannerImage = await docSnap.data()?.bannerImage;
     }
   }
 
   get profilePicture() {
     return this.userData.profilePic
+  }
+
+  get bannerImage() {
+    return this.userData.bannerImage
   }
 
   get email() {

@@ -10,4 +10,14 @@ export class HeroImageComponent {
   @Input() imageID: number = 1;
   @Input() content: boolean = true;
   @Input() wave: boolean = false;
+  @Input() customImage = "";
+  backgroundImage = "";
+
+  ngOnInit() {
+    this.setBackgroundImage();
+  }
+
+  setBackgroundImage() {
+    this.imageID !== 0 ? this.backgroundImage = `url("/assets/images/hero-image-bg-${this.imageID}.jpg")` : ""
+  }
 }

@@ -19,7 +19,7 @@
             margin-left: 8%;
         }
         .profile-data {
-            @include main.flex(space-between, center);
+            @include main.flex(flex-start, flex-start);
             margin: 5% 0;
             font-size: 1.5rem;
             font-weight: 300;
