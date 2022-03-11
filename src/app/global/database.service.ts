@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Database } from '@angular/fire/database';
 import { doc, Firestore, setDoc, updateDoc } from "@angular/fire/firestore";
-import { BannerField, Category, ImageField, TextField } from './global-interfaces';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { BannerField, ImageField, Post, Star, TextField } from './global-interfaces';
+import { BannerField, Category, ImageField, Post, Star, TextField } from './global-interfaces';
 
 @Injectable({
   providedIn: 'root'
