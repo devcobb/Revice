@@ -18,6 +18,8 @@ const routes: Routes = [
   { path: 'new', component: AddNewPostComponent },
   { path: 'login', component: LoginViewComponent },
   { path: 'latest', component: LatestPostsComponent },
+  { path: 'post/**', component: LatestPostsComponent },
+  { path: 'user/**', component: LatestPostsComponent },
   {
     path: 'account', component: AccountComponent,
     canActivate: [AuthGuard],

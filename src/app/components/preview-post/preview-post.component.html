@@ -7,12 +7,8 @@
         <h1 class="post-title">
             <span>{{title}}</span>
         </h1>
-        <div class="ratings-wrap">
-            <div class="star no-cursor"
-                 [ngClass]="{'star-half': star.half, 'star-filled': star.filled}"
-                 *ngFor="let star of stars">
-            </div>
-        </div>
+        <app-rating [stars]="stars"
+                    [editable]="false"></app-rating>
     </div>
     <div class="fields-wrap">
         <div *ngFor="let field of fields"
