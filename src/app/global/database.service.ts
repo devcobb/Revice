@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Database } from '@angular/fire/database';
 import { doc, Firestore, setDoc, updateDoc } from "@angular/fire/firestore";
 import { BannerField, Category, ImageField, TextField } from './global-interfaces';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { BannerField, ImageField, Post, Star, TextField } from './global-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -26,14 +28,40 @@ export class DatabaseService {
     });
   }
 
-  async addPost(id: string, thumbnail: string, title: string, fields: (TextField | ImageField | BannerField)[], postPrivate: boolean, category: Category) {
+  async addPost(id: string, thumbnail: string, title: string, fields: (TextField | ImageField | BannerField)[], postPrivate: boolean, authorName: string, ratings: Star[], category: Category) {
     const docRef = await setDoc(doc(this.firestore, "posts", id), {
       thumbnail: thumbnail,
       title: title,
       fields: fields,
       postPrivate: postPrivate,
-      category: category.name
+      author: authorName,
+      ratings: ratings,
+      category: category.name,
+      id: id
     });
+  }
+
+  async getPosts() {
+    const posts = await getDocs(collection(this.firestore, "posts"));
+    let localPosts: Post[] = [];
+
+    await posts.forEach((doc) => {
+      localPosts.push(doc.data() as Post)
+    });
+
+    return await localPosts;
+  }
+
+  async getUserName(id: string) {
+    const userNameQuery = await query(collection(this.firestore, "users"), where("uid", "==", id));
+    const querySnapshot = await getDocs(userNameQuery);
+    let username = "";
+
+    await querySnapshot.forEach((doc) => {
+      username = doc.data().nickname;
+    });
+
+    return username;
   }
 
   postId() {

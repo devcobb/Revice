@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/global/auth/auth.service';
 import { DatabaseService } from 'src/app/global/database.service';
-import { BannerField, Category, ImageField, TextField } from 'src/app/global/global-interfaces';
+import { BannerField, Category, ImageField, Star, TextField } from 'src/app/global/global-interfaces';
 
 @Component({
   selector: 'app-add-new-post-form',
@@ -14,16 +16,27 @@ export class AddNewPostFormComponent {
   @Output() thumbnailImage = new EventEmitter<string>();
   @Output() needPreview = new EventEmitter<boolean>();
   @Output() postTitle = new EventEmitter<string>();
+  @Output() postRatings = new EventEmitter<Star[]>();
   fields: (TextField | ImageField | BannerField)[] = [];
+  addPostButtonDisabled = true;
   private = false;
   preview = false;
   title = "";
   thumbnail = "";
+  stars: Star[] = [];
 
-  constructor(private dbService: DatabaseService) { }
+  constructor(private dbService: DatabaseService, private authService: AuthService, private router: Router) {
+    for (let i = 0; i < 10; i++) {
+      this.stars.push({ id: i, filled: false, half: false })
+    }
+  }
 
   ngOnInit() {
     this.choosedCategory = this.category.name;
+  }
+
+  ngOnChanges() {
+    this.disableAddingPosts();
   }
 
   addField(fieldType: 'image' | 'text' | 'banner') {
@@ -89,12 +102,14 @@ export class AddNewPostFormComponent {
     this.previewedFields.emit(this.fields);
     this.needPreview.emit(this.preview);
     this.thumbnailImage.emit(this.thumbnail);
-    this.postTitle.emit(this.title)
+    this.postTitle.emit(this.title);
+    this.postRatings.emit(this.stars)
   }
 
   async addNewPost(event: Event) {
-    event.preventDefault()
-    await this.dbService.addPost(this.dbService.postId(), this.thumbnail, this.title, this.fields, this.private, this.category);
+    event.preventDefault();
+    await this.dbService.addPost(this.dbService.postId(), this.thumbnail, this.title, this.fields, this.private, await this.authService.userNickname(), this.stars, this.category);
+    await this.router.navigate(['/latest'])
   }
 
   updatePostVisibility(input: HTMLLabelElement) {
@@ -105,4 +120,13 @@ export class AddNewPostFormComponent {
     disabled!.className = disabled!.className.replace("disabled", "enabled");
     this.private = !this.private;
   }
+
+  disableAddingPosts() {
+    if (JSON.parse(localStorage.getItem('user')!) !== null) {
+      this.addPostButtonDisabled = true
+    }
+
+    this.addPostButtonDisabled = false
+  }
+
 }

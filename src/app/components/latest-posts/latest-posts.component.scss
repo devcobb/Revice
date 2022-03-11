@@ -1,0 +1,95 @@
+@use "/src/app/global/main.scss";
+
+:host {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.posts-list-wrap {
+    @include main.flex(center, center);
+    @include main.darkBackground();
+    width: 100%;
+    min-height: 100vh;
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+    .posts-list {
+        @include main.flex(flex-start, center, column);
+        width: 100%;
+        min-height: calc(100vh - 10rem);
+        padding-top: 10rem;
+        margin-bottom: 10%;
+        .category-header {
+            @include main.flex(center, center);
+            width: 100%;
+            color: main.$yellow;
+            font-size: 3.5rem;
+            margin-bottom: 5%;
+            text-align: center;
+            font-family: "Agency FB Bold Condensed", sans-serif;
+            &::after,
+            &::before {
+                content: "";
+                display: block;
+                width: 10%;
+                margin: 0 2.5%;
+                height: 4px;
+                background-color: main.$yellow;
+            }
+            &::before {
+                border-radius: 50px 0 0 50px;
+            }
+            &::after {
+                border-radius: 0 50px 50px 0;
+            }
+        }
+        .post-wrap {
+            width: 30%;
+            height: 15rem;
+            color: main.$yellow;
+            margin-bottom: 10rem;
+            .post-thumbnail {
+                width: 100%;
+                height: 75%;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+            .post-information {
+                @include main.flex(space-between, center);
+                border-top: 2px solid main.$yellow;
+                padding: 0.5rem 0;
+                margin-top: 0.5rem;
+            }
+            .post-title {
+                margin: 0;
+                padding: 0;
+                font-weight: light;
+            }
+            .post-author-wrap {
+                @include main.flex(center, center);
+                min-width: 6rem;
+            }
+            .post-author {
+                display: block;
+                width: 75%;
+                width: 100%;
+                color: main.$yellow;
+                font-weight: bold;
+                border-radius: 50px;
+                padding: 4px;
+                text-align: center;
+                border: 1px solid main.$yellow;
+                font-size: 0.7rem;
+                cursor: pointer;
+                margin-left: 10px;
+                transition: background-color 0.3s, color 0.3s;
+                &:hover {
+                    background-color: main.$yellow;
+                    color: main.$white;
+                }
+            }
+        }
+    }
+}

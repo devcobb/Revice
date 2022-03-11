@@ -1,0 +1,23 @@
+<div class="posts-list-wrap">
+    <div class="posts-list">
+        <h1 class="category-header">Latest posts</h1>
+        <div class="post-wrap"
+             *ngFor="let post of posts">
+            <a [routerLink]="post.url">
+                <div class="post-thumbnail"
+                     [style.backgroundImage]="'url(' + post.thumbnail + ')'"></div>
+            </a>
+            <div class="post-information">
+                <a [routerLink]="post.url">
+                    <h2 class="post-title">{{post.title}}</h2>
+                </a>
+                <span class="post-author-wrap">
+                    by <a [routerLink]="post.userUrl"
+                       class="post-author">{{post.author}}</a>
+                </span>
+            </div>
+            <app-rating [stars]="post.ratings"
+                        [editable]="false"></app-rating>
+        </div>
+    </div>
+</div>

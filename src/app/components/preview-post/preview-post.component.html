@@ -3,7 +3,13 @@
     <div class="thumbnail">
         <img [src]="thumbnail" />
     </div>
-    <h1 class="post-title">{{title}}</h1>
+    <div class="post-info">
+        <h1 class="post-title">
+            <span>{{title}}</span>
+        </h1>
+        <app-rating [stars]="stars"
+                    [editable]="false"></app-rating>
+    </div>
     <div class="fields-wrap">
         <div *ngFor="let field of fields"
              class="field"

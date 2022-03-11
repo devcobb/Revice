@@ -6,23 +6,23 @@ $bright_red: #eb4034;
 $blue: #3b88ad;
 $bright_yellow: #e6d81a;
 $white: #fff;
-$dark: #0E0E10;
-$dark_grey: #1d1d1d;
-$near_black: #0d0d0d;
+$dark: #0e0b16;
+$dark_grey: #0d0d0d;
+$near_black: #0e0b16;
 
-@mixin flex($justify, $align, $direction: row){
+@mixin flex($justify, $align, $direction: row) {
     display: flex;
     justify-content: $justify;
     align-items: $align;
     flex-direction: $direction;
 }
 
-@mixin fullSize{
+@mixin fullSize {
     width: 100%;
     height: 100%;
 }
 
-@mixin mainButton(){
+@mixin mainButton() {
     color: $yellow;
     text-decoration: none;
     padding: 1rem 1.5rem;
@@ -34,27 +34,27 @@ $near_black: #0d0d0d;
     border-radius: 3px;
     cursor: pointer;
 
-    &:hover{
-        transition: background .3s;
+    &:hover {
+        transition: background 0.3s;
         color: #000;
         background: $yellow;
     }
 }
 
-@mixin contrastButton(){
+@mixin contrastButton() {
     @include mainButton();
     color: $white;
     background: $purple;
     border: 1px solid $purple;
-    padding: .75rem 1.5rem;
-    &:hover{
+    padding: 0.75rem 1.5rem;
+    &:hover {
         background: darken($purple, 3%);
         color: $white;
     }
 }
 
 @mixin darkBackground {
-    background-image: url('/assets/images/logo-transparent-black.svg');
+    background-image: url("/assets/images/logo-transparent-black.svg");
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center center;
@@ -65,22 +65,22 @@ $near_black: #0d0d0d;
     src: url("/assets/fonts/agencyfb-boldcondensed.ttf");
 }
 
-@mixin customScroll{
+@mixin customScroll {
     /* width */
     &::-webkit-scrollbar {
         width: 10px;
     }
-  
+
     /* Track */
     &::-webkit-scrollbar-track {
         background: #f1f1f1;
     }
-  
+
     /* Handle */
     &::-webkit-scrollbar-thumb {
         background: $yellow;
     }
-  
+
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
         background: darken($yellow, 5%);
@@ -88,18 +88,19 @@ $near_black: #0d0d0d;
 }
 
 //***** FORM *****
-.login-form, .register-form{
+.login-form,
+.register-form {
     margin-top: 5%;
     position: relative;
-    .form-footer{
+    .form-footer {
         margin-bottom: 5%;
         text-align: center;
     }
     ::ng-deep {
-        .mat-focused .mat-form-field-label{
+        .mat-focused .mat-form-field-label {
             transform: translateY(-3em) scale(0.75) perspective(100px) translateZ(0.001px);
         }
-        .mat-form-field{
+        .mat-form-field {
             margin: 1% 0;
             width: 100%;
             .mat-input-element {
@@ -108,45 +109,45 @@ $near_black: #0d0d0d;
                 color: $yellow;
                 border-radius: 50px;
             }
-            .mat-form-field-label-wrapper{
+            .mat-form-field-label-wrapper {
                 top: -0.11em;
                 left: 3em;
             }
-            input{
+            input {
                 box-sizing: border-box;
                 color: $white;
                 border: none;
                 background-repeat: no-repeat;
                 background-position-x: 2.5%;
                 background-position-y: center;
-                &::placeholder{
+                &::placeholder {
                     color: $yellow;
                 }
-                &:not(.not-empty):focus{
-                    transition: background-positon .3s;
-                    animation: hideIcon .3s;
+                &:not(.not-empty):focus {
+                    transition: background-positon 0.3s;
+                    animation: hideIcon 0.3s;
                     animation-fill-mode: forwards;
                 }
             }
-            .blurred{
-                transition: background-positon .3s;
-                animation: showIcon .3s;
+            .blurred {
+                transition: background-positon 0.3s;
+                animation: showIcon 0.3s;
                 animation-fill-mode: forwards;
             }
-            .not-empty{
+            .not-empty {
                 background-position-y: -999%;
                 animation: none;
             }
-            .not-empty + .mat-form-field-label-wrapper{
+            .not-empty + .mat-form-field-label-wrapper {
                 display: none;
             }
-            .mail-input{
+            .mail-input {
                 background-image: url("/assets/images/mail.png");
             }
-            .password-input{
+            .password-input {
                 background-image: url("/assets/images/password.png");
             }
-            .nickname-input{
+            .nickname-input {
                 background-image: url("/assets/images/nickname.png");
             }
             .mat-form-field-label {
@@ -155,32 +156,41 @@ $near_black: #0d0d0d;
             .mat-form-field-underline {
                 display: none;
             }
-            mat-error{
+            mat-error {
                 text-align: center;
             }
         }
-        .mat-form-field-appearance-legacy .mat-form-field-label{
+        .mat-form-field-appearance-legacy .mat-form-field-label {
             left: 3%;
         }
         .mat-raised-button {
             margin-top: 10%;
             background-color: $purple !important;
-            color: $white !important
+            color: $white !important;
         }
         .mat-button-disabled {
             opacity: 0.3;
         }
     }
 }
+//*********
 
-@keyframes hideIcon{
-    from { background-position-y: center; }
-    to { background-position-y: -999%; }
+@keyframes hideIcon {
+    from {
+        background-position-y: center;
+    }
+    to {
+        background-position-y: -999%;
+    }
 }
 
-@keyframes showIcon{
-    from { background-position-y: -999%; }
-    to { background-position-y: center }
+@keyframes showIcon {
+    from {
+        background-position-y: -999%;
+    }
+    to {
+        background-position-y: center;
+    }
 }
 
 ///*********
