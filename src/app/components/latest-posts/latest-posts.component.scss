@@ -7,7 +7,6 @@
 
 .posts-list-wrap {
     @include main.flex(center, center);
-    @include main.darkBackground();
     width: 100%;
     min-height: 100vh;
     a {

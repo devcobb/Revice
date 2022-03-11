@@ -1,26 +1,25 @@
-@use '/src/app/global/main.scss';
+@use "/src/app/global/main.scss";
 
-:host{
+:host {
     width: 50%;
-    .menu{
+    .menu {
         @include main.flex(flex-end, center);
         width: 85%;
         height: 100%;
         padding: 0;
         margin: 0;
         list-style: none;
-        .menu-link{
+        .menu-link {
             position: relative;
-            font-family: Roboto, sans-serif;
             color: main.$yellow;
             text-decoration: none;
-            padding: .75rem 1.5rem;
+            padding: 0.75rem 1.5rem;
             min-width: 15%;
             text-align: center;
             font-size: 1rem;
             margin: 0 2% 0 0;
             cursor: pointer;
-            &::after{
+            &::after {
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
@@ -30,10 +29,10 @@
                 width: 20%;
                 height: 2px;
                 background: main.$yellow;
-                transition: width .3s;
+                transition: width 0.3s;
             }
-            &:hover{
-                &::after{
+            &:hover {
+                &::after {
                     width: 35%;
                 }
             }
@@ -41,23 +40,22 @@
     }
 }
 
-
-@media only screen and (max-width: 1068px){
-    .header :host{
+@media only screen and (max-width: 1068px) {
+    .header :host {
         display: none;
     }
-    :host{
-        .menu{
+    :host {
+        .menu {
             width: 100%;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            .menu-link{
+            .menu-link {
                 @include main.mainButton;
                 display: block;
                 width: 50%;
                 margin: 4% 0;
-                &::after{
+                &::after {
                     content: none;
                 }
             }

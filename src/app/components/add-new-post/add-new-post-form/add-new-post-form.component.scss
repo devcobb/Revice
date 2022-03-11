@@ -16,7 +16,6 @@
     min-height: 100%;
     padding-top: 10rem;
     .form-bg {
-        @include main.darkBackground;
         padding-top: 2.5%;
         position: fixed;
         z-index: 2;
@@ -82,7 +81,6 @@
             }
         }
         .post-input {
-            font-family: Roboto, sans-serif;
             font-size: 1rem;
             border: none;
             outline: none;
@@ -133,7 +131,6 @@
         }
         .text-section {
             position: relative;
-            font-family: Roboto, sans-serif;
             padding: 1rem;
             font-size: 1rem;
             width: 100%;
@@ -171,7 +168,6 @@
         .add-row {
             @include main.flex(center, center);
             flex-wrap: wrap;
-            font-family: Roboto, sans-serif;
             margin: 2.5% 0 2.5% 0;
             width: 33.33%;
             color: main.$yellow;

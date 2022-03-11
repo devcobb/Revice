@@ -1,6 +1,11 @@
-<div class="hero-image">
+<div class="hero-image"
+     [style.height]="height"
+     [style.backgroundImage]="'url(/assets/images/hero-image-bg-' + imageID + '.jpg)'">
+    <div class="wave"
+         *ngIf="wave"></div>
     <div class="hero-image-overlayer"></div>
-    <div class="hero-image-content">
+    <div class="hero-image-content"
+         *ngIf="content">
         <h1 class="main-title">
             <span>REVICE</span>
             <span>share your's thoughts on the</span>

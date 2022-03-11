@@ -10,6 +10,21 @@ $dark: #0e0b16;
 $dark_grey: #0d0d0d;
 $near_black: #0e0b16;
 
+@font-face {
+    font-family: "Roboto Condensed";
+    src: url("/assets/fonts/RobotoCondensed-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Monteserrat";
+    src: url("/assets/fonts/Montserrat-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "Agency FB Bold Condensed";
+    src: url("/assets/fonts/agencyfb-boldcondensed.ttf");
+}
+
 @mixin flex($justify, $align, $direction: row) {
     display: flex;
     justify-content: $justify;
@@ -23,6 +38,7 @@ $near_black: #0e0b16;
 }
 
 @mixin mainButton() {
+    font-family: "Roboto Condensed" !important;
     color: $yellow;
     text-decoration: none;
     padding: 1rem 1.5rem;
@@ -30,7 +46,7 @@ $near_black: #0e0b16;
     text-align: center;
     font-size: 1rem;
     background: transparent;
-    border: 1px solid $yellow;
+    border: 2px solid $yellow;
     border-radius: 3px;
     cursor: pointer;
 
@@ -38,6 +54,25 @@ $near_black: #0e0b16;
         transition: background 0.3s;
         color: #000;
         background: $yellow;
+    }
+}
+
+@mixin mainHeading($color) {
+    @include flex(center, center, column);
+    @extend .font-2;
+    text-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    color: $color;
+    width: 100%;
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    .subtitle {
+        @extend .font-3;
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        letter-spacing: 0.3rem;
+        text-transform: none;
     }
 }
 
@@ -51,18 +86,6 @@ $near_black: #0e0b16;
         background: darken($purple, 3%);
         color: $white;
     }
-}
-
-@mixin darkBackground {
-    background-image: url("/assets/images/logo-transparent-black.svg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center center;
-}
-
-@font-face {
-    font-family: "Agency FB Bold Condensed";
-    src: url("/assets/fonts/agencyfb-boldcondensed.ttf");
 }
 
 @mixin customScroll {
@@ -85,6 +108,18 @@ $near_black: #0e0b16;
     &::-webkit-scrollbar-thumb:hover {
         background: darken($yellow, 5%);
     }
+}
+
+.font-1 {
+    font-family: "Roboto Condensed" !important;
+}
+
+.font-2 {
+    font-family: "Agency FB Bold Condensed", sans-serif !important;
+}
+
+.font-3 {
+    font-family: "Monteserrat" !important;
 }
 
 //***** FORM *****

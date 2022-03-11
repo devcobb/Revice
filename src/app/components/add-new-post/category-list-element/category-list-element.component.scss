@@ -1,17 +1,17 @@
-@use '/src/app/global/main.scss';
+@use "/src/app/global/main.scss";
 
-:host{
-    margin: .5rem;
+:host {
+    margin: 0.5rem;
 }
 
-.category-list-element{
+.category-list-element {
     @include main.flex(center, center);
     position: relative;
     width: 23rem;
     height: 23rem;
     border-radius: 3px;
     cursor: pointer;
-    &::before{
+    &::before {
         content: "";
         position: absolute;
         z-index: 2;
@@ -24,11 +24,10 @@
         border-width: 0 15px 20px 15px;
         border-color: transparent transparent main.$purple transparent;
     }
-    &::after{
+    &::after {
         @include main.flex(center, center);
         color: main.$white;
         font-size: 1rem;
-        font-family: Roboto, sans-serif;
         content: "";
         z-index: 2;
         position: absolute;
@@ -40,59 +39,62 @@
         height: 15%;
         border-radius: 3px;
     }
-    &::before, &::after{
+    &::before,
+    &::after {
         opacity: 0;
-        transition: opacity .1s;
+        transition: opacity 0.1s;
     }
-    &:hover{
-        &::before, &::after{
+    &:hover {
+        &::before,
+        &::after {
             opacity: 1;
         }
     }
 }
 
-.film{
+.film {
     background-image: url("/assets/images/film.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-color: main.$green;
-    &::after{
+    &::after {
         content: "Film";
     }
 }
-.serial{
+.serial {
     background-image: url("/assets/images/serial.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-color: main.$red;
-    &::after{
+    &::after {
         content: "Serial";
     }
 }
-.game{
+.game {
     background-image: url("/assets/images/game.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-color: main.$blue;
-    &::after{
+    &::after {
         content: "Game";
     }
 }
-.music{
+.music {
     background-image: url("/assets/images/music.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-color: main.$bright_yellow;
-    &::after{
+    &::after {
         content: "Music";
     }
 }
 
-@media only screen and (max-width: 854px){
-    .category-list-element{
+@media only screen and (max-width: 854px) {
+    .category-list-element {
         width: 15rem;
         height: 15rem;
-        &::before, &::after{
+        &::before,
+        &::after {
             display: none;
         }
     }
