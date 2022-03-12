@@ -25,7 +25,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
-
   {
     path: '**',
     redirectTo: '',

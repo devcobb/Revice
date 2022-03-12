@@ -17,16 +17,17 @@ import { AccountComponent } from './components/account/account.component';
 import { AddNewPostFormComponent } from './components/add-new-post/add-new-post-form/add-new-post-form.component';
 import { AddNewPostComponent } from './components/add-new-post/add-new-post.component';
 import { CategoryListElementComponent } from './components/add-new-post/category-list-element/category-list-element.component';
+import { ChooseCategoryComponent } from './components/add-new-post/choose-category/choose-category.component';
 import { UploadImageComponent } from './components/add-new-post/upload-image/upload-image.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { HeroImageComponent } from './components/hero-image/hero-image.component';
+import { LatestPostsComponent } from './components/latest-posts/latest-posts.component';
 import { LoginFormComponent } from './components/login-view/login-form/login-form.component';
 import { LoginViewComponent } from './components/login-view/login-view.component';
 import { RegisterFormComponent } from './components/login-view/register-form/register-form.component';
 import { MenuComponent } from './components/page-header/menu/menu.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
-import { ChooseCategoryComponent } from './components/add-new-post/choose-category/choose-category.component';
 import { PreviewPostComponent } from './components/preview-post/preview-post.component';
-import { LatestPostsComponent } from './components/latest-posts/latest-posts.component';
 import { RatingComponent } from './components/rating/rating.component';
 
 const materialModules = [
@@ -54,6 +55,7 @@ const materialModules = [
     PreviewPostComponent,
     LatestPostsComponent,
     RatingComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

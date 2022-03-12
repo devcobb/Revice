@@ -1,2 +1,7 @@
 <app-page-header></app-page-header>
-<router-outlet></router-outlet>
+<div class="container"
+     [ngClass]="{'height-100' : shortPage, 'height-auto': !shortPage}">
+    <router-outlet></router-outlet>
+</div>
+
+<app-footer></app-footer>
