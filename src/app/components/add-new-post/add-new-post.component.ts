@@ -25,14 +25,16 @@ export class AddNewPostComponent implements OnInit {
   ratings: Star[] = [];
   constructor(private cdr: ChangeDetectorRef) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   updateCurrentChoosedCategory(category: string) {
     this.choosedCategory = this.availableCategories.filter(cat => cat.name === category)[0];
     this.choosed = true;
     this.heroImageHeight = "80vh";
     this.imageID = "3";
+
+    let container = document.querySelector(".container")!;
+    container.className = container.className.replace('height-100', 'height-auto');
   }
 
   togglePreview(preview: boolean) {
