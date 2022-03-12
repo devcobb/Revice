@@ -19,7 +19,7 @@ export class HeroImageComponent {
     this.setBackgroundImage();
   }
 
-  setBackgroundImage() {
+  async setBackgroundImage() {
     this.imageID !== 0 ? this.backgroundImage = `url("/assets/images/hero-image-bg-${this.imageID}.jpg")` : ""
   }
 }

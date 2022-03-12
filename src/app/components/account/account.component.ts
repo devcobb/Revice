@@ -19,6 +19,7 @@ interface userData {
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
+  needLoading = true;
   user: User | null = null;
   updatedImage = "";
   userData: userData = { profilePic: "", email: "", uid: "", nickname: "", bannerImage: "" };
@@ -47,6 +48,7 @@ export class AccountComponent implements OnInit {
       this.userData.nickname = await docSnap.data()?.nickname;
       this.userData.profilePic = await docSnap.data()?.profilePicture;
       this.userData.bannerImage = await docSnap.data()?.bannerImage;
+      await setTimeout(() => this.needLoading = false, 750)
     }
   }
 

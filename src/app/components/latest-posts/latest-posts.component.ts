@@ -9,6 +9,7 @@ import { Post } from 'src/app/global/global-interfaces';
 })
 export class LatestPostsComponent implements OnInit {
   posts: Post[] = [];
+  needLoading = true;
 
   constructor(private databaseService: DatabaseService) { }
 
@@ -21,8 +22,9 @@ export class LatestPostsComponent implements OnInit {
     let promise = await this.databaseService.getPosts().then(data => {
       this.posts = data
     });
-    console.log(this.posts)
+
     this.setUpLinkForPosts();
+    await setTimeout(() => this.needLoading = false, 750)
   }
 
   setUpLinkForPosts() {
@@ -30,5 +32,6 @@ export class LatestPostsComponent implements OnInit {
       post.url = `/post/${post.title.replace(/\s/g, '-')}-${post.id}`;
       post.userUrl = `/user/${post.author.replace(/\s/g, '-')}`
     })
+
   }
 }

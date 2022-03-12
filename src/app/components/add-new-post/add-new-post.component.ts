@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BannerField, Category, ImageField, Star, TextField } from 'src/app/global/global-interfaces';
 
 @Component({
   selector: 'app-add-new-post',
   templateUrl: './add-new-post.component.html',
-  styleUrls: ['./add-new-post.component.scss']
+  styleUrls: ['./add-new-post.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddNewPostComponent implements OnInit {
   heroImageHeight = "60vh";
@@ -22,7 +23,7 @@ export class AddNewPostComponent implements OnInit {
   title = "";
   thumbnail = "";
   ratings: Star[] = [];
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
   }
