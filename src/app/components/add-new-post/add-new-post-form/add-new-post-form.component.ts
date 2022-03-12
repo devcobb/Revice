@@ -39,6 +39,10 @@ export class AddNewPostFormComponent {
     this.disableAddingPosts();
   }
 
+  updateCategory(category: Category) {
+    this.category = category
+  }
+
   addField(fieldType: 'image' | 'text' | 'banner') {
     if (fieldType === 'text') {
       this.fields.push(
@@ -128,5 +132,4 @@ export class AddNewPostFormComponent {
 
     this.addPostButtonDisabled = false
   }
-
 }

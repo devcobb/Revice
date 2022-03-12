@@ -1,6 +1,14 @@
+<app-hero-image [height]="heroImageHeight"
+                [imageID]="imageID"
+                [content]="false"
+                [wave]="true"></app-hero-image>
+
 <div class="category-list-container"
      *ngIf="!choosed">
-    <h1 class="category-header">Choose category</h1>
+    <h1 class="category-header">
+        Choose Category
+        <span class="subtitle">of your post</span>
+    </h1>
     <div class="category-list">
         <app-category-list-element *ngFor="let category of availableCategories"
                                    (choosedCategory)="updateCurrentChoosedCategory($event)"

@@ -30,3 +30,25 @@
 .no-cursor {
     cursor: default;
 }
+
+@media only screen and (max-width: 768px) {
+    .star {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .star {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .star {
+        width: 25px;
+        height: 25px;
+        margin: 0 2.5px;
+    }
+}

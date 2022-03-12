@@ -7,6 +7,8 @@ import { BannerField, Category, ImageField, Star, TextField } from 'src/app/glob
   styleUrls: ['./add-new-post.component.scss']
 })
 export class AddNewPostComponent implements OnInit {
+  heroImageHeight = "60vh";
+  imageID = "2";
   availableCategories: Category[] = [
     { name: "film" },
     { name: "serial" },
@@ -27,7 +29,9 @@ export class AddNewPostComponent implements OnInit {
 
   updateCurrentChoosedCategory(category: string) {
     this.choosedCategory = this.availableCategories.filter(cat => cat.name === category)[0];
-    this.choosed = true
+    this.choosed = true;
+    this.heroImageHeight = "80vh";
+    this.imageID = "3";
   }
 
   togglePreview(preview: boolean) {

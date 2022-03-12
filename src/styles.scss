@@ -1,16 +1,14 @@
-@use 'src/app/global/main.scss';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+@use "src/app/global/main.scss";
 
-body, html{
+body,
+html {
+    @extend .font-1;
+    @include main.customScroll(4px);
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: main.$dark;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.no-scroll{
+.no-scroll {
     overflow: hidden;
 }

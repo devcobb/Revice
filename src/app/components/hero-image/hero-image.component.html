@@ -1,6 +1,16 @@
-<div class="hero-image">
-    <div class="hero-image-overlayer"></div>
-    <div class="hero-image-content">
+<div class="hero-image"
+     [style.height]="height"
+     [style.backgroundImage]="backgroundImage">
+    <img *ngIf="customImage"
+         [style.height]="height"
+         class="custom-image"
+         [src]="customImage" />
+    <div class="wave"
+         *ngIf="wave"></div>
+    <div class="hero-image-overlayer"
+         [style.background]="'rgba(0, 0, 0, ' + overlayerOpacity + ')'"></div>
+    <div class="hero-image-content"
+         *ngIf="content">
         <h1 class="main-title">
             <span>REVICE</span>
             <span>share your's thoughts on the</span>
