@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   shortPage = false;
   shortPages = ['account', 'new', 'login'];
   needLoading = true;
+
   constructor(private router: Router) {
     router.events.subscribe((event: RouterEvent) => {
       this.navigationInterceptor(event)
@@ -26,7 +27,6 @@ export class AppComponent implements OnInit {
     this.shortPages.find(page => page === url) ? this.shortPage = true : this.shortPage = false
   }
 
-  // Shows and hides the loading spinner during RouterEvent changes
   navigationInterceptor(event: RouterEvent): void {
     if (event instanceof NavigationStart) {
       this.needLoading = true;
@@ -35,7 +35,6 @@ export class AppComponent implements OnInit {
       this.needLoading = false;
     }
 
-    // Set loading state to false in both of the below events to hide the spinner in case a request fails
     if (event instanceof NavigationCancel) {
       this.needLoading = false;
     }
