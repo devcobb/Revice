@@ -5,7 +5,6 @@
     width: 100%;
     transition: height 0.3s, background-image 0.3s;
     transition-timing-function: ease-out;
-    position: fixed;
     background-image: url("/assets/images/hero-image-bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -111,6 +110,7 @@
                 @include main.fullSize;
                 opacity: 0.4;
                 transform: translate(-50%, -50%) rotate(-15deg);
+                position: fixed;
             }
         }
     }
