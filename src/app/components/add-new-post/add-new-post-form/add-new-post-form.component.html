@@ -14,7 +14,8 @@
                    class="post-input post-title"
                    placeholder="Post Title"
                    required />
-            <app-choose-category [category]="choosedCategory"></app-choose-category>
+            <app-choose-category (changeCategory)="updateCategory($event)"
+                                 [category]="choosedCategory"></app-choose-category>
         </div>
         <div class="post-visiblity-wrap">
             <div class="input-switch-wrap">

@@ -16,10 +16,10 @@
             </a>
             <div class="post-information"
                  [ngClass]="{
-                     'green-bg': post.category === 'film',
-                     'red-bg': post.category === 'serial',
-                     'blue-bg': post.category === 'game',
-                     'yellow-bg': post.category === 'music'}">
+                     'green-bg': post.category.toLowerCase() === 'film',
+                     'red-bg': post.category.toLowerCase() === 'serial',
+                     'blue-bg': post.category.toLowerCase() === 'game',
+                     'yellow-bg': post.category.toLowerCase() === 'music'}">
                 <a [routerLink]="post.url">
                     <h2 class="post-title">{{post.title}}</h2>
                 </a>

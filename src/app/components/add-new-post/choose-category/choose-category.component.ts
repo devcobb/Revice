@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Category } from 'src/app/global/global-interfaces';
 
 @Component({
   selector: 'app-choose-category',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ChooseCategoryComponent implements OnInit {
   @Input() category: string = "Category";
-
+  @Output() changeCategory = new EventEmitter<Category>();
   constructor() { }
 
   ngOnInit(): void {
@@ -34,5 +35,6 @@ export class ChooseCategoryComponent implements OnInit {
     let category = target.textContent;
 
     this.category = category!;
+    this.changeCategory.emit({ name: this.category })
   }
 }

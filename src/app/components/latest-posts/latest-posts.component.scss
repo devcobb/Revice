@@ -70,7 +70,6 @@
                 display: block;
                 width: 75%;
                 width: 100%;
-                color: main.$yellow;
                 font-weight: bold;
                 border-radius: 50px;
                 padding: 4px;
@@ -79,11 +78,8 @@
                 font-size: 0.7rem;
                 cursor: pointer;
                 margin-left: 10px;
-                transition: background-color 0.3s, color 0.3s;
-                &:hover {
-                    background-color: main.$yellow;
-                    color: main.$near_black;
-                }
+                background-color: main.$yellow;
+                color: main.$near_black;
             }
             .post-rating {
                 margin-top: 1rem;

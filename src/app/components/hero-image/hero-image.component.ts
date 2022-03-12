@@ -11,6 +11,7 @@ export class HeroImageComponent {
   @Input() content: boolean = true;
   @Input() wave: boolean = false;
   @Input() customImage = "";
+  @Input() overlayerOpacity = "0.8";
   backgroundImage = "";
 
   ngOnInit() {

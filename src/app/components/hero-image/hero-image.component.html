@@ -7,7 +7,8 @@
          [src]="customImage" />
     <div class="wave"
          *ngIf="wave"></div>
-    <div class="hero-image-overlayer"></div>
+    <div class="hero-image-overlayer"
+         [style.background]="'rgba(0, 0, 0, ' + overlayerOpacity + ')'"></div>
     <div class="hero-image-content"
          *ngIf="content">
         <h1 class="main-title">
