@@ -204,6 +204,10 @@
             width: 70%;
             text-align: center;
             margin-bottom: 5%;
+            .error-wrap {
+                width: 65%;
+                margin-top: 4%;
+            }
             .submit-btn {
                 @include main.contrastButton;
                 font-weight: normal;
@@ -212,6 +216,7 @@
                     &:hover {
                         background-color: main.$purple;
                     }
+                    cursor: default;
                     opacity: 0.4;
                 }
             }
@@ -225,6 +230,7 @@
                     &:hover {
                         background-color: main.$purple;
                     }
+                    cursor: default;
                     opacity: 0.3;
                 }
             }

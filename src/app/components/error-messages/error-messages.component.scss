@@ -1,0 +1,12 @@
+@use "/src/app/global/main.scss";
+
+.error-message {
+    @include main.flex(center, flex-start);
+    @extend .font-1;
+    font-size: 1rem;
+    text-align: center;
+    color: main.$bright_red;
+    img {
+        margin-right: 10px;
+    }
+}

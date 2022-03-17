@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Star } from 'src/app/global/global-interfaces';
+import { ErrorMessagesService } from '../error-messages/error-messages-service.service';
 
 @Component({
   selector: 'app-rating',
@@ -9,7 +11,9 @@ import { Star } from 'src/app/global/global-interfaces';
 export class RatingComponent implements OnInit {
   @Input() stars: Star[] = [];
   @Input() editable = false;
-  constructor() {
+  @Output() touched = new Subject<boolean>();
+
+  constructor(private errorMessageService: ErrorMessagesService) {
     for (let i = 0; i < 10; i++) {
       this.stars.push({ id: i, filled: false, half: false })
     }
@@ -26,6 +30,8 @@ export class RatingComponent implements OnInit {
         stars[i].className = "star star-filled";
         this.stars[i].filled = true;
       }
+
+      this.errorMessageService.ratingAdded.next(true)
     }
   }
 

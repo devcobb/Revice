@@ -15,6 +15,8 @@
                    name="post-title"
                    class="post-input post-title"
                    placeholder="Post Title"
+                   minlength="5"
+                   maxlength="50"
                    required />
             <app-choose-category (changeCategory)="updateCategory($event)"
                                  [category]="choosedCategory"></app-choose-category>
@@ -36,12 +38,16 @@
             <div class="field-wrap"
                  *ngIf="field.type === 'text'">
                 <input type="text"
+                       minlength="5"
+                       maxlength="50"
                        placeholder="Add title of text section"
                        (change)="updateField(field.id, 'title', $event.target.value)"
                        class="section-title" />
                 <textarea class="text-section"
                           (change)="updateField(field.id, 'value', $event.target.value)"
                           [value]="field.value"
+                          minlength="10"
+                          maxlength="550"
                           placeholder="Add your text here*"></textarea>
                 <span class="close"
                       [attr.data-id]="field.id"
@@ -68,10 +74,14 @@
                                   class="image-section"></app-upload-image>
                 <div class="banner-text-content">
                     <input type="text"
+                           minlength="5"
+                           maxlength="50"
                            placeholder="Add title of text section"
                            (change)="updateField(field.id, 'title', $event.target.value)"
                            class="section-title" />
                     <textarea class="text-section"
+                              minlength="10"
+                              maxlength="550"
                               [value]="field.value"
                               (change)="updateField(field.id, 'value', $event.target.value)"
                               placeholder="Add your text here*"></textarea>
@@ -108,8 +118,11 @@
                    [disabled]="addPostButtonDisabled"
                    type="submit" />
             <button class="preview-btn"
-                    [disabled]="title.length < 5 || thumbnail.length < 5 || fields.length === 0"
+                    [disabled]="previewPostButtonDisabled"
                     (click)="previewToggle($event)">Preview post</button>
+            <div class="error-wrap">
+                <app-error-messages></app-error-messages>
+            </div>
         </div>
     </form>
 </div>

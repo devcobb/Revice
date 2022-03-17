@@ -2,7 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/global/auth/auth.service';
 import { DatabaseService } from 'src/app/global/database.service';
-import { BannerField, Category, ImageField, Star, TextField } from 'src/app/global/global-interfaces';
+import { BannerField, Category, EPossibleErrors, ImageField, PossibleErrors, Star, TextField } from 'src/app/global/global-interfaces';
+import { ErrorMessagesService } from '../../error-messages/error-messages-service.service';
 
 @Component({
   selector: 'app-add-new-post-form',
@@ -19,13 +20,15 @@ export class AddNewPostFormComponent {
   @Output() postRatings = new EventEmitter<Star[]>();
   fields: (TextField | ImageField | BannerField)[] = [];
   addPostButtonDisabled = true;
+  previewPostButtonDisabled = true;
+  errorMessage = true;
   private = false;
   preview = false;
   title = "";
   thumbnail = "";
   stars: Star[] = [];
 
-  constructor(private dbService: DatabaseService, private authService: AuthService, private router: Router) {
+  constructor(private dbService: DatabaseService, private authService: AuthService, private router: Router, private errorMessageService: ErrorMessagesService) {
     for (let i = 0; i < 10; i++) {
       this.stars.push({ id: i, filled: false, half: false })
     }
@@ -33,10 +36,13 @@ export class AddNewPostFormComponent {
 
   ngOnInit() {
     this.choosedCategory = this.category.name;
+    this.errorMessageService.ratingAdded.subscribe(value => {
+      this.checkForEnablingButtons();
+    });
   }
 
   ngOnChanges() {
-    this.disableAddingPosts();
+    this.checkForEnablingButtons();
   }
 
   updateCategory(category: Category) {
@@ -75,23 +81,33 @@ export class AddNewPostFormComponent {
         }
       )
     }
+
+    this.checkForEnablingButtons();
   }
 
   updateField(id: number, attr: string, value: string) {
     let fieldToUpdate = this.fields.filter(field => field.id === id)[0];
     fieldToUpdate[attr] = value;
+
+    this.checkForEnablingButtons();
   }
 
   updateTitle(value: string) {
     this.title = value;
+
+    this.checkForEnablingButtons();
   }
 
   updateThumbnail(image: string) {
     this.thumbnail = image;
+
+    this.checkForEnablingButtons();
   }
 
   removeElement(id: number) {
-    this.fields = this.fields.filter(field => field.id !== id)
+    this.fields = this.fields.filter(field => field.id !== id);
+
+    this.checkForEnablingButtons();
   }
 
   changeArrangement(id: number) {
@@ -125,11 +141,85 @@ export class AddNewPostFormComponent {
     this.private = !this.private;
   }
 
-  disableAddingPosts() {
-    if (JSON.parse(localStorage.getItem('user')!) !== null) {
+  checkForEnablingButtons() {
+    let possibleErrors: PossibleErrors = {
+      textFieldLength: true,
+      imageFieldNoData: true,
+      bannerNoData: true,
+      noFieldsAdded: this.fields.length === 0,
+      titleLength: (this.title.length < 5 || this.title.length > 50),
+      noThumbnail: this.thumbnail === "",
+      noRatings: this.stars.filter(star => star.half || star.filled).length === 0,
+      userNotExists: JSON.parse(localStorage.getItem('user')!) === null
+    };
+
+    this.addPostButtonDisabled = false;
+    this.previewPostButtonDisabled = false;
+
+    //Add post Button
+    if (possibleErrors.userNotExists || possibleErrors.noFieldsAdded || possibleErrors.noRatings || possibleErrors.titleLength || possibleErrors.noThumbnail) {
       this.addPostButtonDisabled = true
     }
+    else {
+      if (!this.validateAddedFields(possibleErrors)) {
+        this.addPostButtonDisabled = true;
+      }
+    }
 
-    this.addPostButtonDisabled = false
+    //Previw post button
+    if (possibleErrors.noFieldsAdded || possibleErrors.noRatings || possibleErrors.titleLength || possibleErrors.noThumbnail) {
+      this.previewPostButtonDisabled = true
+    }
+    else {
+      if (!this.validateAddedFields(possibleErrors)) {
+        this.previewPostButtonDisabled = true;
+      }
+    }
+
+    this.showErrorMessage(possibleErrors);
+  }
+
+  validateAddedFields(possibleErrors: PossibleErrors) {
+    let validate = true;
+
+    this.fields.forEach(field => {
+      if (field.type === 'text') {
+        if ((field.title.length < 5 && field.title.length > 50) || (field.value.length < 10 || field.value.length > 550)) {
+          possibleErrors.textFieldLength = false;
+          validate = false;
+        }
+      }
+      else if (field.type === 'image') {
+        if (field.src.length === 0) {
+          possibleErrors.imageFieldNoData = false;
+          validate = false
+        }
+      }
+      else {
+        if ((field.title.length < 5 && field.title.length > 50) || (field.value.length < 10 || field.value.length > 550) || field.src.length === 0) {
+          possibleErrors.bannerNoData = false;
+          validate = false
+        }
+      }
+    })
+
+    this.showErrorMessage(possibleErrors);
+    return validate
+  }
+
+  showErrorMessage(possibleErrors: PossibleErrors) {
+    //View Errors
+    if (Object.values(possibleErrors).some(e => e)) {
+      this.errorMessage = true;
+      for (const error in possibleErrors) {
+        if (EPossibleErrors[error as keyof typeof EPossibleErrors]) {
+          this.errorMessageService.validate(possibleErrors[error as keyof typeof possibleErrors], EPossibleErrors[error as keyof typeof EPossibleErrors])
+        }
+      }
+    }
+    else {
+      this.errorMessageService.message.next("");
+      this.errorMessage = false;
+    }
   }
 }
