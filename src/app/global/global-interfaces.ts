@@ -43,3 +43,26 @@ export interface Star {
     filled: boolean;
     id: number;
 }
+
+export interface PossibleErrors {
+    noFieldsAdded: boolean,
+    titleLength: boolean,
+    noThumbnail: boolean,
+    noRatings: boolean,
+    userNotExists: boolean,
+    textFieldLength: boolean,
+    imageFieldNoData: boolean,
+    bannerNoData: boolean
+}
+
+export enum EPossibleErrors {
+    textFieldLength = "Please fill field with data. Title should be at least 5 characters long and maximum 50 characters, main text should be at least 10 characters long and maximum 550 characters",
+    imageFieldNoData = "Please fill field with data. To add image just click the field and choose file from your computer",
+    bannerNoData = `Title should be at least 5 characters long and maximum 50 characters, main text should be at least 10 characters long and maximum 550 characters. To add 
+    image just click the field and choose file from your computer`,
+    noFieldsAdded = "Please add fields to your post. It should have at least one added field of some kind.",
+    titleLength = "Please fill post's title field. It should be at least 5 characters long and maximum 50 characters.",
+    noThumbnail = "Please add thumbnail of your post.",
+    noRatings = "Please add rating of your post. It should have at least a half star rating.",
+    userNotExists = "Please sign in to add new post.",
+}
