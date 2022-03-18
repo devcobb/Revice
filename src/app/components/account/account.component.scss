@@ -3,8 +3,10 @@
 .account-wrap {
     @include main.flex(center, center, column);
     width: 100%;
-    position: absolute;
-    height: 100%;
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    margin-bottom: 10%;
     box-sizing: border-box;
     .account {
         @include main.flex(center, center, column);

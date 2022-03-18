@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ContentHeightService } from 'src/app/global/content-height.service';
 import { BannerField, Category, ImageField, Star, TextField } from 'src/app/global/global-interfaces';
 
 @Component({
@@ -25,7 +24,7 @@ export class AddNewPostComponent implements OnInit {
   thumbnail = "";
   ratings: Star[] = [];
 
-  constructor(private cdr: ChangeDetectorRef, private contentHeightService: ContentHeightService) { }
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void { }
 
@@ -34,8 +33,6 @@ export class AddNewPostComponent implements OnInit {
     this.choosed = true;
     this.heroImageHeight = "80vh";
     this.imageID = "3";
-
-    this.contentHeightService.toggle();
   }
 
   togglePreview(preview: boolean) {

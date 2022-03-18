@@ -1,7 +1,8 @@
 <app-page-header></app-page-header>
 <app-loading-screen *ngIf="needLoading"></app-loading-screen>
-<div class="container"
-     [ngClass]="{'height-100' : shortPage, 'height-auto': !shortPage}">
+<div class="container">
     <router-outlet></router-outlet>
 </div>
-<app-footer></app-footer>
+<footer>
+    <app-footer></app-footer>
+</footer>
