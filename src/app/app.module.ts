@@ -30,6 +30,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { PreviewPostComponent } from './components/preview-post/preview-post.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
+import { ErrorMessagesComponent } from './components/error-messages/error-messages.component';
 
 const materialModules = [
   MatButtonModule,
@@ -58,6 +59,7 @@ const materialModules = [
     RatingComponent,
     FooterComponent,
     LoadingScreenComponent,
+    ErrorMessagesComponent,
   ],
   imports: [
     BrowserModule,

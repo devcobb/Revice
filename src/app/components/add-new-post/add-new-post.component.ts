@@ -23,6 +23,7 @@ export class AddNewPostComponent implements OnInit {
   title = "";
   thumbnail = "";
   ratings: Star[] = [];
+
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void { }
@@ -32,9 +33,6 @@ export class AddNewPostComponent implements OnInit {
     this.choosed = true;
     this.heroImageHeight = "80vh";
     this.imageID = "3";
-
-    let container = document.querySelector(".container")!;
-    container.className = container.className.replace('height-100', 'height-auto');
   }
 
   togglePreview(preview: boolean) {
