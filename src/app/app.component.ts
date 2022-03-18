@@ -9,8 +9,6 @@ import {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  shortPage = false;
-  shortPages = ['account', 'new', 'login'];
   needLoading = true;
 
   constructor(private router: Router) {
@@ -19,13 +17,7 @@ export class AppComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
-    this.router.events.subscribe((event) => { event instanceof NavigationEnd ? this.checkForPageHeight(event.url.replace('/', '')) : null })
-  }
-
-  checkForPageHeight(url: string) {
-    this.shortPages.find(page => page === url) ? this.shortPage = true : this.shortPage = false
-  }
+  ngOnInit() { }
 
   navigationInterceptor(event: RouterEvent): void {
     if (event instanceof NavigationStart) {

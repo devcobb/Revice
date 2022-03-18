@@ -3,11 +3,12 @@
 .category-list-container {
     @include main.flex(center, center, column);
     width: 100%;
-    position: absolute;
-    min-height: 100%;
+    min-height: 100vh;
+    margin-bottom: 10%;
     box-sizing: border-box;
     .category-header {
         @include main.mainHeading(main.$yellow);
+        z-index: 2;
         margin-bottom: 5%;
     }
     .category-list {
@@ -42,7 +43,6 @@
     .category-list-container {
         @include main.flex(center, center, column);
         width: 100%;
-        position: absolute;
         min-height: 100%;
         box-sizing: border-box;
         .category-header {
