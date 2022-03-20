@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { AuthService } from 'src/app/global/auth/auth.service';
 import { DatabaseService } from 'src/app/global/database.service';
+import { Post } from 'src/app/global/global-interfaces';
 
 interface userData {
   profilePic: string;
@@ -23,8 +24,9 @@ export class AccountComponent implements OnInit {
   user: User | null = null;
   updatedImage = "";
   userData: userData = { profilePic: "", email: "", uid: "", nickname: "", bannerImage: "" };
+  userPosts: Post[] = [];
 
-  constructor(private auth: AuthService, private router: Router, private db: DatabaseService) {
+  constructor(private auth: AuthService, private router: Router, private db: DatabaseService, private ref: ChangeDetectorRef) {
     if (!localStorage.getItem('userProfile')) {
       this.user = this.auth.user;
     }
@@ -48,12 +50,18 @@ export class AccountComponent implements OnInit {
       this.userData.nickname = await docSnap.data()?.nickname;
       this.userData.profilePic = await this.getUserProfilePicure();
       this.userData.bannerImage = await docSnap.data()?.bannerImage;
+      this.userPosts = await this.checkForUsersPosts();
+
       await setTimeout(() => this.needLoading = false, 750)
     }
   }
 
   async getUserProfilePicure() {
     return await this.db.getThumbnail(`users/profile_pictures/${this.userData.uid}-${this.userData.nickname}-profile`)
+  }
+
+  async checkForUsersPosts() {
+    return await (await this.db.checkForUsersPosts(this.userData.uid)).slice(0, 3);
   }
 
   get profilePicture() {
@@ -102,4 +110,13 @@ export class AccountComponent implements OnInit {
       reader.readAsDataURL(input.files[0]);
     }
   }
+
+  previousPost() {
+
+  }
+
+  nextPost() {
+
+  }
+
 }

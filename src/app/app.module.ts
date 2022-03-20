@@ -32,6 +32,7 @@ import { MenuComponent } from './components/page-header/menu/menu.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { PreviewPostComponent } from './components/preview-post/preview-post.component';
 import { RatingComponent } from './components/rating/rating.component';
+import { PostComponent } from './global/post/post.component';
 
 const materialModules = [
   MatButtonModule,
@@ -61,6 +62,7 @@ const materialModules = [
     FooterComponent,
     LoadingScreenComponent,
     ErrorMessagesComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,

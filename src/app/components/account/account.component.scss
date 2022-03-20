@@ -8,10 +8,37 @@
     min-height: 100vh;
     margin-bottom: 10%;
     box-sizing: border-box;
+    .userHasPosts {
+        padding-top: 10%;
+    }
+    .arrow {
+        cursor: pointer;
+    }
+    .arrow-right img {
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+    }
     .account {
         @include main.flex(center, center, column);
         width: 75%;
         height: 75%;
+        .users-latest-posts {
+            @include main.flex(center, center);
+            width: 100%;
+            color: main.$white;
+            margin: 5% 0 0 0;
+            .scaled {
+                transform: scale(0.7);
+            }
+            .post-wrap {
+                position: absolute;
+                left: 0;
+                width: 30%;
+                height: 15rem;
+                color: main.$white;
+                margin: 0 0.5%;
+            }
+        }
         .profile {
             @include main.flex(space-around, center);
             width: 50%;
@@ -90,11 +117,13 @@
             }
         }
         .options {
-            @include main.flex(center, center, column);
+            @include main.flex(center, center);
+            width: 100%;
             color: main.$yellow;
-            margin-top: 5%;
+            margin-top: 7.5%;
             .button-wrap {
-                margin: 5% 0;
+                width: 15%;
+                margin: 0 2.5%;
                 display: block;
                 text-align: center;
             }
