@@ -46,10 +46,14 @@ export class AccountComponent implements OnInit {
       const docSnap = await getDoc(docRef);
 
       this.userData.nickname = await docSnap.data()?.nickname;
-      this.userData.profilePic = await docSnap.data()?.profilePicture;
+      this.userData.profilePic = await this.getUserProfilePicure();
       this.userData.bannerImage = await docSnap.data()?.bannerImage;
       await setTimeout(() => this.needLoading = false, 750)
     }
+  }
+
+  async getUserProfilePicure() {
+    return await this.db.getThumbnail(`users/profile_pictures/${this.userData.uid}-${this.userData.nickname}-profile`)
   }
 
   get profilePicture() {
@@ -90,7 +94,7 @@ export class AccountComponent implements OnInit {
       reader.onload = (e) => {
         if (label !== null && e.target !== null && typeof e.target.result === 'string') {
           this.updatedImage = e.target.result;
-          this.db.updateProfilePic(this.userData.uid, e.target.result);
+          this.db.updateProfilePic(this.userData.uid, this.userData.nickname, e.target.result);
           this.userData.profilePic = e.target.result
         }
       }

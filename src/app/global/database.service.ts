@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Database } from '@angular/fire/database';
-import { doc, Firestore, setDoc, updateDoc } from "@angular/fire/firestore";
+import { doc, Firestore, setDoc } from "@angular/fire/firestore";
+import { initializeApp } from 'firebase/app';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+import { getDownloadURL, getStorage, ref, uploadString } from "firebase/storage";
+import { environment } from 'src/environments/environment';
 import { BannerField, Category, ImageField, Post, Star, TextField } from './global-interfaces';
 
 @Injectable({
@@ -10,8 +13,11 @@ import { BannerField, Category, ImageField, Post, Star, TextField } from './glob
 export class DatabaseService {
   constructor(
     private database: Database,
-    public firestore: Firestore) { }
+    public firestore: Firestore,
+  ) { }
 
+  app = initializeApp(environment.firebase);
+  storage = getStorage(this.app);
 
   async addUserDataToDb(uid: string, nickname: string, profilePicture: string) {
     const docRef = await setDoc(doc(this.firestore, "users", uid), {
@@ -21,15 +27,13 @@ export class DatabaseService {
     });
   }
 
-  async updateProfilePic(uid: string, picture: string) {
-    const docRef = await updateDoc(doc(this.firestore, "users", uid), {
-      profilePicture: picture
-    });
+  async updateProfilePic(uid: string, nickname: string, picture: string) {
+    const storageRef = await ref(this.storage, `users/profile_pictures/${uid}-${nickname}-profile`);
+    await uploadString(storageRef, picture, 'data_url').then((snapshot) => { });
   }
 
   async addPost(id: string, thumbnail: string, title: string, fields: (TextField | ImageField | BannerField)[], postPrivate: boolean, authorName: string, ratings: Star[], category: Category) {
     const docRef = await setDoc(doc(this.firestore, "posts", id), {
-      thumbnail: thumbnail,
       title: title,
       fields: fields,
       postPrivate: postPrivate,
@@ -38,6 +42,31 @@ export class DatabaseService {
       category: category.name,
       id: id
     });
+
+    const storageRef = await ref(this.storage, `post_thumbails/${id}-${title}-thumnbail`);
+    await uploadString(storageRef, thumbnail, 'data_url').then((snapshot) => { });
+  }
+
+  async getThumbnail(dbUrl: string) {
+    let thumbnail = "";
+
+    await getDownloadURL(ref(this.storage, dbUrl))
+      .then((url) => {
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = (event) => {
+          const blob = xhr.response;
+        };
+        xhr.open('GET', url);
+        xhr.send();
+        thumbnail = url
+
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+
+    return await thumbnail;
   }
 
   async getPosts() {

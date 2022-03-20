@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -19,9 +20,11 @@ import { AddNewPostComponent } from './components/add-new-post/add-new-post.comp
 import { CategoryListElementComponent } from './components/add-new-post/category-list-element/category-list-element.component';
 import { ChooseCategoryComponent } from './components/add-new-post/choose-category/choose-category.component';
 import { UploadImageComponent } from './components/add-new-post/upload-image/upload-image.component';
+import { ErrorMessagesComponent } from './components/error-messages/error-messages.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeroImageComponent } from './components/hero-image/hero-image.component';
 import { LatestPostsComponent } from './components/latest-posts/latest-posts.component';
+import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 import { LoginFormComponent } from './components/login-view/login-form/login-form.component';
 import { LoginViewComponent } from './components/login-view/login-view.component';
 import { RegisterFormComponent } from './components/login-view/register-form/register-form.component';
@@ -29,8 +32,6 @@ import { MenuComponent } from './components/page-header/menu/menu.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { PreviewPostComponent } from './components/preview-post/preview-post.component';
 import { RatingComponent } from './components/rating/rating.component';
-import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
-import { ErrorMessagesComponent } from './components/error-messages/error-messages.component';
 
 const materialModules = [
   MatButtonModule,
@@ -70,6 +71,7 @@ const materialModules = [
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideDatabase(() => getDatabase()),
+    AngularFireStorageModule,
     BrowserAnimationsModule
   ],
   providers: [],
