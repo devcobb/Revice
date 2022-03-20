@@ -32,7 +32,7 @@ export class DatabaseService {
     await uploadString(storageRef, picture, 'data_url').then((snapshot) => { });
   }
 
-  async addPost(id: string, thumbnail: string, title: string, fields: (TextField | ImageField | BannerField)[], postPrivate: boolean, authorName: string, ratings: Star[], category: Category) {
+  async addPost(id: string, thumbnail: string, title: string, fields: (TextField | ImageField | BannerField)[], postPrivate: boolean, authorName: string, uid: string, ratings: Star[], category: Category) {
     const docRef = await setDoc(doc(this.firestore, "posts", id), {
       title: title,
       fields: fields,
@@ -40,7 +40,8 @@ export class DatabaseService {
       author: authorName,
       ratings: ratings,
       category: category.name,
-      id: id
+      id: id,
+      uid: uid
     });
 
     const storageRef = await ref(this.storage, `post_thumbails/${id}-${title}-thumnbail`);
@@ -90,6 +91,18 @@ export class DatabaseService {
     });
 
     return username;
+  }
+
+  async checkForUsersPosts(uid: string) {
+    const postsQuery = await query(collection(this.firestore, "posts"), where("uid", "==", uid));
+    const querySnapshot = await getDocs(postsQuery);
+    let posts: Post[] = [];
+
+    await querySnapshot.forEach((doc) => {
+      posts.push(doc.data() as Post);
+    });
+
+    return posts;
   }
 
   postId() {
