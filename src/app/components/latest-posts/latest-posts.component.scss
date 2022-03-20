@@ -90,3 +90,19 @@
         }
     }
 }
+
+@media only screen and (max-width: 1000px) {
+    .posts-list-wrap .posts-list {
+        .post-wrap {
+            width: 50%;
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .posts-list-wrap .posts-list {
+        .post-wrap {
+            width: 75%;
+        }
+    }
+}
