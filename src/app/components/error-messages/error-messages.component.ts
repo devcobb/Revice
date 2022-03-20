@@ -11,7 +11,6 @@ export class ErrorMessagesComponent implements OnInit, OnDestroy {
 
   constructor(private erorsMessageService: ErrorMessagesService) {
     this.erorsMessageService.message.subscribe(value => {
-      console.log(value)
       this.message = value;
     })
   }
