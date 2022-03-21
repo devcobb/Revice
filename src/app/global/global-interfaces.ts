@@ -36,6 +36,10 @@ export interface Post {
     fields: (TextField | ImageField | BannerField)[];
     url: string;
     userUrl: string;
+    category: string;
+    uid: string;
+    ratings: Star[];
+    order?: number
 }
 
 export interface Star {

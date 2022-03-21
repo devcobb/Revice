@@ -12,29 +12,7 @@
         </h1>
         <div class="post-wrap"
              *ngFor="let post of posts">
-            <a [routerLink]="post.url">
-                <img class="post-thumbnail"
-                     src="https://firebasestorage.googleapis.com/v0/b/revice-857d8.appspot.com/o/post_thumbails%2F-MybO7Nf5yCfghlu_pCk-Milczenie%20Owiec%20(1991)-thumnbail?alt=media&token=86c02485-ec27-461e-aa23-68a69fe608d9" />
-            </a>
-            <div class="post-information"
-                 [ngClass]="{
-                     'green-bg': post.category.toLowerCase() === 'film',
-                     'red-bg': post.category.toLowerCase() === 'serial',
-                     'blue-bg': post.category.toLowerCase() === 'game',
-                     'yellow-bg': post.category.toLowerCase() === 'music'}">
-                <a [routerLink]="post.url">
-                    <h2 class="post-title">{{post.title}}</h2>
-                </a>
-                <span class="post-author-wrap">
-                    by <a [routerLink]="post.userUrl"
-                       class="post-author">{{post.author}}</a>
-                </span>
-            </div>
-            <div class="post-rating">
-
-                <app-rating [stars]="post.ratings"
-                            [editable]="false"></app-rating>
-            </div>
+            <app-post [post]="post"></app-post>
         </div>
     </div>
 </div>

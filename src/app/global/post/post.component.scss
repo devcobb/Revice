@@ -1,0 +1,61 @@
+@use "/src/app/global/main.scss";
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.post-thumbnail {
+    display: block;
+    object-fit: cover;
+    max-width: 100%;
+    width: 100%;
+    height: 75%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.post-information {
+    @include main.flex(space-between, center);
+    padding: 0.5rem 1rem;
+}
+.red-bg {
+    background-color: main.$red;
+}
+.blue-bg {
+    background-color: main.$blue;
+}
+.green-bg {
+    background-color: main.$green;
+}
+.yellow-bg {
+    background-color: main.$bright_yellow;
+}
+.post-title {
+    @extend .font-2;
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+.post-author-wrap {
+    @include main.flex(center, center);
+    min-width: 6rem;
+}
+.post-author {
+    display: block;
+    width: 75%;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 50px;
+    padding: 4px;
+    text-align: center;
+    border: 1px solid main.$yellow;
+    font-size: 0.7rem;
+    cursor: pointer;
+    margin-left: 10px;
+    background-color: main.$yellow;
+    color: main.$near_black;
+}
+.post-rating {
+    margin-top: 1rem;
+}

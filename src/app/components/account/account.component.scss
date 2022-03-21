@@ -8,10 +8,35 @@
     min-height: 100vh;
     margin-bottom: 10%;
     box-sizing: border-box;
+    .userHasPosts {
+        padding-top: 10%;
+    }
+    .arrow {
+        cursor: pointer;
+    }
+    .arrow-right img {
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+    }
     .account {
         @include main.flex(center, center, column);
         width: 75%;
         height: 75%;
+        .users-latest-posts {
+            @include main.flex(center, center);
+            width: 100%;
+            color: main.$white;
+            margin: 5% 0 0 0;
+            .scaled {
+                transform: scale(0.7);
+            }
+            .post-wrap {
+                width: 30%;
+                height: 15rem;
+                color: main.$white;
+                margin: 0 0.5%;
+            }
+        }
         .profile {
             @include main.flex(space-around, center);
             width: 50%;
@@ -90,11 +115,13 @@
             }
         }
         .options {
-            @include main.flex(center, center, column);
+            @include main.flex(center, center);
+            width: 100%;
             color: main.$yellow;
-            margin-top: 5%;
+            margin-top: 7.5%;
             .button-wrap {
-                margin: 5% 0;
+                min-width: 15%;
+                margin: 0 2.5%;
                 display: block;
                 text-align: center;
             }
@@ -106,11 +133,37 @@
     }
 }
 
+@media only screen and (max-width: 1200px) {
+    .account-wrap .account {
+        .users-latest-posts {
+            flex-direction: column;
+            .scaled {
+                transform: scale(1);
+            }
+            .post-wrap {
+                margin-bottom: 10%;
+                width: 50%;
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 1024px) {
     .account-wrap {
         .account {
+            padding-top: 15%;
+            .options {
+                flex-direction: column;
+                .button-wrap {
+                    width: 30%;
+                    margin: 1% 0;
+                }
+            }
             .profile {
                 flex-direction: column;
+            }
+            .profile-data {
+                justify-content: center;
             }
             .profile-pic-wrap {
                 border-right: none;
@@ -119,6 +172,12 @@
             .profile-data-wrap {
                 margin: 5% 0;
             }
+            .users-latest-posts {
+                .post-wrap {
+                    margin-bottom: 15%;
+                    width: 75%;
+                }
+            }
         }
     }
 }
@@ -126,13 +185,23 @@
 @media only screen and (max-width: 600px) {
     .account-wrap {
         .account {
+            padding-top: 25%;
+            .options {
+                .button-wrap {
+                    width: 40%;
+                }
+            }
             .profile-data {
                 font-size: 1.3rem;
                 margin: 7.5% 0;
-                flex-direction: column;
-                align-items: flex-start;
                 span {
                     margin-bottom: 2%;
+                }
+            }
+            .users-latest-posts {
+                .post-wrap {
+                    margin-bottom: 25%;
+                    width: 100%;
                 }
             }
         }
@@ -142,8 +211,20 @@
 @media only screen and (max-width: 414px) {
     .account-wrap {
         .account {
+            padding-top: 35%;
+            .options {
+                .button-wrap {
+                    width: 75%;
+                }
+            }
             .profile-data {
                 font-size: 1rem;
+                flex-direction: column;
+            }
+            .users-latest-posts {
+                .post-wrap {
+                    margin-bottom: 40%;
+                }
             }
         }
     }

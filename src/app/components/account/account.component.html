@@ -6,7 +6,8 @@
                 containerPosition="fixed"
                 [customImage]="bannerImage"></app-hero-image>
 <div class="account-wrap">
-    <div class="account">
+    <div class="account"
+         [ngClass]="{'userHasPosts': userPosts.length > 0}">
         <div class="profile">
             <div class="profile-pic-wrap">
                 <label class="profile-pic"
@@ -33,27 +34,32 @@
                 <div class="profile-data">
                     <span>Email:</span> {{ email }}
                 </div>
-                <div class="profile-data">
-                    <span>UID:</span> {{ uid }}
-                </div>
+            </div>
+        </div>
+        <div class="users-latest-posts"
+             *ngIf="userPosts.length > 0">
+            <div class="post-wrap"
+                 *ngFor="let post of userPosts; let even = even"
+                 [ngClass]="{'scaled': even && userPosts.length > 2}">
+                <app-post [post]="post"></app-post>
             </div>
         </div>
         <div class="options">
-            <div>
-                <div class="button-wrap"
-                     routerLink="all-posts">
-                    <button>
-                        View all user's posts
-                    </button>
-                </div>
-                <div class="button-wrap"
-                     *ngIf="isCurrentUser()"
-                     routerLink="all-posts">
-                    <button (click)="logout()">
-                        Sign off
-                    </button>
-                </div>
+
+            <div class="button-wrap"
+                 routerLink="all-posts">
+                <button>
+                    View all user's posts
+                </button>
             </div>
+            <div class="button-wrap"
+                 *ngIf="isCurrentUser()"
+                 routerLink="all-posts">
+                <button (click)="logout()">
+                    Sign off
+                </button>
+            </div>
+
         </div>
     </div>
 </div>

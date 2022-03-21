@@ -12,6 +12,8 @@ export interface LoginData {
 })
 export class AuthService {
   username = "";
+  uid = "";
+
   constructor(private auth: Auth, private dbService: DatabaseService) { }
 
   login({ email, password }: LoginData) {
@@ -63,12 +65,12 @@ export class AuthService {
     return this.auth.currentUser
   }
 
-  async userNickname() {
+  async userData() {
     let uid = JSON.parse(localStorage.getItem('user')!).uid;
     let username = await this.dbService.getUserName(uid).then(data => {
       this.username = data
     });
 
-    return await this.username
+    return await { username: this.username, uid: uid }
   }
 }

@@ -23,16 +23,6 @@ export class LatestPostsComponent implements OnInit {
       this.posts = data
     });
 
-    await this.postSetUp();
     await setTimeout(() => this.needLoading = false, 750)
-  }
-
-  async postSetUp() {
-    this.posts.forEach(async post => {
-      post.url = `/post/${post.title.replace(/\s/g, '-')}-${post.id}`;
-      post.userUrl = `/user/${post.author.replace(/\s/g, '-')}`
-      post.thumbnail = "";
-      post.thumbnail = await this.databaseService.getThumbnail(`post_thumbails/${post.id}-${post.title}-thumnbail`)
-    })
   }
 }
