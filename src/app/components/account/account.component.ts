@@ -110,13 +110,4 @@ export class AccountComponent implements OnInit {
       reader.readAsDataURL(input.files[0]);
     }
   }
-
-  previousPost() {
-
-  }
-
-  nextPost() {
-
-  }
-
 }

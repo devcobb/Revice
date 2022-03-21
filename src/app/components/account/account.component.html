@@ -38,20 +38,10 @@
         </div>
         <div class="users-latest-posts"
              *ngIf="userPosts.length > 0">
-            <div class="arrow arrow-left"
-                 *ngIf="userPosts.length > 2"
-                 (click)="previousPost()">
-                <img src="/assets/images/arrow-left.png" />
-            </div>
             <div class="post-wrap"
                  *ngFor="let post of userPosts; let even = even"
                  [ngClass]="{'scaled': even && userPosts.length > 2}">
                 <app-post [post]="post"></app-post>
-            </div>
-            <div class="arrow arrow-right"
-                 *ngIf="userPosts.length > 2"
-                 (click)="nextPost()">
-                <img src="/assets/images/arrow-left.png" />
             </div>
         </div>
         <div class="options">
