@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Database } from '@angular/fire/database';
 import { doc, Firestore, setDoc } from "@angular/fire/firestore";
 import { initializeApp } from 'firebase/app';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref, uploadString } from "firebase/storage";
 import { environment } from 'src/environments/environment';
 import { BannerField, Category, ImageField, Post, Star, TextField } from './global-interfaces';
@@ -13,7 +13,7 @@ import { BannerField, Category, ImageField, Post, Star, TextField } from './glob
 export class DatabaseService {
   constructor(
     private database: Database,
-    public firestore: Firestore,
+    public firestore: Firestore
   ) { }
 
   app = initializeApp(environment.firebase);
@@ -71,7 +71,8 @@ export class DatabaseService {
   }
 
   async getPosts() {
-    const posts = await getDocs(collection(this.firestore, "posts"));
+    const publicPostsQuery = await query(collection(this.firestore, "posts"), where("postPrivate", "==", false), orderBy("id"));
+    const posts = await getDocs(publicPostsQuery);
     let localPosts: Post[] = [];
 
     await posts.forEach((doc) => {
@@ -94,7 +95,16 @@ export class DatabaseService {
   }
 
   async checkForUsersPosts(uid: string) {
-    const postsQuery = await query(collection(this.firestore, "posts"), where("uid", "==", uid));
+    let postsQuery = null;
+    let user = await JSON.parse(localStorage.getItem('user')!);
+
+    if (user && user.uid === uid) {
+      postsQuery = await query(collection(this.firestore, "posts"), where("uid", "==", uid), orderBy("id"), limit(3));
+    }
+    else {
+      postsQuery = await query(collection(this.firestore, "posts"), where("uid", "==", uid), where("postPrivate", "==", false), orderBy("id"), limit(3));
+    }
+
     const querySnapshot = await getDocs(postsQuery);
     let posts: Post[] = [];
 

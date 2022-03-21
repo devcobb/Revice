@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/global/auth/auth.service';
 import { DatabaseService } from 'src/app/global/database.service';
 import { Post } from 'src/app/global/global-interfaces';
 
-interface userData {
+export interface userData {
   profilePic: string;
   email: string;
   uid: string;
@@ -61,7 +61,7 @@ export class AccountComponent implements OnInit {
   }
 
   async checkForUsersPosts() {
-    return await (await this.db.checkForUsersPosts(this.userData.uid)).slice(0, 3);
+    return await (await this.db.checkForUsersPosts(this.userData.uid));
   }
 
   get profilePicture() {
