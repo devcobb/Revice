@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Star } from 'src/app/global/global-interfaces';
 import { ErrorMessagesService } from '../error-messages/error-messages-service.service';
+import { RatingService } from './rating.service';
 
 @Component({
   selector: 'app-rating',
@@ -12,8 +13,9 @@ export class RatingComponent implements OnInit {
   @Input() stars: Star[] = [];
   @Input() editable = false;
   @Output() touched = new Subject<boolean>();
+  @ViewChildren('starWrap') starWrap!: QueryList<HTMLDivElement>;
 
-  constructor(private errorMessageService: ErrorMessagesService) {
+  constructor(private errorMessageService: ErrorMessagesService, private ratingService: RatingService) {
     for (let i = 0; i < 10; i++) {
       this.stars.push({ id: i, filled: false, half: false })
     }
@@ -31,7 +33,8 @@ export class RatingComponent implements OnInit {
         this.stars[i].filled = true;
       }
 
-      this.errorMessageService.ratingAdded.next(true)
+      this.errorMessageService.ratingAdded.next(true);
+      this.ratingService.changedRatingValue.next(this.stars)
     }
   }
 
@@ -45,7 +48,10 @@ export class RatingComponent implements OnInit {
   }
 
   clearRatings() {
-    document.querySelectorAll('.star').forEach(star => star.className = "star");
+    this.starWrap.toArray().forEach(star => {
+      star.className = "star"
+    });
+
     this.stars.forEach(star => {
       star.filled = false;
       star.half = false;

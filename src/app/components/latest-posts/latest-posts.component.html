@@ -10,9 +10,136 @@
             Latest posts
             <span class="subtitle">of every users</span>
         </h1>
-        <div class="post-wrap"
-             *ngFor="let post of posts">
-            <app-post [post]="post"></app-post>
+        <div class="filter-bar">
+            <div class="filter-tabs">
+                <div class="filter-tab"
+                     *ngFor="let filter of filters"
+                     (click)="chooseFilter(filter)">
+                    <span>{{filter.copy}}</span>
+                    <img class="arrow"
+                         [ngClass]="{'arrow-up' : isCurrentFilter(filter)}"
+                         src="/assets/images/arrow-down.png" />
+                </div>
+            </div>
+            <div class="filter-options-wrap"
+                 [ngClass]="filterOptionsStyling()">
+
+                <!-- CATEGORY -->
+                <ng-container *ngIf="!determineFilter()">
+                    <div class="filter-option"
+                         (click)="addFilter('category', option)"
+                         *ngFor="let option of choosedFilter.options">{{option}}</div>
+                </ng-container>
+
+                <!-- RATING -->
+                <ng-container *ngIf="determineFilter('rating')">
+                    <div class="filter-options-button-wrap">
+                        <app-rating [editable]="true"></app-rating>
+                        <button class="filter-button"
+                                (click)="updateFilter()">Filter</button>
+                    </div>
+                </ng-container>
+
+                <!-- YEAR -->
+                <ng-container *ngIf="determineFilter('year')">
+                    <div class="filter-year-container">
+                        <div class="filter-year-wrap">
+                            <div class="range-slider">
+                                <span class="range-slider-topbar">
+                                    <span class="range-slider-text">from</span>
+                                    <input type="number"
+                                           value="1500"
+                                           class="min-val year-filter-input"
+                                           min="0"
+                                           [max]="year"
+                                           (input)="updateRange()"
+                                           step="1">
+                                    <span class="range-slider-text">to</span>
+                                    <input type="number"
+                                           class="max-val year-filter-input"
+                                           [value]="year"
+                                           (input)="updateRange()"
+                                           min="0"
+                                           [max]="year"
+                                           step="1">
+                                </span>
+
+                                <input [attr.value]="'1500'"
+                                       min="1"
+                                       [max]="year"
+                                       class="first-range"
+                                       (input)="changeRange()"
+                                       step="1"
+                                       type="range">
+
+                                <input [attr.value]="year"
+                                       min="1"
+                                       [max]="year"
+                                       class="second-range"
+                                       (input)="changeRange()"
+                                       step="1"
+                                       type="range">
+
+                                <svg width="100%"
+                                     height="24">
+                                    <line x1="4"
+                                          y1="0"
+                                          x2="480"
+                                          y2="0"
+                                          stroke="#444"
+                                          stroke-width="12"
+                                          stroke-dasharray="1 28">
+                                    </line>
+                                </svg>
+                            </div>
+                            <div class="seperator"></div>
+                            <div class="specific-year-wrap">
+                                <span class="range-slider-text">Enter a specific year</span>
+                                <input class="filter-year year-filter-input filter-year-number"
+                                       (change)="enterSpecificYear($event.target.value)"
+                                       type="number"
+                                       min="1"
+                                       [value]="yearRange"
+                                       [max]="year" />
+                            </div>
+                        </div>
+                        <button class="filter-button"
+                                (click)="filterYear()">Filter</button>
+                    </div>
+                </ng-container>
+            </div>
+
+            <!-- SEARCH -->
+            <div class="search-wrap"
+                 [ngClass]="{'search-wrap-margin': !filterOptionsShown}">
+                <input class="search-field"
+                       [value]="searchQuery"
+                       [formControl]="searchControl"
+                       type="text" />
+            </div>
+
+            <div class="active-filter-wrap">
+                <div class="active-filter"
+                     *ngFor="let filter of activeFilters">
+                    <ng-container *ngIf="filter.filter === 'rating'">
+                        <div class="active-filter-rating-wrap">
+                            <app-rating [editable]="false"
+                                        [stars]="filter.rating"></app-rating>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="filter.filter !== 'rating'">
+                        {{filter.copy}}
+                    </ng-container>
+                </div>
+            </div>
         </div>
+
+        <ng-container *ngFor="let post of posts;">
+            <div class="post-wrap"
+                 *ngIf="!post.hidden"
+                 [ngClass]="{'first': post.id === firstPostID()}">
+                <app-post [post]="post"></app-post>
+            </div>
+        </ng-container>
     </div>
 </div>

@@ -28,6 +28,7 @@ export interface BannerField {
 }
 
 export interface Post {
+    [key: string]: string | boolean | number | Star[] | (TextField | ImageField | BannerField)[] | undefined;
     author: string;
     thumbnail: string;
     title: string;
@@ -39,7 +40,9 @@ export interface Post {
     category: string;
     uid: string;
     ratings: Star[];
-    order?: number
+    order?: number;
+    hidden: boolean;
+    year: string;
 }
 
 export interface Star {
