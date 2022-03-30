@@ -121,10 +121,7 @@ export class LatestPostsComponent implements OnInit {
   chooseFilter(filter: Filter) {
     if (this.isCurrentFilter(filter)) {
       this.filterOptionsShown = true;
-
-      setTimeout(() => {
-        this.choosedFilter = {} as Filter;
-      }, 300)
+      this.choosedFilter = {} as Filter;
     }
     else {
       this.filterOptionsShown = false;
@@ -141,22 +138,6 @@ export class LatestPostsComponent implements OnInit {
     }
 
     return false;
-  }
-
-  filterOptionsStyling() {
-    let styling = "";
-
-    if (!this.filterOptionsShown && (this.isCurrentFilter(this.filters[1]) || this.isCurrentFilter(this.filters[2]))) {
-      styling = 'show filter-options-wrap-long';
-    }
-    else if (!this.filterOptionsShown && this.isCurrentFilter(this.filters[0])) {
-      styling = 'show filter-options-wrap-max';
-    }
-    else if (this.filterOptionsShown) {
-      styling = 'hide filter-options-wrap-min';
-    }
-
-    return styling;
   }
 
   isCurrentFilter(filter: Filter) {
