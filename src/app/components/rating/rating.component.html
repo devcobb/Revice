@@ -1,5 +1,6 @@
 <div class="post-rating-wrap">
     <div class="star"
+         #starWrap
          *ngFor="let star of stars"
          [attr.data-id]="star.id"
          [ngClass]="{'star-half': star.half, 'star-filled': star.filled, 'no-cursor': !editable}"

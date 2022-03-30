@@ -15,18 +15,228 @@
         color: inherit;
         text-decoration: none;
     }
+    .filter-bar {
+        @include main.flex(flex-start, center, column);
+        margin-bottom: 5%;
+        width: 75%;
+        height: 10rem;
+        .filter-options-wrap-long {
+            min-height: 8.5rem;
+        }
+        .filter-options-wrap-min {
+            min-height: 0rem;
+        }
+        .filter-options-wrap-max {
+            min-height: 4rem;
+        }
+        .filter-options-wrap {
+            @include main.flex(center, center);
+            width: 50%;
+            color: main.$dark;
+            border-radius: 3px;
+            overflow: hidden;
+            transition: min-height 0.3s;
+            .filter-option {
+                transition: font-weight 0.3s;
+                background-color: main.$yellow;
+                padding: 1rem;
+                text-align: center;
+                margin: 0 1px;
+                border-radius: 3px;
+                width: 5rem;
+                cursor: pointer;
+                &:hover {
+                    font-weight: bold;
+                }
+            }
+        }
+        .filter-options-button-wrap {
+            @include main.flex(center, center, column);
+        }
+        .filter-button {
+            @include main.contrastButton();
+            font-size: 0.7rem;
+            width: 15%;
+            margin-top: 4%;
+            padding: 0.5rem 1rem;
+        }
+        .show {
+            animation: showFiltersOptions 0.5s;
+            animation-fill-mode: forwards;
+        }
+        .hide {
+            animation: hideFiltersOptions 0.5s;
+            animation-fill-mode: forwards;
+        }
+        .filter-tabs {
+            @include main.flex(center, center);
+            width: 100%;
+            margin-bottom: 2%;
+        }
+        .filter-tab {
+            @include main.flex(center, center);
+            width: 7.5%;
+            margin: 0 1%;
+            background-color: main.$yellow;
+            color: main.$dark;
+            padding: 0.5rem 0.5rem 0.5rem 1rem;
+            border-radius: 3px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            &:hover {
+                background-color: darken(main.$yellow, 3%);
+            }
+        }
+        .specific-year-wrap {
+            @include main.flex(center, center, column);
+            .year-filter-input {
+                width: 27.5%;
+            }
+        }
+        .range-slider-text {
+            color: main.$yellow;
+            font-weight: bold;
+        }
+        .filter-year-wrap {
+            @include main.flex(center, center);
+            margin-bottom: 3%;
+            width: 100%;
+        }
+        .filter-year-container {
+            @include main.flex(center, center, column);
+            width: 75%;
+        }
+        .filter-year-range-data {
+            @include main.flex(space-between, center);
+            @extend .font-1;
+            width: 50%;
+            color: main.$yellow;
+            font-size: 0.8rem;
+        }
+        .filter-year-number {
+            margin-top: 2.5%;
+            width: 50%;
+            text-align: center;
+            margin-top: 2.5%;
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            &[type="number"] {
+                -moz-appearance: textfield;
+            }
+        }
+        .seperator {
+            width: 2px;
+            height: 4rem;
+            background-color: main.$yellow;
+            margin: 0 5%;
+            border-radius: 50px;
+        }
+        .year-filter-input {
+            width: 20%;
+            text-align: center;
+            border: 1px solid main.$yellow;
+            border-radius: 50px;
+            color: main.$yellow;
+            background-color: transparent;
+            outline: none;
+            padding: 0.5rem 1rem;
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            &::placeholder {
+                color: main.$yellow;
+            }
+        }
+        .choosed {
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .arrow {
+            filter: brightness(0);
+            margin-left: 10px;
+            width: 12px;
+            height: 12px;
+            transition: transform 0.2s;
+        }
+        .arrow-up {
+            -webkit-transform: scaleY(-1);
+            transform: scaleY(-1);
+        }
+    }
+    .active-filter-wrap {
+        @include main.flex(center, stretch);
+        width: 75%;
+        margin-top: 2.5%;
+        .active-filter {
+            @include main.flex(center, center);
+            color: main.$white;
+            position: relative;
+            background-color: main.$purple;
+            border-radius: 3px;
+            padding: 0.75rem 2rem;
+            font-weight: bold;
+            margin: 0 10px;
+            min-width: 7%;
+            min-height: 1rem;
+        }
+        .active-filter-rating-wrap {
+            ::ng-deep {
+                .star {
+                    width: 12.5px;
+                    height: 12.5px;
+                    margin: 0 1px;
+                }
+            }
+        }
+        .app-rating {
+            max-width: 100%;
+        }
+    }
+    .search-wrap {
+        @include main.flex(center, center);
+        width: 75%;
+        transition: margin 0.3s;
+        .search-field {
+            @extend .font-1;
+            position: relative;
+            width: 25%;
+            background-color: transparent;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+            border-bottom: 1px solid main.$yellow;
+            padding: 10px 0 10px 45px;
+            color: main.$yellow;
+            background-image: url("/assets/images/search.png");
+            background-repeat: no-repeat;
+            background-position: 0% center;
+        }
+    }
+    .search-wrap-margin {
+        margin-top: 1.5%;
+    }
     .posts-list {
         @include main.flex(flex-start, center, column);
         width: 100%;
         min-height: calc(100vh - 10rem);
         padding-top: 10rem;
         margin-bottom: 10%;
+
         .category-header {
             @extend .font-2;
             @include main.flex(center, center);
             @include main.mainHeading(main.$yellow);
             font-size: 3.5rem;
-            margin-bottom: 5%;
+            margin-bottom: 2.5%;
+        }
+        .first {
+            margin-top: 7.5%;
         }
         .post-wrap {
             width: 30%;
@@ -34,6 +244,24 @@
             color: main.$white;
             margin-bottom: 10rem;
         }
+    }
+}
+
+@keyframes showFiltersOptions {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes hideFiltersOptions {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
 

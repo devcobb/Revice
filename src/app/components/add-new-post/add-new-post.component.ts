@@ -11,7 +11,7 @@ export class AddNewPostComponent implements OnInit {
   heroImageHeight = "60vh";
   imageID = "2";
   availableCategories: Category[] = [
-    { name: "film" },
+    { name: "movie" },
     { name: "serial" },
     { name: "game" },
     { name: "music" }
