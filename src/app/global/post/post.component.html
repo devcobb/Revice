@@ -9,7 +9,7 @@
         'blue-bg': post.category.toLowerCase() === 'game',
         'yellow-bg': post.category.toLowerCase() === 'music'}">
     <a [routerLink]="post.url">
-        <h2 class="post-title">{{post.title}}</h2>
+        <h2 class="post-title">{{post.title}}<span class="year">({{post.year}})</span></h2>
     </a>
     <span class="post-author-wrap">
         by <a [routerLink]="post.userUrl"
