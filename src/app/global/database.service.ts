@@ -5,7 +5,7 @@ import { initializeApp } from 'firebase/app';
 import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref, uploadString } from "firebase/storage";
 import { environment } from 'src/environments/environment';
-import { BannerField, Category, ImageField, Post, Star, TextField } from './global-interfaces';
+import { BannerField, Category, GalleryField, HeadingField, ImageField, Post, RatingField, Star, TextField } from './global-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class DatabaseService {
     await uploadString(storageRef, picture, 'data_url').then((snapshot) => { });
   }
 
-  async addPost(id: string, thumbnail: string, title: string, fields: (TextField | ImageField | BannerField)[], postPrivate: boolean, authorName: string, uid: string, ratings: Star[], category: Category) {
+  async addPost(id: string, thumbnail: string, title: string, fields: (TextField | ImageField | BannerField | RatingField | GalleryField | HeadingField)[], postPrivate: boolean, authorName: string, uid: string, ratings: Star[], category: Category) {
     const docRef = await setDoc(doc(this.firestore, "posts", id), {
       title: title,
       fields: fields,

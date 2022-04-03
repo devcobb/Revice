@@ -6,11 +6,15 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./upload-image.component.scss']
 })
 export class UploadImageComponent implements OnInit {
-  @Input() id: number = 0;
+  @Input() id?: number | string = 0;
+  @Input() customID?: string = "";
   @Output() imageUploaded = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit(): void {
+    if (this.customID !== "" && this.customID !== undefined) {
+      this.id = this.customID;
+    }
   }
 
   uploadImage(event: Event) {

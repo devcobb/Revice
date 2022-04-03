@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/global/auth/auth.service';
 import { DatabaseService } from 'src/app/global/database.service';
-import { BannerField, Category, EPossibleErrors, ImageField, PossibleErrors, Star, TextField } from 'src/app/global/global-interfaces';
+import { BannerField, Category, EPossibleErrors, GalleryField, HeadingField, ImageField, PossibleErrors, RatingField, Star, TextField } from 'src/app/global/global-interfaces';
 import { ErrorMessagesService } from '../../error-messages/error-messages-service.service';
 
 @Component({
@@ -13,12 +13,12 @@ import { ErrorMessagesService } from '../../error-messages/error-messages-servic
 export class AddNewPostFormComponent {
   @Input() category = <Category>{};
   @Output() choosedCategory = "";
-  @Output() previewedFields = new EventEmitter<(TextField | ImageField | BannerField)[]>();
+  @Output() previewedFields = new EventEmitter<(TextField | ImageField | BannerField | RatingField | GalleryField | HeadingField)[]>();
   @Output() thumbnailImage = new EventEmitter<string>();
   @Output() needPreview = new EventEmitter<boolean>();
   @Output() postTitle = new EventEmitter<string>();
   @Output() postRatings = new EventEmitter<Star[]>();
-  fields: (TextField | ImageField | BannerField)[] = [];
+  fields: (TextField | ImageField | BannerField | RatingField | GalleryField | HeadingField)[] = [];
   addPostButtonDisabled = true;
   previewPostButtonDisabled = true;
   errorMessage = true;
@@ -49,7 +49,7 @@ export class AddNewPostFormComponent {
     this.category = category
   }
 
-  addField(fieldType: 'image' | 'text' | 'banner') {
+  addField(fieldType: 'image' | 'text' | 'banner' | 'rating' | 'gallery' | 'heading') {
     if (fieldType === 'text') {
       this.fields.push(
         {
@@ -69,7 +69,7 @@ export class AddNewPostFormComponent {
         }
       )
     }
-    else {
+    else if (fieldType === 'banner') {
       this.fields.push(
         {
           type: fieldType,
@@ -78,6 +78,40 @@ export class AddNewPostFormComponent {
           title: "",
           id: this.fields.length,
           arrangement: "image-text"
+        }
+      )
+    }
+    else if (fieldType === 'rating') {
+      this.fields.push(
+        {
+          type: fieldType,
+          value: "",
+          src: "",
+          title: "",
+          id: this.fields.length,
+          arrangement: "image-text",
+          rating: []
+        }
+      )
+    }
+    else if (fieldType === 'gallery') {
+      this.fields.push(
+        {
+          type: fieldType,
+          src: "",
+          id: this.fields.length,
+          galleryType: 'one-big-four-small',
+          arrangement: "image-text"
+        }
+      )
+    }
+    else if (fieldType === 'heading') {
+      this.fields.push(
+        {
+          type: fieldType,
+          src: "",
+          id: this.fields.length,
+          title: ""
         }
       )
     }
@@ -111,8 +145,13 @@ export class AddNewPostFormComponent {
   }
 
   changeArrangement(id: number) {
-    let fieldToChange = <BannerField>this.fields.find(field => field.id === id && field.type === 'banner');
+    let fieldToChange = <BannerField | RatingField | GalleryField>this.fields.find(field => field.id === id && (field.type === 'banner' || field.type === 'rating' || field.type === 'gallery'));
     fieldToChange.arrangement === 'text-image' ? fieldToChange.arrangement = "image-text" : fieldToChange.arrangement = "text-image";
+  }
+
+  changeGalleryType(id: number) {
+    let fieldToChange = <GalleryField>this.fields.find(field => field.id === id && (field.type === 'gallery'));
+    fieldToChange.galleryType === 'four-small' ? fieldToChange.galleryType = "one-big-four-small" : fieldToChange.galleryType = "four-small";
   }
 
   previewToggle(event: Event) {
@@ -196,16 +235,30 @@ export class AddNewPostFormComponent {
           validate = false
         }
       }
-      else {
-        if ((field.title.length < 5 && field.title.length > 50) || (field.value.length < 10 || field.value.length > 550) || field.src.length === 0) {
-          possibleErrors.bannerNoData = false;
-          validate = false
+      else if (field.type === 'banner') {
+        if (field.title) {
+          if ((field.title.length < 5 && field.title.length > 50) || (field.value.length < 10 || field.value.length > 550) || field.src.length === 0) {
+            possibleErrors.bannerNoData = false;
+            validate = false
+          }
         }
       }
     })
 
     this.showErrorMessage(possibleErrors);
     return validate
+  }
+
+  getCustomID(id: number) {
+    let characters = "0123456789abcdefghijklmnoprstuwz";
+    let randomID = "";
+
+    for (let i = 0; i < 10; i++) {
+      randomID += characters[Math.floor(Math.random() * characters.length)]
+    }
+
+    randomID += new Date().getTime();
+    return `${id}-${randomID}`
   }
 
   showErrorMessage(possibleErrors: PossibleErrors) {
