@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { DatabaseService } from 'src/app/global/database.service';
 import { BannerField, ImageField, Post, Star, TextField } from 'src/app/global/global-interfaces';
+import { YearFieldData } from '../choose-year/choose-year.component';
 import { RatingService } from '../rating/rating.service';
 
 
@@ -32,19 +33,22 @@ interface RatingCalculations {
   styleUrls: ['./range.scss', './latest-posts.component.scss']
 })
 export class LatestPostsComponent implements OnInit {
-  year = new Date().getFullYear();
+
   posts: Post[] = [];
   unfilteredPosts: Post[] = [];
   needLoading = true;
   filters: Filter[] = [];
   filterOptionsShown = true;
   choosedFilter: Filter = {} as Filter;
-  yearRange = "";
   searchControl = new FormControl();
   searchControlSub = new Subscription;
   filterRating: Star[] = []
   updatedRating: Star[] = [];
   activeFilters: ActiveFilter[] = [];
+
+  //Year
+  year = new Date().getFullYear();
+  yearRange = "";
   searchQuery = "";
   specifedYear = "";
   rangeYear = "";
@@ -69,6 +73,14 @@ export class LatestPostsComponent implements OnInit {
     this.ratingService.changedRatingValue.subscribe(value => {
       this.filterRating = value;
     })
+  }
+
+  getYearFieldData(data: YearFieldData) {
+    this.specifedYear = data.specifedYear;
+    this.rangeYear = data.rangeYear;
+    this.yearRange = data.yearRange;
+
+    console.log(data)
   }
 
   initFilterRating() {
@@ -158,15 +170,6 @@ export class LatestPostsComponent implements OnInit {
     }
 
     return false
-  }
-
-  enterSpecificYear(val: string) {
-    this.minVal.value = "";
-    this.maxVal.value = "";
-    this.firstRange.value = "0";
-    this.secRange.value = "0";
-
-    this.specifedYear = val;
   }
 
   filterYear() {
@@ -339,39 +342,5 @@ export class LatestPostsComponent implements OnInit {
     let foundPost = this.posts.find(post => !post.hidden);
 
     return foundPost ? foundPost.id : 0;
-  }
-
-  updateRange() {
-    this.firstRange.value = this.minVal.value;
-    this.secRange.value = this.maxVal.value;
-  }
-
-  changeRange() {
-    let slide1 = parseFloat(this.firstRange.value);
-    let slide2 = parseFloat(this.secRange.value);
-
-    if (slide1 > slide2) {
-      [slide1, slide2] = [slide2, slide1];
-    }
-
-    this.minVal.value = String(slide1);
-    this.maxVal.value = String(slide2);
-
-    let values = [this.minVal, this.maxVal];
-    values.forEach((el) => {
-      el.oninput = () => {
-        let number1 = parseFloat(this.minVal.value),
-          number2 = parseFloat(this.maxVal.value);
-
-        if (number1 > number2) {
-          let tmp = number1;
-          this.minVal.value = String(number2);
-          this.maxVal.value = String(tmp);
-        }
-
-        this.firstRange.value = String(number1);
-        this.secRange.value = String(number2);
-      }
-    });
   }
 }

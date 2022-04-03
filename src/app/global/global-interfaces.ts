@@ -27,6 +27,34 @@ export interface BannerField {
     arrangement: "image-text" | "text-image"
 }
 
+export interface HeadingField {
+    [key: string]: string | number;
+    type: 'heading';
+    id: number;
+    title: string;
+}
+
+
+export interface RatingField {
+    [key: string]: string | number | Star[];
+    type: 'rating';
+    src: string;
+    value: string;
+    id: number;
+    title: string;
+    rating: Star[];
+    arrangement: "image-text" | "text-image";
+}
+
+export interface GalleryField {
+    [key: string]: string | number;
+    type: 'gallery';
+    src: string;
+    id: number;
+    galleryType: 'four-small' | 'one-big-four-small';
+    arrangement: "image-text" | "text-image";
+}
+
 export interface Post {
     [key: string]: string | boolean | number | Star[] | (TextField | ImageField | BannerField)[] | undefined;
     author: string;

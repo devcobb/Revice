@@ -33,6 +33,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { PreviewPostComponent } from './components/preview-post/preview-post.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { PostComponent } from './global/post/post.component';
+import { ChooseYearComponent } from './components/choose-year/choose-year.component';
 
 const materialModules = [
   MatButtonModule,
@@ -63,6 +64,7 @@ const materialModules = [
     LoadingScreenComponent,
     ErrorMessagesComponent,
     PostComponent,
+    ChooseYearComponent,
   ],
   imports: [
     BrowserModule,
