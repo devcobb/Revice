@@ -61,8 +61,8 @@
         }
         .post-basic-information {
             @include main.flex(center, center);
-            width: 35%;
-            margin-bottom: 1%;
+            width: 40%;
+            margin-bottom: 2.5%;
         }
         .post-info-wrap {
             @include main.flex(center, center, column);
@@ -73,6 +73,7 @@
             }
             .post-visiblity-wrap {
                 margin-top: 5%;
+                margin-bottom: 15%;
                 width: 35%;
             }
         }
@@ -146,7 +147,7 @@
             @include main.flex(center, center);
             width: 40%;
             height: 12.5rem;
-            margin-bottom: 2.5%;
+            margin-bottom: 1%;
         }
         .field-wrap {
             position: relative;
@@ -277,6 +278,10 @@
                 }
             }
             .rating-wrap{
+                &.mobile {
+                    max-width: 100%;
+                    display: none;
+                }
                 height: 3rem;
                 ::ng-deep {
                     .post-rating-wrap {
@@ -386,6 +391,9 @@
 @media only screen and (max-width: 1400px) {
     .add-new-post-container {
         .add-new-post-form {
+            .thumbnail {
+                width: 50%;
+            }
             .post-info-wrap {
                 .choose-year-wrap{
                     width: 100%;
@@ -394,35 +402,40 @@
                     width: 50%;
                 }
             }
+            .field-rating-wrap .arrangement {
+                top: 10%;
+            }
             .arrangement {
                 right: -8%;
                 top: 25%;
             }
+            .grid {
+                right: -8%;
+                top: 20%
+            }
+            .field-gallery-wrap .arrangement {
+                top: 10%;
+            }
             .add-row {
-                flex-direction: column;
-                width: 100%;
+                width: 50%;
                 .row-option {
                     width: 20%;
-                    margin: 1% 0;
                 }
             }
+            .ratings-wrap {
+                width: 50%;
+            }
             .post-basic-information {
-                flex-direction: column;
-                width: 40%;
-                margin-bottom: 3%;
+                width: 50%;
                 .post-title {
-                    width: 100%;
-                    margin-bottom: 5%;
+                    width: 70%;
                     box-sizing: border-box;
-                }
-                .post-input {
-                    border-radius: 50px;
                 }
             }
             .submit-container {
                 .submit-btn,
                 .preview-btn {
-                    width: 25%;
+                    min-width: 25%;
                 }
             }
         }
@@ -432,6 +445,12 @@
 @media only screen and (max-width: 1200px) {
     .add-new-post-container {
         .add-new-post-form {
+            .add-row {
+                width: 75%;
+            }
+            .field-container {
+                width: 60%;
+            }
             .post-info-wrap {
                 .choose-year-wrap{
                     ::ng-deep {
@@ -457,37 +476,62 @@
 @media only screen and (max-width: 1000px) {
     .add-new-post-container {
         .add-new-post-form {
-            .post-basic-information {
+            .post-basic-information, .ratings-wrap {
                 width: 75%;
             }
-            ::ng-deep {
-                .choose-category-wrap {
-                    width: 30%;
-                }
+            .post-info-wrap {
+                width: 50%;
             }
             .thumbnail {
                 width: 75%;
                 height: 10rem;
             }
-            .close {
+            .close, .grid {
                 right: -13.5%;
             }
             .arrangement {
                 right: -13.5%;
                 top: 25%;
             }
+            .field-rating-wrap .arrangement {
+                top: 5%;
+            }
             .add-row {
+                width: 80%;
                 .row-option {
                     width: 35%;
-                    margin: 2.5% 0;
+                    margin: 2.5%;
                 }
+            }
+            .field-rating-wrap {
+                flex-direction: column;
             }
             .field-container {
                 margin-bottom: 5%;
-                width: 75%;
+                .field-rating-container, .rating-title, .rating-description-wrap {
+                    width: 100%;
+                }
+                .rating-wrap.desktop {
+                    display: none;
+                }
+                .rating-wrap.mobile {
+                    display: block;
+                }
             }
-            .post-input {
-                border-radius: 50px;
+            .one-big-four-wrap  {
+                .wrap:first-of-type {
+                    margin-bottom: .5rem;
+                    .gallery-image-wrap {
+                        padding-right: 0 !important;
+                    }
+                }
+
+            }
+            .one-big-four-wrap.gallery-wrap {
+                flex-direction: column;
+                .wrap {
+                    width: 100%;
+                }
             }
             .submit-container {
                 width: 100%;
@@ -507,12 +551,21 @@
     .add-new-post-container {
         .add-new-post-form {
             .post-basic-information {
-                width: 65%;
+                width: 75%;
+                .post-title {
+                    width: 60%;
+                }
+                app-choose-category {
+                    width: 40%;
+                }
+            }
+            .post-info-wrap {
+                width: 60%;
             }
             .submit-container {
                 .submit-btn,
                 .preview-btn {
-                    width: 35%;
+                    min-width: 35%;
                 }
             }
         }
@@ -522,11 +575,47 @@
 @media only screen and (max-width: 500px) {
     .add-new-post-container {
         .add-new-post-form {
-            .post-basic-information {
+            .post-info-wrap {
+                width: 70%;
+            }
+            .submit-container .btn-wrap {
+                width: 95%;
+            }
+            .field-container {
                 width: 75%;
             }
-            .input-switch {
-                width: 12.5%;
+            .post-basic-information {
+                .post-input {
+                    margin-top: 2%;
+                    width: 100%;
+                    border-radius: 50px;
+                }
+                app-choose-category {
+                    width: 60%;
+                    margin: 4% 0;
+                    border-radius: 50px;
+                }
+                ::ng-deep {
+                    .choose-category-closed {
+                        border-radius: 50px;
+                    }
+                    .choose-category-open {
+                        border-radius: 25px 25px 0 0;
+                    }
+                }
+                flex-direction: column;
+                width: 75%;
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 430px) {
+    .add-new-post-container {
+        .add-new-post-form {
+            .input-switch-wrap{
+                width: auto;
             }
         }
     }
@@ -543,7 +632,7 @@
             .submit-container {
                 .submit-btn,
                 .preview-btn {
-                    width: 50%;
+                    min-width: 50%;
                 }
             }
         }

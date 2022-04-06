@@ -85,9 +85,22 @@
     }
 }
 
+@media only screen and (max-width: 1470px) {
+    .upload-image-container {
+        .upload-image {
+            .bottom-bar img {
+                display: none;
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 1200px) {
     .upload-image-container {
         .upload-image {
+            .bottom-bar img {
+                display: none;
+            }
             .upload-image-text {
                 display: none;
             }

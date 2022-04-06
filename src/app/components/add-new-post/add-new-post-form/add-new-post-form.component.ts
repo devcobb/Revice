@@ -20,7 +20,7 @@ export class AddNewPostFormComponent {
   @Output() postRatings = new EventEmitter<Star[]>();
   fields: (TextField | ImageField | BannerField | RatingField | GalleryField | HeadingField)[] = [];
   addPostButtonDisabled = true;
-  previewPostButtonDisabled = true;
+  previewPostButtonDisabled = false;
   errorMessage = true;
   private = false;
   preview = false;
@@ -37,12 +37,12 @@ export class AddNewPostFormComponent {
   ngOnInit() {
     this.choosedCategory = this.category.name;
     this.errorMessageService.ratingAdded.subscribe(value => {
-      this.checkForEnablingButtons();
+      // this.checkForEnablingButtons();
     });
   }
 
   ngOnChanges() {
-    this.checkForEnablingButtons();
+    //  this.checkForEnablingButtons();
   }
 
   updateCategory(category: Category) {
@@ -116,32 +116,32 @@ export class AddNewPostFormComponent {
       )
     }
 
-    this.checkForEnablingButtons();
+    //this.checkForEnablingButtons();
   }
 
   updateField(id: number, attr: string, value: string) {
     let fieldToUpdate = this.fields.filter(field => field.id === id)[0];
     fieldToUpdate[attr] = value;
 
-    this.checkForEnablingButtons();
+    //  this.checkForEnablingButtons();
   }
 
   updateTitle(value: string) {
     this.title = value;
 
-    this.checkForEnablingButtons();
+    //this.checkForEnablingButtons();
   }
 
   updateThumbnail(image: string) {
     this.thumbnail = image;
 
-    this.checkForEnablingButtons();
+    // this.checkForEnablingButtons();
   }
 
   removeElement(id: number) {
     this.fields = this.fields.filter(field => field.id !== id);
 
-    this.checkForEnablingButtons();
+    //  this.checkForEnablingButtons();
   }
 
   changeArrangement(id: number) {
