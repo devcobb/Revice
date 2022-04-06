@@ -34,6 +34,7 @@ import { PreviewPostComponent } from './components/preview-post/preview-post.com
 import { RatingComponent } from './components/rating/rating.component';
 import { PostComponent } from './global/post/post.component';
 import { ChooseYearComponent } from './components/choose-year/choose-year.component';
+import { FieldHeadingComponent } from './components/field-heading/field-heading.component';
 
 const materialModules = [
   MatButtonModule,
@@ -65,6 +66,7 @@ const materialModules = [
     ErrorMessagesComponent,
     PostComponent,
     ChooseYearComponent,
+    FieldHeadingComponent,
   ],
   imports: [
     BrowserModule,
