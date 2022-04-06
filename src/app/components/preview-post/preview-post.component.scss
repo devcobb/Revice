@@ -2,7 +2,7 @@
 
 .preview-post-wrap {
     @include main.flex(flex-start, center, column);
-    @include main.customScroll;
+    @include main.customScroll(4px);
     position: fixed;
     z-index: 14;
     top: 50%;
@@ -10,13 +10,19 @@
     transform: translate(-50%, -50%);
     width: 80%;
     height: 90%;
-    padding: 10% 0;
     box-sizing: border-box;
-    background-color: main.$near_black;
+    background-color: main.$white;
     overflow: auto;
     .thumbnail {
-        width: 65%;
-        height: 20rem;
+        position: relative;
+        width: 100%;
+        min-height: 25rem;
+        .overlayer {
+            @include main.fullSize();
+            position: absolute;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
         img {
             @include main.fullSize();
             object-fit: cover;
@@ -24,8 +30,19 @@
     }
     .post-info {
         @include main.flex(center, flex-start, column);
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        left: 10%;
+        transform: translateY(-50%);
         width: 65%;
         margin: 1.5% 0 2.5% 0;
+        ::ng-deep {
+            .post-rating-wrap {
+                margin-top: 2.5%;
+                margin-bottom: 0;
+            }
+        }
     }
     .star,
     .star-filled,
@@ -43,7 +60,7 @@
         &::after {
             position: absolute;
             content: "";
-            width: 15%;
+            width: 4rem;
             height: 5%;
             bottom: -5%;
             background-color: main.$yellow;
@@ -56,18 +73,25 @@
         max-width: 100%;
     }
     .fields-wrap {
-        @include main.flex(center, center, column);
+        @include main.flex(center, flex-start, column);
         color: main.$white;
-        width: 65%;
+        width: 90%;
+        padding-left: 10%;
+        margin-top: 2.5%;
+        .heading {
+            width: 90%;
+        }
         .image {
-            width: 100%;
+            width: 90%;
             height: 25rem;
             img {
                 @include main.fullSize();
                 object-fit: cover;
             }
         }
-        p {
+        p, .wrap {
+            width: 75%;
+            color: main.$near_black;
             margin: 0;
             padding: 0;
             font-size: 1.2rem;
@@ -75,13 +99,17 @@
             .text-field-header {
                 @extend .font-2;
                 display: block;
-                padding-bottom: 1rem;
+                padding-bottom: 1.5rem;
                 color: main.$yellow;
-                font-size: 2rem;
+                font-size: 3rem;
             }
         }
         .banner {
             @include main.flex(space-between, center);
+            width: 90%;
+            .text-field-header {
+                line-height: 3rem;
+            }
             p,
             img {
                 width: 50%;

@@ -118,7 +118,7 @@
                                    (change)="updateField(field.id, 'title', $event.target.value)"
                                    class="section-title" />
                         </div>
-                        <div class="rating-wrap">
+                        <div class="rating-wrap desktop">
                             <app-rating [editable]="true"></app-rating>
                         </div>
                     </div>
@@ -130,6 +130,9 @@
                                   (change)="updateField(field.id, 'value', $event.target.value)"
                                   placeholder="Add your text here*"></textarea>
                     </div>
+                    <div class="rating-wrap mobile">
+                        <app-rating [editable]="true"></app-rating>
+                    </div>
                     <span class="close"
                           [attr.data-id]="field.id"
                           (click)="removeElement(field.id)"></span>
@@ -140,7 +143,7 @@
             </div>
 
             <!-- GALLERY -->
-            <div class="field-wrap"
+            <div class="field-wrap field-gallery-wrap"
                  *ngIf="field.type === 'gallery'">
                 <ng-container *ngIf="field.galleryType === 'four-small'">
                     <div class="gallery-wrap four-images-wrap">
