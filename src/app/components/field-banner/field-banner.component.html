@@ -1,0 +1,10 @@
+<div class="field-banner"
+     [ngClass]="{'reverse-banner': isReverse}">
+    <div class="wrap image-wrap">
+        <app-field-image [image]="image"></app-field-image>
+    </div>
+    <div class="wrap text-wrap">
+        <app-field-text [value]="value"
+                        [title]="title"></app-field-text>
+    </div>
+</div>

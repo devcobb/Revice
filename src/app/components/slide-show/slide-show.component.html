@@ -1,0 +1,39 @@
+<div class="slideshow-bg"></div>
+<div class="slideshow-wrap">
+
+    <!-- DESKTOP -->
+    <div class="images-wrap desktop">
+        <div class="arrow"
+             [ngClass]="{'arrow-disabled': this.currentImageID - 1 < 0}"
+             (click)="previousSlide()">
+            <img src="/assets/images/big-arrow-left.png" />
+        </div>
+        <div class="image-wrap">
+            <img [src]="images[currentImageID]" />
+        </div>
+        <div class="arrow arrow-right"
+             [ngClass]="{'arrow-disabled': this.currentImageID + 1 > (this.images.length - 1)}"
+             (click)="nextSlide()">
+            <img src="/assets/images/big-arrow-left.png" />
+        </div>
+    </div>
+
+    <!-- MOBILE -->
+    <div class="images-wrap mobile">
+        <div class="image-wrap">
+            <img [src]="images[currentImageID]" />
+        </div>
+        <div class="arrow-wrap">
+            <div class="arrow"
+                 [ngClass]="{'arrow-disabled': this.currentImageID - 1 < 0}"
+                 (click)="previousSlide()">
+                <img src="/assets/images/big-arrow-left.png" />
+            </div>
+            <div class="arrow arrow-right"
+                 [ngClass]="{'arrow-disabled': this.currentImageID + 1 > (this.images.length - 1)}"
+                 (click)="nextSlide()">
+                <img src="/assets/images/big-arrow-left.png" />
+            </div>
+        </div>
+    </div>
+</div>

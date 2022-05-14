@@ -1,54 +1,74 @@
 <div class="overlayer"></div>
-<div class="preview-post-wrap">
-    <div class="thumbnail">
-        <div class="overlayer"></div>
-        <img [src]="thumbnail" />
-        <div class="post-info">
-            <h1 class="post-title">
-                <span>{{title}}</span>
-            </h1>
-            <app-rating [stars]="stars"
-                        [editable]="false"></app-rating>
-        </div>
+<div class="preview-post-wrap"
+     [ngClass]="{'disabled-scroll' : scrollDisabled}">
+  <div class="thumbnail">
+    <div class="overlayer"></div>
+    <img [src]="thumbnail" />
+    <div class="post-info">
+      <h1 class="post-title">
+        <span>{{ title }}</span>
+      </h1>
+      <app-rating [stars]="stars"
+                  [editable]="false"></app-rating>
     </div>
+  </div>
 
-    <div class="fields-wrap">
-        <div *ngFor="let field of fields"
-             class="field"
-             [ngClass]="[field.type, field.type === 'banner' && field.arrangement === 'text-image' ? 'banner-reverse' : '']">
+  <!-- SLIDE SHOW -->
+  <app-slide-show *ngIf="showSlideShow"
+                  [images]="slideShowImages"></app-slide-show>
 
-             <!-- HEADING -->
-             <ng-container *ngIf="field.type === 'heading'">
-                <app-field-heading [heading]="field.title"></app-field-heading>
-            </ng-container>
+  <div class="fields-wrap">
+    <div *ngFor="let field of fields"
+         class="field"
+         [ngClass]="[
+        field.type,
+        field.type === 'banner' && field.arrangement === 'text-image'
+          ? 'banner-reverse'
+          : ''
+      ]">
+      <!-- HEADING -->
+      <ng-container *ngIf="field.type === 'heading'">
+        <app-field-heading [heading]="field.title"></app-field-heading>
+      </ng-container>
 
-            <div *ngIf="field.rating">
-                <div class="left-side-wrap">
-                    <img *ngIf="field.src"
-                         [src]="field.src" />
-                    <h2 class="text-field-header">
-                        {{field.title}}
-                    </h2>
-                </div>
-                <div class="right-side-wrap">
-                    <p *ngIf="field.value && field.title">
-                        {{field.value}}
-                    </p>
-                </div>
-            </div>
-            <img *ngIf="field.src"
-                 [src]="field.src" />
-            <p *ngIf="field.value && field.title">
-                <span class="text-field-header">{{field.title}}</span>
-                {{field.value}}
-            </p>
+      <!-- IMAGE -->
+      <ng-container *ngIf="field.type === 'image'">
+        <app-field-image [image]="field.src"></app-field-image>
+      </ng-container>
 
-            <div class="image-wrap"
-                 *ngIf="field.src"></div>
-        </div>
+      <!-- TEXT -->
+      <ng-container *ngIf="field.type === 'text'">
+        <app-field-text [title]="field.title"
+                        [value]="field.value"></app-field-text>
+      </ng-container>
+
+      <!-- BANNER -->
+      <ng-container *ngIf="field.type === 'banner'">
+        <app-field-banner [title]="field.title"
+                          [isReverse]="getFieldArrangement(field.arrangement)"
+                          [image]="field.src"
+                          [value]="field.value"></app-field-banner>
+      </ng-container>
+
+      <!-- RATING -->
+      <ng-container *ngIf="field.type === 'rating'">
+        <app-field-rating [title]="field.title"
+                          [isReverse]="getFieldArrangement(field.arrangement)"
+                          [rating]="field.rating"
+                          [image]="field.src"
+                          [value]="field.value"></app-field-rating>
+      </ng-container>
+
+      <!-- GALLERY -->
+      <ng-container *ngIf="field.type === 'gallery'">
+        <app-field-gallery [images]="field.images"
+                           [type]="field.galleryType"
+                           [arrangement]="field.arrangement"></app-field-gallery>
+      </ng-container>
     </div>
+  </div>
 </div>
 <div class="close">
-    <img (click)="closePreview()"
-         src="/assets/images/close-big.png" />
+  <img (click)="closePreview()"
+       src="/assets/images/close-big.png" />
 </div>

@@ -1,7 +1,7 @@
 @use "/src/app/global/main.scss";
 @mixin headingLines($width, $margin) {
     width: $width;
-    height: 1px;
+    height: 2px;
     margin: $margin;
     background-color: main.$yellow;
     content: "";

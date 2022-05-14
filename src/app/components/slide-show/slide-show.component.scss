@@ -1,0 +1,66 @@
+@use "/src/app/global/main.scss";
+$z-index: 99999999999;
+
+.slideshow-bg {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: $z-index;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.slideshow-wrap {
+  @include main.fullSize();
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $z-index + 1;
+  .mobile {
+    display: none;
+  }
+  .images-wrap {
+    @include main.flex(space-around, center);
+    width: 100%;
+    height: 100%;
+    .image-wrap {
+      max-width: 50%;
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+  .arrow-wrap {
+    @include main.flex(space-between, center);
+    margin-top: 10%;
+    width: 60%;
+  }
+  .arrow {
+    cursor: pointer;
+  }
+  .arrow-disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
+  .arrow-right {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .slideshow-wrap {
+    .mobile {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .image-wrap {
+        max-width: 90%;
+      }
+    }
+    .desktop {
+      display: none;
+    }
+  }
+}
