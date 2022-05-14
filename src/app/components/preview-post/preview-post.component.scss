@@ -1,216 +1,232 @@
 @use "/src/app/global/main.scss";
 
+.disabled-scroll {
+  overflow: hidden !important;
+}
+
 .preview-post-wrap {
-    @include main.flex(flex-start, center, column);
-    @include main.customScroll(4px);
-    position: fixed;
-    z-index: 14;
+  @include main.flex(flex-start, center, column);
+  @include main.customScroll(4px);
+  position: fixed;
+  z-index: 14;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 90%;
+  box-sizing: border-box;
+  background-color: main.$white;
+  overflow: auto;
+  .thumbnail {
+    position: relative;
+    width: 100%;
+    min-height: 25rem;
+    .overlayer {
+      @include main.fullSize();
+      position: absolute;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    img {
+      @include main.fullSize();
+      object-fit: cover;
+    }
+  }
+  .post-info {
+    @include main.flex(center, flex-start, column);
+    position: absolute;
+    z-index: 3;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 90%;
-    box-sizing: border-box;
-    background-color: main.$white;
-    overflow: auto;
-    .thumbnail {
-        position: relative;
-        width: 100%;
-        min-height: 25rem;
-        .overlayer {
-            @include main.fullSize();
-            position: absolute;
-            z-index: 2;
-            background-color: rgba(0, 0, 0, 0.6);
-        }
-        img {
-            @include main.fullSize();
-            object-fit: cover;
-        }
+    left: 10%;
+    transform: translateY(-50%);
+    width: 65%;
+    margin: 1.5% 0 2.5% 0;
+    ::ng-deep {
+      .post-rating-wrap {
+        margin-top: 2.5%;
+        margin-bottom: 0;
+      }
     }
-    .post-info {
-        @include main.flex(center, flex-start, column);
-        position: absolute;
-        z-index: 3;
-        top: 50%;
-        left: 10%;
-        transform: translateY(-50%);
-        width: 65%;
-        margin: 1.5% 0 2.5% 0;
-        ::ng-deep {
-            .post-rating-wrap {
-                margin-top: 2.5%;
-                margin-bottom: 0;
-            }
-        }
+  }
+  .star,
+  .star-filled,
+  .star-half {
+    width: 40px;
+  }
+  .post-title {
+    @include main.flex(center, flex-start, column);
+    @extend .font-2;
+    position: relative;
+    color: main.$yellow;
+    font-size: 5rem;
+    text-align: left;
+    margin: 1% 0;
+    &::after {
+      position: absolute;
+      content: "";
+      width: 4rem;
+      height: 5%;
+      bottom: -5%;
+      background-color: main.$yellow;
+      border-radius: 50px;
     }
-    .star,
-    .star-filled,
-    .star-half {
-        width: 40px;
+  }
+  .ratings-wrap {
+    @include main.flex(flex-start, center);
+    margin-top: 2.5%;
+    max-width: 100%;
+  }
+  .fields-wrap {
+    @include main.flex(center, flex-start, column);
+    color: main.$white;
+    width: 90%;
+    padding-left: 10%;
+    margin-top: 2.5%;
+    .heading {
+      width: 90%;
     }
-    .post-title {
-        @include main.flex(center, flex-start, column);
+    .image {
+      width: 90%;
+      height: 25rem;
+    }
+    p,
+    .wrap {
+      width: 75%;
+      color: main.$near_black;
+      margin: 0;
+      padding: 0;
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+      .text-field-header {
         @extend .font-2;
-        position: relative;
+        display: block;
+        padding-bottom: 1.5rem;
         color: main.$yellow;
-        font-size: 5rem;
-        text-align: left;
-        margin: 1% 0;
-        &::after {
-            position: absolute;
-            content: "";
-            width: 4rem;
-            height: 5%;
-            bottom: -5%;
-            background-color: main.$yellow;
-            border-radius: 50px;
-        }
+        font-size: 3rem;
+      }
     }
-    .ratings-wrap {
-        @include main.flex(flex-start, center);
-        margin-top: 2.5%;
-        max-width: 100%;
+    .rating {
+      width: 90%;
     }
-    .fields-wrap {
-        @include main.flex(center, flex-start, column);
-        color: main.$white;
-        width: 90%;
-        padding-left: 10%;
-        margin-top: 2.5%;
-        .heading {
-            width: 90%;
-        }
-        .image {
-            width: 90%;
-            height: 25rem;
-            img {
-                @include main.fullSize();
-                object-fit: cover;
-            }
-        }
-        p, .wrap {
-            width: 75%;
-            color: main.$near_black;
-            margin: 0;
-            padding: 0;
-            font-size: 1.2rem;
-            line-height: 1.6rem;
-            .text-field-header {
-                @extend .font-2;
-                display: block;
-                padding-bottom: 1.5rem;
-                color: main.$yellow;
-                font-size: 3rem;
-            }
-        }
-        .banner {
-            @include main.flex(space-between, center);
-            width: 90%;
-            .text-field-header {
-                line-height: 3rem;
-            }
-            p,
-            img {
-                width: 50%;
-            }
-            p {
-                margin-left: 2.5%;
-                margin-right: 0;
-            }
-            img {
-                height: 100%;
-                object-fit: cover;
-                margin-right: 2.5%;
-                margin-left: 0;
-            }
-        }
-        .banner-reverse {
-            @include main.flex(space-between, center, row-reverse);
-            p {
-                margin-right: 2.5%;
-                margin-left: 0;
-            }
-            img {
-                margin-left: 2.5%;
-                margin-right: 0;
-            }
-        }
+    .banner {
+      @include main.flex(space-between, center);
+      width: 90%;
+      .text-field-header {
+        line-height: 3rem;
+      }
+      p,
+      img {
+        width: 50%;
+      }
+      p {
+        margin-left: 2.5%;
+        margin-right: 0;
+      }
+      img {
+        height: 100%;
+        object-fit: cover;
+        margin-right: 2.5%;
+        margin-left: 0;
+      }
     }
-    .field {
-        margin: 2.5% 0;
+    .banner-reverse {
+      @include main.flex(space-between, center, row-reverse);
+      p {
+        margin-right: 2.5%;
+        margin-left: 0;
+      }
+      img {
+        margin-left: 2.5%;
+        margin-right: 0;
+      }
     }
+  }
+  .field {
+    margin: 2.5% 0;
+  }
 }
 
 .close {
-    position: fixed;
-    top: 5%;
-    right: 1.5%;
-    z-index: 14;
-    cursor: pointer;
+  position: fixed;
+  top: 5%;
+  right: 1.5%;
+  z-index: 14;
+  cursor: pointer;
 }
 
 .overlayer {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 13;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 13;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 @media only screen and (max-width: 1200px) {
-    .preview-post-wrap {
-        .fields-wrap {
-            .banner {
-                @include main.flex(center, center, column);
-                p,
-                img {
-                    width: 100%;
-                }
-                p,
-                img {
-                    margin-left: 0;
-                    margin-right: 0;
-                }
-                p {
-                    margin: 1rem 0;
-                }
-            }
-            .banner-reverse {
-                @include main.flex(space-between, center, column-reverse);
-                p,
-                img {
-                    margin-right: 0;
-                    margin-left: 0;
-                }
-            }
+  .preview-post-wrap {
+    .fields-wrap {
+      .banner {
+        @include main.flex(center, center, column);
+        p,
+        img {
+          width: 100%;
         }
+        p,
+        img {
+          margin-left: 0;
+          margin-right: 0;
+        }
+        p {
+          margin: 1rem 0;
+        }
+      }
+      .banner-reverse {
+        @include main.flex(space-between, center, column-reverse);
+        p,
+        img {
+          margin-right: 0;
+          margin-left: 0;
+        }
+      }
     }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .preview-post-wrap .thumbnail {
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .post-info {
+      position: relative;
+      left: 0;
+      align-items: center;
+      width: 100%;
+    }
+  }
 }
 
 @media only screen and (max-width: 768px) {
-    .preview-post-wrap {
-        @include main.fullSize;
-        .thumbnail,
-        .post-info,
-        .fields-wrap {
-            width: 80%;
-        }
+  .preview-post-wrap {
+    @include main.fullSize;
+    .post-info,
+    .fields-wrap {
+      width: 80%;
     }
-    .close {
-        top: 1.5%;
-        right: 5%;
-    }
+  }
+  .close {
+    top: 1.5%;
+    right: 5%;
+  }
 }
 
 @media only screen and (max-width: 500px) {
-    .preview-post-wrap {
-        padding-top: 25%;
-    }
-    .close {
-        top: 1.5%;
-        right: 3%;
-    }
+  .close {
+    top: 1.5%;
+    right: 3%;
+  }
 }

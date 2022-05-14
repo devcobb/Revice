@@ -35,6 +35,12 @@ import { RatingComponent } from './components/rating/rating.component';
 import { PostComponent } from './global/post/post.component';
 import { ChooseYearComponent } from './components/choose-year/choose-year.component';
 import { FieldHeadingComponent } from './components/field-heading/field-heading.component';
+import { FieldImageComponent } from './components/field-image/field-image.component';
+import { FieldTextComponent } from './components/field-text/field-text.component';
+import { FieldBannerComponent } from './components/field-banner/field-banner.component';
+import { FieldRatingComponent } from './components/field-rating/field-rating.component';
+import { FieldGalleryComponent } from './components/field-gallery/field-gallery.component';
+import { SlideShowComponent } from './components/slide-show/slide-show.component';
 
 const materialModules = [
   MatButtonModule,
@@ -67,6 +73,12 @@ const materialModules = [
     PostComponent,
     ChooseYearComponent,
     FieldHeadingComponent,
+    FieldImageComponent,
+    FieldTextComponent,
+    FieldBannerComponent,
+    FieldRatingComponent,
+    FieldGalleryComponent,
+    SlideShowComponent,
   ],
   imports: [
     BrowserModule,

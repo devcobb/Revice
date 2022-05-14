@@ -1,0 +1,64 @@
+@use "/src/app/global/main.scss";
+
+.field-rating-container {
+  @include main.flex(center, center);
+  flex-wrap: wrap;
+  width: 100%;
+  .field-rating-wrap {
+    @include main.flex(center, flex-start);
+  }
+  .wrap {
+    @include main.flex(center, center, column);
+    width: 50%;
+    height: 100%;
+  }
+  .one-wrap {
+    width: 75%;
+  }
+  .image-wrap {
+    width: 100%;
+  }
+  .rating-container {
+    margin-top: 5%;
+    width: 100%;
+    ::ng-deep {
+      .post-rating-wrap {
+        width: 100%;
+        justify-content: space-around;
+      }
+    }
+  }
+  .text-field-header {
+    @extend .font-2;
+    display: block;
+    padding-bottom: 1.5rem;
+    color: main.$yellow;
+    font-size: 3rem;
+    margin: 2% 0 0 0;
+    padding: 0;
+  }
+  .field-text {
+    width: 75%;
+    color: main.$near_black;
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .field-rating-container {
+    .field-rating-wrap {
+      flex-direction: column;
+    }
+
+    .wrap {
+      width: 100%;
+      .field-text {
+        margin-top: 2.5%;
+        width: 100%;
+      }
+    }
+  }
+}

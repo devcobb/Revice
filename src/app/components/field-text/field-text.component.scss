@@ -1,0 +1,17 @@
+@use "/src/app/global/main.scss";
+
+.field-text {
+    width: 75%;
+    color: main.$near_black;
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    .text-field-header {
+        @extend .font-2;
+        display: block;
+        padding-bottom: 1.5rem;
+        color: main.$yellow;
+        font-size: 3rem;
+    }
+}

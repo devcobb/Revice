@@ -1,0 +1,19 @@
+@use "/src/app/global/main.scss";
+.field-banner {
+    @include main.flex(space-between, center);
+    .wrap {
+        width: 48%;
+ 
+    }
+    &.reverse-banner {
+        flex-direction: row-reverse;
+    }
+    ::ng-deep{
+        .field-text, .field-image{
+            width: 100%;
+        }       
+        .text-field-header{
+            line-height: 3rem;
+        }
+    }
+}
