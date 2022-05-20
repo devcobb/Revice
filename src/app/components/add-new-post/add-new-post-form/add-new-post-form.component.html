@@ -1,13 +1,20 @@
 <div class="add-new-post-container">
-  <div class="form-bg"></div>
+
+  <!-- FORM -->
   <form class="add-new-post-form"
         (submit)="addNewPost($event)">
+
+    <!-- RATINGS -->
     <div class="ratings-wrap">
       <app-rating [stars]="stars"
                   [editable]="true"></app-rating>
     </div>
+
+    <!-- THUMBNAIL -->
     <app-upload-image class="thumbnail"
                       (imageUploaded)="updateThumbnail($event)"></app-upload-image>
+
+    <!-- TITLE, CATEGORY -->
     <div class="post-basic-information">
       <input type="text"
              (change)="updateTitle($event.target.value)"
@@ -21,6 +28,8 @@
       <app-choose-category (changeCategory)="updateCategory($event)"
                            [category]="choosedCategory"></app-choose-category>
     </div>
+
+    <!-- POST DATE AND VISIBILITY -->
     <div class="post-info-wrap">
       <div class="choose-year-wrap">
         <app-choose-year></app-choose-year>
@@ -37,231 +46,95 @@
         </div>
       </div>
     </div>
+
+    <!-- FIELDS -->
     <div class="field-container"
          *ngFor="let field of fields">
+
       <!-- TEXT -->
-      <div class="field-wrap"
-           *ngIf="field.type === 'text'">
-        <input type="text"
-               minlength="5"
-               maxlength="50"
-               placeholder="Add title of text section"
-               (change)="updateField(field.id, 'title', $event.target.value)"
-               class="section-title" />
-        <textarea class="text-section"
-                  (change)="updateField(field.id, 'value', $event.target.value)"
-                  [value]="field.value"
-                  minlength="10"
-                  maxlength="550"
-                  placeholder="Add your text here*"></textarea>
-        <span class="close"
-              [attr.data-id]="field.id"
-              (click)="removeElement(field.id)"></span>
-      </div>
+      <ng-container *ngIf="field.type === 'text'">
+        <app-add-new-text-field (changedData)="updateField($event)"
+                                (fieldRemoved)="removeElement($event)"
+                                [data]="field"></app-add-new-text-field>
+      </ng-container>
 
       <!-- IMAGE -->
-      <div class="field-wrap image-field"
-           *ngIf="field.type === 'image'">
-        <app-upload-image [id]="field.id + 1"
-                          (imageUploaded)="updateField(field.id, 'src', $event)"
-                          class="image-section"></app-upload-image>
-        <span class="close"
-              [attr.data-id]="field.id"
-              (click)="removeElement(field.id)"></span>
-      </div>
-
-      <!-- BANNER -->
-      <div class="field-wrap banner-wrap"
-           *ngIf="field.type === 'banner'"
-           [ngClass]="{ 'field-reverse': field.arrangement === 'text-image' }">
-        <app-upload-image [id]="field.id + 1"
-                          (imageUploaded)="updateField(field.id, 'src', $event)"
-                          class="image-section"></app-upload-image>
-        <div class="banner-text-content">
-          <input type="text"
-                 minlength="5"
-                 maxlength="50"
-                 placeholder="Add title of text section"
-                 (change)="updateField(field.id, 'title', $event.target.value)"
-                 class="section-title" />
-          <textarea class="text-section"
-                    minlength="10"
-                    maxlength="550"
-                    [value]="field.value"
-                    (change)="updateField(field.id, 'value', $event.target.value)"
-                    placeholder="Add your text here*"></textarea>
-        </div>
-
-        <span class="close"
-              [attr.data-id]="field.id"
-              (click)="removeElement(field.id)"></span>
-        <span class="arrangement"
-              [attr.data-id]="field.id"
-              (click)="changeArrangement(field.id)"></span>
-      </div>
-
-      <!-- RATING -->
-      <div class="field-wrap"
-           *ngIf="field.type === 'rating'">
-        <div class="field-rating-wrap"
-             [ngClass]="{ 'field-reverse': field.arrangement === 'text-image' }">
-          <div class="field-rating-container">
-            <div class="rating-image">
-              <app-upload-image [id]="field.id + 1"
-                                (imageUploaded)="updateField(field.id, 'src', $event)"></app-upload-image>
-            </div>
-            <div class="rating-title">
-              <input type="text"
-                     minlength="5"
-                     maxlength="50"
-                     placeholder="Add title of rating's element"
-                     (change)="updateField(field.id, 'title', $event.target.value)"
-                     class="section-title" />
-            </div>
-            <div class="rating-wrap desktop">
-              <app-rating [editable]="true"
-                          [stars]="field.rating"></app-rating>
-            </div>
-          </div>
-          <div class="rating-description-wrap">
-            <textarea class="text-section"
-                      minlength="10"
-                      maxlength="550"
-                      [value]="field.value"
-                      (change)="updateField(field.id, 'value', $event.target.value)"
-                      placeholder="Add your text here*"></textarea>
-          </div>
-          <div class="rating-wrap mobile">
-            <app-rating [editable]="true"></app-rating>
-          </div>
-          <span class="close"
-                [attr.data-id]="field.id"
-                (click)="removeElement(field.id)"></span>
-          <span class="arrangement"
-                [attr.data-id]="field.id"
-                (click)="changeArrangement(field.id)"></span>
-        </div>
-      </div>
-
-      <!-- GALLERY -->
-      <div class="field-wrap field-gallery-wrap"
-           *ngIf="field.type === 'gallery'">
-        <ng-container *ngIf="field.galleryType === 'four-small'">
-          <div class="gallery-wrap four-images-wrap">
-            <div class="gallery-image-wrap">
-              <app-upload-image [customID]="getCustomID(field.id)"
-                                (imageUploaded)="updateImageField(field.id, $event)">
-              </app-upload-image>
-            </div>
-            <div class="gallery-image-wrap">
-              <app-upload-image [customID]="getCustomID(field.id)"
-                                (imageUploaded)="updateImageField(field.id, $event)">
-              </app-upload-image>
-            </div>
-            <div class="gallery-image-wrap">
-              <app-upload-image [customID]="getCustomID(field.id)"
-                                (imageUploaded)="updateImageField(field.id, $event)">
-              </app-upload-image>
-            </div>
-            <div class="gallery-image-wrap">
-              <app-upload-image [customID]="getCustomID(field.id)"
-                                (imageUploaded)="updateImageField(field.id, $event)">
-              </app-upload-image>
-            </div>
-          </div>
-        </ng-container>
-        <ng-container *ngIf="field.galleryType === 'one-big-four-small'">
-          <div class="gallery-wrap one-big-four-wrap"
-               [ngClass]="{ 'field-reverse': field.arrangement === 'text-image' }">
-            <div class="wrap">
-              <div class="gallery-image-wrap">
-                <app-upload-image [customID]="getCustomID(field.id)"
-                                  (imageUploaded)="updateImageField(field.id, $event)">
-                </app-upload-image>
-              </div>
-            </div>
-            <div class="wrap four-images">
-              <div class="gallery-image-wrap">
-                <app-upload-image [customID]="getCustomID(field.id)"
-                                  (imageUploaded)="updateImageField(field.id, $event)">
-                </app-upload-image>
-              </div>
-              <div class="gallery-image-wrap">
-                <app-upload-image [customID]="getCustomID(field.id)"
-                                  (imageUploaded)="updateImageField(field.id, $event)">
-                </app-upload-image>
-              </div>
-              <div class="gallery-image-wrap">
-                <app-upload-image [customID]="getCustomID(field.id)"
-                                  (imageUploaded)="updateImageField(field.id, $event)">
-                </app-upload-image>
-              </div>
-              <div class="gallery-image-wrap">
-                <app-upload-image [customID]="getCustomID(field.id)"
-                                  (imageUploaded)="updateImageField(field.id, $event)">
-                </app-upload-image>
-              </div>
-            </div>
-          </div>
-        </ng-container>
-        <span class="close"
-              [attr.data-id]="field.id"
-              (click)="removeElement(field.id)"></span>
-
-        <span class="arrangement"
-              [attr.data-id]="field.id"
-              (click)="changeArrangement(field.id)"></span>
-
-        <span class="grid"
-              [attr.data-id]="field.id"
-              (click)="changeGalleryType(field.id)"></span>
-      </div>
+      <ng-container *ngIf="field.type === 'image'">
+        <app-add-new-image-field (changedData)="updateField($event)"
+                                 (fieldRemoved)="removeElement($event)"
+                                 [data]="field"></app-add-new-image-field>
+      </ng-container>
 
       <!-- HEADING -->
-      <div class="field-wrap heading-field-wrap"
-           *ngIf="field.type === 'heading'">
-        <input type="text"
-               minlength="5"
-               maxlength="50"
-               placeholder="Add heading title"
-               (change)="updateField(field.id, 'title', $event.target.value)"
-               class="section-title" />
-        <span class="close"
-              [attr.data-id]="field.id"
-              (click)="removeElement(field.id)"></span>
-      </div>
+      <ng-container *ngIf="field.type === 'heading'">
+        <app-add-new-heading-field (changedData)="updateField($event)"
+                                   (fieldRemoved)="removeElement($event)"
+                                   [data]="field"></app-add-new-heading-field>
+      </ng-container>
+
+      <!-- BANNER -->
+      <ng-container *ngIf="field.type === 'banner'">
+        <app-add-new-banner-field (changedData)="updateField($event)"
+                                  (fieldRemoved)="removeElement($event)"
+                                  (changedArrangement)="changeArrangement($event)"
+                                  [data]="field"></app-add-new-banner-field>
+      </ng-container>
+
+      <!-- RATING -->
+      <ng-container *ngIf="field.type === 'rating'">
+        <app-add-new-rating-field (changedData)="updateField($event)"
+                                  (fieldRemoved)="removeElement($event)"
+                                  (changedArrangement)="changeArrangement($event)"
+                                  [data]="field"></app-add-new-rating-field>
+      </ng-container>
+
+      <!-- GALLERY -->
+      <ng-container *ngIf="field.type === 'gallery'">
+        <app-add-new-gallery-field (changedData)="update($event)"
+                                   (fieldRemoved)="removeElement($event)"
+                                   (changedArrangement)="changeArrangement($event)"
+                                   (changedType)="updateGalleryType($event)"
+                                   [data]="field"></app-add-new-gallery-field>
+      </ng-container>
     </div>
     <div class="add-row">
-      <div class="row-option"
-           (click)="addField('heading')">
-        <img src="/assets/images/heading.png" />
-        Add Heading
-      </div>
-      <div class="row-option"
-           (click)="addField('text')">
-        <img src="/assets/images/text.png" />
-        Add Text
-      </div>
-      <div class="row-option"
-           (click)="addField('image')">
-        <img src="/assets/images/image.png" />
-        Add Image
-      </div>
-      <div class="row-option"
-           (click)="addField('banner')">
-        <img src="/assets/images/banner.png" />
-        Add Banner
-      </div>
-      <div class="row-option"
-           (click)="addField('rating')">
-        <img src="/assets/images/star-black.png" />
-        Add Rating
-      </div>
-      <div class="row-option"
-           (click)="addField('gallery')">
-        <img src="/assets/images/gallery.png" />
-        Add Gallery
-      </div>
+
+      <!-- HEADING BUTTON -->
+      <app-add-field-button [key]="'heading'"
+                            [text]="'Add Heading'"
+                            [img]="'heading'"
+                            (added)="addField($event)"></app-add-field-button>
+
+      <!-- TEXT BUTTON -->
+      <app-add-field-button [key]="'text'"
+                            [text]="'Add Text'"
+                            [img]="'text'"
+                            (added)="addField($event)"></app-add-field-button>
+
+      <!-- IMAGE BUTTON -->
+      <app-add-field-button [key]="'image'"
+                            [text]="'Add Image'"
+                            [img]="'image'"
+                            (added)="addField($event)"></app-add-field-button>
+
+
+      <!-- BANNER BUTTON -->
+      <app-add-field-button [key]="'banner'"
+                            [text]="'Add Banner'"
+                            [img]="'banner'"
+                            (added)="addField($event)"></app-add-field-button>
+
+      <!-- RATING BUTTON -->
+      <app-add-field-button [key]="'rating'"
+                            [text]="'Add Rating'"
+                            [img]="'star-black'"
+                            (added)="addField($event)"></app-add-field-button>
+
+      <!-- GALLERY BUTTON -->
+      <app-add-field-button [key]="'gallery'"
+                            [text]="'Add Gallery'"
+                            [img]="'gallery'"
+                            (added)="addField($event)"></app-add-field-button>
     </div>
     <div class="submit-container">
       <div class="btn-wrap">

@@ -1,0 +1,25 @@
+<div class="field-wrap banner-wrap"
+     [ngClass]="{ 'field-reverse': data.arrangement === 'text-image' }">
+    <app-upload-image [id]="data.id + 1"
+                      (imageUploaded)="update('src', $event)"
+                      class="image-section"></app-upload-image>
+    <div class="banner-text-content">
+        <input type="text"
+               minlength="5"
+               maxlength="50"
+               placeholder="Add title of text section"
+               (change)="update('title', $event.target.value)"
+               class="section-title" />
+        <textarea class="text-section"
+                  minlength="10"
+                  maxlength="550"
+                  [value]="data.value"
+                  (change)="update('value', $event.target.value)"
+                  placeholder="Add your text here*"></textarea>
+    </div>
+
+    <span class="close"
+          (click)="remove()"></span>
+    <span class="arrangement"
+          (click)="arrangement()"></span>
+</div>

@@ -143,11 +143,22 @@ export class AddNewPostFormComponent {
     return arr;
   }
 
-  updateField(id: number, attr: string, value: string) {
-    let fieldToUpdate = this.fields.filter((field) => field.id === id)[0];
-    fieldToUpdate[attr] = value;
+  updateField(
+    data:
+      | TextField
+      | ImageField
+      | BannerField
+      | RatingField
+      | GalleryField
+      | HeadingField
+  ) {
+    let updatedField = this.fields.find((field) => {
+      if (field.id === data.id) {
+        field = data;
+      }
+    });
 
-    //  this.checkForEnablingButtons();
+    console.log(this.fields, data.id);
   }
 
   updateImageField(id: number, value: string) {
@@ -191,10 +202,13 @@ export class AddNewPostFormComponent {
       : (fieldToChange.arrangement = 'text-image');
   }
 
-  changeGalleryType(id: number) {
+  updateGalleryType(data: GalleryField) {
     let fieldToChange = <GalleryField>(
-      this.fields.find((field) => field.id === id && field.type === 'gallery')
+      this.fields.find(
+        (field) => field.id === data.id && field.type === 'gallery'
+      )
     );
+
     fieldToChange.galleryType === 'four-small'
       ? (fieldToChange.galleryType = 'one-big-four-small')
       : (fieldToChange.galleryType = 'four-small');
@@ -320,18 +334,6 @@ export class AddNewPostFormComponent {
 
     this.showErrorMessage(possibleErrors);
     return validate;
-  }
-
-  getCustomID(id: number) {
-    let characters = '0123456789abcdefghijklmnoprstuwz';
-    let randomID = '';
-
-    for (let i = 0; i < 10; i++) {
-      randomID += characters[Math.floor(Math.random() * characters.length)];
-    }
-
-    randomID += new Date().getTime();
-    return `${id}-${randomID}`;
   }
 
   showErrorMessage(possibleErrors: PossibleErrors) {
