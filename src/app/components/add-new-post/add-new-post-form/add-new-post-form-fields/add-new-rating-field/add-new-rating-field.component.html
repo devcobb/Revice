@@ -1,0 +1,39 @@
+<!-- RATING -->
+<div class="field-wrap">
+    <div class="field-rating-wrap"
+         [ngClass]="{ 'field-reverse': data.arrangement === 'text-image' }">
+        <div class="field-rating-container">
+            <div class="rating-image">
+                <app-upload-image [id]="data.id + 1"
+                                  (imageUploaded)="update('src', $event)"></app-upload-image>
+            </div>
+            <div class="rating-title">
+                <input type="text"
+                       minlength="5"
+                       maxlength="50"
+                       placeholder="Add title of rating's element"
+                       (change)="update('title', $event.target.value)"
+                       class="section-title" />
+            </div>
+            <div class="rating-wrap desktop">
+                <app-rating [editable]="true"
+                            [stars]="data.rating"></app-rating>
+            </div>
+        </div>
+        <div class="rating-description-wrap">
+            <textarea class="text-section"
+                      minlength="10"
+                      maxlength="550"
+                      [value]="data.value"
+                      (change)="update('value', $event.target.value)"
+                      placeholder="Add your text here*"></textarea>
+        </div>
+        <div class="rating-wrap mobile">
+            <app-rating [editable]="true"></app-rating>
+        </div>
+        <span class="close"
+              (click)="remove()"></span>
+        <span class="arrangement"
+              (click)="arrangement()"></span>
+    </div>
+</div>
