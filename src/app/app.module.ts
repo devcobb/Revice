@@ -41,6 +41,13 @@ import { FieldBannerComponent } from './components/field-banner/field-banner.com
 import { FieldRatingComponent } from './components/field-rating/field-rating.component';
 import { FieldGalleryComponent } from './components/field-gallery/field-gallery.component';
 import { SlideShowComponent } from './components/slide-show/slide-show.component';
+import { AddNewTextFieldComponent } from './components/add-new-post/add-new-post-form/add-new-post-form-fields/add-new-text-field/add-new-text-field.component';
+import { AddNewImageFieldComponent } from './components/add-new-post/add-new-post-form/add-new-post-form-fields/add-new-image-field/add-new-image-field.component';
+import { AddNewHeadingFieldComponent } from './components/add-new-post/add-new-post-form/add-new-post-form-fields/add-new-heading-field/add-new-heading-field.component';
+import { AddNewBannerFieldComponent } from './components/add-new-post/add-new-post-form/add-new-post-form-fields/add-new-banner-field/add-new-banner-field.component';
+import { AddNewRatingFieldComponent } from './components/add-new-post/add-new-post-form/add-new-post-form-fields/add-new-rating-field/add-new-rating-field.component';
+import { AddNewGalleryFieldComponent } from './components/add-new-post/add-new-post-form/add-new-post-form-fields/add-new-gallery-field/add-new-gallery-field.component';
+import { AddFieldButtonComponent } from './components/add-new-post/add-new-post-form/add-field-button/add-field-button.component';
 
 const materialModules = [
   MatButtonModule,
@@ -79,6 +86,13 @@ const materialModules = [
     FieldRatingComponent,
     FieldGalleryComponent,
     SlideShowComponent,
+    AddNewTextFieldComponent,
+    AddNewImageFieldComponent,
+    AddNewHeadingFieldComponent,
+    AddNewBannerFieldComponent,
+    AddNewRatingFieldComponent,
+    AddNewGalleryFieldComponent,
+    AddFieldButtonComponent,
   ],
   imports: [
     BrowserModule,

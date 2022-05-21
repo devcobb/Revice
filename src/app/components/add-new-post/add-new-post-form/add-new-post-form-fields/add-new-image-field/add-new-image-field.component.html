@@ -1,9 +1,10 @@
-<!-- IMAGE -->
-<div class="field-wrap image-field"
-     *ngIf="data.type === 'image'">
-    <app-upload-image [id]="data.id + 1"
-                      (imageUploaded)="update('src', $event)"
-                      class="image-section"></app-upload-image>
-    <span class="close"
-          (click)="remove()"></span>
+<div class="field-wrap image-field">
+      <!-- UPLOAD IMAGE-->
+      <app-upload-image [id]="data.id + 1"
+                        (imageUploaded)="update('src', $event)"
+                        class="image-section"></app-upload-image>
+
+      <!-- CLOSE BUTTON -->
+      <span class="close"
+            (click)="remove()"></span>
 </div>

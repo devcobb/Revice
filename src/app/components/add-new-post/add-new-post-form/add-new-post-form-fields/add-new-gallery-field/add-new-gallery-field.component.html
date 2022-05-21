@@ -1,29 +1,14 @@
 <!-- GALLERY -->
 <div class="field-wrap field-gallery-wrap">
+
+    <!-- FOUR IMAGES LAYOUT -->
     <ng-container *ngIf="data.galleryType === 'four-small'">
         <div class="gallery-wrap four-images-wrap">
-            <div class="gallery-image-wrap">
-                <app-upload-image [customID]="getCustomID()"
-                                  (imageUploaded)="updateImageField(data.id, $event)">
-                </app-upload-image>
-            </div>
-            <div class="gallery-image-wrap">
-                <app-upload-image [customID]="getCustomID()"
-                                  (imageUploaded)="updateImageField(data.id, $event)">
-                </app-upload-image>
-            </div>
-            <div class="gallery-image-wrap">
-                <app-upload-image [customID]="getCustomID()"
-                                  (imageUploaded)="updateImageField(data.id, $event)">
-                </app-upload-image>
-            </div>
-            <div class="gallery-image-wrap">
-                <app-upload-image [customID]="getCustomID()"
-                                  (imageUploaded)="updateImageField(data.id, $event)">
-                </app-upload-image>
-            </div>
+            <ng-template [ngTemplateOutlet]="FourImageLayout"></ng-template>
         </div>
     </ng-container>
+
+    <!-- FIVE IMAGES LAYOUT -->
     <ng-container *ngIf="data.galleryType === 'one-big-four-small'">
         <div class="gallery-wrap one-big-four-wrap"
              [ngClass]="{ 'field-reverse': data.arrangement === 'text-image' }">
@@ -35,33 +20,45 @@
                 </div>
             </div>
             <div class="wrap four-images">
-                <div class="gallery-image-wrap">
-                    <app-upload-image [customID]="getCustomID()"
-                                      (imageUploaded)="updateImageField(field.id, $event)">
-                    </app-upload-image>
-                </div>
-                <div class="gallery-image-wrap">
-                    <app-upload-image [customID]="getCustomID()"
-                                      (imageUploaded)="updateImageField(field.id, $event)">
-                    </app-upload-image>
-                </div>
-                <div class="gallery-image-wrap">
-                    <app-upload-image [customID]="getCustomID()"
-                                      (imageUploaded)="updateImageField(field.id, $event)">
-                    </app-upload-image>
-                </div>
-                <div class="gallery-image-wrap">
-                    <app-upload-image [customID]="getCustomID()"
-                                      (imageUploaded)="updateImageField(field.id, $event)">
-                    </app-upload-image>
-                </div>
+                <ng-template [ngTemplateOutlet]="FourImageLayout"></ng-template>
             </div>
         </div>
     </ng-container>
+
+    <!-- CLOSE BUTTON -->
     <span class="close"
           (click)="remove()"></span>
+
+    <!-- ARRANGEMENT BUTTON -->
     <span class="arrangement"
           (click)="arrangement()"></span>
+
+    <!-- GRID BUTTON -->
     <span class="grid"
           (click)="changeType()"></span>
 </div>
+
+
+<!-- FOUR IMAGES NG-TEMPLATE -->
+<ng-template #FourImageLayout>
+    <div class="gallery-image-wrap">
+        <app-upload-image [customID]="getCustomID()"
+                          (imageUploaded)="updateImageField(data.id, $event)">
+        </app-upload-image>
+    </div>
+    <div class="gallery-image-wrap">
+        <app-upload-image [customID]="getCustomID()"
+                          (imageUploaded)="updateImageField(data.id, $event)">
+        </app-upload-image>
+    </div>
+    <div class="gallery-image-wrap">
+        <app-upload-image [customID]="getCustomID()"
+                          (imageUploaded)="updateImageField(data.id, $event)">
+        </app-upload-image>
+    </div>
+    <div class="gallery-image-wrap">
+        <app-upload-image [customID]="getCustomID()"
+                          (imageUploaded)="updateImageField(data.id, $event)">
+        </app-upload-image>
+    </div>
+</ng-template>

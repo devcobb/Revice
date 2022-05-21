@@ -1,9 +1,11 @@
+<!-- HERO IMAGE-->
 <app-hero-image [height]="heroImageHeight"
                 [imageID]="imageID"
                 [content]="false"
                 [wave]="true"
                 containerPosition="fixed"></app-hero-image>
 
+<!-- CHOOSE CATEGORY-->
 <div class="category-list-container"
      *ngIf="!choosed">
     <h1 class="category-header">
@@ -17,6 +19,7 @@
     </div>
 </div>
 
+<!-- FORM -->
 <app-add-new-post-form *ngIf="choosed"
                        (needPreview)="togglePreview($event)"
                        (previewedFields)="updateFieldsData($event)"
@@ -25,6 +28,7 @@
                        (postRatings)="updateRatings($event)"
                        [category]="choosedCategory"></app-add-new-post-form>
 
+<!-- PREVIEW -->
 <app-preview-post *ngIf="preview"
                   (close)="togglePreview($event)"
                   [title]="title"

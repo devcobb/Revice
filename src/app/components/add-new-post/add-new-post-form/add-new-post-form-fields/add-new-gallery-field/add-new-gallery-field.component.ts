@@ -11,12 +11,15 @@ import { GalleryField } from 'src/app/global/global-interfaces';
 })
 export class AddNewGalleryFieldComponent extends ExtendedFieldComponent {
   @Output() changedType = new EventEmitter<GalleryField>();
+
+  //CHANGE GALLERY'S TYPE
   changeType() {
     this.data.galleryType === 'four-small'
       ? (this.data.galleryType = 'one-big-four-small')
       : (this.data.galleryType = 'four-small');
   }
 
+  //GET CUSTOM ID FOR UPLOAD IMAGE
   getCustomID() {
     let characters = '0123456789abcdefghijklmnoprstuwz';
     let randomID = '';

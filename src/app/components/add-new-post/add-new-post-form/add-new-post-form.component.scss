@@ -1,16 +1,5 @@
 @use "/src/app/global/main.scss";
 
-@mixin icon {
-  position: absolute;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  width: 24px;
-  height: 24px;
-  z-index: 2;
-  cursor: pointer;
-}
-
 .add-new-post-container {
   width: 100%;
   min-height: 100%;
@@ -52,7 +41,7 @@
       }
       .post-visiblity-wrap {
         margin-top: 5%;
-        margin-bottom: 15%;
+        margin-bottom: 5%;
         width: 35%;
       }
     }
@@ -108,20 +97,22 @@
         }
       }
     }
-
     .thumbnail {
       @include main.flex(center, center);
       width: 40%;
       height: 12.5rem;
       margin-bottom: 1%;
     }
-
     .add-row {
       @include main.flex(center, center);
       flex-wrap: wrap;
       margin: 2.5% 0 2.5% 0;
-      width: 33.33%;
+      width: 50%;
       color: main.$yellow;
+      .add-field-btn {
+        width: 25%;
+        margin: 1rem;
+      }
     }
     .field-container {
       width: 40%;
@@ -180,6 +171,7 @@
   }
 }
 
+//*************
 @media only screen and (max-width: 1400px) {
   .add-new-post-container {
     .add-new-post-form {
@@ -194,25 +186,8 @@
           width: 50%;
         }
       }
-      .field-rating-wrap .arrangement {
-        top: 10%;
-      }
-      .arrangement {
-        right: -8%;
-        top: 25%;
-      }
-      .grid {
-        right: -8%;
-        top: 20%;
-      }
-      .field-gallery-wrap .arrangement {
-        top: 10%;
-      }
       .add-row {
-        width: 50%;
-        .row-option {
-          width: 20%;
-        }
+        width: 60%;
       }
       .ratings-wrap {
         width: 50%;
@@ -237,9 +212,6 @@
 @media only screen and (max-width: 1200px) {
   .add-new-post-container {
     .add-new-post-form {
-      .add-row {
-        width: 75%;
-      }
       .field-container {
         width: 60%;
       }
@@ -276,42 +248,12 @@
       .post-info-wrap {
         width: 50%;
       }
+      .add-row {
+        width: 90%;
+      }
       .thumbnail {
         width: 75%;
         height: 10rem;
-      }
-      .close,
-      .grid {
-        right: -13.5%;
-      }
-      .arrangement {
-        right: -13.5%;
-        top: 25%;
-      }
-      .field-rating-wrap .arrangement {
-        top: 5%;
-      }
-      .add-row {
-        width: 80%;
-        .row-option {
-          width: 35%;
-          margin: 2.5%;
-        }
-      }
-
-      .one-big-four-wrap {
-        .wrap:first-of-type {
-          margin-bottom: 0.5rem;
-          .gallery-image-wrap {
-            padding-right: 0 !important;
-          }
-        }
-      }
-      .one-big-four-wrap.gallery-wrap {
-        flex-direction: column;
-        .wrap {
-          width: 100%;
-        }
       }
       .submit-container {
         width: 100%;
@@ -346,6 +288,19 @@
         .submit-btn,
         .preview-btn {
           min-width: 35%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .add-new-post-container {
+    .add-new-post-form {
+      .add-row {
+        flex-direction: column;
+        .add-field-btn {
+          width: 50%;
         }
       }
     }
@@ -403,11 +358,6 @@
 @media only screen and (max-width: 414px) {
   .add-new-post-container {
     .add-new-post-form {
-      .add-row {
-        .row-option {
-          width: 75%;
-        }
-      }
       .submit-container {
         .submit-btn,
         .preview-btn {
@@ -417,3 +367,4 @@
     }
   }
 }
+//****************
