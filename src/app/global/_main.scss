@@ -13,221 +13,238 @@ $dark_grey: #0d0d0d;
 $near_black: #0e0b16;
 
 @font-face {
-    font-family: "Roboto Condensed";
-    src: url("/assets/fonts/RobotoCondensed-Regular.ttf");
+  font-family: "Roboto Condensed";
+  src: url("/assets/fonts/RobotoCondensed-Regular.ttf");
 }
 
 @font-face {
-    font-family: "Monteserrat";
-    src: url("/assets/fonts/Montserrat-ExtraLight.ttf");
+  font-family: "Monteserrat";
+  src: url("/assets/fonts/Montserrat-ExtraLight.ttf");
 }
 
 @font-face {
-    font-family: "Agency FB Bold Condensed";
-    src: url("/assets/fonts/agencyfb-boldcondensed.ttf");
+  font-family: "Agency FB Bold Condensed";
+  src: url("/assets/fonts/agencyfb-boldcondensed.ttf");
 }
 
 @mixin flex($justify, $align, $direction: row) {
-    display: flex;
-    justify-content: $justify;
-    align-items: $align;
-    flex-direction: $direction;
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
 }
 
 @mixin fullSize {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 @mixin mainButton() {
-    font-family: "Roboto Condensed" !important;
-    color: $yellow;
-    text-decoration: none;
-    padding: 1rem 1.5rem;
-    min-width: 15%;
-    text-align: center;
-    font-size: 1rem;
-    background: transparent;
-    border: 2px solid $yellow;
-    border-radius: 3px;
-    cursor: pointer;
+  font-family: "Roboto Condensed" !important;
+  color: $yellow;
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  min-width: 15%;
+  text-align: center;
+  font-size: 1rem;
+  background: transparent;
+  border: 2px solid $yellow;
+  border-radius: 3px;
+  cursor: pointer;
 
-    &:hover {
-        transition: background 0.3s;
-        color: #000;
-        background: $yellow;
-    }
+  &:hover {
+    transition: background 0.3s;
+    color: #000;
+    background: $yellow;
+  }
 }
 
 @mixin mainHeading($color) {
-    @include flex(center, center, column);
-    @extend .font-2;
-    text-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    color: $color;
-    width: 100%;
-    font-size: 5rem;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    .subtitle {
-        @extend .font-3;
-        margin-top: 1rem;
-        font-size: 1.5rem;
-        letter-spacing: 0.3rem;
-        text-transform: none;
-    }
+  @include flex(center, center, column);
+  @extend .font-2;
+  text-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  color: $color;
+  width: 100%;
+  font-size: 5rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  .subtitle {
+    @extend .font-3;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.3rem;
+    text-transform: none;
+  }
 }
 
 @mixin contrastButton() {
-    @include mainButton();
+  @include mainButton();
+  color: $white;
+  background: $purple;
+  border: 1px solid $purple;
+  padding: 0.75rem 1.5rem;
+  &:hover {
+    background: darken($purple, 3%);
     color: $white;
-    background: $purple;
-    border: 1px solid $purple;
-    padding: 0.75rem 1.5rem;
-    &:hover {
-        background: darken($purple, 3%);
-        color: $white;
-    }
+  }
 }
 
 @mixin customScroll($width: 10px) {
-    /* width */
-    &::-webkit-scrollbar {
-        width: $width;
-    }
+  /* width */
+  &::-webkit-scrollbar {
+    width: $width;
+  }
 
-    /* Track */
-    &::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
 
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: $yellow;
-    }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $yellow;
+  }
 
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-        background: darken($yellow, 5%);
-    }
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: darken($yellow, 5%);
+  }
 }
 
 .font-1 {
-    font-family: "Roboto Condensed" !important;
+  font-family: "Roboto Condensed" !important;
 }
 
 .font-2 {
-    font-family: "Agency FB Bold Condensed", sans-serif !important;
+  font-family: "Agency FB Bold Condensed", sans-serif !important;
 }
 
 .font-3 {
-    font-family: "Monteserrat" !important;
+  font-family: "Monteserrat" !important;
 }
 
 //***** FORM *****
 .login-form,
 .register-form {
-    margin-top: 5%;
-    position: relative;
-    .form-footer {
-        margin-bottom: 5%;
+  margin-top: 5%;
+  position: relative;
+  .form-footer {
+    margin-bottom: 5%;
+    text-align: center;
+  }
+  ::ng-deep {
+    .mat-focused .mat-form-field-label {
+      transform: translateY(-3em) scale(0.75) perspective(100px)
+        translateZ(0.001px);
+    }
+    .mat-form-field {
+      margin: 1% 0;
+      width: 100%;
+      .mat-input-element {
+        border: 1px solid $yellow;
+        padding: 10px;
+        color: $yellow;
+        border-radius: 50px;
+      }
+      .mat-form-field-label-wrapper {
+        top: -0.11em;
+        left: 3em;
+      }
+      input {
+        box-sizing: border-box;
+        color: $white;
+        border: none;
+        background-repeat: no-repeat;
+        background-position-x: 2.5%;
+        background-position-y: center;
+        &::placeholder {
+          color: $yellow;
+        }
+        &:not(.not-empty):focus {
+          transition: background-positon 0.3s;
+          animation: hideIcon 0.3s;
+          animation-fill-mode: forwards;
+        }
+      }
+      .blurred {
+        transition: background-positon 0.3s;
+        animation: showIcon 0.3s;
+        animation-fill-mode: forwards;
+      }
+      .not-empty {
+        background-position-y: -999%;
+        animation: none;
+      }
+      .not-empty + .mat-form-field-label-wrapper {
+        display: none;
+      }
+      .mail-input {
+        background-image: url("/assets/images/mail.png");
+      }
+      .password-input {
+        background-image: url("/assets/images/password.png");
+      }
+      .nickname-input {
+        background-image: url("/assets/images/nickname.png");
+      }
+      .mat-form-field-label {
+        color: $yellow;
+      }
+      .mat-form-field-underline {
+        display: none;
+      }
+      mat-error {
         text-align: center;
+      }
     }
-    ::ng-deep {
-        .mat-focused .mat-form-field-label {
-            transform: translateY(-3em) scale(0.75) perspective(100px) translateZ(0.001px);
-        }
-        .mat-form-field {
-            margin: 1% 0;
-            width: 100%;
-            .mat-input-element {
-                border: 1px solid $yellow;
-                padding: 10px;
-                color: $yellow;
-                border-radius: 50px;
-            }
-            .mat-form-field-label-wrapper {
-                top: -0.11em;
-                left: 3em;
-            }
-            input {
-                box-sizing: border-box;
-                color: $white;
-                border: none;
-                background-repeat: no-repeat;
-                background-position-x: 2.5%;
-                background-position-y: center;
-                &::placeholder {
-                    color: $yellow;
-                }
-                &:not(.not-empty):focus {
-                    transition: background-positon 0.3s;
-                    animation: hideIcon 0.3s;
-                    animation-fill-mode: forwards;
-                }
-            }
-            .blurred {
-                transition: background-positon 0.3s;
-                animation: showIcon 0.3s;
-                animation-fill-mode: forwards;
-            }
-            .not-empty {
-                background-position-y: -999%;
-                animation: none;
-            }
-            .not-empty + .mat-form-field-label-wrapper {
-                display: none;
-            }
-            .mail-input {
-                background-image: url("/assets/images/mail.png");
-            }
-            .password-input {
-                background-image: url("/assets/images/password.png");
-            }
-            .nickname-input {
-                background-image: url("/assets/images/nickname.png");
-            }
-            .mat-form-field-label {
-                color: $yellow;
-            }
-            .mat-form-field-underline {
-                display: none;
-            }
-            mat-error {
-                text-align: center;
-            }
-        }
-        .mat-form-field-appearance-legacy .mat-form-field-label {
-            left: 3%;
-        }
-        .mat-raised-button {
-            margin-top: 10%;
-            background-color: $purple !important;
-            color: $white !important;
-        }
-        .mat-button-disabled {
-            opacity: 0.3;
-        }
+    .mat-form-field-appearance-legacy .mat-form-field-label {
+      left: 3%;
     }
+    .mat-raised-button {
+      margin-top: 10%;
+      background-color: $purple !important;
+      color: $white !important;
+    }
+    .mat-button-disabled {
+      opacity: 0.3;
+    }
+  }
 }
+
+.post-input {
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  width: 70%;
+  padding: 1rem;
+  color: $yellow;
+  border: 1px solid $yellow;
+  background-color: transparent;
+  border-radius: 50px 0 0 50px;
+  &::placeholder {
+    color: $yellow;
+  }
+}
+
 //*********
 
 @keyframes hideIcon {
-    from {
-        background-position-y: center;
-    }
-    to {
-        background-position-y: -999%;
-    }
+  from {
+    background-position-y: center;
+  }
+  to {
+    background-position-y: -999%;
+  }
 }
 
 @keyframes showIcon {
-    from {
-        background-position-y: -999%;
-    }
-    to {
-        background-position-y: center;
-    }
+  from {
+    background-position-y: -999%;
+  }
+  to {
+    background-position-y: center;
+  }
 }
 
 ///*********

@@ -1,7 +1,7 @@
 @use "/src/app/global/main.scss";
 :host {
-  width: 25%;
-  margin: 1rem;
+  width: 100%;
+  // margin: 1rem;
 }
 
 .row-option {
@@ -22,3 +22,51 @@
     transform: scale(1.1);
   }
 }
+
+//**************
+@media only screen and (max-width: 1400px) {
+  .add-new-post-container {
+    .add-new-post-form {
+      :host {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .add-new-post-container {
+    .add-new-post-form {
+      .add-row {
+        width: 75%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .add-new-post-container {
+    .add-new-post-form {
+      .add-row {
+        width: 80%;
+        .row-option {
+          width: 35%;
+          margin: 2.5%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .add-new-post-container {
+    .add-new-post-form {
+      .add-row {
+        .row-option {
+          width: 75%;
+        }
+      }
+    }
+  }
+}
+//**************

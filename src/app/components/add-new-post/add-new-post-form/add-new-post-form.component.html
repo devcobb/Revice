@@ -30,7 +30,7 @@
     </div>
 
     <!-- POST DATE AND VISIBILITY -->
-    <div class="post-info-wrap">
+    <!--<div class="post-info-wrap">
       <div class="choose-year-wrap">
         <app-choose-year></app-choose-year>
       </div>
@@ -45,7 +45,7 @@
           <span class="input-switch-mode disabled">Private</span>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <!-- FIELDS -->
     <div class="field-container"
@@ -98,44 +98,58 @@
       </ng-container>
     </div>
     <div class="add-row">
-
+      <div class="add-field-btn">
+        <app-add-field-button [key]="'heading'"
+                              [text]="'Add Heading'"
+                              [img]="'heading'"
+                              (added)="addField($event)"></app-add-field-button>
+      </div>
       <!-- HEADING BUTTON -->
-      <app-add-field-button [key]="'heading'"
-                            [text]="'Add Heading'"
-                            [img]="'heading'"
-                            (added)="addField($event)"></app-add-field-button>
 
-      <!-- TEXT BUTTON -->
-      <app-add-field-button [key]="'text'"
-                            [text]="'Add Text'"
-                            [img]="'text'"
-                            (added)="addField($event)"></app-add-field-button>
+      <div class="add-field-btn">
+        <!-- TEXT BUTTON -->
+        <app-add-field-button [key]="'text'"
+                              [text]="'Add Text'"
+                              [img]="'text'"
+                              (added)="addField($event)"></app-add-field-button>
+      </div>
 
-      <!-- IMAGE BUTTON -->
-      <app-add-field-button [key]="'image'"
-                            [text]="'Add Image'"
-                            [img]="'image'"
-                            (added)="addField($event)"></app-add-field-button>
+      <div class="add-field-btn">
+        <!-- IMAGE BUTTON -->
+        <app-add-field-button [key]="'image'"
+                              [text]="'Add Image'"
+                              [img]="'image'"
+                              (added)="addField($event)"></app-add-field-button>
+      </div>
 
+      <div class="add-field-btn">
+        <app-add-field-button [key]="'banner'"
+                              [text]="'Add Banner'"
+                              [img]="'banner'"
+                              (added)="addField($event)"></app-add-field-button>
+      </div>
 
       <!-- BANNER BUTTON -->
-      <app-add-field-button [key]="'banner'"
-                            [text]="'Add Banner'"
-                            [img]="'banner'"
-                            (added)="addField($event)"></app-add-field-button>
 
+      <div class="add-field-btn">
+        <app-add-field-button [key]="'rating'"
+                              [text]="'Add Rating'"
+                              [img]="'star-black'"
+                              (added)="addField($event)"></app-add-field-button>
+      </div>
       <!-- RATING BUTTON -->
-      <app-add-field-button [key]="'rating'"
-                            [text]="'Add Rating'"
-                            [img]="'star-black'"
-                            (added)="addField($event)"></app-add-field-button>
 
+      <div class="add-field-btn">
+        <app-add-field-button [key]="'gallery'"
+                              [text]="'Add Gallery'"
+                              [img]="'gallery'"
+                              (added)="addField($event)"></app-add-field-button>
+      </div>
       <!-- GALLERY BUTTON -->
-      <app-add-field-button [key]="'gallery'"
-                            [text]="'Add Gallery'"
-                            [img]="'gallery'"
-                            (added)="addField($event)"></app-add-field-button>
+
     </div>
+
+    <!-- SUBMIT AND PREVIEW BUTTONS -->
     <div class="submit-container">
       <div class="btn-wrap">
         <input class="submit-btn"
@@ -149,6 +163,7 @@
         </button>
       </div>
 
+      <!-- ERROR MESSAGES CONTAINER -->
       <div class="error-wrap">
         <app-error-messages></app-error-messages>
       </div>

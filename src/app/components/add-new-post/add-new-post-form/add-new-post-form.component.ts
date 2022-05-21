@@ -65,7 +65,10 @@ export class AddNewPostFormComponent {
   }
 
   ngOnInit() {
+    //SET CATEGORY
     this.choosedCategory = this.category.name;
+
+    //HANDLING RATING ERRORS
     this.errorMessageService.ratingAdded.subscribe((value) => {
       // this.checkForEnablingButtons();
     });
@@ -75,65 +78,75 @@ export class AddNewPostFormComponent {
     //  this.checkForEnablingButtons();
   }
 
+  //UPDATE CATEGORY
   updateCategory(category: Category) {
     this.category = category;
   }
 
+  //INIT FIELD'S OBJECT
   addField(
     fieldType: 'image' | 'text' | 'banner' | 'rating' | 'gallery' | 'heading'
   ) {
-    if (fieldType === 'text') {
-      this.fields.push({
-        type: fieldType,
-        value: '',
-        title: '',
-        id: this.fields.length,
-      });
-    } else if (fieldType === 'image') {
-      this.fields.push({
-        type: fieldType,
-        src: '',
-        id: this.fields.length,
-      });
-    } else if (fieldType === 'banner') {
-      this.fields.push({
-        type: fieldType,
-        value: '',
-        src: '',
-        title: '',
-        id: this.fields.length,
-        arrangement: 'image-text',
-      });
-    } else if (fieldType === 'rating') {
-      this.fields.push({
-        type: fieldType,
-        value: '',
-        src: '',
-        title: '',
-        id: this.fields.length,
-        arrangement: 'image-text',
-        rating: this.ratingArray,
-      });
-    } else if (fieldType === 'gallery') {
-      this.fields.push({
-        type: fieldType,
-        images: [],
-        id: this.fields.length,
-        galleryType: 'one-big-four-small',
-        arrangement: 'image-text',
-      });
-    } else if (fieldType === 'heading') {
-      this.fields.push({
-        type: fieldType,
-        src: '',
-        id: this.fields.length,
-        title: '',
-      });
+    switch (fieldType) {
+      case 'text':
+        this.fields.push({
+          type: fieldType,
+          value: '',
+          title: '',
+          id: this.fields.length,
+        });
+        break;
+      case 'image':
+        this.fields.push({
+          type: fieldType,
+          src: '',
+          id: this.fields.length,
+        });
+        break;
+      case 'banner':
+        this.fields.push({
+          type: fieldType,
+          value: '',
+          src: '',
+          title: '',
+          id: this.fields.length,
+          arrangement: 'image-text',
+        });
+        break;
+      case 'rating':
+        this.fields.push({
+          type: fieldType,
+          value: '',
+          src: '',
+          title: '',
+          id: this.fields.length,
+          arrangement: 'image-text',
+          rating: this.ratingArray,
+        });
+        break;
+      case 'gallery':
+        this.fields.push({
+          type: fieldType,
+          images: [],
+          id: this.fields.length,
+          galleryType: 'one-big-four-small',
+          arrangement: 'image-text',
+        });
+        break;
+      case 'heading':
+        this.fields.push({
+          type: fieldType,
+          src: '',
+          id: this.fields.length,
+          title: '',
+        });
+        break;
     }
 
     //this.checkForEnablingButtons();
   }
 
+  //INIT RATING'S ARRAY
   get ratingArray() {
     let arr: Star[] = [];
 
@@ -143,6 +156,7 @@ export class AddNewPostFormComponent {
     return arr;
   }
 
+  //UPDATE FIELD
   updateField(
     data:
       | TextField
@@ -157,10 +171,9 @@ export class AddNewPostFormComponent {
         field = data;
       }
     });
-
-    console.log(this.fields, data.id);
   }
 
+  //UPDATE IMAGE FIELDS
   updateImageField(id: number, value: string) {
     let fieldToUpdate = this.fields.filter(
       (field) => field.id === id
@@ -169,24 +182,28 @@ export class AddNewPostFormComponent {
     fieldToUpdate.images.push(value);
   }
 
+  //UPDATE TITLE
   updateTitle(value: string) {
     this.title = value;
 
     //this.checkForEnablingButtons();
   }
 
+  //UPDATE THUMBNAIL
   updateThumbnail(image: string) {
     this.thumbnail = image;
 
     // this.checkForEnablingButtons();
   }
 
+  //REMOVE ELEMENT
   removeElement(id: number) {
     this.fields = this.fields.filter((field) => field.id !== id);
 
     //  this.checkForEnablingButtons();
   }
 
+  //CHANGE ARRANGEMENT
   changeArrangement(id: number) {
     let fieldToChange = <BannerField | RatingField | GalleryField>(
       this.fields.find(
@@ -202,6 +219,7 @@ export class AddNewPostFormComponent {
       : (fieldToChange.arrangement = 'text-image');
   }
 
+  //UPDATE GALLERY TYPE
   updateGalleryType(data: GalleryField) {
     let fieldToChange = <GalleryField>(
       this.fields.find(
@@ -214,6 +232,7 @@ export class AddNewPostFormComponent {
       : (fieldToChange.galleryType = 'four-small');
   }
 
+  //PREVIEW TOGGLE
   previewToggle(event: Event) {
     event.preventDefault();
     this.preview = true;
@@ -227,7 +246,10 @@ export class AddNewPostFormComponent {
 
   async addNewPost(event: Event) {
     event.preventDefault();
+    //GET USER'S DATA
     let userData = await this.authService.userData();
+
+    //ADD NEW POST TO DATABASE
     await this.dbService.addPost(
       this.dbService.postId(),
       this.thumbnail,
@@ -239,9 +261,12 @@ export class AddNewPostFormComponent {
       this.stars,
       this.category
     );
+
+    //NAVIGATE USER TO LATEST POSTS SECTION
     await this.router.navigate(['/latest']);
   }
 
+  //CHANGE POST VISIBILITY
   updatePostVisibility(input: HTMLLabelElement) {
     let enabled = document.querySelector('.input-switch-wrap .enabled');
     let disabled = document.querySelector('.input-switch-wrap .disabled');
@@ -251,6 +276,7 @@ export class AddNewPostFormComponent {
     this.private = !this.private;
   }
 
+  //HANDLING DISABLING BUTTONS
   checkForEnablingButtons() {
     let possibleErrors: PossibleErrors = {
       textFieldLength: true,
@@ -299,6 +325,7 @@ export class AddNewPostFormComponent {
     this.showErrorMessage(possibleErrors);
   }
 
+  //CHECK FOR VALIDATION FIELDS
   validateAddedFields(possibleErrors: PossibleErrors) {
     let validate = true;
 
@@ -336,6 +363,7 @@ export class AddNewPostFormComponent {
     return validate;
   }
 
+  //SHOW ERROR MESSAGE
   showErrorMessage(possibleErrors: PossibleErrors) {
     //View Errors
     if (Object.values(possibleErrors).some((e) => e)) {

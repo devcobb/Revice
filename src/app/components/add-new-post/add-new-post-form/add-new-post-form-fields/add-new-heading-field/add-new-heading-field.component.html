@@ -1,12 +1,15 @@
 <!-- HEADING -->
-<div class="field-wrap heading-field-wrap"
-     *ngIf="data.type === 'heading'">
-    <input type="text"
-           minlength="5"
-           maxlength="50"
-           placeholder="Add heading title"
-           (change)="update('title', $event.target.value)"
-           class="section-title" />
-    <span class="close"
-          (click)="remove()"></span>
+<div class="field-wrap heading-field-wrap">
+
+       <!-- HEADING TITLE -->
+       <input type="text"
+              minlength="5"
+              maxlength="50"
+              placeholder="Add heading title"
+              (change)="update('title', $event.target.value)"
+              class="section-title" />
+
+       <!-- CLOSE BUTTON -->
+       <span class="close"
+             (click)="remove()"></span>
 </div>
