@@ -1,10 +1,13 @@
-<div class="post-rating-wrap">
-    <div class="star"
-         #starWrap
-         *ngFor="let star of stars"
-         [attr.data-id]="star.id"
-         [ngClass]="{'star-half': star.half, 'star-filled': star.filled, 'no-cursor': !editable}"
-         (click)="showHalfStar($event.target)"
-         (mouseover)="chooseRating(star)">
-    </div>
+<div class="stars"
+     data-stars="1">
+     <svg *ngFor="let star of stars"
+          [attr.viewBox]="viewBoxData"
+          class="star rating"
+          [attr.data-id]="star.id"
+          [ngClass]="{'no-cursor': !editable}"
+          (click)="chooseRating($event)"
+          [attr.data-rating]="star.id + 1">
+          <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
+                   style="fill-rule:nonzero;" />
+     </svg>
 </div>

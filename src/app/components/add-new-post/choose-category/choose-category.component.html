@@ -1,7 +1,10 @@
 <div class="choose-category-wrap"
      (click)="toggle()">
     <div class="choose-category choose-category-closed">
-        <span class="choosed-category">Category: {{ category[0].toUpperCase() + category.slice(1) }}</span>
+        <span class="choosed-category">
+            Category:
+            <span class="smaller-font">{{ category[0].toUpperCase() + category.slice(1) }}</span>
+        </span>
         <img class="arrow arrow-down"
              src="/assets/images/arrow-down.png" />
     </div>

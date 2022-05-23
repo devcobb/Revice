@@ -3,16 +3,21 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { DatabaseService } from 'src/app/global/database.service';
-import { BannerField, ImageField, Post, Star, TextField } from 'src/app/global/global-interfaces';
+import {
+  BannerField,
+  ImageField,
+  Post,
+  Star,
+  TextField,
+} from 'src/app/global/global-interfaces';
 import { YearFieldData } from '../choose-year/choose-year.component';
 import { RatingService } from '../rating/rating.service';
 
-
 interface Filter {
   copy: string;
-  options?: string[],
-  hasCustomOptions: boolean,
-  customOptions?: string,
+  options?: string[];
+  hasCustomOptions: boolean;
+  customOptions?: string;
 }
 
 interface ActiveFilter {
@@ -20,20 +25,19 @@ interface ActiveFilter {
   filter: string;
   copy?: string;
   rating?: Star[];
-  dateType?: 'simple' | 'range'
+  dateType?: 'simple' | 'range';
 }
 
 interface RatingCalculations {
-  count: number
+  count: number;
 }
 
 @Component({
   selector: 'app-latest-posts',
   templateUrl: './latest-posts.component.html',
-  styleUrls: ['./range.scss', './latest-posts.component.scss']
+  styleUrls: ['./range.scss', './latest-posts.component.scss'],
 })
 export class LatestPostsComponent implements OnInit {
-
   posts: Post[] = [];
   unfilteredPosts: Post[] = [];
   needLoading = true;
@@ -41,38 +45,49 @@ export class LatestPostsComponent implements OnInit {
   filterOptionsShown = true;
   choosedFilter: Filter = {} as Filter;
   searchControl = new FormControl();
-  searchControlSub = new Subscription;
-  filterRating: Star[] = []
+  searchControlSub = new Subscription();
+  filterRating: Star[] = [];
   updatedRating: Star[] = [];
   activeFilters: ActiveFilter[] = [];
 
   //Year
   year = new Date().getFullYear();
-  yearRange = "";
-  searchQuery = "";
-  specifedYear = "";
-  rangeYear = "";
+  yearRange = '';
+  searchQuery = '';
+  specifedYear = '';
+  rangeYear = '';
 
-  constructor(private databaseService: DatabaseService, private ratingService: RatingService) {
+  constructor(
+    private databaseService: DatabaseService,
+    private ratingService: RatingService
+  ) {
     this.filterRating = this.initFilterRating();
-    this.activeFilters.push({ id: 0, filter: 'category', copy: 'Category: All' },
+    this.activeFilters.push(
+      { id: 0, filter: 'category', copy: 'Category: All' },
       { id: 1, filter: 'rating', rating: this.filterRating },
-      { id: 2, filter: 'year', copy: `Year: 1500 - ${this.year}`, dateType: 'range' })
+      {
+        id: 2,
+        filter: 'year',
+        copy: `Year: 1500 - ${this.year}`,
+        dateType: 'range',
+      }
+    );
   }
 
   ngOnInit(): void {
     this.checkForPosts();
     this.setUpFilters();
 
-    this.searchControlSub = this.searchControl.valueChanges.pipe(
-      debounceTime(1000)).subscribe(newValue => {
-        this.searchQuery = newValue
+    this.searchControlSub = this.searchControl.valueChanges
+      .pipe(debounceTime(1000))
+      .subscribe((newValue) => {
+        this.searchQuery = newValue;
         this.search();
-      })
+      });
 
-    this.ratingService.changedRatingValue.subscribe(value => {
+    this.ratingService.changedRatingValue.subscribe((value) => {
       this.filterRating = value;
-    })
+    });
   }
 
   getYearFieldData(data: YearFieldData) {
@@ -80,13 +95,13 @@ export class LatestPostsComponent implements OnInit {
     this.rangeYear = data.rangeYear;
     this.yearRange = data.yearRange;
 
-    console.log(data)
+    console.log(data);
   }
 
   initFilterRating() {
     let arr = [];
     for (let i = 0; i < 10; i++) {
-      arr.push({ id: i, filled: true, half: false })
+      arr.push({ id: i, filled: true });
     }
 
     return arr;
@@ -101,13 +116,13 @@ export class LatestPostsComponent implements OnInit {
   }
 
   async checkForPosts() {
-    let postsArr = []
-    let promise = await this.databaseService.getPosts().then(data => {
+    let postsArr = [];
+    let promise = await this.databaseService.getPosts().then((data) => {
       this.posts = data;
       this.unfilteredPosts = data;
     });
 
-    await setTimeout(() => this.needLoading = false, 750)
+    await setTimeout(() => (this.needLoading = false), 750);
   }
 
   setUpFilters() {
@@ -127,17 +142,16 @@ export class LatestPostsComponent implements OnInit {
         hasCustomOptions: true,
         customOptions: 'year',
       }
-    )
+    );
   }
 
   chooseFilter(filter: Filter) {
     if (this.isCurrentFilter(filter)) {
       this.filterOptionsShown = true;
       this.choosedFilter = {} as Filter;
-    }
-    else {
+    } else {
       this.filterOptionsShown = false;
-      this.choosedFilter = filter
+      this.choosedFilter = filter;
       this.determineFilter();
     }
   }
@@ -145,7 +159,7 @@ export class LatestPostsComponent implements OnInit {
   determineFilter(searchedFilter?: string) {
     if (this.choosedFilter.hasCustomOptions) {
       if (this.choosedFilter.customOptions === searchedFilter) {
-        return true
+        return true;
       }
     }
 
@@ -155,66 +169,87 @@ export class LatestPostsComponent implements OnInit {
   isCurrentFilter(filter: Filter) {
     let compareArr: boolean[] = [];
     if (this.choosedFilter.options) {
-      this.choosedFilter.options.forEach(option => {
-        filter.options?.forEach(option2 => {
+      this.choosedFilter.options.forEach((option) => {
+        filter.options?.forEach((option2) => {
           if (option === option2) {
-            compareArr.push(true)
+            compareArr.push(true);
           }
-        })
+        });
       });
 
       return compareArr.length === filter.options?.length ? true : false;
-    }
-    else if (this.choosedFilter.hasCustomOptions) {
-      return this.choosedFilter.customOptions === filter.customOptions ? true : false
+    } else if (this.choosedFilter.hasCustomOptions) {
+      return this.choosedFilter.customOptions === filter.customOptions
+        ? true
+        : false;
     }
 
-    return false
+    return false;
   }
 
   filterYear() {
-    const specificYearInput = document.querySelector(".filter-year-number") as HTMLInputElement;
+    const specificYearInput = document.querySelector(
+      '.filter-year-number'
+    ) as HTMLInputElement;
 
-    if (this.specifedYear !== "") {
+    if (this.specifedYear !== '') {
       this.addFilter('year', this.specifedYear, [], 'simple');
-    }
-    else {
-      specificYearInput.value = "";
+    } else {
+      specificYearInput.value = '';
       this.rangeYear = `${this.minVal.value}-${this.maxVal.value}`;
       this.addFilter('year', this.rangeYear, [], 'range');
     }
 
-    this.specifedYear = "";
-    this.rangeYear = "";
+    this.specifedYear = '';
+    this.rangeYear = '';
   }
 
-  addFilter(category: string, copy?: string, rating?: Star[], yearType?: 'simple' | 'range') {
-    let newFilter = { id: this.activeFilters.length - 1, filter: category, copy: copy, rating: rating } as ActiveFilter;
+  addFilter(
+    category: string,
+    copy?: string,
+    rating?: Star[],
+    yearType?: 'simple' | 'range'
+  ) {
+    let newFilter = {
+      id: this.activeFilters.length - 1,
+      filter: category,
+      copy: copy,
+      rating: rating,
+    } as ActiveFilter;
 
     if (category === 'year') {
-      newFilter.dateType = yearType
+      newFilter.dateType = yearType;
     }
 
-    this.activeFilters.forEach(filter => {
+    this.activeFilters.forEach((filter) => {
       if (filter.filter === newFilter.filter) {
         this.editAddedFilter(filter, newFilter);
       }
     });
 
-
     this.filterPosts();
   }
 
   filterPosts() {
-    let filterCategory = this.activeFilters.filter(filter => filter.filter === 'category')[0];
-    let filterRating = this.activeFilters.filter(filter => filter.filter === 'rating')[0];
-    let filterYear = this.activeFilters.filter(filter => filter.filter === 'year')[0];
+    let filterCategory = this.activeFilters.filter(
+      (filter) => filter.filter === 'category'
+    )[0];
+    let filterRating = this.activeFilters.filter(
+      (filter) => filter.filter === 'rating'
+    )[0];
+    let filterYear = this.activeFilters.filter(
+      (filter) => filter.filter === 'year'
+    )[0];
 
-    this.posts.forEach(post => {
-      if (!this.checkCategory(post.category, filterCategory.copy) || !this.checkRating(post.ratings, filterRating.rating) || !this.checkYear(post.year, filterYear.copy, filterYear.dateType) || !this.checkQuery(post.author, post.category, post.fields, post.title)) {
+    this.posts.forEach((post) => {
+      if (
+        !this.checkCategory(post.category, filterCategory.copy) ||
+        !this.checkRating(post.ratings, filterRating.rating) ||
+        !this.checkYear(post.year, filterYear.copy, filterYear.dateType) ||
+        !this.checkQuery(post.author, post.category, post.fields, post.title)
+      ) {
         post.hidden = true;
-      }
-      else {
+      } else {
         post.hidden = false;
       }
     });
@@ -222,64 +257,79 @@ export class LatestPostsComponent implements OnInit {
 
   checkCategory(postCategory: string, categoryToFilter: string | undefined) {
     if (categoryToFilter) {
-      if (categoryToFilter.toLowerCase().includes(postCategory.toLowerCase()) || categoryToFilter === 'Category: All') {
-        return true
+      if (
+        categoryToFilter.toLowerCase().includes(postCategory.toLowerCase()) ||
+        categoryToFilter === 'Category: All'
+      ) {
+        return true;
       }
-      return false
+      return false;
     }
 
-    return false
+    return false;
   }
 
-  checkYear(postYear: string, yearToFilter: string | undefined, type: 'simple' | 'range' | undefined) {
+  checkYear(
+    postYear: string,
+    yearToFilter: string | undefined,
+    type: 'simple' | 'range' | undefined
+  ) {
     if (yearToFilter) {
       if (type === 'range') {
         let range = yearToFilter.split(':')[1].split('-');
-        console.log(range)
-        if (Number(postYear) >= Number(range[0].trim()) && Number(postYear) <= Number(range[1].trim())) {
-          return true
+        console.log(range);
+        if (
+          Number(postYear) >= Number(range[0].trim()) &&
+          Number(postYear) <= Number(range[1].trim())
+        ) {
+          return true;
         }
+      } else if (yearToFilter.includes(postYear)) {
+        return true;
       }
-      else if (yearToFilter.includes(postYear)) {
-        return true
-      }
-      return false
+      return false;
     }
 
-    return false
+    return false;
   }
 
   checkRating(postRating: Star[], ratingToFilter: Star[] | undefined) {
     if (ratingToFilter) {
       if (this.compareRatings(postRating, ratingToFilter)) {
-        return true
+        return true;
       }
-      return false
+      return false;
     }
 
-    return false
+    return false;
   }
 
-  checkQuery(author: string, category: string, fields: (TextField | ImageField | BannerField)[], title: string) {
+  checkQuery(
+    author: string,
+    category: string,
+    fields: (TextField | ImageField | BannerField)[],
+    title: string
+  ) {
     if (title.toLowerCase().includes(this.searchQuery.toLowerCase())) {
-      return true
-    }
-    else if (author.toLowerCase().includes(this.searchQuery.toLowerCase())) {
-      return true
-    }
-    else if (fields.find(p => p.type === 'text' || p.type === 'banner')) {
-      fields.forEach(p => {
+      return true;
+    } else if (author.toLowerCase().includes(this.searchQuery.toLowerCase())) {
+      return true;
+    } else if (fields.find((p) => p.type === 'text' || p.type === 'banner')) {
+      fields.forEach((p) => {
         if (p.type === 'text' || p.type === 'banner') {
-          if (p.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || p.value.toLowerCase().includes(this.searchQuery.toLowerCase())) {
-            return true
+          if (
+            p.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+            p.value.toLowerCase().includes(this.searchQuery.toLowerCase())
+          ) {
+            return true;
           }
         }
 
-        return false
-      })
+        return false;
+      });
     }
 
-    return false
+    return false;
   }
 
   compareRatings(rating1: Star[], rating2: Star[]) {
@@ -290,18 +340,15 @@ export class LatestPostsComponent implements OnInit {
     this.calculateRatingsData(rating2, ratings2Data);
 
     if (ratings1Data.count <= ratings2Data.count) {
-      return true
+      return true;
     }
 
-    return false
+    return false;
   }
 
   calculateRatingsData(ratings: Star[], ratingData: RatingCalculations) {
-    ratings.forEach(rating => {
-      if (rating.half) {
-        ratingData.count += 0.5;
-      }
-      else if (rating.filled) {
+    ratings.forEach((rating) => {
+      if (rating.filled) {
         ratingData.count += 1;
       }
     });
@@ -309,37 +356,38 @@ export class LatestPostsComponent implements OnInit {
 
   editAddedFilter(existingFilter: ActiveFilter, newFilter: ActiveFilter) {
     if (newFilter.copy) {
-      existingFilter.copy = `${newFilter.filter[0].toUpperCase() + newFilter.filter.slice(1,)}: ${newFilter.copy}`;
+      existingFilter.copy = `${
+        newFilter.filter[0].toUpperCase() + newFilter.filter.slice(1)
+      }: ${newFilter.copy}`;
 
       if (newFilter.dateType) {
-        existingFilter.dateType = newFilter.dateType
+        existingFilter.dateType = newFilter.dateType;
       }
-    }
-    else {
+    } else {
       existingFilter.rating = newFilter.rating;
     }
 
-    this.filterPosts()
+    this.filterPosts();
   }
 
   get minVal() {
-    return document.querySelector(".min-val") as HTMLInputElement
+    return document.querySelector('.min-val') as HTMLInputElement;
   }
 
   get maxVal() {
-    return document.querySelector(".max-val") as HTMLInputElement
+    return document.querySelector('.max-val') as HTMLInputElement;
   }
 
   get firstRange() {
-    return document.querySelector(".first-range") as HTMLInputElement;
+    return document.querySelector('.first-range') as HTMLInputElement;
   }
 
   get secRange() {
-    return document.querySelector(".second-range") as HTMLInputElement;
+    return document.querySelector('.second-range') as HTMLInputElement;
   }
 
   firstPostID() {
-    let foundPost = this.posts.find(post => !post.hidden);
+    let foundPost = this.posts.find((post) => !post.hidden);
 
     return foundPost ? foundPost.id : 0;
   }
