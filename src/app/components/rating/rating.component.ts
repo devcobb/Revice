@@ -1,5 +1,14 @@
-import { Component, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { Subject } from 'rxjs';
+import { CheckDeviceService } from 'src/app/global/check-device.service';
 import { Star } from 'src/app/global/global-interfaces';
 import { ErrorMessagesService } from '../error-messages/error-messages-service.service';
 import { RatingService } from './rating.service';
@@ -7,54 +16,71 @@ import { RatingService } from './rating.service';
 @Component({
   selector: 'app-rating',
   templateUrl: './rating.component.html',
-  styleUrls: ['./rating.component.scss']
+  styleUrls: ['./rating.component.scss'],
 })
+@HostListener('window:resize', ['$event'])
 export class RatingComponent implements OnInit {
-  @Input() stars: Star[] = [];
+  @Input()
+  stars: Star[] = [];
   @Input() editable = false;
   @Output() touched = new Subject<boolean>();
   @ViewChildren('starWrap') starWrap!: QueryList<HTMLDivElement>;
+  viewBoxData = '-7.75 -4.75 35 35';
 
-  constructor(private errorMessageService: ErrorMessagesService, private ratingService: RatingService) {
+  constructor(
+    private errorMessageService: ErrorMessagesService,
+    private ratingService: RatingService,
+    private checkDeviceService: CheckDeviceService
+  ) {
     for (let i = 0; i < 10; i++) {
-      this.stars.push({ id: i, filled: false, half: false })
+      this.stars.push({ id: i, filled: false });
     }
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.svgViewBox();
+  }
 
-  chooseRating(star: Star) {
+  chooseRating(star: Event) {
     if (this.editable) {
-      this.clearRatings();
-      let stars = document.querySelectorAll('.star');
+      let starEl = star.currentTarget as HTMLDivElement;
 
-      for (let i = star.id; i > -1; i--) {
-        stars[i].className = "star star-filled";
+      const parent = starEl.parentNode! as HTMLDivElement;
+      const filledStarsId = Number(starEl.dataset.id) + 1;
+
+      this.clearRatings();
+      for (let i = Number(starEl.dataset.id); i > -1; i--) {
         this.stars[i].filled = true;
       }
 
-      this.errorMessageService.ratingAdded.next(true);
-      this.ratingService.changedRatingValue.next(this.stars)
-    }
-  }
+      let starClasses = starEl.getAttribute('class');
+      starEl.setAttribute('class', `${starClasses} starAnimate`);
+      setTimeout(() => {
+        starEl.setAttribute('class', `${starClasses}`);
+      }, 300);
 
-  showHalfStar(star: HTMLDivElement) {
-    if (this.editable) {
-      if (star.dataset.id) {
-        !this.stars[parseInt(star.dataset.id)].half ? star.className = "star star-half" : "star star-filled";
-        this.stars[parseInt(star.dataset.id)].half = !this.stars[parseInt(star.dataset.id)].half;
-      }
+      parent.setAttribute('data-stars', String(filledStarsId));
+      this.errorMessageService.ratingAdded.next(true);
+      this.ratingService.changedRatingValue.next(this.stars);
     }
   }
 
   clearRatings() {
-    this.starWrap.toArray().forEach(star => {
-      star.className = "star"
-    });
+    const stars = document.querySelector('.stars') as HTMLDivElement;
+    stars.dataset.stars = '1';
 
-    this.stars.forEach(star => {
+    this.stars.forEach((star) => {
       star.filled = false;
-      star.half = false;
-    })
+    });
+  }
+
+  onResize(event: Event) {
+    this.svgViewBox();
+  }
+
+  svgViewBox() {
+    !this.checkDeviceService.checkDevice()
+      ? (this.viewBoxData = '-7.75 -4.75 35 35')
+      : (this.viewBoxData = '0 0 25 25');
   }
 }

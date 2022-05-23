@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CheckDeviceService {
+  constructor() {}
 
-  constructor() { }
-
-  checkDevice(){
-    if(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)){
-      return true
+  checkDevice() {
+    if (
+      /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
+      window.innerWidth <= 600
+    ) {
+      return true;
     }
-    return false
+    return false;
   }
 }

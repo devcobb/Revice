@@ -1,6 +1,7 @@
 <div class="filter-year-container">
     <div class="filter-year-wrap">
-        <div class="range-slider">
+        <div class="range-slider"
+             *ngIf="mode === EChooseYearMode.range">
             <span class="range-slider-topbar">
                 <span class="range-slider-text">from</span>
                 <input type="number"
@@ -19,37 +20,39 @@
                        [max]="year"
                        step="1">
             </span>
+            <div class="range-slider-bottombar">
+                <input [attr.value]="'1500'"
+                       min="1"
+                       [max]="year"
+                       class="first-range"
+                       (input)="changeRange()"
+                       step="1"
+                       type="range">
 
-            <input [attr.value]="'1500'"
-                   min="1"
-                   [max]="year"
-                   class="first-range"
-                   (input)="changeRange()"
-                   step="1"
-                   type="range">
+                <input [attr.value]="year"
+                       min="1"
+                       [max]="year"
+                       class="second-range"
+                       (input)="changeRange()"
+                       step="1"
+                       type="range">
 
-            <input [attr.value]="year"
-                   min="1"
-                   [max]="year"
-                   class="second-range"
-                   (input)="changeRange()"
-                   step="1"
-                   type="range">
-
-            <svg width="100%"
-                 height="24">
-                <line x1="4"
-                      y1="0"
-                      x2="480"
-                      y2="0"
-                      stroke="#444"
-                      stroke-width="12"
-                      stroke-dasharray="1 28">
-                </line>
-            </svg>
+                <svg width="100%"
+                     height="24">
+                    <line x1="4"
+                          y1="0"
+                          x2="480"
+                          y2="0"
+                          stroke="#feb93f"
+                          stroke-width="12"
+                          stroke-dasharray="1 28">
+                    </line>
+                </svg>
+            </div>
         </div>
-        <div class="seperator"></div>
-        <div class="specific-year-wrap">
+
+        <div class="specific-year-wrap"
+             *ngIf="mode === EChooseYearMode.specific">
             <span class="range-slider-text">Enter a specific year</span>
             <input class="filter-year year-filter-input filter-year-number"
                    (change)="enterSpecificYear($event.target.value)"
@@ -57,6 +60,12 @@
                    min="1"
                    [value]="yearRange"
                    [max]="year" />
+        </div>
+
+        <div class="chooseDateModeToggle"
+             [ngClass]="mode === EChooseYearMode.range ? 'btnBiggerMargin' : 'btnSmallerMargin'"
+             (click)="toggleMode()">
+            {{mode === EChooseYearMode.range ? 'Choose a specific year' : 'Choose a range date'}}
         </div>
     </div>
 </div>

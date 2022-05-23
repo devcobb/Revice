@@ -19,8 +19,8 @@
     position: relative;
     z-index: 3;
     .ratings-wrap {
-      width: 40%;
-      margin-bottom: 2%;
+      width: 45%;
+      margin-bottom: 0.5%;
       ::ng-deep {
         .post-rating-wrap {
           justify-content: space-around;
@@ -29,27 +29,25 @@
     }
     .post-basic-information {
       @include main.flex(center, center);
-      width: 40%;
-      margin-bottom: 2.5%;
+      width: 45%;
+      margin-bottom: 1%;
+      .post-title {
+        box-sizing: border-box;
+      }
     }
     .post-info-wrap {
       @include main.flex(center, center, column);
       flex-wrap: wrap;
-      width: 35%;
+      width: 40%;
       .choose-year-wrap {
+        margin-bottom: 1%;
         width: 75%;
-      }
-      .post-visiblity-wrap {
-        margin-top: 5%;
-        margin-bottom: 5%;
-        width: 35%;
       }
     }
     .post-visiblity-wrap {
       @include main.flex(center, center, column);
       color: main.$yellow;
-      width: 100%;
-      margin-bottom: 2.5%;
+      width: 25%;
     }
     .input-switch-wrap {
       @include main.flex(center, center);
@@ -77,7 +75,6 @@
       display: block;
       width: 3.5rem;
       height: 2rem;
-      background-color: main.$dark_grey;
       border: 1px solid main.$yellow;
       border-radius: 50px;
       cursor: pointer;
@@ -97,20 +94,24 @@
         }
       }
     }
-    .thumbnail {
-      @include main.flex(center, center);
-      width: 40%;
+    .thumbnail-wrap {
+      @include main.flex(space-between, center);
+      width: 45%;
       height: 12.5rem;
       margin-bottom: 1%;
     }
+    .thumbnail {
+      width: 70%;
+      height: 100%;
+    }
     .add-row {
-      @include main.flex(center, center);
+      @include main.flex(space-between, center);
       flex-wrap: wrap;
       margin: 2.5% 0 2.5% 0;
-      width: 50%;
+      width: 45%;
       color: main.$yellow;
       .add-field-btn {
-        width: 25%;
+        width: 28%;
         margin: 1rem;
       }
     }
@@ -175,22 +176,27 @@
 @media only screen and (max-width: 1400px) {
   .add-new-post-container {
     .add-new-post-form {
-      .thumbnail {
+      .thumbnail-wrap {
         width: 50%;
+        height: 15rem;
+        flex-direction: column-reverse;
+      }
+      .thumbnail {
+        width: 100%;
       }
       .post-info-wrap {
-        .choose-year-wrap {
-          width: 100%;
-        }
-        .post-visiblity-wrap {
-          width: 50%;
-        }
+        width: 50%;
+      }
+      .post-visiblity-wrap {
+        width: 100%;
+        margin: 2.5% 0;
       }
       .add-row {
         width: 60%;
       }
       .ratings-wrap {
         width: 50%;
+        margin-bottom: 0;
       }
       .post-basic-information {
         width: 50%;
@@ -242,18 +248,16 @@
   .add-new-post-container {
     .add-new-post-form {
       .post-basic-information,
+      .thumbnail-wrap,
       .ratings-wrap {
         width: 75%;
       }
       .post-info-wrap {
-        width: 50%;
+        margin-top: 2.5%;
+        width: 55%;
       }
       .add-row {
         width: 90%;
-      }
-      .thumbnail {
-        width: 75%;
-        height: 10rem;
       }
       .submit-container {
         width: 100%;
@@ -281,8 +285,14 @@
           width: 40%;
         }
       }
+      .ratings-wrap {
+        margin-bottom: 2%;
+      }
       .post-info-wrap {
-        width: 60%;
+        width: 65%;
+      }
+      .add-row {
+        justify-content: center;
       }
       .submit-container {
         .submit-btn,
@@ -297,9 +307,13 @@
 @media only screen and (max-width: 600px) {
   .add-new-post-container {
     .add-new-post-form {
+      .post-info-wrap {
+        width: 75%;
+      }
       .add-row {
         flex-direction: column;
         .add-field-btn {
+          margin: 1rem 0;
           width: 50%;
         }
       }
@@ -311,10 +325,13 @@
   .add-new-post-container {
     .add-new-post-form {
       .post-info-wrap {
-        width: 70%;
+        width: 100%;
       }
       .submit-container .btn-wrap {
         width: 95%;
+      }
+      .ratings-wrap {
+        margin-bottom: 4%;
       }
       .field-container {
         width: 75%;

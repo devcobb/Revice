@@ -151,7 +151,7 @@ export class AddNewPostFormComponent {
     let arr: Star[] = [];
 
     for (let i = 0; i < 10; i++) {
-      arr.push({ id: i, filled: false, half: false });
+      arr.push({ id: i, filled: false });
     }
     return arr;
   }
@@ -285,8 +285,7 @@ export class AddNewPostFormComponent {
       noFieldsAdded: this.fields.length === 0,
       titleLength: this.title.length < 5 || this.title.length > 50,
       noThumbnail: this.thumbnail === '',
-      noRatings:
-        this.stars.filter((star) => star.half || star.filled).length === 0,
+      noRatings: this.stars.filter((star) => star.filled).length === 0,
       userNotExists: JSON.parse(localStorage.getItem('user')!) === null,
     };
 

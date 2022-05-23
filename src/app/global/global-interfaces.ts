@@ -79,7 +79,6 @@ export interface Post {
 }
 
 export interface Star {
-  half: boolean;
   filled: boolean;
   id: number;
 }
@@ -103,6 +102,6 @@ export enum EPossibleErrors {
   noFieldsAdded = 'Please add fields to your post. It should have at least one added field of some kind.',
   titleLength = "Please fill post's title field. It should be at least 5 characters long and maximum 50 characters.",
   noThumbnail = 'Please add thumbnail of your post.',
-  noRatings = 'Please add rating of your post. It should have at least a half star rating.',
+  noRatings = 'Please add rating of your post. It should have at least a one star rating.',
   userNotExists = 'Please sign in to add new post.',
 }

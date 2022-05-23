@@ -4,30 +4,36 @@ import { Category } from 'src/app/global/global-interfaces';
 @Component({
   selector: 'app-choose-category',
   templateUrl: './choose-category.component.html',
-  styleUrls: ['./choose-category.component.scss']
+  styleUrls: ['./choose-category.component.scss'],
 })
 export class ChooseCategoryComponent implements OnInit {
-  @Input() category: string = "Category";
+  @Input() category: string = 'Category';
   @Output() changeCategory = new EventEmitter<Category>();
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   toggle() {
-    let list = document.querySelector(".list") as HTMLDivElement;
-    let arrow = document.querySelector(".arrow") as HTMLImageElement;
-    let categoryBtn = document.querySelector(".choose-category") as HTMLImageElement;
+    let list = document.querySelector('.list') as HTMLDivElement;
+    let arrow = document.querySelector('.arrow') as HTMLImageElement;
+    let categoryBtn = document.querySelector(
+      '.choose-category'
+    ) as HTMLImageElement;
 
     if (list.className.includes('close')) {
-      categoryBtn.className = categoryBtn.className.replace('choose-category-closed', 'choose-category-open');
+      categoryBtn.className = categoryBtn.className.replace(
+        'choose-category-closed',
+        'choose-category-open'
+      );
       list.className = list.className.replace('close', 'open');
       arrow.className = arrow.className.replace('arrow-down', 'arrow-top');
-    }
-    else {
+    } else {
       list.className = list.className.replace('open', 'close');
       arrow.className = arrow.className.replace('arrow-top', 'arrow-down');
-      categoryBtn.className = categoryBtn.className.replace('choose-category-open', 'choose-category-closed');
+      categoryBtn.className = categoryBtn.className.replace(
+        'choose-category-open',
+        'choose-category-closed'
+      );
     }
   }
 
@@ -35,6 +41,6 @@ export class ChooseCategoryComponent implements OnInit {
     let category = target.textContent;
 
     this.category = category!;
-    this.changeCategory.emit({ name: this.category })
+    this.changeCategory.emit({ name: this.category });
   }
 }
