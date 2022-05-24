@@ -1,416 +1,405 @@
 @use "/src/app/global/main.scss";
 
 :host {
-    width: 100%;
-    min-height: 100vh;
+  @include main.setSize(100%, auto, auto, auto, auto, 100vh);
 }
 
 .top-bar {
-    @include main.flex(center, center, column);
-    padding-top: 10rem;
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    .category-header {
-        @extend .font-2;
-        @include main.flex(center, center);
-        @include main.mainHeading(main.$yellow);
-        font-size: 3.5rem;
-        margin-bottom: 2.5%;
+  @include main.flex(center, center, column);
+  @include main.setSize(100%);
+  padding-top: 10rem;
+  position: relative;
+  z-index: 2;
+  .category-header {
+    @extend .font-2;
+    @include main.flex(center, center);
+    @include main.mainHeading(main.$yellow);
+    font-size: 3.5rem;
+    margin-bottom: 2.5%;
+  }
+  .filter-bar {
+    @include main.flex(flex-start, center, column);
+    @include main.setSize(75%, auto, auto, auto, auto, 10rem);
+    margin-bottom: 5%;
+    .search-wrap {
+      @include main.flex(center, center);
+      @include main.setSize(75%);
+      transition: margin 0.3s;
+      .search-field {
+        @extend .font-1;
+        @include main.setSize(25%);
+        position: relative;
+        background-color: transparent;
+        border: none;
+        font-size: 1rem;
+        outline: none;
+        border-bottom: 1px solid main.$yellow;
+        padding: 10px 0 10px 45px;
+        color: main.$yellow;
+        background-image: url("/assets/images/search.png");
+        background-repeat: no-repeat;
+        background-position: 0% center;
+      }
     }
-    .filter-bar {
-        @include main.flex(flex-start, center, column);
-        margin-bottom: 5%;
-        width: 75%;
-        min-height: 10rem;
-        .search-wrap {
-            @include main.flex(center, center);
-            width: 75%;
-            transition: margin 0.3s;
-            .search-field {
-                @extend .font-1;
-                position: relative;
-                width: 25%;
-                background-color: transparent;
-                border: none;
-                font-size: 1rem;
-                outline: none;
-                border-bottom: 1px solid main.$yellow;
-                padding: 10px 0 10px 45px;
-                color: main.$yellow;
-                background-image: url("/assets/images/search.png");
-                background-repeat: no-repeat;
-                background-position: 0% center;
-            }
-        }
-        .search-wrap-margin {
-            margin-top: 1.5%;
-        }
-        .filter-options-wrap-closed {
-            min-height: 0rem !important;
-        }
-        .hidden {
-            animation: hideFilter 0.2s;
-            animation-fill-mode: forwards;
-        }
-        .show {
-            animation: showFilter 0.2s;
-            animation-fill-mode: forwards;
-        }
-        .filter-options-wrap-rating {
-            width: 100%;
-            min-width: auto;
-        }
-        .filter-options-wrap {
-            min-width: 50%;
-            text-align: center;
-            color: main.$dark;
-            border-radius: 3px;
-            overflow: hidden;
-            min-height: 10rem;
-            transition: min-height 0.3s, opacity 0.2s;
-            .filter-option {
-                display: inline-block;
-                transition: font-weight 0.3s;
-                background-color: main.$yellow;
-                padding: 1rem;
-                text-align: center;
-                margin: 1px;
-                border-radius: 3px;
-                width: 5rem;
-                cursor: pointer;
-                &:hover {
-                    font-weight: bold;
-                }
-            }
-        }
-        .filter-options-button-wrap {
-            @include main.flex(center, center, column);
-        }
-        .filter-button {
-            @include main.contrastButton();
-            font-size: 0.7rem;
-            min-width: 15%;
-            margin-top: 4%;
-            padding: 0.5rem 1rem;
-        }
-        .filter-tabs {
-            @include main.flex(center, center);
-            width: 100%;
-            margin-bottom: 2%;
-        }
-        .filter-tab {
-            @include main.flex(center, center);
-            width: 7.5%;
-            margin: 0 1%;
-            background-color: main.$yellow;
-            color: main.$dark;
-            padding: 0.5rem 0.5rem 0.5rem 1rem;
-            border-radius: 3px;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            &:hover {
-                background-color: darken(main.$yellow, 3%);
-            }
-        }
-        .specific-year-wrap {
-            @include main.flex(center, center, column);
-            .year-filter-input {
-                width: 27.5%;
-            }
-        }
-        .range-slider-text {
-            color: main.$yellow;
-            font-weight: bold;
-        }
-        .filter-year-wrap {
-            @include main.flex(center, center);
-            margin-bottom: 3%;
-            width: 35vw;
-        }
-        .filter-year-container {
-            @include main.flex(center, center, column);
-            margin: 0 auto;
-            width: 100%;
-        }
-        .filter-year-range-data {
-            @include main.flex(space-between, center);
-            @extend .font-1;
-            width: 50%;
-            color: main.$yellow;
-            font-size: 0.8rem;
-        }
-        .filter-year-number {
-            margin-top: 2.5%;
-            width: 50%;
-            text-align: center;
-            margin-top: 2.5%;
-            &::-webkit-outer-spin-button,
-            &::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
-            }
-            &[type="number"] {
-                -moz-appearance: textfield;
-            }
-        }
-        .seperator {
-            width: 2px;
-            height: 4rem;
-            background-color: main.$yellow;
-            margin: 0 5%;
-            border-radius: 50px;
-        }
-        .year-filter-input {
-            width: 20%;
-            text-align: center;
-            border: 1px solid main.$yellow;
-            border-radius: 50px;
-            color: main.$yellow;
-            background-color: transparent;
-            outline: none;
-            padding: 0.5rem 1rem;
-            &::-webkit-outer-spin-button,
-            &::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
-            }
-            &::placeholder {
-                color: main.$yellow;
-            }
-        }
-        .choosed {
-            font-weight: bold;
-            margin-left: 10px;
-        }
-        .arrow {
-            filter: brightness(0);
-            margin-left: 10px;
-            width: 12px;
-            height: 12px;
-            transition: transform 0.2s;
-        }
-        .arrow-up {
-            -webkit-transform: scaleY(-1);
-            transform: scaleY(-1);
-        }
+    .search-wrap-margin {
+      margin-top: 1.5%;
     }
-    .active-filter-wrap {
-        @include main.flex(center, stretch);
-        width: 75%;
-        margin-top: 2.5%;
-        .active-filter {
-            @include main.flex(center, center);
-            color: main.$white;
-            position: relative;
-            background-color: main.$purple;
-            border-radius: 3px;
-            padding: 0.75rem 2rem;
-            font-weight: bold;
-            margin: 0 10px;
-            min-width: 7%;
-            min-height: 1rem;
-        }
-        .active-filter-rating-wrap {
-            ::ng-deep {
-                .star {
-                    width: 12.5px;
-                    height: 12.5px;
-                    margin: 0 1px;
-                }
-            }
-        }
-        .app-rating {
-            max-width: 100%;
-        }
+    .filter-options-wrap-closed {
+      min-height: 0rem !important;
     }
+    .hidden {
+      animation: hideFilter 0.2s;
+      animation-fill-mode: forwards;
+    }
+    .show {
+      animation: showFilter 0.2s;
+      animation-fill-mode: forwards;
+    }
+    .filter-options-wrap-rating {
+      @include main.setSize(100%, auto, auto, auto, auto, auto);
+    }
+    .filter-options-wrap {
+      @include main.setSize(auto, auto, auto, auto, 50%, 10rem);
+      text-align: center;
+      color: main.$dark;
+      border-radius: 3px;
+      overflow: hidden;
+      transition: min-height 0.3s, opacity 0.2s;
+      .filter-option {
+        @include main.setSize(5rem);
+        display: inline-block;
+        transition: font-weight 0.3s;
+        background-color: main.$yellow;
+        padding: 1rem;
+        text-align: center;
+        margin: 1px;
+        border-radius: 3px;
+        cursor: pointer;
+        &:hover {
+          font-weight: bold;
+        }
+      }
+    }
+    .filter-options-button-wrap {
+      @include main.flex(center, center, column);
+    }
+    .filter-button {
+      @include main.contrastButton();
+      @include main.setSize(auto, auto, auto, auto, 15%);
+      font-size: 0.7rem;
+      margin-top: 4%;
+      padding: 0.5rem 1rem;
+    }
+    .filter-tabs {
+      @include main.flex(center, center);
+      @include main.setSize(100%);
+      margin-bottom: 2%;
+    }
+    .filter-tab {
+      @include main.flex(center, center);
+      @include main.setSize(7.5%);
+      margin: 0 1%;
+      background-color: main.$yellow;
+      color: main.$dark;
+      padding: 0.5rem 0.5rem 0.5rem 1rem;
+      border-radius: 3px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      &:hover {
+        background-color: darken(main.$yellow, 3%);
+      }
+    }
+    .specific-year-wrap {
+      @include main.flex(center, center, column);
+      .year-filter-input {
+        @include main.setSize(27.5%);
+      }
+    }
+    .range-slider-text {
+      color: main.$yellow;
+      font-weight: bold;
+    }
+    .filter-year-wrap {
+      @include main.flex(center, center);
+      @include main.setSize(35vw);
+      margin-bottom: 3%;
+    }
+    .filter-year-container {
+      @include main.flex(center, center, column);
+      @include main.setSize(100%);
+      margin: 0 auto;
+    }
+    .filter-year-range-data {
+      @include main.flex(space-between, center);
+      @extend .font-1;
+      @include main.setSize(50%);
+      color: main.$yellow;
+      font-size: 0.8rem;
+    }
+    .filter-year-number {
+      @include main.setSize(50%);
+      margin-top: 2.5%;
+      text-align: center;
+      margin-top: 2.5%;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      &[type="number"] {
+        -moz-appearance: textfield;
+      }
+    }
+    .seperator {
+      @include main.setSize(2px, 4rem);
+      background-color: main.$yellow;
+      margin: 0 5%;
+      border-radius: 50px;
+    }
+    .year-filter-input {
+      @include main.setSize(20%);
+      text-align: center;
+      border: 1px solid main.$yellow;
+      border-radius: 50px;
+      color: main.$yellow;
+      background-color: transparent;
+      outline: none;
+      padding: 0.5rem 1rem;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      &::placeholder {
+        color: main.$yellow;
+      }
+    }
+    .choosed {
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    .arrow {
+      @include main.setSize(12px, 12px);
+      filter: brightness(0);
+      margin-left: 10px;
+      transition: transform 0.2s;
+    }
+    .arrow-up {
+      -webkit-transform: scaleY(-1);
+      transform: scaleY(-1);
+    }
+  }
+  .active-filter-wrap {
+    @include main.flex(center, stretch);
+    @include main.setSize(75%);
+    margin-top: 2.5%;
+    .active-filter {
+      @include main.setSize(auto, auto, auto, auto, 7%, 1rem);
+      @include main.flex(center, center);
+      color: main.$white;
+      position: relative;
+      background-color: main.$purple;
+      border-radius: 3px;
+      padding: 0.75rem 2rem;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+    .active-filter-rating-wrap {
+      ::ng-deep {
+        .star {
+          @include main.setSize(12.5px, 12.5px);
+          margin: 0 1px;
+        }
+      }
+    }
+    .app-rating {
+      @include main.setSize(auto, auto, 100%);
+    }
+  }
 }
 
 .posts-list-wrap {
-    @include main.flex(center, center);
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
-    z-index: 2;
-    a {
-        color: inherit;
-        text-decoration: none;
+  @include main.flex(center, center);
+  @include main.setSize(100%, auto, auto, auto, auto, 100vh);
+  position: relative;
+  z-index: 2;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .posts-list {
+    @include main.flex(flex-start, center, column);
+    @include main.setSize(100%, auto, auto, auto, auto, calc(100vh - 10rem));
+    margin-bottom: 10%;
+    .first {
+      margin-top: 10%;
     }
-    .posts-list {
-        @include main.flex(flex-start, center, column);
-        width: 100%;
-        min-height: calc(100vh - 10rem);
-        margin-bottom: 10%;
-        .first {
-            margin-top: 10%;
-        }
-        .post-wrap {
-            width: 30%;
-            height: 15rem;
-            color: main.$white;
-            margin-bottom: 10rem;
-        }
+    .post-wrap {
+      @include main.setSize(30%, 15rem);
+      color: main.$white;
+      margin-bottom: 10rem;
     }
+  }
 }
 
 @keyframes hideFilter {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes showFilter {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media only screen and (max-width: 1300px) {
-    .top-bar .filter-bar .filter-year-wrap {
-        width: 50vw;
-    }
+  .top-bar .filter-bar .filter-year-wrap {
+    @include main.setSize(50vw);
+  }
 }
 
 @media only screen and (max-width: 1200px) {
-    .top-bar {
-        .filter-bar {
-            .filter-year-wrap {
-                flex-direction: column;
-                .range-slider {
-                    width: 75%;
-                }
-                .seperator {
-                    display: none;
-                }
-                .specific-year-wrap {
-                    width: 50%;
-                    margin-top: 3.5%;
-                }
-            }
-            .filter-tab {
-                width: 12.5%;
-            }
+  .top-bar {
+    .filter-bar {
+      .filter-year-wrap {
+        flex-direction: column;
+        .range-slider {
+          @include main.setSize(75%);
         }
-    }
-    .posts-list-wrap .posts-list {
-        .first {
-            margin-top: 15%;
+        .seperator {
+          display: none;
         }
+        .specific-year-wrap {
+          @include main.setSize(50%);
+          margin-top: 3.5%;
+        }
+      }
+      .filter-tab {
+        @include main.setSize(12.5%);
+      }
     }
+  }
+  .posts-list-wrap .posts-list {
+    .first {
+      margin-top: 15%;
+    }
+  }
 }
 
 @media only screen and (max-width: 1000px) {
-    .top-bar {
-        .filter-bar {
-            .search-wrap .search-field {
-                width: 50%;
-            }
-            .active-filter-wrap {
-                flex-direction: column;
-                align-items: center;
-                .active-filter {
-                    width: 35%;
-                    margin: 2px 0;
-                }
-            }
+  .top-bar {
+    .filter-bar {
+      .search-wrap .search-field {
+        @include main.setSize(50%);
+      }
+      .active-filter-wrap {
+        flex-direction: column;
+        align-items: center;
+        .active-filter {
+          @include main.setSize(35%);
+          margin: 2px 0;
         }
+      }
     }
-    .posts-list-wrap .posts-list {
-        .first {
-            margin-top: 22.5%;
-        }
-        .post-wrap {
-            width: 50%;
-        }
+  }
+  .posts-list-wrap .posts-list {
+    .first {
+      margin-top: 22.5%;
     }
+    .post-wrap {
+      @include main.setSize(50%);
+    }
+  }
 }
 
 @media only screen and (max-width: 820px) {
-    .posts-list-wrap .posts-list {
-        .first {
-            margin-top: 35%;
-        }
+  .posts-list-wrap .posts-list {
+    .first {
+      margin-top: 35%;
     }
+  }
 }
 
 @media only screen and (max-width: 600px) {
-    .top-bar .filter-bar .filter-year-wrap {
-        width: 75vw;
+  .top-bar .filter-bar .filter-year-wrap {
+    @include main.setSize(75vw);
+  }
+  .posts-list-wrap .posts-list {
+    .post-wrap {
+      @include main.setSize(75%);
     }
-    .posts-list-wrap .posts-list {
-        .post-wrap {
-            width: 75%;
-        }
-    }
+  }
 }
 
 @media only screen and (max-width: 700px) {
-    .top-bar {
-        .filter-bar {
-            .filter-tabs {
-                margin-bottom: 5%;
-            }
-            .active-filter-wrap {
-                margin-top: 5%;
-            }
-            .filter-tab {
-                width: 20%;
-            }
-        }
+  .top-bar {
+    .filter-bar {
+      .filter-tabs {
+        margin-bottom: 5%;
+      }
+      .active-filter-wrap {
+        margin-top: 5%;
+      }
+      .filter-tab {
+        @include main.setSize(20%);
+      }
     }
-    .posts-list-wrap .posts-list {
-        .first {
-            margin-top: 20%;
-        }
+  }
+  .posts-list-wrap .posts-list {
+    .first {
+      margin-top: 20%;
     }
+  }
 }
 
 @media only screen and (max-width: 500px) {
-    .top-bar {
-        .filter-bar {
-            .active-filter-wrap {
-                .active-filter {
-                    width: 45%;
-                }
-            }
+  .top-bar {
+    .filter-bar {
+      .active-filter-wrap {
+        .active-filter {
+          @include main.setSize(45%);
         }
+      }
     }
-    .posts-list-wrap .posts-list {
-        .first {
-            margin-top: 25%;
-        }
+  }
+  .posts-list-wrap .posts-list {
+    .first {
+      margin-top: 25%;
     }
+  }
 }
 
 @media only screen and (max-width: 414px) {
-    .top-bar {
-        .filter-bar {
-            .filter-year-wrap {
-                width: 95vw;
-            }
-            .search-wrap .search-field {
-                width: 75%;
-            }
-            .filter-tab {
-                width: 30%;
-            }
-            .active-filter-wrap {
-                .active-filter {
-                    width: 60%;
-                }
-            }
+  .top-bar {
+    .filter-bar {
+      .filter-year-wrap {
+        @include main.setSize(95vw);
+      }
+      .search-wrap .search-field {
+        @include main.setSize(75%);
+      }
+      .filter-tab {
+        @include main.setSize(30%);
+      }
+      .active-filter-wrap {
+        .active-filter {
+          @include main.setSize(60%);
         }
+      }
     }
-    .posts-list-wrap .posts-list {
-        .first {
-            margin-top: 30%;
-        }
+  }
+  .posts-list-wrap .posts-list {
+    .first {
+      margin-top: 30%;
     }
+  }
 }

@@ -2,13 +2,9 @@
 
 body,
 html {
-    @extend .font-1;
-    @include main.customScroll(4px);
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-
-.no-scroll {
-    overflow: hidden;
+  @extend .font-1;
+  @include main.customScroll(4px);
+  @include main.setSize(100%);
+  margin: 0;
+  padding: 0;
 }

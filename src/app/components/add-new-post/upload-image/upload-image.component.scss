@@ -1,109 +1,103 @@
 @use "/src/app/global/main.scss";
 
 .upload-image-container {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    transition: width 0.5s;
-    cursor: pointer;
-    border: 2px dashed main.$yellow;
-    padding: 4px;
-    box-sizing: border-box;
+  @include main.setSize(100%, 100%);
+  position: relative;
+  transition: width 0.5s;
+  cursor: pointer;
+  border: 2px dashed main.$yellow;
+  padding: 4px;
+  box-sizing: border-box;
+  .label-overlayer {
+    @include main.flex(center, center);
+    @extend .font-3;
+    @include main.setSize(100%, 100%);
+    text-align: center;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: main.$white;
+    transition: opacity 0.3s;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+  &:hover {
     .label-overlayer {
-        @include main.flex(center, center);
-        @extend .font-3;
-        text-align: center;
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.8);
-        color: main.$white;
-        transition: opacity 0.3s;
-        font-size: 1rem;
-        font-weight: 300;
+      opacity: 1;
     }
-    &:hover {
-        .label-overlayer {
-            opacity: 1;
-        }
+  }
+  input[type="file"] {
+    display: none;
+  }
+  .bottom-bar {
+    @include main.flex(center, center);
+    @include main.setSize(100%, 100%);
+    color: main.$white;
+    font-size: 1.8rem;
+    background-color: main.$yellow;
+    img {
+      margin-right: 20px;
     }
-    input[type="file"] {
-        display: none;
+  }
+  .no-bg-color {
+    background-color: transparent;
+    background-image: none;
+  }
+  .bold {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  .upload-image {
+    @include main.flex(center, center, column);
+    @include main.setSize(100%, 100%);
+    @include main.coverBackground;
+    position: relative;
+    color: main.$yellow;
+    box-sizing: border-box;
+    cursor: pointer;
+    .uploaded-image-overlayer {
+      @include main.setSize(100%, 100%);
+      background-color: rgba(0, 0, 0, 0.6);
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
     }
-    .bottom-bar {
-        @include main.flex(center, center);
-        color: main.$white;
-        width: 100%;
-        height: 100%;
-        font-size: 1.8rem;
-        background-color: main.$yellow;
-        img {
-            margin-right: 20px;
-        }
+    .upload-image-text {
+      @include main.flex(center, center, column);
+      text-align: center;
+      img {
+        margin-bottom: 20px;
+      }
     }
-    .no-bg-color {
-        background-color: transparent;
-        background-image: none;
+    .upload-image-text-wrap {
+      @include main.flex(center, center, column);
+      @include main.setSize(100%, 60%);
     }
-    .bold {
-        font-weight: bold;
-        font-size: 2rem;
-    }
-    .upload-image {
-        @include main.flex(center, center, column);
-        @include main.fullSize;
-        position: relative;
-        color: main.$yellow;
-        box-sizing: border-box;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-        cursor: pointer;
-        .uploaded-image-overlayer {
-            @include main.fullSize;
-            background-color: rgba(0, 0, 0, 0.6);
-            position: absolute;
-            z-index: 2;
-            top: 0;
-            left: 0;
-        }
-        .upload-image-text {
-            @include main.flex(center, center, column);
-            text-align: center;
-            img {
-                margin-bottom: 20px;
-            }
-        }
-        .upload-image-text-wrap {
-            @include main.flex(center, center, column);
-            height: 60%;
-            width: 100%;
-        }
-    }
+  }
 }
 
 @media only screen and (max-width: 1470px) {
-    .upload-image-container {
-        .upload-image {
-            .bottom-bar img {
-                display: none;
-            }
-        }
+  .upload-image-container {
+    .upload-image {
+      .bottom-bar img {
+        display: none;
+      }
     }
+  }
 }
 
 @media only screen and (max-width: 1200px) {
-    .upload-image-container {
-        .upload-image {
-            .bottom-bar img {
-                display: none;
-            }
-            .upload-image-text {
-                display: none;
-            }
-        }
+  .upload-image-container {
+    .upload-image {
+      .bottom-bar img {
+        display: none;
+      }
+      .upload-image-text {
+        display: none;
+      }
     }
+  }
 }

@@ -1,148 +1,144 @@
 @use "/src/app/global/main.scss";
 
 .login-view-container {
-    @include main.flex(center, center);
-    @include main.fullSize;
-    position: absolute;
-    padding-top: 7rem;
-    box-sizing: border-box;
-    .error-message {
-        margin-top: 15%;
-        font-size: 0.9rem;
-        color: main.$bright_red;
-        text-align: center;
+  @include main.flex(center, center);
+  @include main.setSize(100%, 100%);
+  position: absolute;
+  padding-top: 7rem;
+  box-sizing: border-box;
+  .error-message {
+    margin-top: 15%;
+    font-size: 0.9rem;
+    color: main.$bright_red;
+    text-align: center;
+  }
+  .form-title {
+    @include main.flex(space-between, center);
+    @extend .font-2;
+    color: main.$yellow;
+    font-size: 3rem;
+    margin: 0;
+    padding: 0;
+    transition: opacity 0.3s, font-size 0.3s;
+    .active {
+      font-size: 3rem;
     }
-    .form-title {
-        @include main.flex(space-between, center);
-        @extend .font-2;
-        color: main.$yellow;
-        font-size: 3rem;
-        margin: 0;
-        padding: 0;
-        transition: opacity 0.3s, font-size 0.3s;
-        .active {
-            font-size: 3rem;
-        }
-        .inactive {
-            @include main.flex(center, center);
-            opacity: 0.3;
-            font-size: 2rem;
-            transition: opacity 0.3s;
-            cursor: pointer;
-            &:hover {
-                opacity: 1;
-            }
-            .arrow {
-                transform: scale(0.7);
-                margin: 10px 0 0 3px;
-            }
-        }
+    .inactive {
+      @include main.flex(center, center);
+      opacity: 0.3;
+      font-size: 2rem;
+      transition: opacity 0.3s;
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+      }
+      .arrow {
+        transform: scale(0.7);
+        margin: 10px 0 0 3px;
+      }
     }
-    .form-inactive-button-wrap {
-        width: 100%;
-        text-align: center;
-        .form-inactive-button {
-            @include main.contrastButton();
-            margin-top: 15%;
-            text-align: center;
-        }
+  }
+  .form-inactive-button-wrap {
+    @include main.setSize(100%);
+    text-align: center;
+    .form-inactive-button {
+      @include main.contrastButton();
+      margin-top: 15%;
+      text-align: center;
     }
-    .login-view-wrap {
-        @include main.flex(center, flex-start);
-        position: relative;
-        z-index: 3;
-        width: 100%;
-        height: 100%;
+  }
+  .login-view-wrap {
+    @include main.flex(center, flex-start);
+    @include main.setSize(100%, 100%);
+    position: relative;
+    z-index: 3;
+  }
+  .login-wrap,
+  .register-wrap {
+    @include main.flex(center, flex-start);
+    @include main.setSize(40%, 100%);
+    position: relative;
+  }
+  .register-form,
+  .login-form {
+    @include main.setSize(50%);
+  }
+  .changeTab {
+    position: relative;
+    color: main.$yellow;
+    margin: 10% 0;
+    text-align: center;
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+    &::after {
+      @include main.setSize(10%, 2px);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 10%;
+      border-radius: 50px;
+      content: "";
+      background: main.$yellow;
+      transition: width 0.3s;
     }
-    .login-wrap,
-    .register-wrap {
-        @include main.flex(center, flex-start);
-        width: 40%;
-        height: 100%;
-        position: relative;
+    &:hover {
+      &::after {
+        @include main.setSize(20%);
+      }
     }
-    .register-form,
-    .login-form {
-        width: 50%;
-    }
-    .changeTab {
-        position: relative;
-        color: main.$yellow;
-        margin: 10% 0;
-        text-align: center;
-        font-size: 0.9rem;
-        padding-bottom: 0.5rem;
-        cursor: pointer;
-        &::after {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 10%;
-            border-radius: 50px;
-            content: "";
-            width: 10%;
-            height: 2px;
-            background: main.$yellow;
-            transition: width 0.3s;
-        }
-        &:hover {
-            &::after {
-                width: 20%;
-            }
-        }
-    }
+  }
 }
 
 @media only screen and (max-width: 1400px) {
-    .login-view-container {
-        .login-wrap,
-        .register-wrap {
-            width: 60%;
-        }
+  .login-view-container {
+    .login-wrap,
+    .register-wrap {
+      @include main.setSize(60%);
     }
+  }
 }
 
 @media only screen and (max-width: 1000px) {
-    .login-view-container {
-        padding-top: 10%;
-        height: auto;
-        min-height: 100%;
-        .login-view-wrap {
-            flex-direction: column;
-            width: 80%;
-        }
-        .login-wrap,
-        .register-wrap {
-            width: 100%;
-        }
+  .login-view-container {
+    @include main.setSize(auto, auto, auto, auto, auto, 100%);
+    padding-top: 10%;
+    .login-view-wrap {
+      @include main.setSize(80%);
+      flex-direction: column;
     }
+    .login-wrap,
+    .register-wrap {
+      @include main.setSize(100%);
+    }
+  }
 }
 
 @media only screen and (max-width: 768px) {
-    .login-view-container {
-        padding-top: 15%;
-        .login-view-wrap {
-            width: 90%;
-        }
-        .register-form,
-        .login-form {
-            width: 75%;
-        }
+  .login-view-container {
+    padding-top: 15%;
+    .login-view-wrap {
+      @include main.setSize(90%);
     }
+    .register-form,
+    .login-form {
+      @include main.setSize(75%);
+    }
+  }
 }
 
 @media only screen and (max-width: 414px) {
-    .login-view-container {
-        padding-top: 20%;
-        .register-form,
-        .login-form {
-            width: 90%;
-        }
+  .login-view-container {
+    padding-top: 20%;
+    .register-form,
+    .login-form {
+      @include main.setSize(90%);
     }
+  }
 }
 
 @media only screen and (max-width: 320px) {
-    .login-view-container {
-        padding-top: 30%;
-    }
+  .login-view-container {
+    padding-top: 30%;
+  }
 }

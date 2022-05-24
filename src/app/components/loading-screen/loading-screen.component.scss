@@ -1,30 +1,30 @@
 @use "/src/app/global/main.scss";
 
 .loading-screen {
-    @include main.fullSize();
-    @include main.flex(center, center);
-    position: fixed;
-    background-color: main.$near_black;
-    z-index: 9999999;
-    top: 0;
+  @include main.setSize(100%, 100%);
+  @include main.flex(center, center);
+  position: fixed;
+  background-color: main.$near_black;
+  z-index: 9999999;
+  top: 0;
 }
 
 .logo {
-    animation: loading-animation 5s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    opacity: 0.8;
-    img {
-        width: 100px;
-    }
+  animation: loading-animation 5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  opacity: 0.8;
+  img {
+    @include main.setSize(100px);
+  }
 }
 
 @keyframes loading-animation {
-    50% {
-        transform: scale(1.2) rotate(10deg);
-    }
-    100% {
-        transform: scale(1) rotate(0deg);
-    }
+  50% {
+    transform: scale(1.2) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }

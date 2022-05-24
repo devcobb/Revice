@@ -2,8 +2,7 @@
 $z-index: 99999999999;
 
 .slideshow-bg {
-  width: 100%;
-  height: 100vh;
+  @include main.setSize(100%, 100vh);
   position: absolute;
   z-index: $z-index;
   top: 0;
@@ -12,7 +11,7 @@ $z-index: 99999999999;
 }
 
 .slideshow-wrap {
-  @include main.fullSize();
+  @include main.setSize(100%, 100%);
   position: absolute;
   top: 0;
   left: 0;
@@ -22,19 +21,18 @@ $z-index: 99999999999;
   }
   .images-wrap {
     @include main.flex(space-around, center);
-    width: 100%;
-    height: 100%;
+    @include main.setSize(100%, 100%);
     .image-wrap {
-      max-width: 50%;
+      @include main.setSize(auto, auto, 50%);
       img {
-        max-width: 100%;
+        @include main.setSize(auto, auto, 100%);
       }
     }
   }
   .arrow-wrap {
     @include main.flex(space-between, center);
+    @include main.setSize(60%);
     margin-top: 10%;
-    width: 60%;
   }
   .arrow {
     cursor: pointer;
@@ -56,7 +54,7 @@ $z-index: 99999999999;
       flex-direction: column;
       justify-content: center;
       .image-wrap {
-        max-width: 90%;
+        @include main.setSize(auto, auto, 90%);
       }
     }
     .desktop {

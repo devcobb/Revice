@@ -1,11 +1,13 @@
+@use "/src/app/global/main.scss";
+
 :host {
-    width: 100%;
+  @include main.setSize(100%);
 }
 
 .height-100 {
-    height: 100vh;
+  @include main.setSize(auto, 100vh);
 }
 
 .height-auto {
-    height: auto;
+  @include main.setSize();
 }

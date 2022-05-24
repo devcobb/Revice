@@ -1,168 +1,164 @@
 @use "/src/app/global/main.scss";
 
 .hero-image {
-    @include main.flex(flex-start, flex-start, column);
-    width: 100%;
-    transition: height 0.3s, background-image 0.3s;
-    transition-timing-function: ease-out;
-    background-image: url("/assets/images/hero-image-bg.jpg");
-    background-size: cover;
+  @include main.flex(flex-start, flex-start, column);
+  @include main.coverBackground;
+  @include main.setSize(100%);
+  transition: height 0.3s, background-image 0.3s;
+  transition-timing-function: ease-out;
+  background-image: url("/assets/images/hero-image-bg.jpg");
+  .hero-image-overlayer {
+    @include main.setSize(100%, 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .hero-image-content {
+    @include main.setSize(100%, 100%);
+    padding-top: 8rem;
+    position: relative;
+    z-index: 2;
+  }
+  .wave {
+    @include main.setSize(100%, 20%);
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    background-image: url("/assets/images/wave.png");
     background-repeat: no-repeat;
-    background-position: center center;
-    .hero-image-overlayer {
-        @include main.fullSize;
-        position: absolute;
-        top: 0;
-        left: 0;
+    background-size: cover;
+  }
+  .custom-image {
+    @include main.setSize(100%);
+    object-fit: cover;
+  }
+  .main-title {
+    @extend .font-2;
+    margin: 0;
+    padding: 10% 0 0 5%;
+    color: main.$yellow;
+    line-height: 5.5rem;
+    &::after {
+      @include main.setSize(35%, 35%);
+      content: "";
+      background-image: url("/assets/images/logo-transparent.svg");
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: contain;
+      transform: translate(-95%, -100%) rotate(-15deg);
+      position: absolute;
+      top: 60%;
+      left: 50%;
     }
-    .hero-image-content {
-        @include main.fullSize;
-        padding-top: 8rem;
-        position: relative;
-        z-index: 2;
+    span {
+      display: block;
+      font-size: 5rem;
+      &:first-of-type {
+        font-size: 8rem;
+      }
+      &:last-of-type {
+        margin-top: 0.75rem;
+      }
     }
-    .wave {
-        position: absolute;
-        z-index: 2;
-        bottom: 0;
-        background-image: url("/assets/images/wave.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 20%;
+    .outline {
+      color: white;
+      text-shadow: 1px 1px main.$yellow, -1px -1px main.$yellow;
     }
-    .custom-image {
-        width: 100%;
-        object-fit: cover;
+    @supports (-webkit-text-stroke: 1px main.$yellow) {
+      .outline {
+        color: transparent;
+        -webkit-text-stroke: 1px main.$yellow;
+        text-shadow: none;
+      }
     }
-    .main-title {
-        @extend .font-2;
+  }
+  .button-container {
+    @include main.flex(center, center);
+    @include main.setSize(100%);
+    margin-top: 5%;
+    .button-wrap {
+      @include main.setSize(60%);
+      text-align: center;
+    }
+    .btn-link {
+      color: inherit;
+      text-decoration: none;
+      .btn {
+        @include main.mainButton;
+        padding: 1rem 1.5rem;
         margin: 0;
-        padding: 10% 0 0 5%;
-        color: main.$yellow;
-        line-height: 5.5rem;
-        &::after {
-            content: "";
-            background-image: url("/assets/images/logo-transparent.svg");
-            background-repeat: no-repeat;
-            background-position: 50% 50%;
-            background-size: contain;
-            transform: translate(-95%, -100%) rotate(-15deg);
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            width: 35%;
-            height: 35%;
-        }
-        span {
-            display: block;
-            font-size: 5rem;
-            &:first-of-type {
-                font-size: 8rem;
-            }
-            &:last-of-type {
-                margin-top: 0.75rem;
-            }
-        }
-        .outline {
-            color: white;
-            text-shadow: 1px 1px main.$yellow, -1px -1px main.$yellow;
-        }
-        @supports (-webkit-text-stroke: 1px main.$yellow) {
-            .outline {
-                color: transparent;
-                -webkit-text-stroke: 1px main.$yellow;
-                text-shadow: none;
-            }
-        }
+        outline: none;
+      }
     }
-    .button-container {
-        @include main.flex(center, center);
-        margin-top: 5%;
-        width: 100%;
-        .button-wrap {
-            text-align: center;
-            width: 60%;
-        }
-        .btn-link {
-            color: inherit;
-            text-decoration: none;
-            .btn {
-                @include main.mainButton;
-                padding: 1rem 1.5rem;
-                margin: 0;
-                outline: none;
-            }
-        }
-    }
+  }
 }
 
 @media only screen and (max-width: 1199.98px) {
-    .hero-image {
-        .hero-image-content {
-            @include main.flex(center, center, column);
-            margin-bottom: 15%;
-        }
-        .main-title {
-            padding: 0;
-            text-align: center;
-            &::after {
-                @include main.fullSize;
-                opacity: 0.4;
-                transform: translate(-50%, -50%) rotate(-15deg);
-                position: fixed;
-            }
-        }
+  .hero-image {
+    .hero-image-content {
+      @include main.flex(center, center, column);
+      margin-bottom: 15%;
     }
+    .main-title {
+      padding: 0;
+      text-align: center;
+      &::after {
+        @include main.setSize(100%, 100%);
+        opacity: 0.4;
+        transform: translate(-50%, -50%) rotate(-15deg);
+        position: fixed;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 767.98px) {
-    .hero-image {
-        .hero-image-content {
-            margin-bottom: 0;
-            padding-top: 0;
-        }
-        .main-title {
-            line-height: 4rem;
-            span {
-                font-size: 3.5rem;
-                &:first-of-type {
-                    font-size: 5rem;
-                    margin-top: 0;
-                }
-            }
-        }
+  .hero-image {
+    .hero-image-content {
+      margin-bottom: 0;
+      padding-top: 0;
     }
+    .main-title {
+      line-height: 4rem;
+      span {
+        font-size: 3.5rem;
+        &:first-of-type {
+          font-size: 5rem;
+          margin-top: 0;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 575.98px) {
-    .hero-image {
-        .main-title {
-            line-height: 4rem;
-            span {
-                font-size: 2.2rem;
-                &:first-of-type {
-                    font-size: 5rem;
-                    margin-top: 0;
-                }
-                &:last-of-type {
-                    margin-top: 0;
-                }
-            }
+  .hero-image {
+    .main-title {
+      line-height: 4rem;
+      span {
+        font-size: 2.2rem;
+        &:first-of-type {
+          font-size: 5rem;
+          margin-top: 0;
         }
+        &:last-of-type {
+          margin-top: 0;
+        }
+      }
     }
+  }
 }
 
 @media (max-width: 419.98px) {
-    .hero-image {
-        .main-title {
-            line-height: 3.5rem;
-        }
-        .button-container {
-            margin-top: 10%;
-            .button-wrap {
-                width: 75%;
-            }
-        }
+  .hero-image {
+    .main-title {
+      line-height: 3.5rem;
     }
+    .button-container {
+      margin-top: 10%;
+      .button-wrap {
+        @include main.setSize(75%);
+      }
+    }
+  }
 }
