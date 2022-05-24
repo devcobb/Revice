@@ -18,7 +18,7 @@
     z-index: 3;
     .ratings-wrap {
       @include main.setSize(45%);
-      margin-bottom: 0.5%;
+      margin-bottom: 1%;
       ::ng-deep {
         .post-rating-wrap {
           justify-content: space-around;
