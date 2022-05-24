@@ -1,9 +1,9 @@
 @use "/src/app/global/main.scss";
 .specific-year-wrap {
   @include main.flex(center, center, column);
-  width: 100%;
+  @include main.setSize(100%);
   .year-filter-input {
-    width: 27.5%;
+    @include main.setSize(27.5%);
   }
   .range-slider-text {
     font-size: 1rem;
@@ -13,7 +13,7 @@
 .specific-year-wrap {
   @include main.flex(center, center, column);
   .year-filter-input {
-    width: 27.5%;
+    @include main.setSize(27.5%);
   }
 }
 .range-slider-text {
@@ -22,24 +22,24 @@
 }
 .filter-year-wrap {
   @include main.flex(flex-start, center, column);
+  @include main.setSize(100%);
   margin-bottom: 3%;
-  width: 100%;
 }
 .filter-year-container {
   @include main.flex(center, center, column);
+  @include main.setSize(100%);
   margin: 0 auto;
-  width: 100%;
 }
 .filter-year-range-data {
   @include main.flex(space-between, center);
   @extend .font-1;
-  width: 50%;
+  @include main.setSize(50%);
   color: main.$yellow;
   font-size: 0.8rem;
 }
 .filter-year-number {
+  @include main.setSize(50%);
   margin-top: 2.5%;
-  width: 50%;
   text-align: center;
   margin-top: 2.5%;
   &::-webkit-outer-spin-button,
@@ -52,14 +52,13 @@
   }
 }
 .seperator {
-  width: 2px;
-  height: 4rem;
+  @include main.setSize(2px, 4rem);
   background-color: main.$yellow;
   margin: 0 5%;
   border-radius: 50px;
 }
 .year-filter-input {
-  width: 20%;
+  @include main.setSize(20%);
   text-align: center;
   border: 1px solid main.$yellow;
   border-radius: 50px;
@@ -78,11 +77,10 @@
 }
 
 .range-slider {
-  width: 55%;
+  @include main.setSize(55%, 4rem);
   /* Match this to the SVG's x2 value */
   text-align: center;
   position: relative;
-  height: 4rem;
 }
 .range-slider-topbar {
   @include main.flex(space-around, center);
@@ -98,8 +96,8 @@
   bottom: 0;
 }
 input[type="range"] {
+  @include main.setSize(100%);
   -webkit-appearance: none;
-  width: 100%;
 }
 input[type="range"]:focus {
   outline: none;
@@ -114,46 +112,41 @@ input[type="range"]:focus::-ms-fill-upper {
   background: main.$yellow;
 }
 input[type="range"]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 5px;
+  @include main.setSize(100%, 5px);
   cursor: pointer;
   background: main.$yellow;
   box-shadow: none;
   border: 0;
 }
 input[type="range"]::-webkit-slider-thumb {
+  @include main.setSize(18px, 18px);
   z-index: 2;
   position: relative;
   box-shadow: 0px 0px 0px #000;
   border: 1px solid main.$purple;
-  height: 18px;
-  width: 18px;
   background: main.$purple;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -7px;
 }
 input[type="range"]::-moz-range-track {
-  width: 100%;
-  height: 5px;
+  @include main.setSize(100%, 5px);
   cursor: pointer;
   background: main.$yellow;
   box-shadow: none;
   border: 0;
 }
 input[type="range"]::-moz-range-thumb {
+  @include main.setSize(18px, 18px);
   z-index: 2;
   position: relative;
   box-shadow: 0px 0px 0px #000;
   border: 1px solid main.$purple;
-  height: 18px;
-  width: 18px;
   background: main.$purple;
   cursor: pointer;
 }
 input[type="range"]::-ms-track {
-  width: 100%;
-  height: 5px;
+  @include main.setSize(100%, 5px);
   cursor: pointer;
   background: transparent;
   border-color: transparent;
@@ -166,12 +159,11 @@ input[type="range"]::-ms-fill-upper {
   border: 0;
 }
 input[type="range"]::-ms-thumb {
+  @include main.setSize(18px, 18px);
   z-index: 2;
   position: relative;
   box-shadow: 0px 0px 0px #000;
   border: 1px solid main.$purple;
-  height: 18px;
-  width: 18px;
   background: main.$purple;
   cursor: pointer;
 }

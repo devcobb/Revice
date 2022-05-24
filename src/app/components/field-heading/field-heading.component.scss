@@ -1,29 +1,27 @@
 @use "/src/app/global/main.scss";
 @mixin headingLines($width, $margin) {
-    width: $width;
-    height: 2px;
-    margin: $margin;
-    background-color: main.$yellow;
-    content: "";
-    display: block;
+  @include main.setSize($width, 2px);
+  margin: $margin;
+  background-color: main.$yellow;
+  content: "";
+  display: block;
 }
 
-
 .field-heading {
-    @extend .font-2;
-    font-size: 2rem;
-    color: main.$yellow;
-    width: 100%;
-    margin: 2.5% 0 0 0;
-    .text-field-header {
-        @include main.flex(flex-start, center);
-        margin-bottom: -4%;
-        width: 100%;
-        &::before {
-            @include headingLines(1rem, 0 .5rem 0 0);
-        }
-        &::after {
-            @include headingLines(8rem, 0 0 0 .5rem);
-        }
+  @extend .font-2;
+  @include main.setSize(100%);
+  font-size: 2rem;
+  color: main.$yellow;
+  margin: 2.5% 0 0 0;
+  .text-field-header {
+    @include main.flex(flex-start, center);
+    @include main.setSize(100%);
+    margin-bottom: -4%;
+    &::before {
+      @include headingLines(1rem, 0 0.5rem 0 0);
     }
+    &::after {
+      @include headingLines(8rem, 0 0 0 0.5rem);
+    }
+  }
 }

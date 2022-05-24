@@ -1,154 +1,147 @@
-@use '/src/app/global/main.scss';
+@use "/src/app/global/main.scss";
 
-.header{
-    @include main.flex(space-between, center);
-    position: fixed;
-    z-index: 10;
-    width: 100%;
-    height: 6rem;
-    padding: .5% 5%;
-    transition: all .3s;
-    .logo{
-        width: 4rem;
-        img{
-            @include main.fullSize();
-        }
+.header {
+  @include main.flex(space-between, center);
+  @include main.setSize(100%, 6rem);
+  position: fixed;
+  z-index: 10;
+  padding: 0.5% 5%;
+  transition: all 0.3s;
+  .logo {
+    @include main.setSize(4rem);
+    img {
+      @include main.setSize(100%, 100%);
     }
+  }
 }
 
-.header-bg{
-    background: rgba(main.$purple, 0.8);
+.header-bg {
+  background: rgba(main.$purple, 0.8);
 }
 
 .mobile-menu {
-    display: none;
-    position: fixed;
-    top: 2.5%;
-    right: calc(3% + 15px);
-    width: 50px;
-    height: 50px;
-    z-index: 12;
-    transform: scale(1.5);
+  @include main.setSize(50px, 50px);
+  display: none;
+  position: fixed;
+  top: 2.5%;
+  right: calc(3% + 15px);
+  z-index: 12;
+  transform: scale(1.5);
+  cursor: pointer;
+
+  .mobile-menu__cheeckbox {
+    @include main.setSize(100%, 100%);
+    display: block;
+    position: relative;
     cursor: pointer;
-
-    .mobile-menu__cheeckbox {
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: relative;
-        cursor: pointer;
-        z-index: 2;
-        -webkit-touch-callout: none;
-        position: absolute;
-        opacity: 0;
-    }
-    div {
-        margin: auto;
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        width: 22px;
-        height: 12px;
-    }
-    span {
-        position: absolute;
-        display: block;
-        width: 100%;
-        height: 2px;
-        background-color: main.$yellow;
-        border-radius: 1px;
-        transition: all 0.2s cubic-bezier(0.1, 0.82, 0.76, 0.965);
-
-        &:first-of-type {
-            top: 0;
-        }
-        &:last-of-type {
-            bottom: 0;
-        }
-    }
-    &.active,
-    .mobile-menu__cheeckbox:checked + div {
-        span {
-            &:first-of-type {
-                transform: rotate(45deg);
-                top: 5px;
-            }
-            &:last-of-type {
-                transform: rotate(-45deg);
-                bottom: 5px;
-            }
-        }
-    }
-
-    &.active:hover span:first-of-type,
-    &.active:hover span:last-of-type,
-    &:hover .mobile-menu__cheeckbox:checked + div span:first-of-type,
-    &:hover .mobile-menu__cheeckbox:checked + div span:last-of-type {
-        width: 22px;
-    }
-
-    &:hover {
-        @media (min-width: 1024px) {
-            span:first-of-type {
-                width: 26px;
-            }
-
-            span:last-of-type {
-                width: 12px;
-            }
-        }
-    }
-}
-
-.overlayer{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 10;
-}
-
-.mobile-offcanvas{
-    position: fixed;
-    overflow: hidden;
+    z-index: 2;
+    -webkit-touch-callout: none;
+    position: absolute;
+    opacity: 0;
+  }
+  div {
+    @include main.setSize(22px, 12px);
+    margin: auto;
+    position: absolute;
     top: 0;
     right: 0;
-    width: 50%;
-    height: 100%;
-    background: main.$purple;
-    z-index: 11;
-    transform: translateX(100%);
-    transition: transform .6s;
-    transition-timing-function: ease-in-out;
-}
+    left: 0;
+    bottom: 0;
+  }
+  span {
+    @include main.setSize(100%, 2px);
+    position: absolute;
+    display: block;
+    background-color: main.$yellow;
+    border-radius: 1px;
+    transition: all 0.2s cubic-bezier(0.1, 0.82, 0.76, 0.965);
 
-.open{
-    transform: translateX(0%);
-}
-
-.hide{
-    transform: translateX(100%);
-}
-
-@media only screen and (max-width: 1068px){
-    .header{
-        width: 90%;
-        .menu{
-            display: none;
-        }
+    &:first-of-type {
+      top: 0;
     }
-
-    .mobile-menu{
-        display: block;
+    &:last-of-type {
+      bottom: 0;
     }
+  }
+  &.active,
+  .mobile-menu__cheeckbox:checked + div {
+    span {
+      &:first-of-type {
+        transform: rotate(45deg);
+        top: 5px;
+      }
+      &:last-of-type {
+        transform: rotate(-45deg);
+        bottom: 5px;
+      }
+    }
+  }
+
+  &.active:hover span:first-of-type,
+  &.active:hover span:last-of-type,
+  &:hover .mobile-menu__cheeckbox:checked + div span:first-of-type,
+  &:hover .mobile-menu__cheeckbox:checked + div span:last-of-type {
+    @include main.setSize(22px, 2px);
+  }
+
+  &:hover {
+    @media (min-width: 1024px) {
+      span:first-of-type {
+        @include main.setSize(26px);
+      }
+
+      span:last-of-type {
+        @include main.setSize(12px);
+      }
+    }
+  }
 }
 
-@media only screen and (max-width: 767.98px){
-    .mobile-offcanvas{
-        width: 85%;
+.overlayer {
+  @include main.setSize(100%, 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+.mobile-offcanvas {
+  @include main.setSize(50%, 100%);
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  background: main.$purple;
+  z-index: 11;
+  transform: translateX(100%);
+  transition: transform 0.6s;
+  transition-timing-function: ease-in-out;
+}
+
+.open {
+  transform: translateX(0%);
+}
+
+.hide {
+  transform: translateX(100%);
+}
+
+@media only screen and (max-width: 1068px) {
+  .header {
+    @include main.setSize(90%);
+    .menu {
+      display: none;
     }
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  .mobile-offcanvas {
+    @include main.setSize(85%);
+  }
 }

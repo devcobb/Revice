@@ -1,5 +1,5 @@
-@use '/src/app/global/main.scss';
+@use "/src/app/global/main.scss";
 
-:host{
-    width: 100%;
+:host {
+  @include main.setSize(100%);
 }

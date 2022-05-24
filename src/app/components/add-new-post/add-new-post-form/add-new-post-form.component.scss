@@ -1,25 +1,23 @@
 @use "/src/app/global/main.scss";
 
 .add-new-post-container {
-  width: 100%;
-  min-height: 100%;
+  @include main.setSize(100%, auto, auto, auto, auto, 100%);
   padding-top: 10rem;
   .form-bg {
+    @include main.setSize(100vw, 100vh);
     padding-top: 2.5%;
     position: fixed;
     z-index: 2;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
   }
   .add-new-post-form {
     @include main.flex(center, center, column);
-    @include main.fullSize;
+    @include main.setSize(100%, 100%);
     position: relative;
     z-index: 3;
     .ratings-wrap {
-      width: 45%;
+      @include main.setSize(45%);
       margin-bottom: 0.5%;
       ::ng-deep {
         .post-rating-wrap {
@@ -29,7 +27,7 @@
     }
     .post-basic-information {
       @include main.flex(center, center);
-      width: 45%;
+      @include main.setSize(45%);
       margin-bottom: 1%;
       .post-title {
         box-sizing: border-box;
@@ -37,21 +35,21 @@
     }
     .post-info-wrap {
       @include main.flex(center, center, column);
+      @include main.setSize(40%);
       flex-wrap: wrap;
-      width: 40%;
       .choose-year-wrap {
+        @include main.setSize(75%);
         margin-bottom: 1%;
-        width: 75%;
       }
     }
     .post-visiblity-wrap {
       @include main.flex(center, center, column);
+      @include main.setSize(25%);
       color: main.$yellow;
-      width: 25%;
     }
     .input-switch-wrap {
       @include main.flex(center, center);
-      width: 100%;
+      @include main.setSize(100%);
       transition: opacity 0.5s;
       .input-switch-mode {
         text-transform: uppercase;
@@ -72,17 +70,15 @@
     }
     .input-switch {
       @include main.flex(center, center);
+      @include main.setSize(3.5rem, 2rem);
       display: block;
-      width: 3.5rem;
-      height: 2rem;
       border: 1px solid main.$yellow;
       border-radius: 50px;
       cursor: pointer;
       input {
+        @include main.setSize(50%, 1.6rem);
         appearance: none;
         display: block;
-        width: 50%;
-        height: 1.6rem;
         background-color: main.$yellow;
         border-radius: 50px;
         transition: transform 0.3s, background-color 0.3s;
@@ -96,46 +92,44 @@
     }
     .thumbnail-wrap {
       @include main.flex(space-between, center);
-      width: 45%;
-      height: 12.5rem;
+      @include main.setSize(45%, 12.5rem);
       margin-bottom: 1%;
     }
     .thumbnail {
-      width: 70%;
-      height: 100%;
+      @include main.setSize(70%, 100%);
     }
     .add-row {
       @include main.flex(space-between, center);
+      @include main.setSize(45%);
       flex-wrap: wrap;
       margin: 2.5% 0 2.5% 0;
-      width: 45%;
       color: main.$yellow;
       .add-field-btn {
-        width: 28%;
+        @include main.setSize(28%);
         margin: 1rem;
       }
     }
     .field-container {
-      width: 40%;
+      @include main.setSize(40%);
       margin-bottom: 1%;
     }
     .submit-container {
       @include main.flex(center, center, column);
-      width: 70%;
+      @include main.setSize(70%);
       text-align: center;
       margin-bottom: 5%;
       .btn-wrap {
         @include main.flex(center, center);
-        width: 50%;
+        @include main.setSize(50%);
       }
       .error-wrap {
-        width: 65%;
+        @include main.setSize(65%);
         margin-top: 4%;
       }
       .submit-btn {
         @include main.contrastButton;
+        @include main.setSize(auto, auto, auto, auto, 25%);
         font-weight: normal;
-        min-width: 25%;
         margin-right: 1%;
         &:disabled {
           &:hover {
@@ -147,9 +141,9 @@
       }
       .preview-btn {
         @include main.contrastButton;
+        @include main.setSize(auto, auto, auto, auto, 25%);
         font-weight: normal;
         margin-left: 1%;
-        min-width: 25%;
         transition: opacity 0.3s;
         &:disabled {
           &:hover {
@@ -177,38 +171,37 @@
   .add-new-post-container {
     .add-new-post-form {
       .thumbnail-wrap {
-        width: 50%;
-        height: 15rem;
+        @include main.setSize(50%, 15rem, none, none, none, none);
         flex-direction: column-reverse;
       }
       .thumbnail {
-        width: 100%;
+        @include main.setSize(100%, 100%);
       }
       .post-info-wrap {
-        width: 50%;
+        @include main.setSize(50%);
       }
       .post-visiblity-wrap {
-        width: 100%;
+        @include main.setSize(100%);
         margin: 2.5% 0;
       }
       .add-row {
-        width: 60%;
+        @include main.setSize(60%);
       }
       .ratings-wrap {
-        width: 50%;
+        @include main.setSize(50%);
         margin-bottom: 0;
       }
       .post-basic-information {
-        width: 50%;
+        @include main.setSize(50%);
         .post-title {
-          width: 70%;
+          @include main.setSize(70%);
           box-sizing: border-box;
         }
       }
       .submit-container {
         .submit-btn,
         .preview-btn {
-          min-width: 25%;
+          @include main.setSize(auto, auto, auto, auto, 25%);
         }
       }
     }
@@ -219,7 +212,7 @@
   .add-new-post-container {
     .add-new-post-form {
       .field-container {
-        width: 60%;
+        @include main.setSize(60%);
       }
       .post-info-wrap {
         .choose-year-wrap {
@@ -229,7 +222,7 @@
             }
             .range-slider,
             .specific-year-wrap {
-              width: 75%;
+              @include main.setSize(75%);
             }
             .specific-year-wrap {
               margin-top: 2.5%;
@@ -248,19 +241,21 @@
   .add-new-post-container {
     .add-new-post-form {
       .post-basic-information,
-      .thumbnail-wrap,
       .ratings-wrap {
-        width: 75%;
+        @include main.setSize(75%);
+      }
+      .thumbnail-wrap {
+        @include main.setSize(75%, 15rem);
       }
       .post-info-wrap {
+        @include main.setSize(55%);
         margin-top: 2.5%;
-        width: 55%;
       }
       .add-row {
-        width: 90%;
+        @include main.setSize(90%);
       }
       .submit-container {
-        width: 100%;
+        @include main.setSize(100%);
         margin-bottom: 20%;
       }
     }
@@ -269,7 +264,7 @@
 
 @media only screen and (max-width: 880px) {
   .add-new-post-form .post-info-wrap {
-    width: 50%;
+    @include main.setSize(50%);
   }
 }
 
@@ -277,19 +272,19 @@
   .add-new-post-container {
     .add-new-post-form {
       .post-basic-information {
-        width: 75%;
+        @include main.setSize(75%);
         .post-title {
-          width: 60%;
+          @include main.setSize(60%);
         }
         app-choose-category {
-          width: 40%;
+          @include main.setSize(40%);
         }
       }
       .ratings-wrap {
         margin-bottom: 2%;
       }
       .post-info-wrap {
-        width: 65%;
+        @include main.setSize(65%);
       }
       .add-row {
         justify-content: center;
@@ -297,7 +292,7 @@
       .submit-container {
         .submit-btn,
         .preview-btn {
-          min-width: 35%;
+          @include main.setSize(auto, auto, auto, auto, 35%);
         }
       }
     }
@@ -308,13 +303,13 @@
   .add-new-post-container {
     .add-new-post-form {
       .post-info-wrap {
-        width: 75%;
+        @include main.setSize(75%);
       }
       .add-row {
         flex-direction: column;
         .add-field-btn {
+          @include main.setSize(50%);
           margin: 1rem 0;
-          width: 50%;
         }
       }
     }
@@ -325,25 +320,26 @@
   .add-new-post-container {
     .add-new-post-form {
       .post-info-wrap {
-        width: 100%;
+        @include main.setSize(100%);
       }
       .submit-container .btn-wrap {
-        width: 95%;
+        @include main.setSize(95%);
       }
       .ratings-wrap {
         margin-bottom: 4%;
       }
       .field-container {
-        width: 75%;
+        @include main.setSize(75%);
       }
       .post-basic-information {
+        @include main.setSize(75%);
         .post-input {
+          @include main.setSize(100%);
           margin-top: 2%;
-          width: 100%;
           border-radius: 50px;
         }
         app-choose-category {
-          width: 60%;
+          @include main.setSize(60%);
           margin: 4% 0;
           border-radius: 50px;
         }
@@ -356,7 +352,7 @@
           }
         }
         flex-direction: column;
-        width: 75%;
+        @include main.setSize(75%);
       }
     }
   }
@@ -366,7 +362,7 @@
   .add-new-post-container {
     .add-new-post-form {
       .input-switch-wrap {
-        width: auto;
+        @include main.setSize();
       }
     }
   }
@@ -378,7 +374,7 @@
       .submit-container {
         .submit-btn,
         .preview-btn {
-          min-width: 50%;
+          @include main.setSize(auto, auto, auto, auto, 50%);
         }
       }
     }

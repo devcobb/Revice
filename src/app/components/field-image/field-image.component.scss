@@ -1,9 +1,9 @@
 @use "/src/app/global/main.scss";
 
 .field-image {
-    height: 25rem;
-    .image {
-        @include main.fullSize();
-        object-fit: cover;
-    }
+  @include main.setSize(auto, 25rem);
+  .image {
+    @include main.setSize(100%, 100%);
+    object-fit: cover;
+  }
 }

@@ -1,64 +1,62 @@
 @use "/src/app/global/main.scss";
 
 :host {
-    width: 50%;
-    .menu {
-        @include main.flex(flex-end, center);
-        width: 85%;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        .menu-link {
-            position: relative;
-            color: main.$yellow;
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            min-width: 15%;
-            text-align: center;
-            font-size: 1rem;
-            margin: 0 2% 0 0;
-            cursor: pointer;
-            &::after {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-                bottom: 10%;
-                border-radius: 50px;
-                content: "";
-                width: 20%;
-                height: 2px;
-                background: main.$yellow;
-                transition: width 0.3s;
-            }
-            &:hover {
-                &::after {
-                    width: 35%;
-                }
-            }
+  @include main.setSize(50%);
+  .menu {
+    @include main.flex(flex-end, center);
+    @include main.setSize(85%, 100%);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    .menu-link {
+      @include main.setSize(auto, auto, auto, auto, 15%);
+      position: relative;
+      color: main.$yellow;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      text-align: center;
+      font-size: 1rem;
+      margin: 0 2% 0 0;
+      cursor: pointer;
+      &::after {
+        @include main.setSize(20%, 2px);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 10%;
+        border-radius: 50px;
+        content: "";
+        background: main.$yellow;
+        transition: width 0.3s;
+      }
+      &:hover {
+        &::after {
+          @include main.setSize(35%, 2px);
         }
+      }
     }
+  }
 }
 
 @media only screen and (max-width: 1068px) {
-    .header :host {
-        display: none;
-    }
-    :host {
-        .menu {
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            .menu-link {
-                @include main.mainButton;
-                display: block;
-                width: 50%;
-                margin: 4% 0;
-                &::after {
-                    content: none;
-                }
-            }
+  .header :host {
+    display: none;
+  }
+  :host {
+    .menu {
+      @include main.setSize(100%, 100%);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .menu-link {
+        @include main.mainButton;
+        @include main.setSize(50%);
+        display: block;
+        margin: 4% 0;
+        &::after {
+          content: none;
         }
+      }
     }
+  }
 }

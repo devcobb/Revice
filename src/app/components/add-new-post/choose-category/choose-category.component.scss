@@ -2,12 +2,12 @@
 
 :host {
   @include main.flex(center, center);
-  width: 30%;
+  @include main.setSize(30%);
 }
 
 .choose-category-wrap {
   @include main.flex(flex-start, flex-start, column);
-  width: 100%;
+  @include main.setSize(100%);
   position: relative;
 }
 
@@ -17,10 +17,10 @@
 
 .choose-category {
   @include main.flex(space-between, center);
+  @include main.setSize(100%);
   color: main.$white;
   background-color: main.$purple;
   border: 1px solid main.$purple;
-  width: 100%;
   padding: 1rem;
   box-sizing: border-box;
   cursor: pointer;
@@ -32,8 +32,8 @@
     border: 1px solid darken(main.$purple, 5%);
   }
   .arrow {
+    @include main.setSize(20px);
     transition: transform 0.3s;
-    width: 20px;
   }
   .bold {
     color: main.$gray;
@@ -56,17 +56,16 @@
 }
 
 .list {
+  @include main.setSize(100%, auto, auto, 0);
   position: absolute;
   z-index: 3;
   top: 3.9rem;
   color: main.$white;
-  width: 100%;
   list-style: none;
   margin: 0;
   padding: 0;
   text-align: center;
   overflow: hidden;
-  max-height: 0;
   transition: opacity 0.3s, max-height 0.3s;
   transition-timing-function: ease-in-out;
   li {
@@ -84,11 +83,11 @@
 }
 
 .close {
-  max-height: 0;
+  @include main.setSize(100%, auto, auto, 0);
 }
 
 .open {
-  max-height: 500px;
+  @include main.setSize(100%, auto, auto, 500px);
 }
 
 @media only screen and (max-width: 768px) {

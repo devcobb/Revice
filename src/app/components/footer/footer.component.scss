@@ -1,122 +1,118 @@
 @use "/src/app/global/main.scss";
 
 :host {
-    display: block;
+  display: block;
 }
 
 .footer-wrap {
-    @include main.flex(center, center);
-    position: relative;
-    z-index: 2;
-    background-color: main.$yellow;
-    padding: 0 5%;
-    box-sizing: border-box;
-    color: main.$near_black;
-    width: 100%;
-    min-height: 15rem;
-    padding: 2.5% 0;
-    .bold {
-        @extend .font-2;
-        font-weight: bold;
-        font-size: 1.2rem;
+  @include main.flex(center, center);
+  @include main.setSize(100%, auto, auto, auto, auto, 15rem);
+  position: relative;
+  z-index: 2;
+  background-color: main.$yellow;
+  padding: 0 5%;
+  box-sizing: border-box;
+  color: main.$near_black;
+  padding: 2.5% 0;
+  .bold {
+    @extend .font-2;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  .footer-links {
+    @include main.flex(space-around, center);
+    @include main.setSize(50%);
+    padding: 1% 0 0 0;
+    list-style: none;
+    margin: 0;
+    li {
+      @include main.flex(center, center, column);
+      position: relative;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.3rem;
+      &::before {
+        @include main.setSize(25px, 2px);
+        content: "";
+        bottom: -10%;
+        border-radius: 50px;
+        background-color: transparent;
+        transition: background-color 0.3s;
+        position: absolute;
+      }
+      &:hover {
+        &::before {
+          background-color: main.$near_black;
+        }
+      }
     }
-    .footer-links {
-        @include main.flex(space-around, center);
-        padding: 1% 0 0 0;
-        width: 50%;
-        list-style: none;
-        margin: 0;
-        li {
-            @include main.flex(center, center, column);
-            position: relative;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.3rem;
-            &::before {
-                content: "";
-                width: 25px;
-                height: 2px;
-                bottom: -10%;
-                border-radius: 50px;
-                background-color: transparent;
-                transition: background-color 0.3s;
-                position: absolute;
-            }
-            &:hover {
-                &::before {
-                    background-color: main.$near_black;
-                }
-            }
-        }
+  }
+  .footer-content {
+    @include main.flex(center, center, column);
+    @include main.setSize(100%, 100%);
+    a {
+      color: inherit;
+      text-decoration: none;
+      display: block;
     }
-    .footer-content {
-        @include main.flex(center, center, column);
-        width: 100%;
-        height: 100%;
-        a {
-            color: inherit;
-            text-decoration: none;
-            display: block;
-        }
-        .copyright-info {
-            @include main.flex(center, center, column);
-            font-size: 0.8rem;
-            position: relative;
-            font-weight: bold;
-            padding: 0.5% 0;
-            &::before {
-                position: absolute;
-                top: -35%;
-                content: "";
-                border-top: 2px solid main.$near_black;
-                height: 4px;
-                width: 25px;
-            }
-        }
-        .footer-text {
-            width: 50%;
-            padding: 2.5% 0;
-        }
+    .copyright-info {
+      @include main.flex(center, center, column);
+      font-size: 0.8rem;
+      position: relative;
+      font-weight: bold;
+      padding: 0.5% 0;
+      &::before {
+        @include main.setSize(4px, 25px);
+        position: absolute;
+        top: -35%;
+        content: "";
+        border-top: 2px solid main.$near_black;
+      }
     }
+    .footer-text {
+      @include main.setSize(50%);
+      padding: 2.5% 0;
+    }
+  }
 }
 
 @media only screen and (max-width: 1000px) {
-    .footer-wrap {
-        .footer-links {
-            width: 75%;
-        }
-        .footer-content .footer-text {
-            width: 75%;
-        }
+  .footer-wrap {
+    .footer-links {
+      @include main.setSize(75%);
     }
+    .footer-content .footer-text {
+      @include main.setSize(75%);
+    }
+  }
 }
 
 @media only screen and (max-width: 768px) {
-    .footer-wrap {
-        .footer-links {
-            width: 90%;
-        }
-        .footer-content {
-            .footer-text {
-                padding: 5% 0;
-                width: 90%;
-            }
-            .copyright-info {
-                &::before {
-                    top: -40%;
-                }
-            }
-        }
+  .footer-wrap {
+    .footer-links {
+      @include main.setSize(90%);
     }
+    .footer-content {
+      .footer-text {
+        @include main.setSize(90%);
+        padding: 5% 0;
+      }
+      .copyright-info {
+        &::before {
+          top: -40%;
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 500px) {
-    .footer-wrap {
-        .footer-links {
-            @include main.flex(center, center, column);
-            li {
-                margin: 2.5% 0;
-            }
-        }
+  .footer-wrap {
+    .footer-links {
+      @include main.flex(center, center, column);
+      li {
+        margin: 2.5% 0;
+      }
     }
+  }
 }

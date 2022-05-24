@@ -22,12 +22,11 @@
 }
 
 @mixin icon {
+  @include main.setSize(24px, 24px);
   position: absolute;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
-  width: 24px;
-  height: 24px;
   z-index: 2;
   cursor: pointer;
 }
@@ -38,7 +37,7 @@
 
 .image-field,
 .image-section {
-  height: 10rem;
+  @include main.setSize(10rem);
 }
 
 .close {
@@ -49,43 +48,41 @@
 }
 
 .section-title {
+  @include main.setSize(100%);
   @extend .post-input;
   border-radius: 4px;
-  width: 100%;
   box-sizing: border-box;
 }
 
 .text-section {
   @extend .font-1;
   @extend .post-input;
+  @include main.setSize(100%, 10rem);
   border-radius: 3px;
   padding: 1rem;
   margin-top: 0.5rem;
   font-size: 1rem;
   resize: none;
-  width: 100%;
-  height: 10rem;
   box-sizing: border-box;
 }
 
 .banner-wrap {
   @include main.flex(space-between, center);
   .text-section {
-    height: 9.5rem;
+    @include main.setSize(auto, 9.5rem);
   }
   .text-section,
   .section-title {
     @include main.flex(center, center, column);
-    width: 100%;
+    @include main.setSize(100%);
     font-size: 0.75rem;
   }
   .image-section {
-    height: 100%;
+    @include main.setSize(auto, 100%);
   }
   .banner-text-content,
   .image-section {
-    width: 48.75%;
-    height: 13rem;
+    @include main.setSize(48.75%, 13rem);
   }
 }
 
@@ -102,40 +99,38 @@
 
 .field-rating-wrap {
   @include main.flex(space-between, center);
-  width: 100%;
+  @include main.setSize(100%);
   .field-rating-container {
-    width: 49%;
-    min-height: 20rem;
+    @include main.setSize(49%, auto, auto, auto, auto, 20rem);
   }
   .rating-description-wrap {
-    width: 49%;
-    min-height: 22rem;
+    @include main.setSize(49%, auto, auto, auto, auto, 22rem);
     .text-section {
       @extend .font-1;
+      @include main.setSize(auto, auto, auto, auto, auto, 22rem);
       font-size: 0.8rem;
       margin-top: 0;
       box-sizing: border-box;
-      min-height: 22rem;
     }
   }
   .rating-image {
-    height: 15.5rem;
+    @include main.setSize(auto, 15.5rem);
   }
   .rating-title {
+    @include main.setSize(3rem);
     margin-top: 1rem;
-    height: 3rem;
     .section-title {
       @extend .font-1;
+      @include main.setSize(auto, 100%);
       font-size: 0.8rem;
-      height: 100%;
     }
   }
   .rating-wrap {
+    @include main.setSize(auto, 3rem);
     &.mobile {
-      max-width: 100%;
+      @include main.setSize(auto, auto, 100%);
       display: none;
     }
-    height: 3rem;
     ::ng-deep {
       .post-rating-wrap {
         margin-bottom: 0;
@@ -152,7 +147,7 @@
   .field-rating-container,
   .rating-title,
   .rating-description-wrap {
-    width: 100%;
+    @include main.setSize(100%);
   }
   .rating-wrap.desktop {
     display: none;
@@ -163,24 +158,21 @@
 }
 
 .gallery-wrap {
+  @include main.setSize(auto, 30rem);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30rem;
   .gallery-image-wrap {
-    width: 100%;
-    height: 100%;
+    @include main.setSize(100%, 100%);
   }
   .wrap {
     @include main.flex(center, center);
+    @include main.setSize(50%, 100%);
     flex-wrap: wrap;
-    width: 50%;
-    height: 100%;
   }
   .four-images {
     .gallery-image-wrap {
-      width: 50%;
-      height: 50%;
+      @include main.setSize(50%, 50%);
     }
   }
 }
@@ -238,7 +230,7 @@
         top: 10%;
       }
       .ratings-wrap {
-        width: 50%;
+        @include main.setSize(50%);
       }
     }
   }
@@ -269,7 +261,7 @@
       .one-big-four-wrap.gallery-wrap {
         flex-direction: column;
         .wrap {
-          width: 100%;
+          @include main.setSize(100%);
         }
       }
     }

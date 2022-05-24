@@ -1,3 +1,4 @@
+/* COLORS */
 $purple: #150251;
 $yellow: #feb93f;
 $green: #84a347;
@@ -39,12 +40,34 @@ $near_black: #0e0b16;
   height: 100%;
 }
 
+@mixin coverBackground {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+@mixin setSize(
+  $width: auto,
+  $height: auto,
+  $max-width: none,
+  $max-height: none,
+  $min-width: 0,
+  $min-height: 0
+) {
+  width: $width;
+  height: $height;
+  max-width: $max-width;
+  max-height: $max-height;
+  min-width: $min-width;
+  min-height: $min-height;
+}
+
 @mixin mainButton() {
+  @include setSize(auto, auto, auto, auto, 15%);
   font-family: "Roboto Condensed" !important;
   color: $yellow;
   text-decoration: none;
   padding: 1rem 1.5rem;
-  min-width: 15%;
   text-align: center;
   font-size: 1rem;
   background: transparent;
@@ -62,9 +85,9 @@ $near_black: #0e0b16;
 @mixin mainHeading($color) {
   @include flex(center, center, column);
   @extend .font-2;
+  @include setSize(100%);
   text-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   color: $color;
-  width: 100%;
   font-size: 5rem;
   font-weight: bold;
   text-align: center;
@@ -112,6 +135,7 @@ $near_black: #0e0b16;
   }
 }
 
+/* FONTS */
 .font-1 {
   font-family: "Roboto Condensed" !important;
 }
@@ -139,8 +163,8 @@ $near_black: #0e0b16;
         translateZ(0.001px);
     }
     .mat-form-field {
+      @include setSize(100%);
       margin: 1% 0;
-      width: 100%;
       .mat-input-element {
         border: 1px solid $yellow;
         padding: 10px;
@@ -212,11 +236,17 @@ $near_black: #0e0b16;
   }
 }
 
+/* GLOBAL */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* INPUTS */
 .post-input {
+  @include setSize(70%);
   font-size: 1rem;
   border: none;
   outline: none;
-  width: 70%;
   padding: 1rem;
   color: $yellow;
   border: 1px solid $yellow;
@@ -227,7 +257,7 @@ $near_black: #0e0b16;
   }
 }
 
-//*********
+/* ANIMATIONS */
 
 @keyframes hideIcon {
   from {
@@ -246,5 +276,3 @@ $near_black: #0e0b16;
     background-position-y: center;
   }
 }
-
-///*********

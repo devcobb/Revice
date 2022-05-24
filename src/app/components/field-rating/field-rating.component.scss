@@ -2,28 +2,27 @@
 
 .field-rating-container {
   @include main.flex(center, center);
+  @include main.setSize(100%);
   flex-wrap: wrap;
-  width: 100%;
   .field-rating-wrap {
     @include main.flex(center, flex-start);
   }
   .wrap {
     @include main.flex(center, center, column);
-    width: 50%;
-    height: 100%;
+    @include main.setSize(50%, 100%);
   }
   .one-wrap {
-    width: 75%;
+    @include main.setSize(75%);
   }
   .image-wrap {
-    width: 100%;
+    @include main.setSize(100%);
   }
   .rating-container {
+    @include main.setSize(100%);
     margin-top: 5%;
-    width: 100%;
     ::ng-deep {
       .post-rating-wrap {
-        width: 100%;
+        @include main.setSize(100%);
         justify-content: space-around;
       }
     }
@@ -38,7 +37,7 @@
     padding: 0;
   }
   .field-text {
-    width: 75%;
+    @include main.setSize(75%);
     color: main.$near_black;
     margin: 0;
     padding: 0;
@@ -54,10 +53,10 @@
     }
 
     .wrap {
-      width: 100%;
+      @include main.setSize(100%);
       .field-text {
+        @include main.setSize(100%);
         margin-top: 2.5%;
-        width: 100%;
       }
     }
   }

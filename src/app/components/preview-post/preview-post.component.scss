@@ -7,39 +7,37 @@
 .preview-post-wrap {
   @include main.flex(flex-start, center, column);
   @include main.customScroll(4px);
+  @include main.setSize(80%, 90%);
   position: fixed;
   z-index: 14;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  height: 90%;
   box-sizing: border-box;
   background-color: main.$white;
   overflow: auto;
   .thumbnail {
+    @include main.setSize(100%, auto, auto, auto, auto, 25rem);
     position: relative;
-    width: 100%;
-    min-height: 25rem;
     .overlayer {
-      @include main.fullSize();
+      @include main.setSize(100%, 100%);
       position: absolute;
       z-index: 2;
       background-color: rgba(0, 0, 0, 0.6);
     }
     img {
-      @include main.fullSize();
+      @include main.setSize(100%, 100%);
       object-fit: cover;
     }
   }
   .post-info {
     @include main.flex(center, flex-start, column);
+    @include main.setSize(65%);
     position: absolute;
     z-index: 3;
     top: 50%;
     left: 10%;
     transform: translateY(-50%);
-    width: 65%;
     margin: 1.5% 0 2.5% 0;
     ::ng-deep {
       .post-rating-wrap {
@@ -50,7 +48,7 @@
   }
   .star,
   .star-filled {
-    width: 40px;
+    @include main.setSize(40px);
   }
   .post-title {
     @include main.flex(center, flex-start, column);
@@ -61,10 +59,9 @@
     text-align: left;
     margin: 1% 0;
     &::after {
+      @include main.setSize(4rem, 5%);
       position: absolute;
       content: "";
-      width: 4rem;
-      height: 5%;
       bottom: -5%;
       background-color: main.$yellow;
       border-radius: 50px;
@@ -72,25 +69,24 @@
   }
   .ratings-wrap {
     @include main.flex(flex-start, center);
+    @include main.setSize(auto, auto, 100%);
     margin-top: 2.5%;
-    max-width: 100%;
   }
   .fields-wrap {
     @include main.flex(center, flex-start, column);
+    @include main.setSize(90%);
     color: main.$white;
-    width: 90%;
     padding-left: 10%;
     margin-top: 2.5%;
     .heading {
-      width: 90%;
+      @include main.setSize(90%);
     }
     .image {
-      width: 90%;
-      height: 25rem;
+      @include main.setSize(90%, 25rem);
     }
     p,
     .wrap {
-      width: 75%;
+      @include main.setSize(75%);
       color: main.$near_black;
       margin: 0;
       padding: 0;
@@ -105,24 +101,24 @@
       }
     }
     .rating {
-      width: 90%;
+      @include main.setSize(90%);
     }
     .banner {
       @include main.flex(space-between, center);
-      width: 90%;
+      @include main.setSize(90%);
       .text-field-header {
         line-height: 3rem;
       }
       p,
       img {
-        width: 50%;
+        @include main.setSize(50%);
       }
       p {
         margin-left: 2.5%;
         margin-right: 0;
       }
       img {
-        height: 100%;
+        @include main.setSize(auto, 100%);
         object-fit: cover;
         margin-right: 2.5%;
         margin-left: 0;
@@ -154,9 +150,8 @@
 }
 
 .overlayer {
+  @include main.setSize(100vw, 100vh);
   position: fixed;
-  width: 100vw;
-  height: 100vh;
   z-index: 13;
   top: 0;
   left: 0;
@@ -170,7 +165,7 @@
         @include main.flex(center, center, column);
         p,
         img {
-          width: 100%;
+          @include main.setSize(100%);
         }
         p,
         img {
@@ -201,20 +196,20 @@
       left: 0;
     }
     .post-info {
+      @include main.setSize(100%);
       position: relative;
       left: 0;
       align-items: center;
-      width: 100%;
     }
   }
 }
 
 @media only screen and (max-width: 768px) {
   .preview-post-wrap {
-    @include main.fullSize;
+    @include main.setSize(100%, 100%);
     .post-info,
     .fields-wrap {
-      width: 80%;
+      @include main.setSize(80%);
     }
   }
   .close {
