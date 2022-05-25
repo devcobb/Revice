@@ -25,7 +25,9 @@ export class RatingComponent implements OnInit {
   @Input() editable = false;
   @Output() touched = new Subject<boolean>();
   @ViewChildren('starWrap') starWrap!: QueryList<HTMLDivElement>;
-  viewBoxData = '-7.75 -4.75 35 35';
+  @Input() viewBoxDataDesktop = '-7.75 -4.75 35 35';
+  @Input() viewBoxDataMobile = '0 0 25 25';
+  viewBoxData = this.viewBoxDataDesktop;
 
   constructor(
     private errorMessageService: ErrorMessagesService,
@@ -80,7 +82,7 @@ export class RatingComponent implements OnInit {
 
   svgViewBox() {
     !this.checkDeviceService.checkDevice()
-      ? (this.viewBoxData = '-7.75 -4.75 35 35')
-      : (this.viewBoxData = '0 0 25 25');
+      ? (this.viewBoxData = this.viewBoxDataDesktop)
+      : (this.viewBoxData = this.viewBoxDataMobile);
   }
 }
