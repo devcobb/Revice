@@ -22,6 +22,7 @@
 
                 <!-- RATING DESKTOP -->
                 <app-rating [editable]="true"
+                            [viewBoxDataDesktop]="'-4 -4 25 25'"
                             [stars]="data.rating"></app-rating>
             </div>
         </div>
@@ -38,7 +39,8 @@
         <div class="rating-wrap mobile">
 
             <!-- RATING MOBILE -->
-            <app-rating [editable]="true"></app-rating>
+            <app-rating [editable]="true"
+                        [viewBoxDataDesktop]="'-4 -4 25 25'"></app-rating>
         </div>
 
         <!-- CLOSE BUTTON -->

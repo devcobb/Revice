@@ -1,1 +1,16 @@
 @use "/src/app/global/add-fields.scss";
+
+@media only screen and (max-width: 768px) {
+  .one-big-four-wrap {
+    flex-direction: column;
+    .wrap {
+      width: 100%;
+      &:first-of-type {
+        margin-bottom: 0.5rem;
+        .gallery-image-wrap {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}

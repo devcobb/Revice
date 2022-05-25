@@ -18,7 +18,7 @@
     z-index: 3;
     .ratings-wrap {
       @include main.setSize(45%);
-      margin-bottom: 0.5%;
+      margin-bottom: 1.5%;
       ::ng-deep {
         .post-rating-wrap {
           justify-content: space-around;
@@ -212,7 +212,7 @@
   .add-new-post-container {
     .add-new-post-form {
       .field-container {
-        @include main.setSize(60%);
+        @include main.setSize(65%);
       }
       .post-info-wrap {
         .choose-year-wrap {
@@ -271,6 +271,9 @@
 @media only screen and (max-width: 768px) {
   .add-new-post-container {
     .add-new-post-form {
+      .field-container {
+        @include main.setSize(80%);
+      }
       .post-basic-information {
         @include main.setSize(75%);
         .post-title {

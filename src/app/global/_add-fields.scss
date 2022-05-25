@@ -37,7 +37,7 @@
 
 .image-field,
 .image-section {
-  @include main.setSize(10rem);
+  @include main.setSize(100%, 10rem);
 }
 
 .close {
@@ -71,11 +71,15 @@
   .text-section {
     @include main.setSize(auto, 9.5rem);
   }
-  .text-section,
   .section-title {
     @include main.flex(center, center, column);
     @include main.setSize(100%);
     font-size: 0.75rem;
+  }
+  .text-section {
+    @extend .section-title;
+    //FULL WIDTH - 2REM PADDING OF TITLE AND 1REM OF TEXTSECTION PADDING + 0.5REM OF TEXTSECTION'S MARGIN
+    @include main.setSize(100%, calc(100% - 3.5rem));
   }
   .image-section {
     @include main.setSize(auto, 100%);
@@ -107,7 +111,7 @@
     @include main.setSize(49%, auto, auto, auto, auto, 22rem);
     .text-section {
       @extend .font-1;
-      @include main.setSize(auto, auto, auto, auto, auto, 22rem);
+      @include main.setSize(100%, auto, auto, auto, auto, 22rem);
       font-size: 0.8rem;
       margin-top: 0;
       box-sizing: border-box;
@@ -117,11 +121,10 @@
     @include main.setSize(auto, 15.5rem);
   }
   .rating-title {
-    @include main.setSize(3rem);
     margin-top: 1rem;
     .section-title {
       @extend .font-1;
-      @include main.setSize(auto, 100%);
+      @include main.setSize(100%, 100%);
       font-size: 0.8rem;
     }
   }
@@ -218,14 +221,6 @@
       .field-rating-wrap .arrangement {
         top: 10%;
       }
-      .arrangement {
-        right: -8%;
-        top: 25%;
-      }
-      .grid {
-        right: -8%;
-        top: 20%;
-      }
       .field-gallery-wrap .arrangement {
         top: 10%;
       }
@@ -234,19 +229,35 @@
       }
     }
   }
+  .close {
+    right: -15%;
+  }
+  .arrangement {
+    right: -15%;
+    top: 20%;
+  }
+  .grid {
+    right: -15%;
+    top: 15%;
+  }
+  .field-rating-wrap {
+    .arrangement {
+      top: 12%;
+    }
+  }
+  .field-gallery-wrap {
+    .grid {
+      top: 16%;
+    }
+    .arrangement {
+      top: 8%;
+    }
+  }
 }
 
 @media only screen and (max-width: 1000px) {
   .add-new-post-container {
     .add-new-post-form {
-      .close,
-      .grid {
-        right: -13.5%;
-      }
-      .arrangement {
-        right: -13.5%;
-        top: 25%;
-      }
       .field-rating-wrap .arrangement {
         top: 5%;
       }
@@ -265,6 +276,30 @@
         }
       }
     }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .close {
+    right: -8%;
+  }
+  .arrangement {
+    right: -8%;
+  }
+  .grid {
+    right: -8%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .close {
+    right: -10%;
+  }
+  .arrangement {
+    right: -10%;
+  }
+  .grid {
+    right: -10%;
   }
 }
 //*************************
