@@ -23,6 +23,7 @@ export class PreviewPostComponent implements OnInit {
     | HeadingField
   )[] = [];
   @Input() title = '';
+  @Input() date = '';
   @Input() thumbnail = '';
   @Input() stars: Star[] = [];
   @Output() close = new EventEmitter<boolean>();

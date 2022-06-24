@@ -5,19 +5,19 @@ import { AuthService, LoginData } from 'src/app/global/auth/auth.service';
 @Component({
   selector: 'app-login-view',
   templateUrl: './login-view.component.html',
-  styleUrls: ['./login-view.component.scss']
+  styleUrls: ['./login-view.component.scss'],
 })
 export class LoginViewComponent implements OnInit {
   loginTab = true;
-  errorMessage = "";
+  errorMessage = '';
 
   constructor(
     private readonly authService: AuthService,
-    private readonly router: Router) {
-  }
+    private readonly router: Router
+  ) {}
 
   ngOnInit(): void {
-    if (localStorage.getItem("isLoggedIn")) {
+    if (localStorage.getItem('isLoggedIn')) {
       this.router.navigate(['account']);
     }
   }
@@ -26,8 +26,8 @@ export class LoginViewComponent implements OnInit {
     this.authService
       .login(loginData)
       .then(() => {
-        localStorage.setItem("isLoggedIn", "true");
-        this.router.navigate(['/account'])
+        localStorage.setItem('isLoggedIn', 'true');
+        this.router.navigate(['/account']);
       })
       .catch((error) => console.log(error.message));
   }
@@ -36,32 +36,35 @@ export class LoginViewComponent implements OnInit {
     this.authService
       .register(registerData)
       .then(() => {
-        let nickname = (document.querySelector(".nickname-input") as HTMLInputElement).value
-        let profilePicture = (document.querySelector(".nickname-input") as HTMLInputElement).value[0].toUpperCase();
+        let nickname = (
+          document.querySelector('.nickname-input') as HTMLInputElement
+        ).value;
+        let profilePicture = (
+          document.querySelector('.nickname-input') as HTMLInputElement
+        ).value[0].toUpperCase();
 
-        localStorage.setItem("isLoggedIn", "true");
-        this.authService.addUserData(nickname, profilePicture)
+        localStorage.setItem('isLoggedIn', 'true');
+        this.authService.addUserData(nickname, profilePicture);
       })
       .then(() => this.router.navigate(['/account']))
       .catch((error) => {
         if (error.code === 'auth/email-already-in-use') {
-          this.errorMessage = "Email is already in use. Please sign in to your account.";
+          this.errorMessage =
+            'Email is already in use. Please sign in to your account.';
         }
-
-        console.log(error.message)
       });
   }
 
   changeTab(tab: boolean) {
-    this.errorMessage = "";
+    this.errorMessage = '';
 
     if (tab !== this.loginTab) {
-      let active = document.querySelector(".active");
-      let inactive = document.querySelector(".inactive");
+      let active = document.querySelector('.active');
+      let inactive = document.querySelector('.inactive');
 
       if (active !== null && inactive !== null) {
         active.className = active.className.replace('active', 'inactive');
-        inactive.className = inactive.className.replace('inactive', 'active')
+        inactive.className = inactive.className.replace('inactive', 'active');
       }
 
       this.loginTab = tab;
@@ -69,6 +72,6 @@ export class LoginViewComponent implements OnInit {
   }
 
   showErrorMessage() {
-    return this.errorMessage
+    return this.errorMessage;
   }
 }

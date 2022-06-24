@@ -5,11 +5,20 @@
   @include main.setSize(100%);
   flex-wrap: wrap;
   .field-rating-wrap {
-    @include main.flex(center, flex-start);
+    @include main.flex(center, center);
+    .text-field-header {
+      width: 100%;
+      text-align: left;
+    }
   }
   .wrap {
     @include main.flex(center, center, column);
-    @include main.setSize(50%, 100%);
+    &:first-of-type {
+      @include main.setSize(40%, 100%);
+    }
+    &:last-of-type {
+      @include main.setSize(60%, 100%);
+    }
   }
   .one-wrap {
     @include main.setSize(75%);
@@ -19,7 +28,7 @@
   }
   .rating-container {
     @include main.setSize(100%);
-    margin-top: 5%;
+    margin-top: 1%;
     ::ng-deep {
       .post-rating-wrap {
         @include main.setSize(100%);
@@ -30,25 +39,29 @@
   .text-field-header {
     @extend .font-2;
     display: block;
-    padding-bottom: 1.5rem;
+    padding: 0 0 1% 5%;
     color: main.$yellow;
     font-size: 3rem;
     margin: 2% 0 0 0;
-    padding: 0;
   }
   .field-text {
-    @include main.setSize(75%);
+    @include main.setSize(100%);
+    @extend .font-4;
     color: main.$near_black;
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 5%;
     font-size: 1.2rem;
-    line-height: 2rem;
+    line-height: 1.5rem;
   }
 }
 
 @media only screen and (max-width: 1000px) {
   .field-rating-container {
     .field-rating-wrap {
+      .text-field-header {
+        margin-top: 1.5%;
+        text-align: center;
+      }
       flex-direction: column;
     }
 

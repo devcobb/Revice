@@ -58,11 +58,6 @@ export class ChooseYearComponent implements OnInit {
   }
 
   enterSpecificYear(val: string) {
-    this.minVal.value = '';
-    this.maxVal.value = '';
-    this.firstRange.value = '0';
-    this.secRange.value = '0';
-
     this.specifedYear = val;
     this.updateData('specifedYear', val);
   }

@@ -28,6 +28,11 @@ $near_black: #0e0b16;
   src: url("/assets/fonts/agencyfb-boldcondensed.ttf");
 }
 
+@font-face {
+  font-family: "Abel";
+  src: url("/assets/fonts/Abel-Regular.ttf");
+}
+
 @mixin flex($justify, $align, $direction: row) {
   display: flex;
   justify-content: $justify;
@@ -146,6 +151,10 @@ $near_black: #0e0b16;
 
 .font-3 {
   font-family: "Monteserrat" !important;
+}
+
+.font-4 {
+  font-family: "Abel" !important;
 }
 
 //***** FORM *****

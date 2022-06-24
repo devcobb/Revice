@@ -5,7 +5,6 @@
 }
 
 .preview-post-wrap {
-  @include main.flex(flex-start, center, column);
   @include main.customScroll(4px);
   @include main.setSize(80%, 90%);
   position: fixed;
@@ -16,8 +15,12 @@
   box-sizing: border-box;
   background-color: main.$white;
   overflow: auto;
+  .main-ratings-wrap {
+    width: 50%;
+    height: auto;
+  }
   .thumbnail {
-    @include main.setSize(100%, auto, auto, auto, auto, 25rem);
+    @include main.setSize(100%, 50%, auto, auto, auto, auto);
     position: relative;
     .overlayer {
       @include main.setSize(100%, 100%);
@@ -46,18 +49,26 @@
       }
     }
   }
+  .preview-rating {
+    @include main.setSize(45%);
+  }
   .star,
   .star-filled {
     @include main.setSize(40px);
   }
   .post-title {
-    @include main.flex(center, flex-start, column);
+    @include main.flex(flex-start, center);
     @extend .font-2;
     position: relative;
     color: main.$yellow;
     font-size: 5rem;
     text-align: left;
     margin: 1% 0;
+    .post-year {
+      @extend .font-3;
+      font-size: 3rem;
+      margin-left: 1rem;
+    }
     &::after {
       @include main.setSize(4rem, 5%);
       position: absolute;
@@ -79,10 +90,10 @@
     padding-left: 10%;
     margin-top: 2.5%;
     .heading {
-      @include main.setSize(90%);
+      @include main.setSize(90%, auto, none, none, 0, auto);
     }
     .image {
-      @include main.setSize(90%, 25rem);
+      @include main.setSize(90%, 25rem, none, none, 0, auto);
     }
     p,
     .wrap {
@@ -137,7 +148,7 @@
     }
   }
   .field {
-    margin: 2.5% 0;
+    margin: 1.5% 0;
   }
 }
 
@@ -160,6 +171,7 @@
 
 @media only screen and (max-width: 1200px) {
   .preview-post-wrap {
+    @include main.setSize(100%, 100%);
     .fields-wrap {
       .banner {
         @include main.flex(center, center, column);
