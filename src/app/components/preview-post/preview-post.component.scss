@@ -33,6 +33,36 @@
       object-fit: cover;
     }
   }
+  .preview-category-wrap {
+    position: absolute;
+    min-width: 5%;
+    right: 0%;
+    z-index: 3;
+    top: 0%;
+    padding: 3rem;
+    .serial {
+      background-color: main.$red;
+    }
+    .movie {
+      background-color: main.$green;
+    }
+    .game {
+      background-color: main.$blue;
+    }
+    .music {
+      background-color: main.$yellow;
+    }
+    .preview-category {
+      @extend .font-1;
+      display: block;
+      width: 100%;
+      border-radius: 4px;
+      padding: 0.5rem 0.25rem;
+      color: main.$white;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  }
   .post-info {
     @include main.flex(center, flex-start, column);
     @include main.setSize(65%);
@@ -172,6 +202,10 @@
 @media only screen and (max-width: 1200px) {
   .preview-post-wrap {
     @include main.setSize(100%, 100%);
+    .preview-category-wrap {
+      bottom: 0;
+      top: auto;
+    }
     .fields-wrap {
       .banner {
         @include main.flex(center, center, column);

@@ -4,6 +4,12 @@
   <div class="thumbnail">
     <div class="overlayer"></div>
     <img [src]="thumbnail" />
+    <div class="preview-category-wrap">
+      <span class="preview-category"
+            [ngClass]="category.name">
+        {{categoryName}}
+      </span>
+    </div>
     <div class="post-info">
       <h1 class="post-title">
         <span>{{ title }}</span>

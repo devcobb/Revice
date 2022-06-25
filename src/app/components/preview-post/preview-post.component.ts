@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   BannerField,
+  Category,
   GalleryField,
   HeadingField,
   ImageField,
@@ -24,6 +25,7 @@ export class PreviewPostComponent implements OnInit {
   )[] = [];
   @Input() title = '';
   @Input() date = '';
+  @Input() category = {} as Category;
   @Input() thumbnail = '';
   @Input() stars: Star[] = [];
   @Output() close = new EventEmitter<boolean>();
@@ -57,5 +59,12 @@ export class PreviewPostComponent implements OnInit {
 
   getFieldArrangement(arrangement: string) {
     return arrangement === 'image-text' ? false : true;
+  }
+
+  get categoryName() {
+    return (
+      this.category.name[0].toUpperCase() +
+      this.category.name.slice(1, this.category.name.length)
+    );
   }
 }
