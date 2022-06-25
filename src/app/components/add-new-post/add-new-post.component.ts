@@ -16,7 +16,7 @@ import { YearFieldData } from '../choose-year/choose-year.component';
 })
 export class AddNewPostComponent {
   heroImageHeight = '60vh';
-  imageID = '2';
+  imageID = '4';
   date = '';
   availableCategories: Category[] = [
     { name: 'movie' },
