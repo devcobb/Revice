@@ -115,15 +115,17 @@
   }
   .fields-wrap {
     @include main.flex(center, flex-start, column);
-    @include main.setSize(90%);
+    @include main.setSize(100%);
     color: main.$white;
     padding-left: 10%;
+    padding-right: 10%;
+    box-sizing: border-box;
     margin-top: 2.5%;
     .heading {
-      @include main.setSize(90%, auto, none, none, 0, auto);
+      @include main.setSize(100%, auto, none, none, 0, auto);
     }
     .image {
-      @include main.setSize(90%, 25rem, none, none, 0, auto);
+      @include main.setSize(100%, 25rem, none, none, 0, auto);
     }
     p,
     .wrap {
@@ -142,11 +144,11 @@
       }
     }
     .rating {
-      @include main.setSize(90%);
+      @include main.setSize(100%);
     }
     .banner {
       @include main.flex(space-between, center);
-      @include main.setSize(90%);
+      @include main.setSize(100%);
       .text-field-header {
         line-height: 3rem;
       }
@@ -241,11 +243,15 @@
       top: 0;
       left: 0;
     }
+    .main-ratings-wrap {
+      margin-top: 1rem;
+    }
     .post-info {
       @include main.setSize(100%);
       position: relative;
       left: 0;
       align-items: center;
+      margin: 0;
     }
   }
 }
@@ -255,7 +261,7 @@
     @include main.setSize(100%, 100%);
     .post-info,
     .fields-wrap {
-      @include main.setSize(80%);
+      @include main.setSize(100%);
     }
   }
   .close {
@@ -265,6 +271,11 @@
 }
 
 @media only screen and (max-width: 500px) {
+  .preview-post-wrap {
+    .post-title {
+      flex-direction: column;
+    }
+  }
   .close {
     top: 1.5%;
     right: 3%;
