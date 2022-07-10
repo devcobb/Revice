@@ -14,6 +14,7 @@ import {
   Star,
   TextField,
 } from 'src/app/global/global-interfaces';
+import { YearFieldData } from '../../choose-year/choose-year.component';
 import { ErrorMessagesService } from '../../error-messages/error-messages-service.service';
 
 @Component({
@@ -34,6 +35,7 @@ export class AddNewPostFormComponent {
       | HeadingField
     )[]
   >();
+  @Output() postDate = new EventEmitter<YearFieldData>();
   @Output() thumbnailImage = new EventEmitter<string>();
   @Output() needPreview = new EventEmitter<boolean>();
   @Output() postTitle = new EventEmitter<string>();
@@ -154,6 +156,10 @@ export class AddNewPostFormComponent {
       arr.push({ id: i, filled: false });
     }
     return arr;
+  }
+
+  choosePostDate(date: YearFieldData) {
+    this.postDate.emit(date);
   }
 
   //UPDATE FIELD

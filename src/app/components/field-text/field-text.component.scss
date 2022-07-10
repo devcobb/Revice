@@ -2,6 +2,7 @@
 
 .field-text {
   @include main.setSize(75%);
+  @extend .font-4;
   color: main.$near_black;
   margin: 0;
   padding: 0;

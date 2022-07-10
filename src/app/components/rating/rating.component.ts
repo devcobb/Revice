@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   HostListener,
   Input,
@@ -32,7 +33,8 @@ export class RatingComponent implements OnInit {
   constructor(
     private errorMessageService: ErrorMessagesService,
     private ratingService: RatingService,
-    private checkDeviceService: CheckDeviceService
+    private checkDeviceService: CheckDeviceService,
+    private ref: ChangeDetectorRef
   ) {
     for (let i = 0; i < 10; i++) {
       this.stars.push({ id: i, filled: false });
@@ -46,15 +48,17 @@ export class RatingComponent implements OnInit {
   chooseRating(star: Event) {
     if (this.editable) {
       let starEl = star.currentTarget as HTMLDivElement;
-
       const parent = starEl.parentNode! as HTMLDivElement;
       const filledStarsId = Number(starEl.dataset.id) + 1;
 
       this.clearRatings();
+
       for (let i = Number(starEl.dataset.id); i > -1; i--) {
         this.stars[i].filled = true;
+        this.ref.detectChanges();
       }
 
+      console.log(this.stars);
       let starClasses = starEl.getAttribute('class');
       starEl.setAttribute('class', `${starClasses} starAnimate`);
       setTimeout(() => {

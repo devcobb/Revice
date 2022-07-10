@@ -48,7 +48,7 @@
     <!-- POST DATE -->
     <div class="post-info-wrap">
       <div class="choose-year-wrap">
-        <app-choose-year></app-choose-year>
+        <app-choose-year (changedData)="choosePostDate($event)"></app-choose-year>
       </div>
     </div>
 

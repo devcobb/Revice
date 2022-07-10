@@ -8,33 +8,30 @@ export interface YearFieldData {
   rangeYear: string;
 }
 
-enum EChooseYearMode {
-  specific = 'specific',
-  range = 'range',
-}
-
 @Component({
   selector: 'app-choose-year',
   templateUrl: './choose-year.component.html',
   styleUrls: ['./choose-year.component.scss'],
 })
 export class ChooseYearComponent implements OnInit {
-  EChooseYearMode = EChooseYearMode;
-  mode: EChooseYearMode = EChooseYearMode.range;
   year = new Date().getFullYear();
   specifedYear = '';
-  yearRange = '';
+  yearRange = '1500 - 2022';
   rangeYear = '';
-  @Output() changedData = new EventEmitter<YearFieldData>();
   yearFieldData: YearFieldData = {
     year: this.year,
     specifedYear: this.specifedYear,
     yearRange: this.yearRange,
     rangeYear: this.rangeYear,
   };
+  @Output()
+  changedData = new EventEmitter<YearFieldData>();
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.changedData.emit(this.yearFieldData);
+  }
 
   get minVal() {
     return document.querySelector('.min-val') as HTMLInputElement;
@@ -57,22 +54,28 @@ export class ChooseYearComponent implements OnInit {
     this.changedData.emit(this.yearFieldData);
   }
 
-  enterSpecificYear(val: string) {
-    this.minVal.value = '';
-    this.maxVal.value = '';
-    this.firstRange.value = '0';
-    this.secRange.value = '0';
-
-    this.specifedYear = val;
-    this.updateData('specifedYear', val);
+  enterSpecificYear() {
+    if (this.maxVal.value === '') {
+      this.specifedYear = this.minVal.value;
+      this.updateData('specifedYear', this.minVal.value);
+    } else {
+      this.specifedYear = '';
+      this.updateData('specifedYear', '');
+    }
   }
 
   updateRange() {
+    this.enterSpecificYear();
     this.firstRange.value = this.minVal.value;
-    this.secRange.value = this.maxVal.value;
+    this.secRange.value =
+      this.maxVal.value === '' ? this.minVal.value : this.maxVal.value;
+
+    this.updateData('yearRange', `${this.minVal.value} - ${this.maxVal.value}`);
   }
 
   changeRange() {
+    this.enterSpecificYear();
+
     let slide1 = parseFloat(this.firstRange.value);
     let slide2 = parseFloat(this.secRange.value);
 
@@ -99,12 +102,7 @@ export class ChooseYearComponent implements OnInit {
         this.secRange.value = String(number2);
       };
     });
-  }
 
-  toggleMode() {
-    this.mode =
-      this.mode === this.EChooseYearMode.range
-        ? this.EChooseYearMode.specific
-        : this.EChooseYearMode.range;
+    this.updateData('yearRange', `${this.minVal.value} - ${this.maxVal.value}`);
   }
 }

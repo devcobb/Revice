@@ -1,7 +1,6 @@
 <div class="filter-year-container">
     <div class="filter-year-wrap">
-        <div class="range-slider"
-             *ngIf="mode === EChooseYearMode.range">
+        <div class="range-slider">
             <span class="range-slider-topbar">
                 <span class="range-slider-text">from</span>
                 <input type="number"
@@ -50,22 +49,6 @@
                 </svg>
             </div>
         </div>
-
-        <div class="specific-year-wrap"
-             *ngIf="mode === EChooseYearMode.specific">
-            <span class="range-slider-text">Enter a specific year</span>
-            <input class="filter-year year-filter-input filter-year-number"
-                   (change)="enterSpecificYear($event.target.value)"
-                   type="number"
-                   min="1"
-                   [value]="yearRange"
-                   [max]="year" />
-        </div>
-
-        <div class="chooseDateModeToggle"
-             [ngClass]="mode === EChooseYearMode.range ? 'btnBiggerMargin' : 'btnSmallerMargin'"
-             (click)="toggleMode()">
-            {{mode === EChooseYearMode.range ? 'Choose a specific year' : 'Choose a range date'}}
-        </div>
     </div>
 </div>
+<p class="specific-year-info">Leave first input empty if you want to choose specific year.</p>

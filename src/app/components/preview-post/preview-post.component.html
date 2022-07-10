@@ -4,12 +4,21 @@
   <div class="thumbnail">
     <div class="overlayer"></div>
     <img [src]="thumbnail" />
+    <div class="preview-category-wrap">
+      <span class="preview-category"
+            [ngClass]="category.name">
+        {{categoryName}}
+      </span>
+    </div>
     <div class="post-info">
       <h1 class="post-title">
         <span>{{ title }}</span>
+        <span class="post-year">({{ date }})</span>
       </h1>
-      <app-rating [stars]="stars"
-                  [editable]="false"></app-rating>
+      <div class="main-ratings-wrap">
+        <app-rating [stars]="stars"
+                    [editable]="false"></app-rating>
+      </div>
     </div>
   </div>
 
@@ -24,8 +33,7 @@
         field.type,
         field.type === 'banner' && field.arrangement === 'text-image'
           ? 'banner-reverse'
-          : ''
-      ]">
+          : '']">
       <!-- HEADING -->
       <ng-container *ngIf="field.type === 'heading'">
         <app-field-heading [heading]="field.title"></app-field-heading>

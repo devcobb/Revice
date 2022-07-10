@@ -6,6 +6,7 @@ import {
   Star,
   TextField,
 } from 'src/app/global/global-interfaces';
+import { YearFieldData } from '../choose-year/choose-year.component';
 
 @Component({
   selector: 'app-add-new-post',
@@ -15,7 +16,8 @@ import {
 })
 export class AddNewPostComponent {
   heroImageHeight = '60vh';
-  imageID = '2';
+  imageID = '4';
+  date = '';
   availableCategories: Category[] = [
     { name: 'movie' },
     { name: 'serial' },
@@ -55,6 +57,14 @@ export class AddNewPostComponent {
   //UPDATE TITLE
   updateTitle(title: string) {
     this.title = title;
+  }
+
+  updateDate(date: YearFieldData) {
+    if (date.specifedYear) {
+      this.date = String(date.specifedYear);
+    } else {
+      this.date = date.yearRange;
+    }
   }
 
   //UPDATE THUMNBAIL

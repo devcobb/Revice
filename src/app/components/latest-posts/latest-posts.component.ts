@@ -94,8 +94,6 @@ export class LatestPostsComponent implements OnInit {
     this.specifedYear = data.specifedYear;
     this.rangeYear = data.rangeYear;
     this.yearRange = data.yearRange;
-
-    console.log(data);
   }
 
   initFilterRating() {
@@ -277,7 +275,6 @@ export class LatestPostsComponent implements OnInit {
     if (yearToFilter) {
       if (type === 'range') {
         let range = yearToFilter.split(':')[1].split('-');
-        console.log(range);
         if (
           Number(postYear) >= Number(range[0].trim()) &&
           Number(postYear) <= Number(range[1].trim())

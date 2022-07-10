@@ -102,31 +102,28 @@
 }
 
 .field-rating-wrap {
-  @include main.flex(space-between, center);
+  @include main.flex(space-between, flex-start);
   @include main.setSize(100%);
   .field-rating-container {
     @include main.setSize(49%, auto, auto, auto, auto, 20rem);
   }
   .rating-description-wrap {
-    @include main.setSize(49%, auto, auto, auto, auto, 22rem);
+    @include main.setSize(49%, 20rem, auto, auto, auto, auto);
     .text-section {
       @extend .font-1;
-      @include main.setSize(100%, auto, auto, auto, auto, 22rem);
+      @include main.setSize(100%, calc(100% - 5rem));
       font-size: 0.8rem;
-      margin-top: 0;
+      margin-top: 0.5rem;
       box-sizing: border-box;
+    }
+    .section-title {
+      @include main.flex(center, center, column);
+      @include main.setSize(100%);
+      font-size: 0.75rem;
     }
   }
   .rating-image {
     @include main.setSize(auto, 15.5rem);
-  }
-  .rating-title {
-    margin-top: 1rem;
-    .section-title {
-      @extend .font-1;
-      @include main.setSize(100%, 100%);
-      font-size: 0.8rem;
-    }
   }
   .rating-wrap {
     @include main.setSize(auto, 3rem);
@@ -141,10 +138,7 @@
     }
   }
 }
-/*
-.field-rating-wrap {
-  flex-direction: column;
-}*/
+
 .field-container {
   margin-bottom: 5%;
   .field-rating-container,

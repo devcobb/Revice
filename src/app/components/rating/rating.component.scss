@@ -1,12 +1,20 @@
 @use "/src/app/global/main.scss";
 
+.disable-editing-wrap {
+  @include main.setSize(100%, 100%);
+  position: absolute;
+  cursor: default;
+  top: 0;
+  left: 0;
+}
 .stars {
+  position: relative;
   cursor: pointer;
   display: flex;
 
   &:hover {
     .star polygon {
-      fill: #ffd055 !important;
+      fill: main.$yellow !important;
     }
   }
 
@@ -29,8 +37,8 @@
   }
 
   &[data-stars] {
-    .star polygon {
-      fill: #ffd055;
+    .star.filled polygon {
+      fill: main.$yellow;
     }
   }
 

@@ -24,6 +24,7 @@
                        (needPreview)="togglePreview($event)"
                        (previewedFields)="updateFieldsData($event)"
                        (thumbnailImage)="updateThumbnail($event)"
+                       (postDate)="updateDate($event)"
                        (postTitle)="updateTitle($event)"
                        (postRatings)="updateRatings($event)"
                        [category]="choosedCategory"></app-add-new-post-form>
@@ -33,5 +34,7 @@
                   (close)="togglePreview($event)"
                   [title]="title"
                   [thumbnail]="thumbnail"
+                  [date]="date"
                   [stars]="ratings"
+                  [category]="choosedCategory"
                   [fields]="fields"></app-preview-post>

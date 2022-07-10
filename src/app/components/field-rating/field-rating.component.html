@@ -1,18 +1,20 @@
 <div class="field-rating-container">
   <div class="field-rating-wrap">
-    <div class="wrap" [ngClass]="{ 'one-wrap': !value }">
+    <div class="wrap"
+         [ngClass]="{ 'one-wrap': !value }">
       <div class="image-wrap">
         <app-field-image [image]="image"></app-field-image>
       </div>
-
+      <div class="rating-container">
+        <app-rating [viewBoxDataDesktop]="'-5 -3 25 25'"
+                    [stars]="rating"></app-rating>
+      </div>
+    </div>
+    <div class="wrap"
+         *ngIf="value">
       <h2 class="text-field-header">
         {{ title }}
       </h2>
-      <div class="rating-container">
-        <app-rating [stars]="rating"></app-rating>
-      </div>
-    </div>
-    <div class="wrap" *ngIf="value">
       <p class="field-text">
         {{ value }}
       </p>

@@ -119,7 +119,7 @@
       text-align: center;
       margin-bottom: 5%;
       .btn-wrap {
-        @include main.flex(center, center);
+        @include main.flex(space-around, center);
         @include main.setSize(50%);
       }
       .error-wrap {
@@ -201,7 +201,7 @@
       .submit-container {
         .submit-btn,
         .preview-btn {
-          @include main.setSize(auto, auto, auto, auto, 25%);
+          @include main.setSize(auto, auto, auto, auto, 35%);
         }
       }
     }
@@ -309,10 +309,9 @@
         @include main.setSize(75%);
       }
       .add-row {
-        flex-direction: column;
         .add-field-btn {
-          @include main.setSize(50%);
-          margin: 1rem 0;
+          @include main.setSize(40%);
+          margin: 1rem;
         }
       }
     }

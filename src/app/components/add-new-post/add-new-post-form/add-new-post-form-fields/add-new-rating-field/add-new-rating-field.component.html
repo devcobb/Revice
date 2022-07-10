@@ -8,16 +8,6 @@
                 <app-upload-image [id]="data.id + 1"
                                   (imageUploaded)="update('src', $event)"></app-upload-image>
             </div>
-            <div class="rating-title">
-
-                <!-- RATING TITLE -->
-                <input type="text"
-                       minlength="5"
-                       maxlength="50"
-                       placeholder="Add title of rating's element"
-                       (change)="update('title', $event.target.value)"
-                       class="section-title" />
-            </div>
             <div class="rating-wrap desktop">
 
                 <!-- RATING DESKTOP -->
@@ -27,6 +17,14 @@
             </div>
         </div>
         <div class="rating-description-wrap">
+
+            <!-- RATING TITLE -->
+            <input type="text"
+                   minlength="5"
+                   maxlength="50"
+                   placeholder="Add title of rating's element"
+                   (change)="update('title', $event.target.value)"
+                   class="section-title" />
 
             <!-- RATING TEXT -->
             <textarea class="text-section"
