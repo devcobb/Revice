@@ -60,9 +60,10 @@ export class AddNewPostComponent {
   }
 
   updateDate(date: YearFieldData) {
-    if (date.year) {
+    if (date.specifedYear) {
       this.date = String(date.specifedYear);
     } else {
+      this.date = date.yearRange;
     }
   }
 

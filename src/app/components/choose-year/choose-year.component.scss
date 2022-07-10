@@ -1,28 +1,11 @@
 @use "/src/app/global/main.scss";
 
-.specific-year-wrap {
-  @include main.flex(center, center, column);
-  @include main.setSize(100%);
-  .year-filter-input {
-    @include main.setSize(27.5%);
-  }
-  .range-slider-text {
-    font-size: 1rem;
-    margin-bottom: 1%;
-  }
-}
-.specific-year-wrap {
-  @include main.flex(center, center, column);
-  .year-filter-input {
-    @include main.setSize(10%);
-  }
-}
 .range-slider-text {
   color: main.$yellow;
   font-weight: bold;
 }
 .filter-year-wrap {
-  @include main.flex(flex-start, center, column);
+  @include main.flex(space-around, center);
   @include main.setSize(100%);
   margin-bottom: 3%;
 }
@@ -40,9 +23,7 @@
 }
 .filter-year-number {
   @include main.setSize(50%);
-  margin-top: 2.5%;
   text-align: center;
-  margin-top: 2.5%;
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -85,7 +66,7 @@
 }
 .range-slider-topbar {
   @include main.flex(space-around, center);
-  margin-bottom: 20%;
+  margin-bottom: 15%;
 }
 .range-slider-bottombar {
   position: relative;
@@ -95,6 +76,13 @@
   position: absolute;
   left: 0;
   bottom: 0;
+}
+.specific-year-info {
+  @extend .font-1;
+  color: main.$yellow;
+  margin-top: 5%;
+  text-align: center;
+  font-size: 0.8rem;
 }
 input[type="range"] {
   @include main.setSize(100%);
@@ -124,7 +112,8 @@ input[type="range"]::-webkit-slider-thumb {
   z-index: 2;
   position: relative;
   box-shadow: 0px 0px 0px #000;
-  border: 1px solid main.$purple;
+  border: 1px solid main.$yellow;
+  border-radius: 50%;
   background: main.$purple;
   cursor: pointer;
   -webkit-appearance: none;
@@ -167,24 +156,4 @@ input[type="range"]::-ms-thumb {
   border: 1px solid main.$purple;
   background: main.$purple;
   cursor: pointer;
-}
-
-.chooseDateModeToggle {
-  @include main.contrastButton();
-  transition: margin 0.3s;
-}
-.btnSmallerMargin {
-  margin-top: 5%;
-}
-.btnBiggerMargin {
-  margin-top: 10%;
-}
-
-@media only screen and (max-width: 1000px) {
-  .btnBiggerMargin {
-    margin-top: 15%;
-  }
-  .btnSmallerMargin {
-    margin-top: 10%;
-  }
 }
