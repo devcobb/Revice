@@ -15,7 +15,7 @@
             <div class="wrap">
                 <div class="gallery-image-wrap">
                     <app-upload-image [customID]="getCustomID()"
-                                      (imageUploaded)="updateImageField(data.id, $event)">
+                                      (imageUploaded)="updateImage($event)">
                     </app-upload-image>
                 </div>
             </div>
@@ -43,22 +43,22 @@
 <ng-template #FourImageLayout>
     <div class="gallery-image-wrap">
         <app-upload-image [customID]="getCustomID()"
-                          (imageUploaded)="updateImageField(data.id, $event)">
+                          (imageUploaded)="updateImage($event)">
         </app-upload-image>
     </div>
     <div class="gallery-image-wrap">
         <app-upload-image [customID]="getCustomID()"
-                          (imageUploaded)="updateImageField(data.id, $event)">
+                          (imageUploaded)="updateImage($event)">
         </app-upload-image>
     </div>
     <div class="gallery-image-wrap">
         <app-upload-image [customID]="getCustomID()"
-                          (imageUploaded)="updateImageField(data.id, $event)">
+                          (imageUploaded)="updateImage($event)">
         </app-upload-image>
     </div>
     <div class="gallery-image-wrap">
         <app-upload-image [customID]="getCustomID()"
-                          (imageUploaded)="updateImageField(data.id, $event)">
+                          (imageUploaded)="updateImage($event)">
         </app-upload-image>
     </div>
 </ng-template>

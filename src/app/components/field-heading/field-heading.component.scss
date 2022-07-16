@@ -16,6 +16,11 @@
     @include main.flex(flex-start, center);
     @include main.setSize(100%);
     margin: 0;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .field-heading .text-field-header {
     &::before {
       @include headingLines(1rem, 0 0.5rem 0 0);
     }

@@ -179,15 +179,6 @@ export class AddNewPostFormComponent {
     });
   }
 
-  //UPDATE IMAGE FIELDS
-  updateImageField(id: number, value: string) {
-    let fieldToUpdate = this.fields.filter(
-      (field) => field.id === id
-    )[0] as GalleryField;
-
-    fieldToUpdate.images.push(value);
-  }
-
   //UPDATE TITLE
   updateTitle(value: string) {
     this.title = value;
@@ -236,6 +227,16 @@ export class AddNewPostFormComponent {
     fieldToChange.galleryType === 'four-small'
       ? (fieldToChange.galleryType = 'one-big-four-small')
       : (fieldToChange.galleryType = 'four-small');
+  }
+
+  updateGallery(data: GalleryField) {
+    let fieldToChange = <GalleryField>(
+      this.fields.find(
+        (field) => field.id === data.id && field.type === 'gallery'
+      )
+    );
+
+    fieldToChange.images = data.images;
   }
 
   //PREVIEW TOGGLE

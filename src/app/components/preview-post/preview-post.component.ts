@@ -58,6 +58,7 @@ export class PreviewPostComponent implements OnInit {
   }
 
   getFieldArrangement(arrangement: string) {
+    console.log(arrangement);
     return arrangement === 'image-text' ? false : true;
   }
 
