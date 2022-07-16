@@ -5,10 +5,19 @@
   @include main.setSize(100%);
   flex-wrap: wrap;
   .field-rating-wrap {
-    @include main.flex(center, center);
+    @include main.flex(center, flex-start);
     .text-field-header {
       width: 100%;
       text-align: left;
+    }
+    &.reverse {
+      flex-direction: row-reverse;
+      .field-text {
+        padding: 0 5% 0 0%;
+      }
+      .text-field-header {
+        padding: 0 5% 1% 0%;
+      }
     }
   }
   .wrap {
@@ -27,7 +36,7 @@
     @include main.setSize(100%);
   }
   .rating-container {
-    @include main.setSize(100%);
+    @include main.setSize(70%);
     margin-top: 1%;
     ::ng-deep {
       .post-rating-wrap {
@@ -63,13 +72,20 @@
         text-align: center;
       }
       flex-direction: column;
+      &.reverse {
+        flex-direction: column;
+      }
     }
 
     .wrap {
       @include main.setSize(100%);
-      .field-text {
+      &:first-of-type,
+      &:last-of-type {
         @include main.setSize(100%);
-        margin-top: 2.5%;
+        .field-text {
+          @include main.setSize(100%);
+          margin-top: 2.5%;
+        }
       }
     }
   }

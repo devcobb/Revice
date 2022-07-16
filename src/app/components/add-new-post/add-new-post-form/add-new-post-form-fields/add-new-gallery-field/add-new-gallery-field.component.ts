@@ -11,6 +11,7 @@ import { GalleryField } from 'src/app/global/global-interfaces';
 })
 export class AddNewGalleryFieldComponent extends ExtendedFieldComponent {
   @Output() changedType = new EventEmitter<GalleryField>();
+  @Output() changedImages = new EventEmitter<GalleryField>();
 
   //CHANGE GALLERY'S TYPE
   changeType() {
@@ -30,5 +31,11 @@ export class AddNewGalleryFieldComponent extends ExtendedFieldComponent {
 
     randomID += new Date().getTime();
     return `${this.data.id}-${randomID}`;
+  }
+
+  updateImage(img: string) {
+    let fieldToUpdate = this.data as GalleryField;
+    fieldToUpdate.images.push(img);
+    this.changedImages.emit(fieldToUpdate);
   }
 }

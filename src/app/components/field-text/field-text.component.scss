@@ -10,6 +10,7 @@
   line-height: 1.6rem;
   .text-field-header {
     @extend .font-2;
+    line-height: normal;
     display: block;
     padding-bottom: 1.5rem;
     color: main.$yellow;

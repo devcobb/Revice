@@ -1,5 +1,6 @@
 <div class="field-rating-container">
-  <div class="field-rating-wrap">
+  <div class="field-rating-wrap"
+       [ngClass]="{'reverse': isReverse}">
     <div class="wrap"
          [ngClass]="{ 'one-wrap': !value }">
       <div class="image-wrap">

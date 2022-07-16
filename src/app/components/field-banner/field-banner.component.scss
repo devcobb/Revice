@@ -17,3 +17,12 @@
     }
   }
 }
+
+@media only screen and (max-width: 800px) {
+  .field-banner {
+    @include main.flex(center, center, column);
+    .wrap {
+      width: 100%;
+    }
+  }
+}
