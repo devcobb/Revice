@@ -6,6 +6,7 @@ import {
   HeadingField,
   ImageField,
   Star,
+  Tag,
   TextField,
 } from 'src/app/global/global-interfaces';
 import { SlideShowService } from '../slide-show/slide-show.service';
@@ -24,6 +25,7 @@ export class PreviewPostComponent implements OnInit {
     | HeadingField
   )[] = [];
   @Input() title = '';
+  @Input() tags: Tag[] = [];
   @Input() date = '';
   @Input() category = {} as Category;
   @Input() thumbnail = '';
@@ -35,6 +37,7 @@ export class PreviewPostComponent implements OnInit {
   constructor(private slideShowService: SlideShowService) {}
 
   ngOnInit() {
+    console.log(this.tags);
     document.body.className = 'no-scroll';
     //trigger
     this.slideShowService.triggerSub.subscribe((value) => {

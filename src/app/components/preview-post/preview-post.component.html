@@ -19,6 +19,12 @@
         <app-rating [stars]="stars"
                     [editable]="false"></app-rating>
       </div>
+      <div class="tags-wrap">
+        <app-tag class="tag"
+                 [ngClass]="{'no-margin': last}"
+                 *ngFor="let tag of tags; let last = last"
+                 [content]="tag.content"></app-tag>
+      </div>
     </div>
   </div>
 

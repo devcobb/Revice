@@ -1,39 +1,80 @@
 import { Injectable } from '@angular/core';
 import { Database } from '@angular/fire/database';
-import { doc, Firestore, setDoc } from "@angular/fire/firestore";
+import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { initializeApp } from 'firebase/app';
-import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore';
-import { getDownloadURL, getStorage, ref, uploadString } from "firebase/storage";
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from 'firebase/firestore';
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadString,
+} from 'firebase/storage';
 import { environment } from 'src/environments/environment';
-import { BannerField, Category, GalleryField, HeadingField, ImageField, Post, RatingField, Star, TextField } from './global-interfaces';
+import {
+  BannerField,
+  Category,
+  GalleryField,
+  HeadingField,
+  ImageField,
+  Post,
+  RatingField,
+  Star,
+  Tag,
+  TextField,
+} from './global-interfaces';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DatabaseService {
-  constructor(
-    private database: Database,
-    public firestore: Firestore
-  ) { }
+  constructor(private database: Database, public firestore: Firestore) {}
 
   app = initializeApp(environment.firebase);
   storage = getStorage(this.app);
 
   async addUserDataToDb(uid: string, nickname: string, profilePicture: string) {
-    const docRef = await setDoc(doc(this.firestore, "users", uid), {
+    const docRef = await setDoc(doc(this.firestore, 'users', uid), {
       uid: uid,
       nickname: nickname,
-      profilePicture: profilePicture
+      profilePicture: profilePicture,
     });
   }
 
   async updateProfilePic(uid: string, nickname: string, picture: string) {
-    const storageRef = await ref(this.storage, `users/profile_pictures/${uid}-${nickname}-profile`);
-    await uploadString(storageRef, picture, 'data_url').then((snapshot) => { });
+    const storageRef = await ref(
+      this.storage,
+      `users/profile_pictures/${uid}-${nickname}-profile`
+    );
+    await uploadString(storageRef, picture, 'data_url').then((snapshot) => {});
   }
 
-  async addPost(id: string, thumbnail: string, title: string, fields: (TextField | ImageField | BannerField | RatingField | GalleryField | HeadingField)[], postPrivate: boolean, authorName: string, uid: string, ratings: Star[], category: Category) {
-    const docRef = await setDoc(doc(this.firestore, "posts", id), {
+  async addPost(
+    id: string,
+    thumbnail: string,
+    title: string,
+    fields: (
+      | TextField
+      | ImageField
+      | BannerField
+      | RatingField
+      | GalleryField
+      | HeadingField
+    )[],
+    postPrivate: boolean,
+    authorName: string,
+    uid: string,
+    ratings: Star[],
+    category: Category,
+    tags: Tag[]
+  ) {
+    const docRef = await setDoc(doc(this.firestore, 'posts', id), {
       title: title,
       fields: fields,
       postPrivate: postPrivate,
@@ -41,15 +82,21 @@ export class DatabaseService {
       ratings: ratings,
       category: category.name,
       id: id,
-      uid: uid
+      uid: uid,
+      tags: tags,
     });
 
-    const storageRef = await ref(this.storage, `post_thumbails/${id}-${title}-thumnbail`);
-    await uploadString(storageRef, thumbnail, 'data_url').then((snapshot) => { });
+    const storageRef = await ref(
+      this.storage,
+      `post_thumbails/${id}-${title}-thumnbail`
+    );
+    await uploadString(storageRef, thumbnail, 'data_url').then(
+      (snapshot) => {}
+    );
   }
 
   async getThumbnail(dbUrl: string) {
-    let thumbnail = "";
+    let thumbnail = '';
 
     await getDownloadURL(ref(this.storage, dbUrl))
       .then((url) => {
@@ -60,32 +107,38 @@ export class DatabaseService {
         };
         xhr.open('GET', url);
         xhr.send();
-        thumbnail = url
-
+        thumbnail = url;
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
       });
 
     return await thumbnail;
   }
 
   async getPosts() {
-    const publicPostsQuery = await query(collection(this.firestore, "posts"), where("postPrivate", "==", false), orderBy("id"));
+    const publicPostsQuery = await query(
+      collection(this.firestore, 'posts'),
+      where('postPrivate', '==', false),
+      orderBy('id')
+    );
     const posts = await getDocs(publicPostsQuery);
     let localPosts: Post[] = [];
 
     await posts.forEach((doc) => {
-      localPosts.push(doc.data() as Post)
+      localPosts.push(doc.data() as Post);
     });
 
     return await localPosts;
   }
 
   async getUserName(id: string) {
-    const userNameQuery = await query(collection(this.firestore, "users"), where("uid", "==", id));
+    const userNameQuery = await query(
+      collection(this.firestore, 'users'),
+      where('uid', '==', id)
+    );
     const querySnapshot = await getDocs(userNameQuery);
-    let username = "";
+    let username = '';
 
     await querySnapshot.forEach((doc) => {
       username = doc.data().nickname;
@@ -99,10 +152,20 @@ export class DatabaseService {
     let user = await JSON.parse(localStorage.getItem('user')!);
 
     if (user && user.uid === uid) {
-      postsQuery = await query(collection(this.firestore, "posts"), where("uid", "==", uid), orderBy("id"), limit(3));
-    }
-    else {
-      postsQuery = await query(collection(this.firestore, "posts"), where("uid", "==", uid), where("postPrivate", "==", false), orderBy("id"), limit(3));
+      postsQuery = await query(
+        collection(this.firestore, 'posts'),
+        where('uid', '==', uid),
+        orderBy('id'),
+        limit(3)
+      );
+    } else {
+      postsQuery = await query(
+        collection(this.firestore, 'posts'),
+        where('uid', '==', uid),
+        where('postPrivate', '==', false),
+        orderBy('id'),
+        limit(3)
+      );
     }
 
     const querySnapshot = await getDocs(postsQuery);
@@ -116,13 +179,14 @@ export class DatabaseService {
   }
 
   postId() {
-    const PUSH_CHARS = '-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
+    const PUSH_CHARS =
+      '-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
     let lastPushTime = 0;
     let lastRandChars: number[] = [];
 
     return (function () {
       let now = new Date().getTime();
-      let duplicateTime = (now === lastPushTime);
+      let duplicateTime = now === lastPushTime;
       lastPushTime = now;
 
       let timeStampChars = new Array(8);
@@ -130,7 +194,8 @@ export class DatabaseService {
         timeStampChars[i] = PUSH_CHARS.charAt(now % 64);
         now = Math.floor(now / 64);
       }
-      if (now !== 0) throw new Error('We should have converted the entire timestamp.');
+      if (now !== 0)
+        throw new Error('We should have converted the entire timestamp.');
 
       let id = timeStampChars.join('');
 
@@ -149,8 +214,7 @@ export class DatabaseService {
       }
       if (id.length != 20) throw new Error('Length should be 20.');
 
-      return id
+      return id;
     })();
-
   }
 }

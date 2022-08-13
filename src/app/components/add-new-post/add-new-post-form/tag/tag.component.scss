@@ -1,0 +1,21 @@
+@use "/src/app/global/main.scss";
+
+.tag {
+  @extend .font-1;
+  font-size: 0.8rem;
+  border-radius: 3px;
+  background: main.$purple;
+  color: main.$white;
+  box-sizing: border-box;
+  padding: 0.5rem 0.7rem;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+}
+
+:host {
+  min-width: calc(33.33% - 1.5%);
+  display: block;
+  padding-right: 1.5%;
+  padding-top: 1.5%;
+}

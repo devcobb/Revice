@@ -34,12 +34,17 @@
       }
     }
     .post-info-wrap {
-      @include main.flex(center, center, column);
-      @include main.setSize(40%);
+      @include main.flex(space-around, flex-start);
+      @include main.setSize(45%);
+      margin-top: 1%;
       flex-wrap: wrap;
       .choose-year-wrap {
-        @include main.setSize(75%);
+        @include main.setSize(60%);
         margin-bottom: 1%;
+      }
+      .tags-wrap {
+        @include main.setSize(30%);
+        margin-left: 10%;
       }
     }
     .post-visiblity-wrap {
@@ -119,8 +124,8 @@
       text-align: center;
       margin-bottom: 5%;
       .btn-wrap {
-        @include main.flex(space-around, center);
-        @include main.setSize(50%);
+        @include main.flex(center, center);
+        @include main.setSize(75%);
       }
       .error-wrap {
         @include main.setSize(65%);
@@ -130,7 +135,7 @@
         @include main.contrastButton;
         @include main.setSize(auto, auto, auto, auto, 25%);
         font-weight: normal;
-        margin-right: 1%;
+        margin-right: 5%;
         &:disabled {
           &:hover {
             background-color: main.$purple;
@@ -143,7 +148,7 @@
         @include main.contrastButton;
         @include main.setSize(auto, auto, auto, auto, 25%);
         font-weight: normal;
-        margin-left: 1%;
+        margin-left: 5%;
         transition: opacity 0.3s;
         &:disabled {
           &:hover {
@@ -215,8 +220,29 @@
         @include main.setSize(65%);
       }
       .post-info-wrap {
-        .choose-year-wrap {
+        flex-direction: column;
+        .tags-wrap {
+          width: 100%;
+          margin-left: 0;
+          margin-top: 10%;
           ::ng-deep {
+            .add-tags-container {
+              text-align: center;
+            }
+            .tags-input {
+              width: 50%;
+            }
+            .tags-wrap {
+              margin-top: 5%;
+            }
+          }
+        }
+        .choose-year-wrap {
+          width: 100%;
+          ::ng-deep {
+            .specific-year-info {
+              margin-top: 2.5%;
+            }
             .filter-year-wrap {
               flex-direction: column;
             }
@@ -307,6 +333,18 @@
     .add-new-post-form {
       .post-info-wrap {
         @include main.setSize(75%);
+      }
+      .submit-container .btn-wrap {
+        flex-direction: column;
+        .submit-btn {
+          width: 75%;
+          margin-right: 0;
+          margin-bottom: 5%;
+        }
+        .preview-btn {
+          width: 75%;
+          margin-left: 0;
+        }
       }
       .add-row {
         .add-field-btn {

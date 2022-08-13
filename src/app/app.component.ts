@@ -1,23 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  Event as RouterEvent, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router
+  Event as RouterEvent,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
 } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   needLoading = true;
 
   constructor(private router: Router) {
     router.events.subscribe((event: RouterEvent) => {
-      this.navigationInterceptor(event)
-    })
+      this.navigationInterceptor(event);
+    });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   navigationInterceptor(event: RouterEvent): void {
     if (event instanceof NavigationStart) {
@@ -34,5 +39,4 @@ export class AppComponent implements OnInit {
       this.needLoading = false;
     }
   }
-
 }

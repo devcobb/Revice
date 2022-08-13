@@ -12,6 +12,7 @@ import {
   PossibleErrors,
   RatingField,
   Star,
+  Tag,
   TextField,
 } from 'src/app/global/global-interfaces';
 import { YearFieldData } from '../../choose-year/choose-year.component';
@@ -24,6 +25,7 @@ import { ErrorMessagesService } from '../../error-messages/error-messages-servic
 })
 export class AddNewPostFormComponent {
   @Input() category = <Category>{};
+
   @Output() choosedCategory = '';
   @Output() previewedFields = new EventEmitter<
     (
@@ -40,6 +42,7 @@ export class AddNewPostFormComponent {
   @Output() needPreview = new EventEmitter<boolean>();
   @Output() postTitle = new EventEmitter<string>();
   @Output() postRatings = new EventEmitter<Star[]>();
+  @Output() allTags = new EventEmitter<Tag[]>();
   fields: (
     | TextField
     | ImageField
@@ -48,12 +51,13 @@ export class AddNewPostFormComponent {
     | GalleryField
     | HeadingField
   )[] = [];
-  addPostButtonDisabled = true;
+  addPostButtonDisabled = false;
   previewPostButtonDisabled = false;
   errorMessage = true;
   private = false;
   preview = false;
   title = '';
+  tags: Tag[] = [];
   thumbnail = '';
   stars: Star[] = [];
 
@@ -179,6 +183,12 @@ export class AddNewPostFormComponent {
     });
   }
 
+  //Add tag
+  addTag(tag: Tag) {
+    this.tags.push(tag);
+    this.allTags.emit(this.tags);
+  }
+
   //UPDATE TITLE
   updateTitle(value: string) {
     this.title = value;
@@ -266,7 +276,8 @@ export class AddNewPostFormComponent {
       await userData.username,
       await userData.uid,
       this.stars,
-      this.category
+      this.category,
+      this.tags
     );
 
     //NAVIGATE USER TO LATEST POSTS SECTION

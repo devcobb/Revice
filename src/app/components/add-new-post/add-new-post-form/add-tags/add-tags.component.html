@@ -1,0 +1,16 @@
+<div class="add-tags-container">
+    <input class="post-input tags-input"
+           (keydown)="addTag($event.key)"
+           type="text"
+           #addNewTag
+           placeholder="Add a new tag and hit enter" />
+    <div class="tags-wrap">
+        <p class="no-tags-added"
+           *ngIf="!tags.length">You don't have any added tags</p>
+        <app-tag class="tag"
+                 [ngClass]="{'no-margin': last}"
+                 (click)="removeTag($event.target.textContent)"
+                 *ngFor="let tag of tags; let last = last;"
+                 [content]="tag.content"></app-tag>
+    </div>
+</div>

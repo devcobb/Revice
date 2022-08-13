@@ -4,10 +4,6 @@
   @include main.setSize(100%);
 }
 
-.height-100 {
-  @include main.setSize(auto, 100vh);
-}
-
-.height-auto {
-  @include main.setSize();
+.container {
+  min-height: 100vh;
 }
