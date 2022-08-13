@@ -53,6 +53,13 @@ a {
 }
 .post-rating {
   margin-top: 1rem;
+  .tags-wrap {
+    @include main.flex(center, center);
+    margin-bottom: 2.5%;
+    .tag.no-margin {
+      padding-right: 0;
+    }
+  }
 }
 .year {
   margin-left: 5px;

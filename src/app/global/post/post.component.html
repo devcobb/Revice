@@ -17,7 +17,12 @@
     </span>
 </div>
 <div class="post-rating">
-
+    <div class="tags-wrap">
+        <app-tag class="tag"
+                 [ngClass]="{'no-margin': last}"
+                 *ngFor="let tag of post.tags; let last = last"
+                 [content]="tag.content"></app-tag>
+    </div>
     <app-rating [stars]="post.ratings"
                 [editable]="false"></app-rating>
 </div>
