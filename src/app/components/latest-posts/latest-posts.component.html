@@ -62,6 +62,7 @@
                 <ng-container *ngIf="filter.filter === 'rating'">
                     <div class="active-filter-rating-wrap">
                         <app-rating [editable]="false"
+                                    [viewBoxDataDesktop]="'1 1 20 20'"
                                     [stars]="filter.rating"></app-rating>
                     </div>
                 </ng-container>
