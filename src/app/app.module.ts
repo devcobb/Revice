@@ -48,6 +48,8 @@ import { AddNewBannerFieldComponent } from './components/add-new-post/add-new-po
 import { AddNewRatingFieldComponent } from './components/add-new-post/add-new-post-form/add-new-post-form-fields/add-new-rating-field/add-new-rating-field.component';
 import { AddNewGalleryFieldComponent } from './components/add-new-post/add-new-post-form/add-new-post-form-fields/add-new-gallery-field/add-new-gallery-field.component';
 import { AddFieldButtonComponent } from './components/add-new-post/add-new-post-form/add-field-button/add-field-button.component';
+import { AddTagsComponent } from './components/add-new-post/add-new-post-form/add-tags/add-tags.component';
+import { TagComponent } from './components/add-new-post/add-new-post-form/tag/tag.component';
 
 const materialModules = [
   MatButtonModule,
@@ -93,6 +95,8 @@ const materialModules = [
     AddNewRatingFieldComponent,
     AddNewGalleryFieldComponent,
     AddFieldButtonComponent,
+    AddTagsComponent,
+    TagComponent,
   ],
   imports: [
     BrowserModule,

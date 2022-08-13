@@ -50,6 +50,9 @@
       <div class="choose-year-wrap">
         <app-choose-year (changedData)="choosePostDate($event)"></app-choose-year>
       </div>
+      <div class="tags-wrap">
+        <app-add-tags (tagAdded)="addTag($event)"></app-add-tags>
+      </div>
     </div>
 
     <!-- FIELDS -->
@@ -158,6 +161,12 @@
     <!-- SUBMIT AND PREVIEW BUTTONS -->
     <div class="submit-container">
       <div class="btn-wrap">
+        <!-- Prevent implicit submission of the form -->
+        <button type="submit"
+                disabled
+                style="display: none"
+                aria-hidden="true"></button>
+
         <input class="submit-btn"
                value="Add post"
                [disabled]="addPostButtonDisabled"

@@ -60,6 +60,7 @@ export interface Post {
     | boolean
     | number
     | Star[]
+    | Tag[]
     | (TextField | ImageField | BannerField)[]
     | undefined;
   author: string;
@@ -75,6 +76,7 @@ export interface Post {
   ratings: Star[];
   order?: number;
   hidden: boolean;
+  tags: Tag[];
   year: string;
 }
 
@@ -92,6 +94,10 @@ export interface PossibleErrors {
   textFieldLength: boolean;
   imageFieldNoData: boolean;
   bannerNoData: boolean;
+}
+
+export interface Tag {
+  content: string;
 }
 
 export enum EPossibleErrors {

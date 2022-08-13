@@ -4,6 +4,7 @@ import {
   Category,
   ImageField,
   Star,
+  Tag,
   TextField,
 } from 'src/app/global/global-interfaces';
 import { YearFieldData } from '../choose-year/choose-year.component';
@@ -18,6 +19,7 @@ export class AddNewPostComponent {
   heroImageHeight = '60vh';
   imageID = '4';
   date = '';
+  tags: Tag[] = [];
   availableCategories: Category[] = [
     { name: 'movie' },
     { name: 'serial' },
@@ -57,6 +59,11 @@ export class AddNewPostComponent {
   //UPDATE TITLE
   updateTitle(title: string) {
     this.title = title;
+  }
+
+  //UPDATE TAGS
+  updateTags(tags: Tag[]) {
+    this.tags = tags;
   }
 
   updateDate(date: YearFieldData) {

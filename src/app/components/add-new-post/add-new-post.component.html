@@ -27,6 +27,7 @@
                        (postDate)="updateDate($event)"
                        (postTitle)="updateTitle($event)"
                        (postRatings)="updateRatings($event)"
+                       (allTags)="updateTags($event)"
                        [category]="choosedCategory"></app-add-new-post-form>
 
 <!-- PREVIEW -->
@@ -35,6 +36,7 @@
                   [title]="title"
                   [thumbnail]="thumbnail"
                   [date]="date"
+                  [tags]="tags"
                   [stars]="ratings"
                   [category]="choosedCategory"
                   [fields]="fields"></app-preview-post>
